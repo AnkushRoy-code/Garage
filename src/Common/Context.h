@@ -2,7 +2,6 @@
 #define INCLUDE_COMMON_CONTEXT_H_
 
 #include <SDL3/SDL.h>
-#include <SDL3/SDL_init.h>
 #include <functional>
 #include <memory>
 #include <string>
@@ -10,12 +9,12 @@
 struct Context
 {
     Context()  = default;
-    ~Context() = default;
+    ~Context();
 
     bool init();
 
     SDL_Window *mWindow;
-    SDL_Renderer *mRenderer;
+    SDL_GPUDevice *mDevice;
 
     // Bools to get the input
     bool right {}, left {}, down {}, up {};

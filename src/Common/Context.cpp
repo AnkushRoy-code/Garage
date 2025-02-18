@@ -1,23 +1,45 @@
 #include "Context.h"
-#include <SDL3/SDL_render.h>
+#include <SDL3/SDL_gpu.h>
 #include <print>
 
 bool Context::init()
 {
     if (!SDL_Init(SDL_INIT_VIDEO))
     {
-        std::println("Couldn't initialize SDL: %s", SDL_GetError());
+        std::println("Couldn't initialize SDL: {}", SDL_GetError());
         return false;
     }
 
-    SDL_CreateWindowAndRenderer("SDL_GPU_API_TRY", 640, 480, 0, &mWindow, &mRenderer);
+    mDevice = SDL_CreateGPUDevice(SDL_GPU_SHADERFORMAT_SPIRV | SDL_GPU_SHADERFORMAT_DXIL
+                                      | SDL_GPU_SHADERFORMAT_MSL,
+                                  false, NULL);
 
-    // clang-format off
-    if (!mWindow) { std::println("Unable to create SDL_Window. SDL_Error: %s", SDL_GetError()); }
-    if (!mRenderer) { std::println("Unable to create SDL_Renderer. SDL_Error: %s", SDL_GetError()); }
-    // clang-format on
+    if (!mDevice)
+    {
+        std::println("Unable to create SDL_GPUDevice. SDL_Error: {}", SDL_GetError());
+        return false;
+    }
+
+    mWindow = SDL_CreateWindow("SDL_GPU_API_TRY", 640, 480, 0);
+
+    if (!mWindow)
+    {
+        std::println("Unable to create SDL_Window. SDL_Error: {}", SDL_GetError());
+        return false;
+    }
+
+    if (!SDL_ClaimWindowForGPUDevice(mDevice, mWindow))
+    {
+        std::println("Unable to claim window for device. SDL_Error: {}", SDL_GetError());
+        return false;
+    }
 
     return true;
+}
+
+Context::~Context()
+{
+    SDL_ReleaseWindowFromGPUDevice(mDevice, mWindow);
 }
 
 std::unique_ptr<std::vector<Example>> ExampleRegistry::instances = nullptr;
