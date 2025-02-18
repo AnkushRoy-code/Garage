@@ -1,0 +1,101 @@
+#include <ostream>
+#include <print>
+#include <vector>
+#include <algorithm>
+
+#define SDL_MAIN_USE_CALLBACKS 1 /* use the callbacks instead of main() */
+#include <SDL3/SDL.h>
+#include <SDL3/SDL_main.h>
+
+#include "../Common/Context.h"
+
+Context context;
+std::vector<Example> Examples;
+int exampleIndex {};
+
+SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
+{
+    if (!context.init()) { return SDL_APP_FAILURE; }
+
+    ExampleRegistry::registerExamples();
+    Examples = ExampleRegistry::getAllExamples();
+
+    // std::cout << "The Example name is: " << Examples[0].Name << std::endl;
+    // Manually init the first example
+    Examples[0].Init(context);  // Error handling can wait
+
+    return SDL_APP_CONTINUE;
+}
+
+SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
+{
+    bool changeState {false};
+    bool Pressed_A {false};  // to detect if A was pressed or D was pressed. To properly Quit the
+                             // running example.
+
+    if (event->type == SDL_EVENT_QUIT)
+    {
+        if (exampleIndex != -1) { Examples[exampleIndex].Quit(context); }
+        return SDL_APP_SUCCESS;
+    }
+
+    else if (event->type == SDL_EVENT_KEY_DOWN)
+    {
+        switch (event->key.key)
+        {
+            case SDLK_D:
+            {
+                changeState = true;
+                Pressed_A   = false;
+                break;
+            };
+
+            case SDLK_A:
+            {
+                changeState = true;
+                Pressed_A   = true;
+                break;
+            };
+
+            case SDLK_LEFT: context.left = true; break;
+            case SDLK_RIGHT: context.right = true; break;
+            case SDLK_DOWN: context.down = true; break;
+            case SDLK_UP: context.up = true; break;
+
+            default: break;
+        }
+    }
+
+    // Change Example
+    if (changeState)
+    {
+        if (!Examples.empty() && exampleIndex < Examples.size())
+        {
+            // Calculate target index
+            size_t newIndex = Pressed_A ? std::max(int(0), exampleIndex - 1)
+                                        : std::min(exampleIndex + 1, int(Examples.size()) - 1);
+            // Perform transition
+            if (newIndex != exampleIndex)
+            {
+                Examples[exampleIndex].Quit(context);
+                exampleIndex = newIndex;
+                Examples[exampleIndex].Init(context);
+            }
+        }
+    }
+
+    return SDL_APP_CONTINUE;
+}
+
+SDL_AppResult SDL_AppIterate(void *appstate)
+{
+    Examples[exampleIndex].Update(context);
+    Examples[exampleIndex].Draw(context);
+
+    return SDL_APP_CONTINUE;
+}
+
+void SDL_AppQuit(void *appstate, SDL_AppResult result)
+{
+    // Do stuff when needed
+}
