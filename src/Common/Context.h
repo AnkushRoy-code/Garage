@@ -8,13 +8,13 @@
 
 struct Context
 {
-    Context()  = default;
+    Context() = default;
     ~Context();
 
-    bool init();
+    void init();
 
-    SDL_Window *mWindow;
-    SDL_GPUDevice *mDevice;
+    SDL_Window *mWindow {};
+    SDL_GPUDevice *mDevice {};
 
     // Bools to get the input
     bool right {}, left {}, down {}, up {};

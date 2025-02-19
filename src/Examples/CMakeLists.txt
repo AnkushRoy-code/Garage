@@ -1,6 +1,7 @@
 add_library(
   Examples SimpleExample/SimpleExample.h SimpleExample/SimpleExample.cpp
-           SimpleExample2/SimpleExample2.h SimpleExample2/SimpleExample2.cpp
+           Triangle/Triangle.h Triangle/Triangle.cpp
 )
 
-target_include_directories(Examples PRIVATE "${CMAKE_SOURCE_DIR}")
+target_link_libraries(Examples PRIVATE Common SDL3::SDL3-shared)
+target_include_directories(Examples PRIVATE "${CMAKE_SOURCE_DIR}/src")

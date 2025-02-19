@@ -1,40 +1,29 @@
 #include "Context.h"
+
+#include "SDL_Exception.h"
+
 #include <SDL3/SDL_gpu.h>
 #include <print>
+#include <utility>
 
-bool Context::init()
+void Context::init()
 {
-    if (!SDL_Init(SDL_INIT_VIDEO))
-    {
-        std::println("Couldn't initialize SDL: {}", SDL_GetError());
-        return false;
-    }
+    if (!SDL_Init(SDL_INIT_VIDEO)) { throw SDL_Exception("Couldn't initialize SDL"); }
 
     mDevice = SDL_CreateGPUDevice(SDL_GPU_SHADERFORMAT_SPIRV | SDL_GPU_SHADERFORMAT_DXIL
                                       | SDL_GPU_SHADERFORMAT_MSL,
-                                  false, NULL);
+                                  false, nullptr);
 
-    if (!mDevice)
-    {
-        std::println("Unable to create SDL_GPUDevice. SDL_Error: {}", SDL_GetError());
-        return false;
-    }
+    if (!mDevice) { throw SDL_Exception("Unable to create SDL_GPUDevice"); }
 
     mWindow = SDL_CreateWindow("SDL_GPU_API_TRY", 640, 480, 0);
 
-    if (!mWindow)
-    {
-        std::println("Unable to create SDL_Window. SDL_Error: {}", SDL_GetError());
-        return false;
-    }
+    if (!mWindow) { throw SDL_Exception("Unable to create SDL_Window"); }
 
     if (!SDL_ClaimWindowForGPUDevice(mDevice, mWindow))
     {
-        std::println("Unable to claim window for device. SDL_Error: {}", SDL_GetError());
-        return false;
+        throw SDL_Exception("Unable to claim window for device");
     }
-
-    return true;
 }
 
 Context::~Context()
@@ -57,5 +46,6 @@ void ExampleRegistry::registerExample(const std::string &name,
                                       std::function<void(Context &)> quit)
 {
     if (!instances) instances = std::make_unique<std::vector<Example>>();
-    instances->push_back({name, init, update, draw, quit});
+    instances->push_back(
+        {name, std::move(init), std::move(update), std::move(draw), std::move(quit)});
 }
