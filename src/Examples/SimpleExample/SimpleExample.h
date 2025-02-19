@@ -35,7 +35,7 @@ static bool Draw(Context &context)
     {
         SDL_GPUColorTargetInfo colorTargetInfo = {nullptr};
         colorTargetInfo.texture                = swapchainTexture;
-        colorTargetInfo.clear_color            = (SDL_FColor) {0.1f, 0.7f, 0.8f, 1.0f};
+        colorTargetInfo.clear_color            = SDL_FColor {0.1f, 0.7f, 0.8f, 1.0f};
         colorTargetInfo.load_op                = SDL_GPU_LOADOP_CLEAR;
         colorTargetInfo.store_op               = SDL_GPU_STOREOP_STORE;
 
