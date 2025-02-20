@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sdl_5fexception_0',['SDL_Exception',['../classSDL__Exception.html',1,'']]]
+  ['sdl_5fexception_0',['SDL_Exception',['../class_s_d_l___exception.html',1,'']]]
 ];

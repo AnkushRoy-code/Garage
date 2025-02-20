@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['example_0',['Example',['../structExample.html',1,'']]],
-  ['exampleregistry_1',['ExampleRegistry',['../classExampleRegistry.html',1,'']]]
+  ['example_0',['Example',['../struct_example.html',1,'']]],
+  ['exampleregistry_1',['ExampleRegistry',['../class_example_registry.html',1,'']]]
 ];
