@@ -25,10 +25,17 @@
 var NAVTREE =
 [
   [ "Ankush's Garage", "index.html", [
-    [ "My Platformer Project", "index.html#autotoc_md6", [
-      [ "Features", "index.html#autotoc_md7", null ],
-      [ "Getting Started", "index.html#autotoc_md8", null ]
+    [ "My Projects", "index.html#autotoc_md6", [
+      [ "Particle Simulator", "index.html#autotoc_md7", null ],
+      [ "Few Fractals", "index.html#autotoc_md8", [
+        [ "Normal fractal", "index.html#autotoc_md9", null ],
+        [ "Fern Fractals", "index.html#autotoc_md10", null ],
+        [ "Mendelbroth Set", "index.html#autotoc_md11", null ],
+        [ "Goldbert set", "index.html#autotoc_md12", null ]
+      ] ]
     ] ],
+    [ "Features", "index.html#autotoc_md13", null ],
+    [ "Getting Started", "index.html#autotoc_md14", null ],
     [ "Usage", "md_usage.html", [
       [ "Interface", "md_usage.html#autotoc_md1", [
         [ "Keys", "md_usage.html#autotoc_md2", null ]
