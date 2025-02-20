@@ -1,5 +1,7 @@
 # Ankush's Garage
 
+[TOC]
+
 ## My Projects
 
 Welcome to the documentation for **A Collection of My Creations**!  
