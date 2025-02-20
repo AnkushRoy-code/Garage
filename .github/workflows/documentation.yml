@@ -8,7 +8,7 @@ on:
       - '.github/workflows/documentation.yml'
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -21,11 +21,16 @@ jobs:
     name: Build and publish documentation
     runs-on: ubuntu-latest
     steps:
-      - name: Doxygen build site
-        uses: mattnotmitt/doxygen-action@v1.9.5
-        with:
-            working-directory: 'docs/'
-            doxyfile-path: 'docs/Doxyfile'
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Doxygen
+        run: |
+          sudo apt-get install doxygen
+
+      - name: Build Docs
+        run: |
+          cd docs && doxygen Doxyfile
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4

@@ -2,6 +2,10 @@ name: Testing
 
 on:
   push:
+    paths:
+      - 'src/**'
+      - 'CMakeLists.txt'
+
     branches:
       - master
       - main
