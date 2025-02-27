@@ -3,7 +3,7 @@ html {
     --primary-color: #04a5e5;
     --primary-dark-color: #7287fd;
     --primary-light-color: #1e66f5;
-    
+
     /* Don't touch these colours please. They are what makes Catppuccin Catppuccin. And sorry if I got them wrong. */
     --page-background-color: #eff1f5;
     --page-foreground-color: #4c4f69;
@@ -29,7 +29,10 @@ html {
     --searchbar-background: #94e2d5;
 
     /* This has nothing to do with catppuccin I just like this. Keeps the nav bar arrow always visible. */
-    --side-nav-arrow-opacity: 0.8; 
+    --side-nav-arrow-opacity: 0.8;
+    --search-color: #4c4f69;
+
+    --span-mlabel: #1e66f5;
 }
 
 html.dark-mode {
@@ -58,11 +61,10 @@ html.dark-mode {
     --invariant-color-dark: #a6e3a1;
     --invariant-color-darker: #6aa865;
 
-    --searchbar-background: #111111;
-    --searchbar-foreground: #cdd6f4;
+    --searchbar-background: #11111b;
 
     --side-nav-background: #181825;
-    --separator-color: #89b4fa;
+    --separator-color: #2d394d;
 
     --fragment-background: #181825;
     --fragment-foreground: #bac2de;
@@ -74,4 +76,27 @@ html.dark-mode {
     --fragment-link: #89b4fa;
     --fragment-preprocessor: #cba6f7;
     --fragment-linenumber-color: #7f849c;
+    --search-color: #fff;
+    --span-mlabel: #313244;
+}
+
+#MSearchField {
+    color: var(--search-color);
+}
+
+#MSearchBox {
+    background: transparent;
+}
+
+#MSearchBox.dark-mode {
+    background: #11111b;
+    border-color: transparent;
+}
+
+#MSearchBox.MSearchBoxActive {
+    border-color: transparent;
+}
+
+span.mlabel {
+    background: var(--span-mlabel);
 }
