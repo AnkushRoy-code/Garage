@@ -15,7 +15,7 @@ void Context::init()
 
     if (!mDevice) { throw SDL_Exception("Unable to create SDL_GPUDevice"); }
 
-    mWindow = SDL_CreateWindow("SDL_GPU_API_TRY", 640, 480, 0);
+    mWindow = SDL_CreateWindow("Ankush's Garage", 640, 480, 0);
 
     if (!mWindow) { throw SDL_Exception("Unable to create SDL_Window"); }
 
