@@ -7,5 +7,5 @@ var _main_8cpp =
     [ "SDL_AppQuit", "_main_8cpp.html#a31f80ce4f4926b0c6fe01a9644f3c837", null ],
     [ "context", "_main_8cpp.html#af73e715b5b0bbc5ea42336c758ceda5f", null ],
     [ "exampleIndex", "_main_8cpp.html#a83f395322d01d3af75a002deb378630b", null ],
-    [ "Examples", "_main_8cpp.html#a59c0ee007495a0442b14c72399bc122a", null ]
+    [ "Projects", "_main_8cpp.html#a70eb0d46d49e8b6c2172ec80430083bb", null ]
 ];

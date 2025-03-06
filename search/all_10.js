@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['up_0',['up',['../struct_context.html#a624935b316a90f4b33476c7722672eaa',1,'Context']]],
-  ['update_1',['Update',['../struct_example.html#a247da67d55c961726bc38fe688aeda04',1,'Example']]],
-  ['updatedeltatime_2',['updateDeltaTime',['../class_utils_1_1_time.html#a1f7924525b1b0cd701a2839057a0545e',1,'Utils::Time']]],
-  ['usage_3',['Usage',['../md_usage.html',1,'']]],
-  ['usage_2emd_4',['usage.md',['../usage_8md.html',1,'']]],
-  ['utils_5',['Utils',['../namespace_utils.html',1,'']]]
+  ['time_0',['Time',['../class_utils_1_1_time.html',1,'Utils']]],
+  ['time_2ecpp_1',['Time.cpp',['../_time_8cpp.html',1,'']]],
+  ['time_2eh_2',['Time.h',['../_time_8h.html',1,'']]],
+  ['todo_20list_3',['Todo List',['../todo.html',1,'']]],
+  ['triangle_4',['Triangle',['../class_triangle.html',1,'']]],
+  ['triangle_2ecpp_5',['Triangle.cpp',['../_triangle_8cpp.html',1,'']]],
+  ['triangle_2eh_6',['Triangle.h',['../_triangle_8h.html',1,'']]]
 ];

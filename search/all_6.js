@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['init_0',['Init',['../struct_example.html#ae5ab6e75097e222ed6b4cd0199231403',1,'Example']]],
-  ['init_1',['init',['../struct_context.html#a29146137dbdb16814f4994de6c21c27f',1,'Context::init()'],['../class_utils_1_1_time.html#a020426edc297d60e10c178cb0dfce619',1,'Utils::Time::init()']]],
-  ['instances_2',['instances',['../class_example_registry.html#a32877c57691ab66bef90074255e918b0',1,'ExampleRegistry']]],
-  ['interface_3',['Interface',['../md_usage.html#autotoc_md1',1,'Interface'],['../todo.html#_todo000001',1,'Interface']]]
+  ['garage_0',['Ankush&apos;s Garage',['../index.html',1,'']]],
+  ['getprojects_1',['getProjects',['../class_project_manager.html#a62f50d8c4ba4164c724b4eec285e5a72',1,'ProjectManager']]],
+  ['getticks_2',['getTicks',['../class_utils_1_1_time.html#ad6d512e62d5b84aff42e0a7aa7424d43',1,'Utils::Time']]],
+  ['getting_20started_3',['Getting Started',['../index.html#autotoc_md14',1,'']]],
+  ['goldbert_20set_4',['Goldbert set',['../index.html#autotoc_md12',1,'']]]
 ];

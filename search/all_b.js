@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['particle_20simulator_0',['Particle Simulator',['../index.html#autotoc_md7',1,'']]],
-  ['per_20example_1',['Per Example',['../md_usage.html#autotoc_md3',1,'']]],
-  ['projects_2',['My Projects',['../index.html#autotoc_md6',1,'']]]
+  ['name_0',['Name',['../class_base_project.html#a397d4051526fb3e623172671bc007a32',1,'BaseProject']]],
+  ['normal_20fractal_1',['Normal fractal',['../index.html#autotoc_md9',1,'']]]
 ];

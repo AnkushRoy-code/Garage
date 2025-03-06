@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['time_0',['Time',['../class_utils_1_1_time.html',1,'Utils']]]
+  ['sdl_5fexception_0',['SDL_Exception',['../class_s_d_l___exception.html',1,'']]],
+  ['simpleexample_1',['SimpleExample',['../class_simple_example.html',1,'']]]
 ];

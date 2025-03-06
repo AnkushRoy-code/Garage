@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['garage_0',['Ankush&apos;s Garage',['../index.html',1,'']]],
-  ['getallexamples_1',['getAllExamples',['../class_example_registry.html#a72179835231acee866399eed2cd3dab7',1,'ExampleRegistry']]],
-  ['getticks_2',['getTicks',['../class_utils_1_1_time.html#ad6d512e62d5b84aff42e0a7aa7424d43',1,'Utils::Time']]],
-  ['getting_20started_3',['Getting Started',['../index.html#autotoc_md14',1,'']]],
-  ['goldbert_20set_4',['Goldbert set',['../index.html#autotoc_md12',1,'']]]
+  ['features_0',['Features',['../index.html#autotoc_md13',1,'']]],
+  ['fern_20fractals_1',['Fern Fractals',['../index.html#autotoc_md10',1,'']]],
+  ['few_20fractals_2',['Few Fractals',['../index.html#autotoc_md8',1,'']]],
+  ['fillpipeline_3',['FillPipeline',['../class_triangle.html#a23aaca9e0c5738481ca17e2e9591eb39',1,'Triangle']]],
+  ['fractal_4',['Normal fractal',['../index.html#autotoc_md9',1,'']]],
+  ['fractals_5',['Fractals',['../index.html#autotoc_md10',1,'Fern Fractals'],['../index.html#autotoc_md8',1,'Few Fractals']]]
 ];

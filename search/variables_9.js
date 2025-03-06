@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['up_0',['up',['../struct_context.html#a624935b316a90f4b33476c7722672eaa',1,'Context']]],
-  ['update_1',['Update',['../struct_example.html#a247da67d55c961726bc38fe688aeda04',1,'Example']]]
+  ['scissorrect_0',['ScissorRect',['../class_triangle.html#aec999e5bad11420e266c355bd00ae224',1,'Triangle']]],
+  ['smallviewport_1',['SmallViewport',['../class_triangle.html#af476a83a8475a37a3eb5d01b97bfa26f',1,'Triangle']]]
 ];

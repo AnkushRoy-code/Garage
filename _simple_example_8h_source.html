@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ankush&#39;s Garage: /Users/runner/work/Garage/Garage/src/Examples/SimpleExample/SimpleExample.h Source File</title>
+<title>Ankush&#39;s Garage: /Users/runner/work/Garage/Garage/src/Projects/SimpleExample/SimpleExample.h Source File</title>
 <link rel="icon" href="AnkushGarage.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -129,73 +129,43 @@ $(function(){initNavTree('_simple_example_8h_source.html',''); initResizable(tru
 <a href="_simple_example_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef INCLUDE_SIMPLEEXAMPLE_SIMPLEEXAMPLE_H_</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define INCLUDE_SIMPLEEXAMPLE_SIMPLEEXAMPLE_H_</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_context_8h.html">Common/Context.h</a>&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_s_d_l___exception_8h.html">Common/SDL_Exception.h</a>&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_simple_example.html">SimpleExample</a></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">static</span> <span class="keywordtype">bool</span> Init(<a class="code hl_struct" href="struct_context.html">Context</a> &amp;<a class="code hl_variable" href="_main_8cpp.html#af73e715b5b0bbc5ea42336c758ceda5f">context</a>)</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>{</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;SimpleExample Initialised\n&quot;</span>;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">static</span> <span class="keywordtype">bool</span> Update(<a class="code hl_struct" href="struct_context.html">Context</a> &amp;<a class="code hl_variable" href="_main_8cpp.html#af73e715b5b0bbc5ea42336c758ceda5f">context</a>)</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>{</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span></div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">static</span> <span class="keywordtype">bool</span> Draw(<a class="code hl_struct" href="struct_context.html">Context</a> &amp;<a class="code hl_variable" href="_main_8cpp.html#af73e715b5b0bbc5ea42336c758ceda5f">context</a>)</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>{</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    SDL_GPUCommandBuffer *cmdbuf = SDL_AcquireGPUCommandBuffer(<a class="code hl_variable" href="_main_8cpp.html#af73e715b5b0bbc5ea42336c758ceda5f">context</a>.mDevice);</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordflow">if</span> (cmdbuf == <span class="keyword">nullptr</span>) { <span class="keywordflow">throw</span> <a class="code hl_class" href="class_s_d_l___exception.html">SDL_Exception</a>(<span class="stringliteral">&quot;AcquireGPUCommandBuffer failed&quot;</span>); }</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    SDL_GPUTexture *swapchainTexture;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordflow">if</span> (!SDL_AcquireGPUSwapchainTexture(cmdbuf, <a class="code hl_variable" href="_main_8cpp.html#af73e715b5b0bbc5ea42336c758ceda5f">context</a>.mWindow, &amp;swapchainTexture, <span class="keyword">nullptr</span>,</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                                        <span class="keyword">nullptr</span>))</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    {</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keywordflow">throw</span> <a class="code hl_class" href="class_s_d_l___exception.html">SDL_Exception</a>(<span class="stringliteral">&quot;WaitAndAcquireGPUSwapchainTexture failed&quot;</span>);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    }</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordflow">if</span> (swapchainTexture != <span class="keyword">nullptr</span>)</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    {</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        SDL_GPUColorTargetInfo colorTargetInfo = {<span class="keyword">nullptr</span>};</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        colorTargetInfo.texture                = swapchainTexture;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        colorTargetInfo.clear_color = SDL_FColor {0.1f, 0.7f, 0.8f, 1.0f};  <span class="comment">// Light cyan background</span></div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        colorTargetInfo.load_op     = SDL_GPU_LOADOP_CLEAR;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        colorTargetInfo.store_op    = SDL_GPU_STOREOP_STORE;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        SDL_GPURenderPass *renderPass =</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            SDL_BeginGPURenderPass(cmdbuf, &amp;colorTargetInfo, 1, <span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        SDL_EndGPURenderPass(renderPass);</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    }</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    SDL_SubmitGPUCommandBuffer(cmdbuf);</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>}</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span></div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="keyword">static</span> <span class="keywordtype">void</span> Quit(<a class="code hl_struct" href="struct_context.html">Context</a> &amp;<a class="code hl_variable" href="_main_8cpp.html#af73e715b5b0bbc5ea42336c758ceda5f">context</a>) {}</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>}  <span class="comment">// namespace SimpleExample</span></div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span></div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="keywordtype">bool</span> <a class="code hl_function" href="_simple_example_8h.html#adac6ebefc1379ecb68083cf6b94eac77">registerSimpleExample</a>();</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="preprocessor">#endif  </span><span class="comment">// INCLUDE_SIMPLEEXAMPLE_SIMPLEEXAMPLE_H_</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_base_project_8h.html">Common/BaseProject.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_context_8h.html">Common/Context.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_s_d_l___exception_8h.html">Common/SDL_Exception.h</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span></div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_simple_example.html">   16</a></span><span class="keyword">class </span><a class="code hl_namespace" href="namespace_simple_example.html">SimpleExample</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_base_project.html">BaseProject</a></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_simple_example.html#a3224b8b2b48c7729ce86dd5ca7fca33d">Init</a>(<a class="code hl_struct" href="struct_context.html">Context</a> &amp;<a class="code hl_variable" href="_main_8cpp.html#af73e715b5b0bbc5ea42336c758ceda5f">context</a>) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_simple_example.html#aaede3fd3322f0640294f491c401cef70">Update</a>(<a class="code hl_struct" href="struct_context.html">Context</a> &amp;<a class="code hl_variable" href="_main_8cpp.html#af73e715b5b0bbc5ea42336c758ceda5f">context</a>) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_simple_example.html#a7a7ff98b00a03846813320f4bd44b1b4">Draw</a>(<a class="code hl_struct" href="struct_context.html">Context</a> &amp;<a class="code hl_variable" href="_main_8cpp.html#af73e715b5b0bbc5ea42336c758ceda5f">context</a>) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_simple_example.html#a1c5b88fa32f9b6e4b26996e3960faa67">Quit</a>(<a class="code hl_struct" href="struct_context.html">Context</a> &amp;<a class="code hl_variable" href="_main_8cpp.html#af73e715b5b0bbc5ea42336c758ceda5f">context</a>) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>};</div>
+</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#endif  </span><span class="comment">// INCLUDE_SIMPLEEXAMPLE_SIMPLEEXAMPLE_H_</span></div>
+<div class="ttc" id="a_base_project_8h_html"><div class="ttname"><a href="_base_project_8h.html">BaseProject.h</a></div></div>
 <div class="ttc" id="a_context_8h_html"><div class="ttname"><a href="_context_8h.html">Context.h</a></div></div>
-<div class="ttc" id="a_main_8cpp_html_af73e715b5b0bbc5ea42336c758ceda5f"><div class="ttname"><a href="_main_8cpp.html#af73e715b5b0bbc5ea42336c758ceda5f">context</a></div><div class="ttdeci">Context context</div><div class="ttdef"><b>Definition</b> Main.cpp:14</div></div>
+<div class="ttc" id="a_main_8cpp_html_af73e715b5b0bbc5ea42336c758ceda5f"><div class="ttname"><a href="_main_8cpp.html#af73e715b5b0bbc5ea42336c758ceda5f">context</a></div><div class="ttdeci">Context context</div><div class="ttdef"><b>Definition</b> Main.cpp:16</div></div>
 <div class="ttc" id="a_s_d_l___exception_8h_html"><div class="ttname"><a href="_s_d_l___exception_8h.html">SDL_Exception.h</a></div></div>
-<div class="ttc" id="a_simple_example_8h_html_adac6ebefc1379ecb68083cf6b94eac77"><div class="ttname"><a href="_simple_example_8h.html#adac6ebefc1379ecb68083cf6b94eac77">registerSimpleExample</a></div><div class="ttdeci">bool registerSimpleExample()</div><div class="ttdoc">Registers the SimpleExample in the ExampleRegistry.</div><div class="ttdef"><b>Definition</b> SimpleExample.cpp:3</div></div>
-<div class="ttc" id="aclass_s_d_l___exception_html"><div class="ttname"><a href="class_s_d_l___exception.html">SDL_Exception</a></div><div class="ttdoc">Exception class for handling SDL errors.</div><div class="ttdef"><b>Definition</b> SDL_Exception.h:16</div></div>
+<div class="ttc" id="aclass_base_project_html"><div class="ttname"><a href="class_base_project.html">BaseProject</a></div><div class="ttdoc">Structure representing an example application instance.</div><div class="ttdef"><b>Definition</b> BaseProject.h:17</div></div>
+<div class="ttc" id="aclass_simple_example_html_a1c5b88fa32f9b6e4b26996e3960faa67"><div class="ttname"><a href="class_simple_example.html#a1c5b88fa32f9b6e4b26996e3960faa67">SimpleExample::Quit</a></div><div class="ttdeci">void Quit(Context &amp;context) override</div><div class="ttdoc">Cleans up resources.</div><div class="ttdef"><b>Definition</b> SimpleExample.cpp:43</div></div>
+<div class="ttc" id="aclass_simple_example_html_a3224b8b2b48c7729ce86dd5ca7fca33d"><div class="ttname"><a href="class_simple_example.html#a3224b8b2b48c7729ce86dd5ca7fca33d">SimpleExample::Init</a></div><div class="ttdeci">bool Init(Context &amp;context) override</div><div class="ttdoc">Initializes the example.</div><div class="ttdef"><b>Definition</b> SimpleExample.cpp:3</div></div>
+<div class="ttc" id="aclass_simple_example_html_a7a7ff98b00a03846813320f4bd44b1b4"><div class="ttname"><a href="class_simple_example.html#a7a7ff98b00a03846813320f4bd44b1b4">SimpleExample::Draw</a></div><div class="ttdeci">bool Draw(Context &amp;context) override</div><div class="ttdoc">Renders the example.</div><div class="ttdef"><b>Definition</b> SimpleExample.cpp:14</div></div>
+<div class="ttc" id="aclass_simple_example_html_aaede3fd3322f0640294f491c401cef70"><div class="ttname"><a href="class_simple_example.html#aaede3fd3322f0640294f491c401cef70">SimpleExample::Update</a></div><div class="ttdeci">bool Update(Context &amp;context) override</div><div class="ttdoc">Updates the example.</div><div class="ttdef"><b>Definition</b> SimpleExample.cpp:9</div></div>
 <div class="ttc" id="anamespace_simple_example_html"><div class="ttname"><a href="namespace_simple_example.html">SimpleExample</a></div><div class="ttdoc">A basic example/template for structuring graphics-related code.</div></div>
-<div class="ttc" id="astruct_context_html"><div class="ttname"><a href="struct_context.html">Context</a></div><div class="ttdoc">Structure representing the application context.</div><div class="ttdef"><b>Definition</b> Context.h:18</div></div>
+<div class="ttc" id="astruct_context_html"><div class="ttname"><a href="struct_context.html">Context</a></div><div class="ttdoc">Structure representing the application context.</div><div class="ttdef"><b>Definition</b> Context.h:14</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_8a888dfd027ab8d8ceb28b3991964fd7.html">Examples</a></li><li class="navelem"><a class="el" href="dir_1ff988166b22892fb852713f370240e9.html">SimpleExample</a></li><li class="navelem"><a class="el" href="_simple_example_8h.html">SimpleExample.h</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_8814fd4021350c968919acba46af7540.html">Projects</a></li><li class="navelem"><a class="el" href="dir_f499b61c0cca8b03d1800221f385ee98.html">SimpleExample</a></li><li class="navelem"><a class="el" href="_simple_example_8h.html">SimpleExample.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>

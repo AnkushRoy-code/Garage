@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['init_0',['Init',['../struct_example.html#ae5ab6e75097e222ed6b4cd0199231403',1,'Example']]],
-  ['instances_1',['instances',['../class_example_registry.html#a32877c57691ab66bef90074255e918b0',1,'ExampleRegistry']]]
+  ['fillpipeline_0',['FillPipeline',['../class_triangle.html#a23aaca9e0c5738481ca17e2e9591eb39',1,'Triangle']]]
 ];

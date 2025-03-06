@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['example_0',['Example',['../struct_example.html',1,'Example'],['../md_usage.html#autotoc_md4',1,'Example'],['../md_usage.html#autotoc_md3',1,'Per Example']]],
-  ['exampleindex_1',['exampleIndex',['../_main_8cpp.html#a83f395322d01d3af75a002deb378630b',1,'Main.cpp']]],
-  ['exampleregistry_2',['ExampleRegistry',['../class_example_registry.html',1,'']]],
-  ['examples_3',['Examples',['../_main_8cpp.html#a59c0ee007495a0442b14c72399bc122a',1,'Main.cpp']]]
+  ['deltatime_0',['deltaTime',['../class_utils_1_1_time.html#ae3ad4a5743250da49de898ec93347fad',1,'Utils::Time']]],
+  ['down_1',['down',['../struct_context.html#a3dd7912e908d5da086c62e884a05d319',1,'Context']]],
+  ['draw_2',['Draw',['../class_base_project.html#ae91b5e571989802f3af56c794afd7e2a',1,'BaseProject::Draw()'],['../class_simple_example.html#a7a7ff98b00a03846813320f4bd44b1b4',1,'SimpleExample::Draw()'],['../class_triangle.html#a338ee10ea6ebb34858d25cc034736823',1,'Triangle::Draw()']]]
 ];
