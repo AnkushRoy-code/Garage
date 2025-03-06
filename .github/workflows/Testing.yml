@@ -34,9 +34,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: build/
-        key: ${{ runner.os }}-build-${{ hashFiles('**/CMakeLists.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-build-deps-
+        key: ${{ runner.os }}-build
 
     - name: Set up CMake
       uses: lukka/get-cmake@latest
