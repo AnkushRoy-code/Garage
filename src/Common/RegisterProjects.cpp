@@ -1,6 +1,6 @@
 #include "Common/BaseProject.h"
-#include "Examples/SimpleExample/SimpleExample.h"
-#include "Examples/Triangle/Triangle.h"
+#include "Projects/SimpleExample/SimpleExample.h"
+#include "Projects/Triangle/Triangle.h"
 #include <memory>
 
 void ProjectManager::registerAllProjects()

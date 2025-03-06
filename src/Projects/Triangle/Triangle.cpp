@@ -1,4 +1,4 @@
-#include "Examples/Triangle/Triangle.h"
+#include "Projects/Triangle/Triangle.h"
 #include "Common/Common.h"
 #include "Common/SDL_Exception.h"
 #include <iostream>
