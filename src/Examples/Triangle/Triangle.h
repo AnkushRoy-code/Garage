@@ -5,7 +5,7 @@
 #include "Common/Common.h"
 #include "Common/SDL_Exception.h"
 #include <SDL3/SDL_gpu.h>
-#include <print>
+#include <iostream>
 
 namespace Triangle
 {
@@ -23,17 +23,11 @@ static bool Init(Context &context)
 {
     SDL_GPUShader *vertexShader =
         Common::LoadShader(context.mDevice, "RawTriangle.vert", 0, 0, 0, 0);
-    if (vertexShader == nullptr)
-    {
-        throw SDL_Exception("Failed to create vertex shader!");
-    }
+    if (vertexShader == nullptr) { throw SDL_Exception("Failed to create vertex shader!"); }
 
     SDL_GPUShader *fragmentShader =
         Common::LoadShader(context.mDevice, "SolidColor.frag", 0, 0, 0, 0);
-    if (fragmentShader == nullptr)
-    {
-        throw SDL_Exception("Failed to create fragment shader!");
-    }
+    if (fragmentShader == nullptr) { throw SDL_Exception("Failed to create fragment shader!"); }
 
     SDL_GPUColorTargetDescription colorTargetDesc = {};
     colorTargetDesc.format = SDL_GetGPUSwapchainTextureFormat(context.mDevice, context.mWindow);
@@ -47,25 +41,19 @@ static bool Init(Context &context)
 
     pipelineCreateInfo.rasterizer_state.fill_mode = SDL_GPU_FILLMODE_FILL;
     FillPipeline = SDL_CreateGPUGraphicsPipeline(context.mDevice, &pipelineCreateInfo);
-    if (FillPipeline == nullptr)
-    {
-        throw SDL_Exception("Failed to create fill pipeline!");
-    }
+    if (FillPipeline == nullptr) { throw SDL_Exception("Failed to create fill pipeline!"); }
 
     pipelineCreateInfo.rasterizer_state.fill_mode = SDL_GPU_FILLMODE_LINE;
     LinePipeline = SDL_CreateGPUGraphicsPipeline(context.mDevice, &pipelineCreateInfo);
-    if (LinePipeline == nullptr)
-    {
-        throw SDL_Exception("Failed to create line pipeline!");
-    }
+    if (LinePipeline == nullptr) { throw SDL_Exception("Failed to create line pipeline!"); }
 
     SDL_ReleaseGPUShader(context.mDevice, vertexShader);
     SDL_ReleaseGPUShader(context.mDevice, fragmentShader);
 
-    std::println("Triangle Initialised");
-    std::println("Press Left to toggle wireframe mode");
-    std::println("Press Down to toggle small viewport");
-    std::println("Press Right to toggle scissor rect");
+    std::cout << "Triangle Initialised\n";
+    std::cout << "Press Left to toggle wireframe mode\n";
+    std::cout << "Press Down to toggle small viewport\n";
+    std::cout << "Press Right to toggle scissor rect\n";
     return true;
 }
 
@@ -83,10 +71,7 @@ static bool Update(Context &context)
 static bool Draw(Context &context)
 {
     SDL_GPUCommandBuffer *cmdbuf = SDL_AcquireGPUCommandBuffer(context.mDevice);
-    if (cmdbuf == nullptr)
-    {
-        throw SDL_Exception("AcquireGPUCommandBuffer failed!");
-    }
+    if (cmdbuf == nullptr) { throw SDL_Exception("AcquireGPUCommandBuffer failed!"); }
 
     SDL_GPUTexture *swapchainTexture;
     if (!SDL_AcquireGPUSwapchainTexture(cmdbuf, context.mWindow, &swapchainTexture, nullptr,

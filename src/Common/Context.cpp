@@ -3,7 +3,6 @@
 #include "SDL_Exception.h"
 
 #include <SDL3/SDL_gpu.h>
-#include <print>
 #include <utility>
 
 void Context::init()

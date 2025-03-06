@@ -29,14 +29,6 @@ set(PROJECT_VERSION
 )
 message(STATUS "${PROJECT_NAME} version: ${PROJECT_VERSION}")
 
-# Copy the res directory to the build directory
-set(RESOURCES_OUTPUT_DIR "${CMAKE_BINARY_DIR}/res")
-add_custom_target(
-  CopyResources ALL
-  COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/res ${RESOURCES_OUTPUT_DIR}
-  COMMENT "Copying resources to the build directory."
-)
-
 include(cmake/CPM.cmake)
 
 CPMAddPackage("gh:libsdl-org/SDL#release-3.2.4")

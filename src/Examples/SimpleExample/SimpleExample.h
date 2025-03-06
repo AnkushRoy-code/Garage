@@ -3,7 +3,7 @@
 
 #include "Common/Context.h"
 #include "Common/SDL_Exception.h"
-#include <print>
+#include <iostream>
 
 /**
  * @namespace SimpleExample
@@ -26,7 +26,7 @@ namespace SimpleExample
  */
 static bool Init(Context &context)
 {
-    std::println("SimpleExample Initialised");
+    std::cout << "SimpleExample Initialised\n";
     return true;
 }
 
