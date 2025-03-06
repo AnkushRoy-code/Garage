@@ -1,5 +1,7 @@
+#include "Common/BaseProject.h"
 #include <SDL3/SDL_init.h>
 #include <iostream>
+#include <memory>
 #include <vector>
 #include <algorithm>
 
@@ -12,7 +14,7 @@
 #include "Common/SDL_Exception.h"
 
 Context context;
-std::vector<Example> Examples;
+std::vector<std::unique_ptr<BaseProject>> Projects {};
 int exampleIndex {};
 
 SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
@@ -20,13 +22,13 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
     try
     {
         context.init();
+        ProjectManager::registerAllProjects();
 
-        ExampleRegistry::registerExamples();
-        Examples = ExampleRegistry::getAllExamples();
+        Projects = ProjectManager::getProjects();
 
         // std::cout << "The Example name is: " << Examples[0].Name << std::endl;
         // Manually init the first example
-        Examples[0].Init(context);  // Error handling can wait
+        Projects[0]->Init(context);  // Error handling can wait
 
         Utils::Time::init();
     }
@@ -63,7 +65,7 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
 
         if (event->type == SDL_EVENT_QUIT)
         {
-            if (exampleIndex != -1) { Examples[exampleIndex].Quit(context); }
+            if (exampleIndex != -1) { Projects[exampleIndex]->Quit(context); }
             return SDL_APP_SUCCESS;
         }
 
@@ -97,17 +99,17 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
         // Change Example
         if (changeState)
         {
-            if (!Examples.empty() && exampleIndex < Examples.size())
+            if (!Projects.empty() && exampleIndex < Projects.size())
             {
                 // Calculate target index
                 size_t newIndex = Pressed_A ? std::max(int(0), exampleIndex - 1)
-                                            : std::min(exampleIndex + 1, int(Examples.size()) - 1);
+                                            : std::min(exampleIndex + 1, int(Projects.size()) - 1);
                 // Perform transition
                 if (newIndex != exampleIndex)
                 {
-                    Examples[exampleIndex].Quit(context);
+                    Projects[exampleIndex]->Quit(context);
                     exampleIndex = newIndex;
-                    Examples[exampleIndex].Init(context);
+                    Projects[exampleIndex]->Init(context);
                 }
             }
         }
@@ -138,8 +140,8 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 {
     try
     {
-        Examples[exampleIndex].Update(context);
-        Examples[exampleIndex].Draw(context);
+        Projects[exampleIndex]->Update(context);
+        Projects[exampleIndex]->Draw(context);
 
         Utils::Time::capFPS();
     }

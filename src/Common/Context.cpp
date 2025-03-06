@@ -29,22 +29,3 @@ Context::~Context()
 {
     SDL_ReleaseWindowFromGPUDevice(mDevice, mWindow);
 }
-
-std::unique_ptr<std::vector<Example>> ExampleRegistry::instances = nullptr;
-
-const std::vector<Example> &ExampleRegistry::getAllExamples()
-{
-    if (!instances) { instances = std::make_unique<std::vector<Example>>(); }
-    return *instances;
-}
-
-void ExampleRegistry::registerExample(const std::string &name,
-                                      std::function<bool(Context &)> init,
-                                      std::function<bool(Context &)> update,
-                                      std::function<bool(Context &)> draw,
-                                      std::function<void(Context &)> quit)
-{
-    if (!instances) instances = std::make_unique<std::vector<Example>>();
-    instances->push_back(
-        {name, std::move(init), std::move(update), std::move(draw), std::move(quit)});
-}
