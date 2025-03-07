@@ -136,15 +136,19 @@ $(function(){initNavTree('class_project_manager.html',''); initResizable(true); 
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a62f50d8c4ba4164c724b4eec285e5a72" id="r_a62f50d8c4ba4164c724b4eec285e5a72"><td class="memItemLeft" align="right" valign="top">static std::vector&lt; std::unique_ptr&lt; <a class="el" href="class_base_project.html">BaseProject</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62f50d8c4ba4164c724b4eec285e5a72">getProjects</a> ()</td></tr>
+<tr class="memdesc:a62f50d8c4ba4164c724b4eec285e5a72"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the projects vector  <br /></td></tr>
 <tr class="separator:a62f50d8c4ba4164c724b4eec285e5a72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa21ad77b998e9d8f6c7339560e1b0c8a" id="r_aa21ad77b998e9d8f6c7339560e1b0c8a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa21ad77b998e9d8f6c7339560e1b0c8a">registerAllProjects</a> ()</td></tr>
+<tr class="memdesc:aa21ad77b998e9d8f6c7339560e1b0c8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">registers all the projects to the vector, should be called before calling <a class="el" href="#a62f50d8c4ba4164c724b4eec285e5a72" title="returns the projects vector">getProjects()</a>  <br /></td></tr>
 <tr class="separator:aa21ad77b998e9d8f6c7339560e1b0c8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a958d8c7a6f1cfb173abf28a4added5ed" id="r_a958d8c7a6f1cfb173abf28a4added5ed"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a958d8c7a6f1cfb173abf28a4added5ed">registerProject</a> (std::unique_ptr&lt; <a class="el" href="class_base_project.html">BaseProject</a> &gt; project)</td></tr>
+<tr class="memdesc:a958d8c7a6f1cfb173abf28a4added5ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">register a project to the vector, should be called before calling <a class="el" href="#a62f50d8c4ba4164c724b4eec285e5a72" title="returns the projects vector">getProjects()</a>  <br /></td></tr>
 <tr class="separator:a958d8c7a6f1cfb173abf28a4added5ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
 <tr class="memitem:a0b5469de9fef0bfe1713237066659097" id="r_a0b5469de9fef0bfe1713237066659097"><td class="memItemLeft" align="right" valign="top">static std::vector&lt; std::unique_ptr&lt; <a class="el" href="class_base_project.html">BaseProject</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b5469de9fef0bfe1713237066659097">projects</a> {}</td></tr>
+<tr class="memdesc:a0b5469de9fef0bfe1713237066659097"><td class="mdescLeft">&#160;</td><td class="mdescRight">A vector that holds the projects.  <br /></td></tr>
 <tr class="separator:a0b5469de9fef0bfe1713237066659097"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -171,6 +175,8 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>returns the projects vector </p>
+
 </div>
 </div>
 <a id="aa21ad77b998e9d8f6c7339560e1b0c8a" name="aa21ad77b998e9d8f6c7339560e1b0c8a"></a>
@@ -195,6 +201,8 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>registers all the projects to the vector, should be called before calling <a class="el" href="#a62f50d8c4ba4164c724b4eec285e5a72" title="returns the projects vector">getProjects()</a> </p>
 
 </div>
 </div>
@@ -221,6 +229,8 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>register a project to the vector, should be called before calling <a class="el" href="#a62f50d8c4ba4164c724b4eec285e5a72" title="returns the projects vector">getProjects()</a> </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -243,6 +253,8 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>A vector that holds the projects. </p>
 
 </div>
 </div>

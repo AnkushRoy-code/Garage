@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['init_0',['Init',['../class_base_project.html#af298273d9107363f9109de492c7a43a7',1,'BaseProject::Init()'],['../class_simple_example.html#a3224b8b2b48c7729ce86dd5ca7fca33d',1,'SimpleExample::Init()'],['../class_triangle.html#a6b815584e1eab4da8bb0c8b113518eb0',1,'Triangle::Init()']]],
-  ['init_1',['init',['../struct_context.html#a29146137dbdb16814f4994de6c21c27f',1,'Context::init()'],['../class_utils_1_1_time.html#a020426edc297d60e10c178cb0dfce619',1,'Utils::Time::init()']]]
+  ['handleevent_0',['handleEvent',['../class_base_project.html#ab8cf720816d27964363fc9bbb6ed6017',1,'BaseProject::handleEvent()'],['../class_simple_im_gui.html#ad739bd7f08361724c7e2a24d81cf7370',1,'SimpleImGui::handleEvent()'],['../class_simple_example.html#a3aa27540a71e0799008209979c92277a',1,'SimpleExample::handleEvent()'],['../class_triangle.html#a4b7f368e0ceacd02f505733e14f64db2',1,'Triangle::handleEvent()']]]
 ];

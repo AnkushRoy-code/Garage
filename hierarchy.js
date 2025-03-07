@@ -2,6 +2,7 @@ var hierarchy =
 [
     [ "BaseProject", "class_base_project.html", [
       [ "SimpleExample", "class_simple_example.html", null ],
+      [ "SimpleImGui", "class_simple_im_gui.html", null ],
       [ "Triangle", "class_triangle.html", null ]
     ] ],
     [ "Context", "struct_context.html", null ],
