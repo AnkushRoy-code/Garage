@@ -63,6 +63,7 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
         bool Pressed_A {false};  // to detect if A was pressed or D was pressed. To properly Quit
                                  // the running example.
 
+        Projects[exampleIndex]->handleEvent(*event);
         if (event->type == SDL_EVENT_QUIT)
         {
             if (exampleIndex != -1) { Projects[exampleIndex]->Quit(context); }
@@ -71,26 +72,26 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
 
         else if (event->type == SDL_EVENT_KEY_DOWN)
         {
-            switch (event->key.key)
+            switch (event->key.scancode)
             {
-                case SDLK_D:
+                case SDL_SCANCODE_D:
                 {
                     changeState = true;
                     Pressed_A   = false;
                     break;
                 };
 
-                case SDLK_A:
+                case SDL_SCANCODE_A:
                 {
                     changeState = true;
                     Pressed_A   = true;
                     break;
                 };
 
-                case SDLK_LEFT: context.left = true; break;
-                case SDLK_RIGHT: context.right = true; break;
-                case SDLK_DOWN: context.down = true; break;
-                case SDLK_UP: context.up = true; break;
+                case SDL_SCANCODE_LEFT: context.left = true; break;
+                case SDL_SCANCODE_RIGHT: context.right = true; break;
+                case SDL_SCANCODE_DOWN: context.down = true; break;
+                case SDL_SCANCODE_UP: context.up = true; break;
 
                 default: break;
             }

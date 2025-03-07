@@ -29,13 +29,6 @@ set(PROJECT_VERSION
 )
 message(STATUS "${PROJECT_NAME} version: ${PROJECT_VERSION}")
 
-include(cmake/CPM.cmake)
-
-CPMAddPackage(
-    NAME SDL3
-    VERSION 3.2.8
-    URL https://github.com/libsdl-org/SDL/releases/download/release-3.2.8/SDL3-3.2.8.tar.gz
-    URL_HASH SHA256=13388fabb361de768ecdf2b65e52bb27d1054cae6ccb6942ba926e378e00db03
-)
+include(cmake/InstallDependencies.cmake)
 
 add_subdirectory(src)

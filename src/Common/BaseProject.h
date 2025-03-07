@@ -2,7 +2,6 @@
 #define INCLUDE_COMMON_BASEPROJECT_H_
 
 #include "Common/Context.h"
-#include <algorithm>
 #include <memory>
 #include <string>
 #include <vector>
@@ -18,10 +17,11 @@ class BaseProject
   public:
     virtual ~BaseProject() = default;
 
-    virtual bool Init(Context &context)   = 0;
-    virtual bool Update(Context &context) = 0;
-    virtual bool Draw(Context &context)   = 0;
-    virtual void Quit(Context &context)   = 0;
+    virtual bool Init(Context &context)        = 0;
+    virtual void handleEvent(SDL_Event &event) = 0;
+    virtual bool Update(Context &context)      = 0;
+    virtual bool Draw(Context &context)        = 0;
+    virtual void Quit(Context &context)        = 0;
 
   protected:
     std::string Name {};
@@ -30,12 +30,19 @@ class BaseProject
 class ProjectManager
 {
   public:
+    /// @brief returns the projects vector
     static std::vector<std::unique_ptr<BaseProject>> getProjects();
+
+    /// @brief registers all the projects to the vector, should be called before calling
+    /// getProjects()
     static void registerAllProjects();  // defined in RegisgerProjects.cpp
+
+    /// @brief register a project to the vector, should be called before calling getProjects()
     static void registerProject(std::unique_ptr<BaseProject> project);
 
   private:
-    static std::vector<std::unique_ptr<BaseProject>> projects;
+    static std::vector<std::unique_ptr<BaseProject>>
+        projects;  ///< A vector that holds the projects
 };
 
 #endif  // INCLUDE_COMMON_BASEPROJECT_H_

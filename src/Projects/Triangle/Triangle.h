@@ -1,4 +1,5 @@
 #ifndef INCLUDE_TRIANGLE_TRIANGLE_H_
+
 #define INCLUDE_TRIANGLE_TRIANGLE_H_
 
 #include "Common/BaseProject.h"
@@ -18,6 +19,7 @@ class Triangle : public BaseProject
     static bool UseScissorRect;
 
     bool Init(Context &context) override;
+    void handleEvent(SDL_Event &event) override {}
     bool Update(Context &context) override;
     bool Draw(Context &context) override;
     void Quit(Context &context) override;
