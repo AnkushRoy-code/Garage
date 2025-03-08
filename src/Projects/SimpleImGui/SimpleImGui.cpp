@@ -7,6 +7,7 @@
 #include <backends/imgui_impl_sdlgpu3.h>
 
 #include "Common/Common.h"
+#include "Utils/Time.h"
 
 bool SimpleImGui::Init(Context &context)
 {
@@ -36,13 +37,12 @@ bool SimpleImGui::Update(Context &context)
 
     ImGui::DockSpaceOverViewport();
 
-    ImGuiIO &io = ImGui::GetIO();
-    (void)io;
-
     {
-        ImGui::Begin("Ankush's Garage");
-        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate,
-                    io.Framerate);
+        ImGui::Begin("Ankush's Garage - ToolBox");
+        const auto d = Utils::Time::deltaTime();
+
+        ImGui::Text("%.3f ms/frame (%.1f FPS)", d, 1000.0f / d);
+
         ImGui::End();
     }
 

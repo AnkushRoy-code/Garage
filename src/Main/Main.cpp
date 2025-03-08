@@ -58,8 +58,6 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
     PROFILE_SCOPE;
     try
     {
-        Utils::Time::updateDeltaTime();
-
         bool changeState {false};
         bool Pressed_A {false};  // to detect if A was pressed or D was pressed. To properly Quit
                                  // the running example.
@@ -142,6 +140,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 {
     try
     {
+        Utils::Time::updateDeltaTime();
         {
             PROFILE_SCOPE;
             Projects[exampleIndex]->Update(context);
