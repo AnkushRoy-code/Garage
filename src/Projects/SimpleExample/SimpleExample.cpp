@@ -1,8 +1,10 @@
 #include "SimpleExample.h"
+#include "Common/Common.h"
+#include "Common/SDL_Exception.h"
+#include <iostream>
 
 bool SimpleExample::Init(Context &context)
 {
-
     std::cout << "SimpleExample Initialised\n";
     return true;
 }
@@ -13,6 +15,7 @@ bool SimpleExample::Update(Context &context)
 
 bool SimpleExample::Draw(Context &context) 
 {
+    PROFILE_SCOPE_N("SimpleExample::Draw");
     SDL_GPUCommandBuffer *cmdbuf = SDL_AcquireGPUCommandBuffer(context.mDevice);
     if (cmdbuf == nullptr) { throw SDL_Exception("AcquireGPUCommandBuffer failed"); }
 

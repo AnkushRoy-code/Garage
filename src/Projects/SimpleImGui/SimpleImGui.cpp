@@ -1,5 +1,6 @@
 #include "SimpleImGui.h"
 
+#include "Common/Common.h"
 #include "SDL3/SDL_events.h"
 #include "SDL3/SDL_video.h"
 #include "imgui.h"
@@ -8,6 +9,7 @@
 
 bool SimpleImGui::Init(Context &context)
 {
+    PROFILE_SCOPE_N("SimpleImGui::Init");
     SDL_SetWindowResizable(context.mWindow, true);
 
     IMGUI_CHECKVERSION();
@@ -36,12 +38,12 @@ void SimpleImGui::handleEvent(SDL_Event &event)
     ImGui_ImplSDL3_ProcessEvent(&event);
 }
 
-bool show_demo_window    = true;
 bool show_another_window = false;
 ImVec4 clear_color       = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
 bool SimpleImGui::Update(Context &context)
 {
+    PROFILE_SCOPE_N("SimpleImGui::Update");
     if (SDL_GetWindowFlags(context.mWindow) & SDL_WINDOW_MINIMIZED)
     {
         SDL_Delay(10);
@@ -55,10 +57,6 @@ bool SimpleImGui::Update(Context &context)
     ImGuiIO &io = ImGui::GetIO();
     (void)io;
 
-    // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can
-    // browse its code to learn more about Dear ImGui!).
-    if (show_demo_window) ImGui::ShowDemoWindow(&show_demo_window);
-
     // 2. Show a simple window that we create ourselves. We use a Begin/End pair to create a named
     // window.
     {
@@ -70,8 +68,6 @@ bool SimpleImGui::Update(Context &context)
 
         ImGui::Text(
             "This is some useful text.");  // Display some text (you can use a format strings too)
-        ImGui::Checkbox("Demo Window",
-                        &show_demo_window);  // Edit bools storing our window open/close state
         ImGui::Checkbox("Another Window", &show_another_window);
 
         ImGui::SliderFloat("float", &f, 0.0f,
@@ -107,6 +103,7 @@ bool SimpleImGui::Update(Context &context)
 
 bool SimpleImGui::Draw(Context &context)
 {
+    PROFILE_SCOPE_N("SimpleImGui::Draw");
     if (SDL_GetWindowFlags(context.mWindow) & SDL_WINDOW_MINIMIZED) { return true; }
 
     ImGui::Render();
@@ -153,6 +150,7 @@ bool SimpleImGui::Draw(Context &context)
 
 void SimpleImGui::Quit(Context &context)
 {
+    PROFILE_SCOPE_N("SimpleImGui::Quit");
     ImGui_ImplSDL3_Shutdown();
     ImGui_ImplSDLGPU3_Shutdown();
     ImGui::DestroyContext();

@@ -15,6 +15,7 @@ bool Triangle::UseScissorRect   = false;
 
 bool Triangle::Init(Context &context)
 {
+    PROFILE_SCOPE_N("Triangle::Init");
     SDL_GPUShader *vertexShader =
         Common::LoadShader(context.mDevice, "RawTriangle.vert", 0, 0, 0, 0);
     if (vertexShader == nullptr) { throw SDL_Exception("Failed to create vertex shader!"); }
@@ -53,6 +54,7 @@ bool Triangle::Init(Context &context)
 
 bool Triangle::Update(Context &context)
 {
+    PROFILE_SCOPE_N("Triangle::Update");
     // clang-format off
     if (context.left) { UseWireframeMode = !UseWireframeMode; context.left = false; }
     if (context.down) { UseSmallViewport = !UseSmallViewport; context.down = false; }
@@ -64,6 +66,7 @@ bool Triangle::Update(Context &context)
 
 bool Triangle::Draw(Context &context)
 {
+    PROFILE_SCOPE_N("Triangle::Draw");
     SDL_GPUCommandBuffer *cmdbuf = SDL_AcquireGPUCommandBuffer(context.mDevice);
     if (cmdbuf == nullptr) { throw SDL_Exception("AcquireGPUCommandBuffer failed!"); }
 
@@ -97,6 +100,7 @@ bool Triangle::Draw(Context &context)
 
 void Triangle::Quit(Context &context)
 {
+    PROFILE_SCOPE_N("Triangle::Quit");
     SDL_ReleaseGPUGraphicsPipeline(context.mDevice, FillPipeline);
     SDL_ReleaseGPUGraphicsPipeline(context.mDevice, LinePipeline);
 

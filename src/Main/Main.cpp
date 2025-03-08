@@ -10,6 +10,7 @@
 #include <SDL3/SDL_main.h>
 
 #include "Common/Context.h"
+#include "Common/Common.h"
 #include "Utils/Time.h"
 #include "Common/SDL_Exception.h"
 
@@ -55,6 +56,7 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
 
 SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
 {
+    PROFILE_SCOPE;
     try
     {
         Utils::Time::updateDeltaTime();
@@ -141,8 +143,11 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 {
     try
     {
-        Projects[exampleIndex]->Update(context);
-        Projects[exampleIndex]->Draw(context);
+        {
+            PROFILE_SCOPE;
+            Projects[exampleIndex]->Update(context);
+            Projects[exampleIndex]->Draw(context);
+        }
 
         Utils::Time::capFPS();
     }
@@ -164,6 +169,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         std::cerr << "Some unknown error occured inside SDL_AppIterate() function\n";
         return SDL_APP_FAILURE;
     }
+    PROFILE_FRAME;
     return SDL_APP_CONTINUE;
 }
 

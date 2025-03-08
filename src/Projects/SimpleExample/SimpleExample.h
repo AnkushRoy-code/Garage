@@ -3,8 +3,6 @@
 
 #include "Common/BaseProject.h"
 #include "Common/Context.h"
-#include "Common/SDL_Exception.h"
-#include <iostream>
 
 /**
  * @namespace SimpleExample
