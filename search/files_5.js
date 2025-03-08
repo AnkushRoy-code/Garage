@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['sdl_5fexception_2eh_0',['SDL_Exception.h',['../_s_d_l___exception_8h.html',1,'']]],
-  ['simpleexample_2ecpp_1',['SimpleExample.cpp',['../_simple_example_8cpp.html',1,'']]],
-  ['simpleexample_2eh_2',['SimpleExample.h',['../_simple_example_8h.html',1,'']]]
+  ['time_2ecpp_0',['Time.cpp',['../_time_8cpp.html',1,'']]],
+  ['time_2eh_1',['Time.h',['../_time_8h.html',1,'']]],
+  ['triangle_2ecpp_2',['Triangle.cpp',['../_triangle_8cpp.html',1,'']]],
+  ['triangle_2eh_3',['Triangle.h',['../_triangle_8h.html',1,'']]]
 ];

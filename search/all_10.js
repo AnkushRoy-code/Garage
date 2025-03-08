@@ -11,13 +11,15 @@ var searchData=
   ['sdl_5fmain_5fuse_5fcallbacks_8',['SDL_MAIN_USE_CALLBACKS',['../_main_8cpp.html#a8aa5d9cdf38353a6c4919e0d1fab61cb',1,'Main.cpp']]],
   ['set_9',['Mendelbroth Set',['../index.html#autotoc_md11',1,'']]],
   ['set_10',['Goldbert set',['../index.html#autotoc_md12',1,'']]],
-  ['show_5fanother_5fwindow_11',['show_another_window',['../_im_gui_8cpp.html#afcde3c4b88a1fd6e68f6608330fb7eac',1,'ImGui.cpp']]],
-  ['show_5fdemo_5fwindow_12',['show_demo_window',['../_im_gui_8cpp.html#ac97463ddbad6aaae114d7a2fcc2fb867',1,'ImGui.cpp']]],
+  ['show_5fanother_5fwindow_11',['show_another_window',['../_simple_im_gui_8cpp.html#afcde3c4b88a1fd6e68f6608330fb7eac',1,'SimpleImGui.cpp']]],
+  ['show_5fdemo_5fwindow_12',['show_demo_window',['../_simple_im_gui_8cpp.html#ac97463ddbad6aaae114d7a2fcc2fb867',1,'SimpleImGui.cpp']]],
   ['simpleexample_13',['SimpleExample',['../class_simple_example.html',1,'SimpleExample'],['../namespace_simple_example.html',1,'SimpleExample']]],
   ['simpleexample_2ecpp_14',['SimpleExample.cpp',['../_simple_example_8cpp.html',1,'']]],
   ['simpleexample_2eh_15',['SimpleExample.h',['../_simple_example_8h.html',1,'']]],
   ['simpleimgui_16',['SimpleImGui',['../class_simple_im_gui.html',1,'']]],
-  ['simulator_17',['Particle Simulator',['../index.html#autotoc_md7',1,'']]],
-  ['smallviewport_18',['SmallViewport',['../class_triangle.html#af476a83a8475a37a3eb5d01b97bfa26f',1,'Triangle']]],
-  ['started_19',['Getting Started',['../index.html#autotoc_md14',1,'']]]
+  ['simpleimgui_2ecpp_17',['SimpleImGui.cpp',['../_simple_im_gui_8cpp.html',1,'']]],
+  ['simpleimgui_2eh_18',['SimpleImGui.h',['../_simple_im_gui_8h.html',1,'']]],
+  ['simulator_19',['Particle Simulator',['../index.html#autotoc_md7',1,'']]],
+  ['smallviewport_20',['SmallViewport',['../class_triangle.html#af476a83a8475a37a3eb5d01b97bfa26f',1,'Triangle']]],
+  ['started_21',['Getting Started',['../index.html#autotoc_md14',1,'']]]
 ];

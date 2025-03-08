@@ -1,7 +1,7 @@
 var searchData=
 [
   ['capfps_0',['capFPS',['../class_utils_1_1_time.html#ae98651118e44c639e978db5e95b58c1f',1,'Utils::Time']]],
-  ['clear_5fcolor_1',['clear_color',['../_im_gui_8cpp.html#a38bbcd37207e7333e691e9427bacac15',1,'ImGui.cpp']]],
+  ['clear_5fcolor_1',['clear_color',['../_simple_im_gui_8cpp.html#a38bbcd37207e7333e691e9427bacac15',1,'SimpleImGui.cpp']]],
   ['common_2',['Common',['../namespace_common.html',1,'']]],
   ['common_2ecpp_3',['Common.cpp',['../_common_8cpp.html',1,'']]],
   ['common_2eh_4',['Common.h',['../_common_8h.html',1,'']]],
