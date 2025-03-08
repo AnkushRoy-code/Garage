@@ -28,8 +28,6 @@ var NAVTREEINDEX0 =
 "_simple_example_8h.html":[7,0,0,2,0,1],
 "_simple_example_8h_source.html":[7,0,0,2,0,1],
 "_simple_im_gui_8cpp.html":[7,0,0,2,1,0],
-"_simple_im_gui_8cpp.html#a38bbcd37207e7333e691e9427bacac15":[7,0,0,2,1,0,0],
-"_simple_im_gui_8cpp.html#afcde3c4b88a1fd6e68f6608330fb7eac":[7,0,0,2,1,0,1],
 "_simple_im_gui_8h.html":[7,0,0,2,1,1],
 "_simple_im_gui_8h_source.html":[7,0,0,2,1,1],
 "_time_8cpp.html":[7,0,0,3,0],
