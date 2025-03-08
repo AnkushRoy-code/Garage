@@ -9,15 +9,20 @@
 
 void Context::init()
 {
-    if (!SDL_Init(SDL_INIT_VIDEO)) { throw SDL_Exception("Couldn't initialize SDL"); }
+    if (!SDL_Init(SDL_INIT_VIDEO))
+    {
+        throw SDL_Exception("Couldn't initialize SDL");
+    }
 
-    mDevice = SDL_CreateGPUDevice(SDL_GPU_SHADERFORMAT_SPIRV | SDL_GPU_SHADERFORMAT_DXIL
+    mDevice = SDL_CreateGPUDevice(SDL_GPU_SHADERFORMAT_SPIRV
+                                      | SDL_GPU_SHADERFORMAT_DXIL
                                       | SDL_GPU_SHADERFORMAT_MSL,
                                   false, nullptr);
 
     if (!mDevice) { throw SDL_Exception("Unable to create SDL_GPUDevice"); }
 
-    mWindow = SDL_CreateWindow("Ankush's Garage", 640, 480, 0);
+    mWindow = SDL_CreateWindow("Ankush's Garage", 640, 480,
+                               SDL_WINDOW_HIGH_PIXEL_DENSITY);
 
     if (!mWindow) { throw SDL_Exception("Unable to create SDL_Window"); }
 
@@ -26,6 +31,9 @@ void Context::init()
         throw SDL_Exception("Unable to claim window for device");
     }
 
+    SDL_SetGPUSwapchainParameters(mDevice, mWindow,
+                                  SDL_GPU_SWAPCHAINCOMPOSITION_SDR,
+                                  SDL_GPU_PRESENTMODE_MAILBOX);
     // ImGui Setup
 
     IMGUI_CHECKVERSION();
@@ -50,9 +58,10 @@ void Context::init()
 
     ImGui_ImplSDL3_InitForSDLGPU(mWindow);
     ImGui_ImplSDLGPU3_InitInfo init_info {};
-    init_info.Device            = mDevice;
-    init_info.ColorTargetFormat = SDL_GetGPUSwapchainTextureFormat(mDevice, mWindow);
-    init_info.MSAASamples       = SDL_GPU_SAMPLECOUNT_1;
+    init_info.Device = mDevice;
+    init_info.ColorTargetFormat =
+        SDL_GetGPUSwapchainTextureFormat(mDevice, mWindow);
+    init_info.MSAASamples = SDL_GPU_SAMPLECOUNT_1;
     ImGui_ImplSDLGPU3_Init(&init_info);
 }
 

@@ -34,6 +34,7 @@ struct Context
 
     SDL_Window *mWindow {};     ///< Pointer to the SDL window instance.
     SDL_GPUDevice *mDevice {};  ///< Pointer to the SDL GPU device instance.
+    SDL_GPURenderPass *mRenderPass {};
 
     // Boolean variables representing key states for movement input
     bool right {};  ///< True if the right key is pressed
