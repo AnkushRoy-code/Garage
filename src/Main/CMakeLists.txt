@@ -2,14 +2,18 @@ add_executable("${PROJECT_NAME}" Main.cpp)
 
 target_link_libraries("${PROJECT_NAME}" PRIVATE Common Projects Utils SDL3::SDL3-shared imgui)
 
-if (TRACY_PROFILE) 
+if(TRACY_PROFILE)
     target_link_libraries(${PROJECT_NAME} PUBLIC Tracy::TracyClient)
 endif()
 
 target_include_directories("${PROJECT_NAME}" PRIVATE "${CMAKE_SOURCE_DIR}/src")
 
-if(MSVC)
-    set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
+if(WIN32)
+    if(MSVC)
+        set_property(
+            DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME}
+        )
+    endif()
 
     add_custom_command(
         TARGET "${PROJECT_NAME}"
