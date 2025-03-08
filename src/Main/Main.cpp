@@ -1,5 +1,3 @@
-#include "Common/BaseProject.h"
-#include <SDL3/SDL_init.h>
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -9,6 +7,7 @@
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 
+#include "Common/BaseProject.h"
 #include "Common/Context.h"
 #include "Common/Common.h"
 #include "Utils/Time.h"
