@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['sdl_5fmain_5fuse_5fcallbacks_0',['SDL_MAIN_USE_CALLBACKS',['../_main_8cpp.html#a8aa5d9cdf38353a6c4919e0d1fab61cb',1,'Main.cpp']]]
+  ['profile_5fframe_0',['PROFILE_FRAME',['../_common_8h.html#a9cc6505623e4f99286930e44756ce139',1,'Common.h']]],
+  ['profile_5fscope_1',['PROFILE_SCOPE',['../_common_8h.html#af70a0509f450d49a82d2ba2e5b9a60b6',1,'Common.h']]],
+  ['profile_5fscope_5fn_2',['PROFILE_SCOPE_N',['../_common_8h.html#a862fd40aa252ac8fc0ff6ad0aff3a3af',1,'Common.h']]]
 ];
