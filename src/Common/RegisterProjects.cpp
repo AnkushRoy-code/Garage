@@ -1,5 +1,5 @@
 #include "Common/BaseProject.h"
-#include "Projects/ImGui/ImGui.h"
+#include "Projects/SimpleImGui/SimpleImGui.h"
 #include "Projects/SimpleExample/SimpleExample.h"
 #include "Projects/Triangle/Triangle.h"
 #include <memory>

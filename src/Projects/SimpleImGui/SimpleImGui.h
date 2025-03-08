@@ -1,5 +1,5 @@
-#ifndef INCLUDE_IMGUI_IMGUI_H_
-#define INCLUDE_IMGUI_IMGUI_H_
+#ifndef INCLUDE_SIMPLEIMGUI_IMGUI_H_
+#define INCLUDE_SIMPLEIMGUI_IMGUI_H_
 
 #include "Common/BaseProject.h"
 
@@ -12,4 +12,4 @@ class SimpleImGui : public BaseProject
     void Quit(Context &context) override;
 };
 
-#endif  // INCLUDE_IMGUI_IMGUI_H_
+#endif  // INCLUDE_SIMPLEIMGUI_IMGUI_H_

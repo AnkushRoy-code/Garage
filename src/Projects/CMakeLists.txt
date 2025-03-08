@@ -3,8 +3,8 @@ add_library(Projects
     SimpleExample/SimpleExample.cpp 
     Triangle/Triangle.h
     Triangle/Triangle.cpp 
-    ImGui/ImGui.h 
-    ImGui/ImGui.cpp
+    SimpleImGui/SimpleImGui.h 
+    SimpleImGui/SimpleImGui.cpp
 )
 
 target_link_libraries(Projects PRIVATE Common SDL3::SDL3-shared)
