@@ -7,5 +7,9 @@ add_library(Projects
     SimpleImGui/SimpleImGui.cpp
 )
 
+if (TRACY_PROFILE) 
+    target_link_libraries(Projects PUBLIC Tracy::TracyClient)
+endif()
+
 target_link_libraries(Projects PRIVATE Common SDL3::SDL3-shared)
 target_include_directories(Projects PRIVATE "${CMAKE_SOURCE_DIR}/src" ${imgui_SOURCE_DIR})
