@@ -35,6 +35,26 @@ void Context::init()
     SDL_SetGPUSwapchainParameters(mDevice, mWindow,
                                   SDL_GPU_SWAPCHAINCOMPOSITION_SDR,
                                   SDL_GPU_PRESENTMODE_MAILBOX);
+
+
+    SDL_GPUTextureCreateInfo gpuTextureCreateInfo = {};
+    gpuTextureCreateInfo.type                     = SDL_GPU_TEXTURETYPE_2D;
+    gpuTextureCreateInfo.format = SDL_GPU_TEXTUREFORMAT_R8G8B8A8_UNORM;
+    gpuTextureCreateInfo.usage =
+        SDL_GPU_TEXTUREUSAGE_SAMPLER | SDL_GPU_TEXTUREUSAGE_COLOR_TARGET;
+    gpuTextureCreateInfo.width                = 800;  // Set your desired width
+    gpuTextureCreateInfo.height               = 480;  // Set your desired height
+    gpuTextureCreateInfo.layer_count_or_depth = 1;
+    gpuTextureCreateInfo.num_levels           = 1;
+    gpuTextureCreateInfo.sample_count = SDL_GPU_SAMPLECOUNT_1;  // No multisampling
+    gpuTextureCreateInfo.props        = 0;  // No extra properties
+
+    mProjectTexture = SDL_CreateGPUTexture(mDevice, &gpuTextureCreateInfo);
+
+    if (!mProjectTexture) {
+        throw SDL_Exception("Unable to create GPU Texture");
+    }
+
     // ImGui Setup
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();

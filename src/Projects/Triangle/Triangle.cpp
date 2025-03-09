@@ -82,17 +82,17 @@ bool Triangle::Update(Context &context)
 bool Triangle::Draw(Context &context)
 {
     PROFILE_SCOPE_N("Triangle::Draw");
-    SDL_BindGPUGraphicsPipeline(context.mRenderPass,
+    SDL_BindGPUGraphicsPipeline(context.mProjectPass,
                                 UseWireframeMode ? LinePipeline : FillPipeline);
     if (UseSmallViewport)
     {
-        SDL_SetGPUViewport(context.mRenderPass, &SmallViewport);
+        SDL_SetGPUViewport(context.mProjectPass, &SmallViewport);
     }
     if (UseScissorRect)
     {
-        SDL_SetGPUScissor(context.mRenderPass, &ScissorRect);
+        SDL_SetGPUScissor(context.mProjectPass, &ScissorRect);
     }
-    SDL_DrawGPUPrimitives(context.mRenderPass, 3, 1, 0, 0);
+    SDL_DrawGPUPrimitives(context.mProjectPass, 3, 1, 0, 0);
 
     return true;
 }
