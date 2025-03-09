@@ -1,3 +1,4 @@
+#include "SDL3/SDL_events.h"
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -30,9 +31,7 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
 
         Projects = ProjectManager::getProjects();
 
-        // std::cout << "The Example name is: " << Examples[0].Name <<
-        // std::endl; Manually init the first example
-        Projects[0]->Init(context);  // Error handling can wait
+        Projects[0]->Init(context); 
 
         Utils::Time::init();
     }
@@ -115,6 +114,15 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
             }
         }
 
+        else if (event->type == SDL_EVENT_WINDOW_RESIZED)
+        {
+            ImGuiIO &io = ImGui::GetIO();
+            (void)io;
+            int w, h;
+            SDL_GetWindowSize(context.mWindow, &w, &h);
+            io.DisplaySize = ImVec2((float)w, (float)h);
+        }
+
         // Change Example
         if (changeState)
         {
@@ -170,7 +178,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         ImGui_ImplSDLGPU3_NewFrame();
         ImGui::NewFrame();
 
-        // ImGui::DockSpaceOverViewport();
+        ImGui::DockSpaceOverViewport();
 
         {
             ImGui::Begin("Ankush's Garage - ToolBox");
@@ -186,7 +194,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         // Start Drawing
 
         ImGui::Render();
-        ImDrawData *draw_data = ImGui::GetDrawData();
+        ImDrawData *drawData = ImGui::GetDrawData();
 
         if (SDL_GetWindowFlags(context.mWindow) & SDL_WINDOW_MINIMIZED)
         {
@@ -210,21 +218,21 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 
         if (swapchainTexture != nullptr)
         {
-            Imgui_ImplSDLGPU3_PrepareDrawData(draw_data, commandBuffer);
+            Imgui_ImplSDLGPU3_PrepareDrawData(drawData, commandBuffer);
 
-            SDL_GPUColorTargetInfo target_info = {};
-            target_info.texture                = swapchainTexture;
-            target_info.clear_color = SDL_FColor {0.45f, 0.55f, 0.60f, 1.00f};
-            target_info.load_op     = SDL_GPU_LOADOP_CLEAR;
-            target_info.store_op    = SDL_GPU_STOREOP_STORE;
-            target_info.mip_level   = 0;
-            target_info.layer_or_depth_plane = 0;
-            target_info.cycle                = false;
+            SDL_GPUColorTargetInfo targetInfo = {};
+            targetInfo.texture                = swapchainTexture;
+            targetInfo.clear_color = SDL_FColor {0.45f, 0.55f, 0.60f, 1.00f};
+            targetInfo.load_op     = SDL_GPU_LOADOP_CLEAR;
+            targetInfo.store_op    = SDL_GPU_STOREOP_STORE;
+            targetInfo.mip_level   = 0;
+            targetInfo.layer_or_depth_plane = 0;
+            targetInfo.cycle                = false;
 
             context.mRenderPass =
-                SDL_BeginGPURenderPass(commandBuffer, &target_info, 1, nullptr);
+                SDL_BeginGPURenderPass(commandBuffer, &targetInfo, 1, nullptr);
 
-            ImGui_ImplSDLGPU3_RenderDrawData(draw_data, commandBuffer,
+            ImGui_ImplSDLGPU3_RenderDrawData(drawData, commandBuffer,
                                              context.mRenderPass);
 
             Projects[exampleIndex]->Draw(context);

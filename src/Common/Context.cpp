@@ -21,7 +21,8 @@ void Context::init()
 
     if (!mDevice) { throw SDL_Exception("Unable to create SDL_GPUDevice"); }
 
-    mWindow = SDL_CreateWindow("Ankush's Garage", 640, 480,
+    // window Ratio:- 4:3 -> (4 + 1):3 taking into account the toolbox
+    mWindow = SDL_CreateWindow("Ankush's Garage", 800, 480,
                                SDL_WINDOW_HIGH_PIXEL_DENSITY);
 
     if (!mWindow) { throw SDL_Exception("Unable to create SDL_Window"); }
@@ -35,7 +36,6 @@ void Context::init()
                                   SDL_GPU_SWAPCHAINCOMPOSITION_SDR,
                                   SDL_GPU_PRESENTMODE_MAILBOX);
     // ImGui Setup
-
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO &io = ImGui::GetIO();
@@ -44,7 +44,11 @@ void Context::init()
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
-    io.ConfigFlags |= ImGuiTreeNodeFlags_DefaultOpen;
+    // io.ConfigFlags |= ImGuiTreeNodeFlags_DefaultOpen;
+
+    int w, h;
+    SDL_GetWindowSize(mWindow, &w, &h);
+    io.DisplaySize = ImVec2((float)w, (float)h);
 
     ImGui::StyleColorsDark();
 
