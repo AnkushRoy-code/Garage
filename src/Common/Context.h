@@ -37,6 +37,7 @@ struct Context
     SDL_GPURenderPass *mRenderPass {};
     SDL_GPURenderPass *mProjectPass {};
     SDL_GPUTexture *mProjectTexture {};
+    SDL_GPUSampler *mProjectSampler {};
 
     // Boolean variables representing key states for movement input
     bool right {};  ///< True if the right key is pressed

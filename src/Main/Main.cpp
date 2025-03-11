@@ -1,4 +1,3 @@
-#include "SDL3/SDL_events.h"
 #include "SDL3/SDL_gpu.h"
 #include <iostream>
 #include <memory>
@@ -56,6 +55,7 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
             << "Some unknown error occured inside SDL_AppInit() function\n";
         return SDL_APP_FAILURE;
     }
+
     return SDL_APP_CONTINUE;
 }
 
@@ -179,7 +179,8 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         ImGui_ImplSDLGPU3_NewFrame();
         ImGui::NewFrame();
 
-        ImGui::DockSpaceOverViewport();
+        ImGui::DockSpaceOverViewport();  // Incredible performance drop with
+        // this one fsr
 
         {
             ImGui::Begin("Ankush's Garage - ToolBox");
@@ -190,20 +191,23 @@ SDL_AppResult SDL_AppIterate(void *appstate)
             ImGui::End();
         }
 
-        // {
-        //     ImGui::Begin("Render Output");
-        //     ImGui::Text("Rendered Scene:");
+        SDL_GPUTextureSamplerBinding tbind {};
+        tbind.sampler = context.mProjectSampler;
+        tbind.texture = context.mProjectTexture;
 
-        //     auto imguiTex = (ImTextureID)context.mProjectTexture;
-        //     ImGui::Image(imguiTex, ImVec2(800, 600));
-
-        //     ImGui::End();
-        // }
+        if (context.mProjectTexture != nullptr)
+        {
+            ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2 {0, 0});
+            ImGui::Begin("Texture Window");
+            auto size = ImGui::GetWindowSize();
+            ImGui::Image((ImTextureID)&tbind, {size.x, size.y - 19.0f});
+            ImGui::End();
+            ImGui::PopStyleVar();
+        }
 
         Projects[exampleIndex]->Update(context);
 
         // Start Drawing
-
         ImGui::Render();
         ImDrawData *drawData = ImGui::GetDrawData();
 
@@ -248,33 +252,37 @@ SDL_AppResult SDL_AppIterate(void *appstate)
                                              context.mRenderPass);
 
             SDL_EndGPURenderPass(context.mRenderPass);
+            SDL_SubmitGPUCommandBuffer(commandBuffer);
             // ImGui Pass end
         }
 
-        // if (context.mProjectTexture != nullptr)
-        // {
-        //     // Project Pass start
-        //     SDL_GPUColorTargetInfo projectTargetInfo = {};
-        //     projectTargetInfo.texture                = context.mProjectTexture;
-        //     projectTargetInfo.clear_color =
-        //         SDL_FColor {0.45f, 0.55f, 0.60f, 1.00f};
-        //     projectTargetInfo.load_op              = SDL_GPU_LOADOP_CLEAR;
-        //     projectTargetInfo.store_op             = SDL_GPU_STOREOP_STORE;
-        //     projectTargetInfo.mip_level            = 0;
-        //     projectTargetInfo.layer_or_depth_plane = 0;
-        //     projectTargetInfo.cycle                = false;
+        SDL_GPUCommandBuffer *commandBufferProjects =
+            SDL_AcquireGPUCommandBuffer(context.mDevice);
+        if (!commandBufferProjects)
+        {
+            throw SDL_Exception("AcquireGPUCommandBuffer(Projects) failed!");
+        }
 
-        //     context.mProjectPass = SDL_BeginGPURenderPass(
-        //         commandBuffer, &projectTargetInfo, 1, nullptr);
+        {
+            // Project Pass start
+            SDL_GPUColorTargetInfo projectTargetInfo = {};
+            projectTargetInfo.texture                = context.mProjectTexture;
+            projectTargetInfo.clear_color =
+                SDL_FColor {0.45f, 0.55f, 0.60f, 1.00f};
+            projectTargetInfo.load_op  = SDL_GPU_LOADOP_CLEAR;
+            projectTargetInfo.store_op = SDL_GPU_STOREOP_STORE;
+            projectTargetInfo.cycle    = true;
 
-        //     Projects[exampleIndex]->Draw(context);
+            context.mProjectPass = SDL_BeginGPURenderPass(
+                commandBufferProjects, &projectTargetInfo, 1, nullptr);
 
-        //     SDL_EndGPURenderPass(context.mProjectPass);
-        //     // Project pass end
-        // }
-        SDL_SubmitGPUCommandBuffer(commandBuffer);
+            Projects[exampleIndex]->Draw(context);
+
+            SDL_EndGPURenderPass(context.mProjectPass);
+            SDL_SubmitGPUCommandBuffer(commandBufferProjects);
+            // Project pass end
+        }
     }
-
     catch (const SDL_Exception &e)
     {
         std::cerr << "Error in SDL_AppIterate()\n" << e.what() << '\n';

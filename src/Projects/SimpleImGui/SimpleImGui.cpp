@@ -43,5 +43,5 @@ void SimpleImGui::Quit(Context &context)
 {
     PROFILE_SCOPE_N("SimpleImGui::Quit");
     SDL_SetWindowResizable(context.mWindow, false);
-    SDL_SetWindowSize(context.mWindow, 640, 480);
+    // SDL_SetWindowSize(context.mWindow, 640, 480);
 }

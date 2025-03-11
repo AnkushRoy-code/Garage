@@ -36,24 +36,32 @@ void Context::init()
                                   SDL_GPU_SWAPCHAINCOMPOSITION_SDR,
                                   SDL_GPU_PRESENTMODE_MAILBOX);
 
-
     SDL_GPUTextureCreateInfo gpuTextureCreateInfo = {};
     gpuTextureCreateInfo.type                     = SDL_GPU_TEXTURETYPE_2D;
     gpuTextureCreateInfo.format = SDL_GPU_TEXTUREFORMAT_R8G8B8A8_UNORM;
-    gpuTextureCreateInfo.usage =
-        SDL_GPU_TEXTUREUSAGE_SAMPLER | SDL_GPU_TEXTUREUSAGE_COLOR_TARGET;
-    gpuTextureCreateInfo.width                = 800;  // Set your desired width
-    gpuTextureCreateInfo.height               = 480;  // Set your desired height
+    gpuTextureCreateInfo.usage  = SDL_GPU_TEXTUREUSAGE_SAMPLER | SDL_GPU_TEXTUREUSAGE_COLOR_TARGET;
+    gpuTextureCreateInfo.width  = 640;
+    gpuTextureCreateInfo.height = 480;
     gpuTextureCreateInfo.layer_count_or_depth = 1;
     gpuTextureCreateInfo.num_levels           = 1;
-    gpuTextureCreateInfo.sample_count = SDL_GPU_SAMPLECOUNT_1;  // No multisampling
-    gpuTextureCreateInfo.props        = 0;  // No extra properties
+    gpuTextureCreateInfo.sample_count         = SDL_GPU_SAMPLECOUNT_1;
 
     mProjectTexture = SDL_CreateGPUTexture(mDevice, &gpuTextureCreateInfo);
 
-    if (!mProjectTexture) {
+    if (!mProjectTexture)
+    {
         throw SDL_Exception("Unable to create GPU Texture");
     }
+
+    SDL_GPUSamplerCreateInfo samplerInfo = {
+        .min_filter     = SDL_GPU_FILTER_NEAREST,
+        .mag_filter     = SDL_GPU_FILTER_NEAREST,
+        .mipmap_mode    = SDL_GPU_SAMPLERMIPMAPMODE_NEAREST,
+        .address_mode_u = SDL_GPU_SAMPLERADDRESSMODE_CLAMP_TO_EDGE,
+        .address_mode_v = SDL_GPU_SAMPLERADDRESSMODE_CLAMP_TO_EDGE,
+        .address_mode_w = SDL_GPU_SAMPLERADDRESSMODE_CLAMP_TO_EDGE,
+    };
+    mProjectSampler = SDL_CreateGPUSampler(mDevice, &samplerInfo);
 
     // ImGui Setup
     IMGUI_CHECKVERSION();
