@@ -7,6 +7,7 @@ var struct_context =
     [ "left", "struct_context.html#a6213632faa7327df40e941f8b0741e68", null ],
     [ "mDevice", "struct_context.html#a4dbb5eac9406f22dc801c31ea261b3d2", null ],
     [ "mProjectPass", "struct_context.html#a336a2b1676e6223a02bb6d10adc79e5a", null ],
+    [ "mProjectSampler", "struct_context.html#ad9fa3f5ab6ef1a3f9c04b1544ba86a18", null ],
     [ "mProjectTexture", "struct_context.html#af54ea749c7f38c3534863ab94dd510dc", null ],
     [ "mRenderPass", "struct_context.html#a39f82915d1e7891eba816aaedfe26047", null ],
     [ "mWindow", "struct_context.html#afdee30a946411a7713c703e572894ac6", null ],
