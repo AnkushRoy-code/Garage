@@ -3,8 +3,6 @@ add_library(Projects
     SimpleExample/SimpleExample.cpp 
     Triangle/Triangle.h
     Triangle/Triangle.cpp 
-    SimpleImGui/SimpleImGui.h 
-    SimpleImGui/SimpleImGui.cpp
 )
 
 if (TRACY_PROFILE) 
