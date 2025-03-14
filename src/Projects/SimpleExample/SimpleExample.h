@@ -26,15 +26,6 @@ class SimpleExample : public BaseProject
     bool Init(Context &context) override;
 
     /**
-     * @brief Handles the events if needed;
-     *
-     * @param event Reference to the SDL_Event
-     * @return void, emptyness and nothingness
-     * @throws SDL_Exception if an SDL operation fails.
-     */
-    void handleEvent(SDL_Event &event) override {}
-
-    /**
      * @brief Updates the example.
      *
      * This function is called every frame before rendering. It is typically used to

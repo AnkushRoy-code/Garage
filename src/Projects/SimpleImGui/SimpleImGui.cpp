@@ -17,7 +17,6 @@ bool SimpleImGui::Init(Context &context)
     return true;
 }
 
-void SimpleImGui::handleEvent(SDL_Event &event) {}
 
 bool SimpleImGui::Update(Context &context)
 {

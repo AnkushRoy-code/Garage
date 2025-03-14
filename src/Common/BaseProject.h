@@ -18,7 +18,6 @@ class BaseProject
     virtual ~BaseProject() = default;
 
     virtual bool Init(Context &context)        = 0;
-    virtual void handleEvent(SDL_Event &event) = 0;
     virtual bool Update(Context &context)      = 0;
     virtual bool Draw(Context &context)        = 0;
     virtual void Quit(Context &context)        = 0;

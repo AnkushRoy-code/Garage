@@ -19,7 +19,6 @@ class Triangle : public BaseProject
     static bool UseScissorRect;
 
     bool Init(Context &context) override;
-    void handleEvent(SDL_Event &event) override {}
     bool Update(Context &context) override;
     bool Draw(Context &context) override;
     void Quit(Context &context) override;
