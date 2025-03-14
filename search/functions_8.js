@@ -1,8 +1,4 @@
 var searchData=
 [
-  ['sdl_5fappevent_0',['SDL_AppEvent',['../_main_8cpp.html#aa1a484aa7972b8018e724425066066b4',1,'Main.cpp']]],
-  ['sdl_5fappinit_1',['SDL_AppInit',['../_main_8cpp.html#a4985adfb048a4ae4e1c5296a4fc7affe',1,'Main.cpp']]],
-  ['sdl_5fappiterate_2',['SDL_AppIterate',['../_main_8cpp.html#a7038050dca8c80a0133d600fb008b6db',1,'Main.cpp']]],
-  ['sdl_5fappquit_3',['SDL_AppQuit',['../_main_8cpp.html#a31f80ce4f4926b0c6fe01a9644f3c837',1,'Main.cpp']]],
-  ['sdl_5fexception_4',['SDL_Exception',['../class_s_d_l___exception.html#a36a93f8167d0fb73517a28d968bc110a',1,'SDL_Exception']]]
+  ['quit_0',['Quit',['../class_base_project.html#aef8d45dca41f3937bafeda1e1337974c',1,'BaseProject::Quit()'],['../class_particle.html#a0d3d7004254bbc3f851ec12911554b2b',1,'Particle::Quit()'],['../class_simple_example.html#a1c5b88fa32f9b6e4b26996e3960faa67',1,'SimpleExample::Quit()'],['../class_triangle.html#a5dbac75bd21423e20a9611e5fc098fb5',1,'Triangle::Quit()']]]
 ];

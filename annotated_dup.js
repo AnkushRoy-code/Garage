@@ -5,9 +5,12 @@ var annotated_dup =
     ] ],
     [ "BaseProject", "class_base_project.html", "class_base_project" ],
     [ "Context", "struct_context.html", "struct_context" ],
+    [ "Particle", "class_particle.html", "class_particle" ],
+    [ "ParticleData", "struct_particle_data.html", "struct_particle_data" ],
+    [ "ParticlePositions", "struct_particle_positions.html", "struct_particle_positions" ],
+    [ "ParticleVelocity", "struct_particle_velocity.html", "struct_particle_velocity" ],
     [ "ProjectManager", "class_project_manager.html", null ],
     [ "SDL_Exception", "class_s_d_l___exception.html", "class_s_d_l___exception" ],
     [ "SimpleExample", "class_simple_example.html", "class_simple_example" ],
-    [ "SimpleImGui", "class_simple_im_gui.html", "class_simple_im_gui" ],
     [ "Triangle", "class_triangle.html", "class_triangle" ]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['registerallprojects_0',['registerAllProjects',['../class_project_manager.html#aa21ad77b998e9d8f6c7339560e1b0c8a',1,'ProjectManager']]],
-  ['registerproject_1',['registerProject',['../class_project_manager.html#a958d8c7a6f1cfb173abf28a4added5ed',1,'ProjectManager']]]
+  ['populaterandomforce_0',['populateRandomForce',['../namespace_particle_controller.html#aea3ed261e60cd74c4a081be603206d5b',1,'ParticleController']]],
+  ['populaterandommaxdistance_1',['populateRandomMaxDistance',['../namespace_particle_controller.html#adf4c448fb322e7a7d82be35f39b02750',1,'ParticleController']]],
+  ['populaterandommindistance_2',['populateRandomMinDistance',['../namespace_particle_controller.html#a3b873e0d789414c336e57c11b61c2f9a',1,'ParticleController']]]
 ];
