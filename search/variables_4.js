@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gparticledata_0',['gParticleData',['../_particle_8cpp.html#a97bdef476ba4106b9b36934983748c49',1,'gParticleData:&#160;Particle.cpp'],['../_particle_8h.html#a97bdef476ba4106b9b36934983748c49',1,'gParticleData:&#160;Particle.cpp']]]
+  ['imguiwindowwidth_0',['ImGuiWindowWidth',['../struct_particle_data.html#a7c43e4c9efc07da336ae4f7503e1b346',1,'ParticleData']]]
 ];
