@@ -1,20 +1,20 @@
 // There has been an effort to make this whole project in C style.
 #include "Main.h"
-#include "Common/Context.h"
+#include "Core/Context.h"
 #include "Projects/Particle/src/ImGuiMenu.h"
 
-bool Particle::Init(Context &context)
+bool Particle::Init()
 {
     Name = "Particle";
     return true;
 }
-bool Particle::Update(Context &context)
+bool Particle::Update()
 {
     ImGuiParticleWindow();
     return true;
 }
-bool Particle::Draw(Context &context)
+bool Particle::Draw()
 {
     return true;
 }
-void Particle::Quit(Context &context) {}
+void Particle::Quit() {}

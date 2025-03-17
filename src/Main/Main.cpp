@@ -1,3 +1,4 @@
+#include "Core/Console.h"
 #include <filesystem>
 #include <iostream>
 #include <memory>
@@ -14,12 +15,11 @@
 #include <backends/imgui_impl_sdlgpu3.h>
 
 #include "Common/BaseProject.h"
-#include "Common/Context.h"
+#include "Core/Context.h"
 #include "Common/Common.h"
 #include "Utils/Time.h"
 #include "Common/SDL_Exception.h"
 
-Context context;
 std::vector<std::unique_ptr<BaseProject>> Projects {};
 int projectIndex {};
 
@@ -27,11 +27,11 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
 {
     try
     {
-        context.init();
+        gContext.init();
 
         ProjectManager::registerAllProjects();
         Projects = ProjectManager::getProjects();
-        Projects[0]->Init(context);
+        Projects[0]->Init();
 
         Utils::Time::init();
     }
@@ -70,7 +70,7 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
 
         if (event->type == SDL_EVENT_QUIT)
         {
-            if (projectIndex != -1) { Projects[projectIndex]->Quit(context); }
+            if (projectIndex != -1) { Projects[projectIndex]->Quit(); }
             return SDL_APP_SUCCESS;
         }
 
@@ -92,10 +92,10 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
                     break;
                 };
 
-                case SDL_SCANCODE_LEFT: context.left = true; break;
-                case SDL_SCANCODE_RIGHT: context.right = true; break;
-                case SDL_SCANCODE_DOWN: context.down = true; break;
-                case SDL_SCANCODE_UP: context.up = true; break;
+                case SDL_SCANCODE_LEFT: gContext.left = true; break;
+                case SDL_SCANCODE_RIGHT: gContext.right = true; break;
+                case SDL_SCANCODE_DOWN: gContext.down = true; break;
+                case SDL_SCANCODE_UP: gContext.up = true; break;
 
                 default: break;
             }
@@ -105,10 +105,10 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
         {
             switch (event->key.scancode)
             {
-                case SDL_SCANCODE_LEFT: context.left = false; break;
-                case SDL_SCANCODE_RIGHT: context.right = false; break;
-                case SDL_SCANCODE_DOWN: context.down = false; break;
-                case SDL_SCANCODE_UP: context.up = false; break;
+                case SDL_SCANCODE_LEFT: gContext.left = false; break;
+                case SDL_SCANCODE_RIGHT: gContext.right = false; break;
+                case SDL_SCANCODE_DOWN: gContext.down = false; break;
+                case SDL_SCANCODE_UP: gContext.up = false; break;
                 default: break;
             }
         }
@@ -118,7 +118,7 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
             ImGuiIO &io = ImGui::GetIO();
             (void)io;
             int w, h;
-            SDL_GetWindowSize(context.mWindow, &w, &h);
+            SDL_GetWindowSize(gContext.mWindow, &w, &h);
             io.DisplaySize = ImVec2((float)w, (float)h);
         }
 
@@ -134,9 +134,9 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
                 // Perform transition
                 if (newIndex != projectIndex)
                 {
-                    Projects[projectIndex]->Quit(context);
+                    Projects[projectIndex]->Quit();
                     projectIndex = newIndex;
-                    Projects[projectIndex]->Init(context);
+                    Projects[projectIndex]->Init();
                 }
             }
         }
@@ -169,10 +169,10 @@ SDL_AppResult SDL_AppIterate(void *appstate)
     {
         PROFILE_SCOPE;
         Utils::Time::updateDeltaTime();
-        Projects[projectIndex]->Update(context);
+        Projects[projectIndex]->Update();
 
         // exit early if window is minimised
-        if (SDL_GetWindowFlags(context.mWindow) & SDL_WINDOW_MINIMIZED)
+        if (SDL_GetWindowFlags(gContext.mWindow) & SDL_WINDOW_MINIMIZED)
         {
             Utils::Time::capFPS();
             return SDL_APP_CONTINUE;
@@ -184,7 +184,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 
         const auto projectWindowName = "Project - " + BaseProject::Name + "###TexTitle";
 
-        ImGuiID dockSpaceID = ImGui::DockSpaceOverViewport();
+        gContext.mainViewportId = ImGui::DockSpaceOverViewport();
 
         static bool imguiIniExists = std::filesystem::exists("imgui.ini");
         static bool firstTime      = true;
@@ -193,21 +193,21 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         {
             firstTime = false;
 
-            ImGui::DockBuilderRemoveNode(dockSpaceID);
-            ImGui::DockBuilderAddNode(dockSpaceID);
-            ImGui::DockBuilderSetNodeSize(dockSpaceID, ImGui::GetMainViewport()->Size);
+            ImGui::DockBuilderRemoveNode(gContext.mainViewportId);
+            ImGui::DockBuilderAddNode(gContext.mainViewportId);
+            ImGui::DockBuilderSetNodeSize(gContext.mainViewportId, ImGui::GetMainViewport()->Size);
 
-            auto dockIdLeft =
-                ImGui::DockBuilderSplitNode(dockSpaceID, ImGuiDir_Left, 0.3, nullptr, &dockSpaceID);
+            auto dockIdLeft = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Left, 0.3,
+                                                          nullptr, &gContext.mainViewportId);
 
-            auto dockIdBottom =
-                ImGui::DockBuilderSplitNode(dockSpaceID, ImGuiDir_Down, 0.3, nullptr, &dockSpaceID);
+            auto dockIdBottom = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Down, 0.3,
+                                                            nullptr, &gContext.mainViewportId);
 
             ImGui::DockBuilderDockWindow("Ankush's Garage - ToolBox", dockIdLeft);
             ImGui::DockBuilderDockWindow("Console", dockIdBottom);
-            ImGui::DockBuilderDockWindow(projectWindowName.c_str(), dockSpaceID);
+            ImGui::DockBuilderDockWindow(projectWindowName.c_str(), gContext.mainViewportId);
 
-            ImGui::DockBuilderFinish(dockSpaceID);
+            ImGui::DockBuilderFinish(gContext.mainViewportId);
         }
 
         {
@@ -226,8 +226,8 @@ SDL_AppResult SDL_AppIterate(void *appstate)
             ImGui::Begin(projectWindowName.c_str(), nullptr, ImGuiWindowFlags_NoCollapse);
             // clang-format on
 
-            const SDL_GPUTextureSamplerBinding bind {context.mProjectTexture,
-                                                     context.mProjectSampler};
+            const SDL_GPUTextureSamplerBinding bind {gContext.mProjectTexture,
+                                                     gContext.mProjectSampler};
             const auto size = ImGui::GetWindowSize();
 
             ImGui::Image((ImTextureID)&bind, {size.x, size.y - 19.0f});
@@ -238,9 +238,25 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         {
             ImGui::Begin("Console");
 
-            static int isr;
-            ImGui::SliderInt("Booyah", &isr, 39, 23);
+            const auto cl = ConsoleLogBuffer::ConsoleLogs;
+            for (size_t i = 0; i < cl.size(); ++i)
+            {
+                const auto &lg = cl[i];
 
+                if (i % 2 == 0)
+                    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.8f, 0.8f, 0.8f, 1.0f));
+                else
+                    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
+
+                ImGui::Text("%s", lg.message.c_str());
+                ImGui::SameLine(ImGui::GetContentRegionAvail().x
+                                - ImGui::CalcTextSize(lg.timestamp.c_str()).x);
+                ImGui::Text("[%s]", lg.timestamp.c_str());
+
+                ImGui::Separator();
+
+                ImGui::PopStyleColor();
+            }
             ImGui::End();
         }
 
@@ -248,11 +264,11 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         ImGui::Render();
         ImDrawData *drawData = ImGui::GetDrawData();
 
-        SDL_GPUCommandBuffer *commandBuffer = SDL_AcquireGPUCommandBuffer(context.mDevice);
+        SDL_GPUCommandBuffer *commandBuffer = SDL_AcquireGPUCommandBuffer(gContext.mDevice);
         if (!commandBuffer) { throw SDL_Exception("AcquireGPUCommandBuffer failed!"); }
 
         SDL_GPUTexture *swapchainTexture;
-        if (!SDL_AcquireGPUSwapchainTexture(commandBuffer, context.mWindow, &swapchainTexture,
+        if (!SDL_AcquireGPUSwapchainTexture(commandBuffer, gContext.mWindow, &swapchainTexture,
                                             nullptr, nullptr))
         {
             throw SDL_Exception("WaitAndAcquireGPUSwapchainTexture failed!");
@@ -274,16 +290,16 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 
             };
 
-            context.mRenderPass = SDL_BeginGPURenderPass(commandBuffer, &targetInfo, 1, nullptr);
+            gContext.mRenderPass = SDL_BeginGPURenderPass(commandBuffer, &targetInfo, 1, nullptr);
 
-            ImGui_ImplSDLGPU3_RenderDrawData(drawData, commandBuffer, context.mRenderPass);
+            ImGui_ImplSDLGPU3_RenderDrawData(drawData, commandBuffer, gContext.mRenderPass);
 
-            SDL_EndGPURenderPass(context.mRenderPass);
+            SDL_EndGPURenderPass(gContext.mRenderPass);
             SDL_SubmitGPUCommandBuffer(commandBuffer);
             // ImGui Pass end
         }
 
-        SDL_GPUCommandBuffer *commandBufferProjects = SDL_AcquireGPUCommandBuffer(context.mDevice);
+        SDL_GPUCommandBuffer *commandBufferProjects = SDL_AcquireGPUCommandBuffer(gContext.mDevice);
         if (!commandBufferProjects)
         {
             throw SDL_Exception("AcquireGPUCommandBuffer(Projects) failed!");
@@ -292,19 +308,19 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         {
             // Project Pass start
             const SDL_GPUColorTargetInfo projectTargetInfo {
-                .texture     = context.mProjectTexture,
+                .texture     = gContext.mProjectTexture,
                 .clear_color = SDL_FColor {0.45f, 0.55f, 0.60f, 1.00f},
                 .load_op     = SDL_GPU_LOADOP_CLEAR,
                 .store_op    = SDL_GPU_STOREOP_STORE,
                 .cycle       = true,
             };
 
-            context.mProjectPass =
+            gContext.mProjectPass =
                 SDL_BeginGPURenderPass(commandBufferProjects, &projectTargetInfo, 1, nullptr);
 
-            Projects[projectIndex]->Draw(context);
+            Projects[projectIndex]->Draw();
 
-            SDL_EndGPURenderPass(context.mProjectPass);
+            SDL_EndGPURenderPass(gContext.mProjectPass);
             SDL_SubmitGPUCommandBuffer(commandBufferProjects);
             // Project pass end
         }

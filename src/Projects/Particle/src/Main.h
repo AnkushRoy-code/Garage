@@ -5,10 +5,10 @@
 
 class Particle : public BaseProject
 {
-    bool Init(Context &context) override;
-    bool Update(Context &context) override;
-    bool Draw(Context &context) override;
-    void Quit(Context &context) override;
+    bool Init() override;
+    bool Update() override;
+    bool Draw() override;
+    void Quit() override;
 };
 
 #endif  // INCLUDE_SRC_MAIN_H_

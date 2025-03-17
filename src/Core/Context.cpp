@@ -1,12 +1,14 @@
 #include "Context.h"
 
 #include "SDL3/SDL_video.h"
-#include "SDL_Exception.h"
+#include "Common/SDL_Exception.h"
 
 #include <SDL3/SDL_gpu.h>
 #include <imgui.h>
 #include <backends/imgui_impl_sdl3.h>
 #include <backends/imgui_impl_sdlgpu3.h>
+
+Context gContext;
 
 void Context::init()
 {

@@ -2,7 +2,7 @@
 #define INCLUDE_SIMPLEEXAMPLE_SIMPLEEXAMPLE_H_
 
 #include "Common/BaseProject.h"
-#include "Common/Context.h"
+#include "Core/Context.h"
 
 /**
  * @namespace SimpleExample
@@ -23,7 +23,7 @@ class SimpleExample : public BaseProject
      * @return true if initialization succeeds, false otherwise.
      * @throws SDL_Exception if an SDL operation fails.
      */
-    bool Init(Context &context) override;
+    bool Init() override;
 
     /**
      * @brief Updates the example.
@@ -35,7 +35,7 @@ class SimpleExample : public BaseProject
      * @return true if the update succeeds, false otherwise.
      * @throws SDL_Exception if an SDL operation fails.
      */
-    bool Update(Context &context) override;
+    bool Update() override;
 
     /**
      * @brief Renders the example.
@@ -48,7 +48,7 @@ class SimpleExample : public BaseProject
      * @return true if rendering succeeds, false otherwise.
      * @throws SDL_Exception if an SDL operation fails.
      */
-    bool Draw(Context &context) override;
+    bool Draw() override;
 
     /**
      * @brief Cleans up resources.
@@ -59,7 +59,7 @@ class SimpleExample : public BaseProject
      * @param context Reference to the global Context object.
      * @throws SDL_Exception if an SDL operation fails.
      */
-    void Quit(Context &context) override;
+    void Quit() override;
 };
 
 #endif  // INCLUDE_SIMPLEEXAMPLE_SIMPLEEXAMPLE_H_

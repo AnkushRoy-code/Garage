@@ -3,7 +3,6 @@
 #define INCLUDE_TRIANGLE_TRIANGLE_H_
 
 #include "Common/BaseProject.h"
-#include "Common/Context.h"
 #include <SDL3/SDL_gpu.h>
 
 class Triangle : public BaseProject
@@ -18,10 +17,10 @@ class Triangle : public BaseProject
     static bool UseSmallViewport;
     static bool UseScissorRect;
 
-    bool Init(Context &context) override;
-    bool Update(Context &context) override;
-    bool Draw(Context &context) override;
-    void Quit(Context &context) override;
+    bool Init() override;
+    bool Update() override;
+    bool Draw() override;
+    void Quit() override;
 };
 
 #endif  // INCLUDE_TRIANGLE_TRIANGLE_H_

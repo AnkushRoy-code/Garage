@@ -1,7 +1,6 @@
 #ifndef INCLUDE_COMMON_BASEPROJECT_H_
 #define INCLUDE_COMMON_BASEPROJECT_H_
 
-#include "Common/Context.h"
 #include <memory>
 #include <string>
 #include <vector>
@@ -17,10 +16,10 @@ class BaseProject
   public:
     virtual ~BaseProject() = default;
 
-    virtual bool Init(Context &context)   = 0;
-    virtual bool Update(Context &context) = 0;
-    virtual bool Draw(Context &context)   = 0;
-    virtual void Quit(Context &context)   = 0;
+    virtual bool Init()   = 0;
+    virtual bool Update() = 0;
+    virtual bool Draw()   = 0;
+    virtual void Quit()   = 0;
 
     static std::string Name;
 };
