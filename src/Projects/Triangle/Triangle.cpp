@@ -16,6 +16,8 @@ bool Triangle::UseScissorRect   = false;
 bool Triangle::Init(Context &context)
 {
     PROFILE_SCOPE_N("Triangle::Init");
+    Name = "Triangle";
+
     SDL_GPUShader *vertexShader =
         Common::LoadShader(context.mDevice, "RawTriangle.vert", 0, 0, 0, 0);
     if (vertexShader == nullptr)

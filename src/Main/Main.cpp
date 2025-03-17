@@ -1,4 +1,4 @@
-#include "SDL3/SDL_gpu.h"
+#include <filesystem>
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -9,6 +9,7 @@
 #include <SDL3/SDL_main.h>
 
 #include <imgui.h>
+#include <imgui_internal.h>
 #include <backends/imgui_impl_sdl3.h>
 #include <backends/imgui_impl_sdlgpu3.h>
 
@@ -20,7 +21,7 @@
 
 Context context;
 std::vector<std::unique_ptr<BaseProject>> Projects {};
-int exampleIndex {};
+int projectIndex {};
 
 SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
 {
@@ -65,11 +66,11 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
         // Don't ask about Pressed_A variable... It's temporary
         bool changeState {false};
         bool Pressed_A {false};  // to detect if A was pressed or D was pressed.
-                                 // To properly Quit the running example.
+                                 // To properly Quit the running project.
 
         if (event->type == SDL_EVENT_QUIT)
         {
-            if (exampleIndex != -1) { Projects[exampleIndex]->Quit(context); }
+            if (projectIndex != -1) { Projects[projectIndex]->Quit(context); }
             return SDL_APP_SUCCESS;
         }
 
@@ -121,20 +122,21 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
             io.DisplaySize = ImVec2((float)w, (float)h);
         }
 
-        // Change Example
+        // Change Project
         if (changeState)
         {
-            if (!Projects.empty() && exampleIndex < Projects.size())
+            if (!Projects.empty() && projectIndex < Projects.size())
             {
                 // Calculate target index
-                size_t newIndex = Pressed_A ? std::max(int(0), exampleIndex - 1)
-                                            : std::min(exampleIndex + 1, int(Projects.size()) - 1);
+                const size_t newIndex = Pressed_A
+                                            ? std::max(int(0), projectIndex - 1)
+                                            : std::min(projectIndex + 1, int(Projects.size()) - 1);
                 // Perform transition
-                if (newIndex != exampleIndex)
+                if (newIndex != projectIndex)
                 {
-                    Projects[exampleIndex]->Quit(context);
-                    exampleIndex = newIndex;
-                    Projects[exampleIndex]->Init(context);
+                    Projects[projectIndex]->Quit(context);
+                    projectIndex = newIndex;
+                    Projects[projectIndex]->Init(context);
                 }
             }
         }
@@ -165,25 +167,51 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 {
     try
     {
-        Utils::Time::updateDeltaTime();
         PROFILE_SCOPE;
+        Utils::Time::updateDeltaTime();
+        Projects[projectIndex]->Update(context);
 
-        ImGui_ImplSDLGPU3_NewFrame();
-        ImGui_ImplSDLGPU3_NewFrame();
-        ImGui::NewFrame();
-
-        Projects[exampleIndex]->Update(context);
-
+        // exit early if window is minimised
         if (SDL_GetWindowFlags(context.mWindow) & SDL_WINDOW_MINIMIZED)
         {
             Utils::Time::capFPS();
             return SDL_APP_CONTINUE;
         }
-        // ImGui::DockSpaceOverViewport();  // Incredible performance drop with
-        // this one fsr
 
-        if (ImGui::Begin("Ankush's Garage - ToolBox"))
+        ImGui_ImplSDLGPU3_NewFrame();
+        ImGui_ImplSDLGPU3_NewFrame();
+        ImGui::NewFrame();
+
+        const auto projectWindowName = "Project - " + BaseProject::Name + "###TexTitle";
+
+        ImGuiID dockSpaceID = ImGui::DockSpaceOverViewport();
+
+        static bool imguiIniExists = std::filesystem::exists("imgui.ini");
+        static bool firstTime      = true;
+
+        if (firstTime && !imguiIniExists)
         {
+            firstTime = false;
+
+            ImGui::DockBuilderRemoveNode(dockSpaceID);
+            ImGui::DockBuilderAddNode(dockSpaceID);
+            ImGui::DockBuilderSetNodeSize(dockSpaceID, ImGui::GetMainViewport()->Size);
+
+            auto dockIdLeft =
+                ImGui::DockBuilderSplitNode(dockSpaceID, ImGuiDir_Left, 0.3, nullptr, &dockSpaceID);
+
+            auto dockIdBottom =
+                ImGui::DockBuilderSplitNode(dockSpaceID, ImGuiDir_Down, 0.3, nullptr, &dockSpaceID);
+
+            ImGui::DockBuilderDockWindow("Ankush's Garage - ToolBox", dockIdLeft);
+            ImGui::DockBuilderDockWindow("Console", dockIdBottom);
+            ImGui::DockBuilderDockWindow(projectWindowName.c_str(), dockSpaceID);
+
+            ImGui::DockBuilderFinish(dockSpaceID);
+        }
+
+        {
+            ImGui::Begin("Ankush's Garage - ToolBox");
             const auto d = Utils::Time::deltaTime();
 
             ImGui::Text("%.3f ms/frame (%.1f FPS)", d, 1000.0f / d);
@@ -193,19 +221,28 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         // Draw the project to the screen ImGui window
         ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2 {0, 0});
         {
+
             // clang-format off
-            ImGui::Begin("Texture Window", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoCollapse);
+            ImGui::Begin(projectWindowName.c_str(), nullptr, ImGuiWindowFlags_NoCollapse);
             // clang-format on
 
-            const SDL_GPUTextureSamplerBinding tbind {context.mProjectTexture,
-                                                      context.mProjectSampler};
+            const SDL_GPUTextureSamplerBinding bind {context.mProjectTexture,
+                                                     context.mProjectSampler};
             const auto size = ImGui::GetWindowSize();
 
-            ImGui::Image((ImTextureID)&tbind, {size.x, size.y - 19.0f});
+            ImGui::Image((ImTextureID)&bind, {size.x, size.y - 19.0f});
             ImGui::End();
         }
-
         ImGui::PopStyleVar();
+
+        {
+            ImGui::Begin("Console");
+
+            static int isr;
+            ImGui::SliderInt("Booyah", &isr, 39, 23);
+
+            ImGui::End();
+        }
 
         // Start Drawing
         ImGui::Render();
@@ -226,14 +263,16 @@ SDL_AppResult SDL_AppIterate(void *appstate)
             // ImGui Pass
             Imgui_ImplSDLGPU3_PrepareDrawData(drawData, commandBuffer);
 
-            SDL_GPUColorTargetInfo targetInfo = {};
-            targetInfo.texture                = swapchainTexture;
-            targetInfo.clear_color            = SDL_FColor {0.0, 0.0f, 0.0f, 1.00f};
-            targetInfo.load_op                = SDL_GPU_LOADOP_CLEAR;
-            targetInfo.store_op               = SDL_GPU_STOREOP_STORE;
-            targetInfo.mip_level              = 0;
-            targetInfo.layer_or_depth_plane   = 0;
-            targetInfo.cycle                  = false;
+            const SDL_GPUColorTargetInfo targetInfo {
+                .texture              = swapchainTexture,
+                .mip_level            = 0,
+                .layer_or_depth_plane = 0,
+                .clear_color          = SDL_FColor {0.0, 0.0f, 0.0f, 1.00f},
+                .load_op              = SDL_GPU_LOADOP_CLEAR,
+                .store_op             = SDL_GPU_STOREOP_STORE,
+                .cycle                = false,
+
+            };
 
             context.mRenderPass = SDL_BeginGPURenderPass(commandBuffer, &targetInfo, 1, nullptr);
 
@@ -252,17 +291,18 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 
         {
             // Project Pass start
-            SDL_GPUColorTargetInfo projectTargetInfo = {};
-            projectTargetInfo.texture                = context.mProjectTexture;
-            projectTargetInfo.clear_color            = SDL_FColor {0.45f, 0.55f, 0.60f, 1.00f};
-            projectTargetInfo.load_op                = SDL_GPU_LOADOP_CLEAR;
-            projectTargetInfo.store_op               = SDL_GPU_STOREOP_STORE;
-            projectTargetInfo.cycle                  = true;
+            const SDL_GPUColorTargetInfo projectTargetInfo {
+                .texture     = context.mProjectTexture,
+                .clear_color = SDL_FColor {0.45f, 0.55f, 0.60f, 1.00f},
+                .load_op     = SDL_GPU_LOADOP_CLEAR,
+                .store_op    = SDL_GPU_STOREOP_STORE,
+                .cycle       = true,
+            };
 
             context.mProjectPass =
                 SDL_BeginGPURenderPass(commandBufferProjects, &projectTargetInfo, 1, nullptr);
 
-            Projects[exampleIndex]->Draw(context);
+            Projects[projectIndex]->Draw(context);
 
             SDL_EndGPURenderPass(context.mProjectPass);
             SDL_SubmitGPUCommandBuffer(commandBufferProjects);

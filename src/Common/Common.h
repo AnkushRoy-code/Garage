@@ -24,7 +24,7 @@ namespace Common
  *
  * @code
  *
- * // a simple vertex shader example
+ * // a simple vertex shader project
  *
  * auto vertexShader = LoadShader(SDL_GPUDevice, "shader.vert", 0, 0, 0, 0);
  *

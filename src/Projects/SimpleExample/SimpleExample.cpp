@@ -1,10 +1,10 @@
 #include "SimpleExample.h"
 #include "Common/Common.h"
-#include "Common/SDL_Exception.h"
 #include <iostream>
 
 bool SimpleExample::Init(Context &context)
 {
+    Name = "SimpleExample";
     std::cout << "SimpleExample Initialised\n";
     return true;
 }

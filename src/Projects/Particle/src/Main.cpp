@@ -5,6 +5,7 @@
 
 bool Particle::Init(Context &context)
 {
+    Name = "Particle";
     return true;
 }
 bool Particle::Update(Context &context)

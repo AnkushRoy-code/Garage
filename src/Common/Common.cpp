@@ -2,6 +2,7 @@
 #include "Common/SDL_Exception.h"
 
 #include <SDL3/SDL_gpu.h>
+#include <cassert>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -17,7 +18,6 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
                           const Uint32 storageTextureCount)
 {
     static bool basePathFound = false;
-
     static std::string BasePath {};
 
     if (!basePathFound)
@@ -54,6 +54,8 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
         format   = SDL_GPU_SHADERFORMAT_DXIL;
     }
     else { throw SDL_Exception("Unrecognised backend shader format"); }
+
+    assert(std::filesystem::exists(fullPath));
 
     std::ifstream file {fullPath, std::ios::binary};
     if (!file) throw SDL_Exception("Couldn't open shader file");

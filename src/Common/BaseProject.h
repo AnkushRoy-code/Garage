@@ -7,23 +7,22 @@
 #include <vector>
 
 /**
- * @brief Structure representing an example application instance.
+ * @brief Structure representing an project application instance.
  *
  * This structure contains function callbacks required for initialization,
- * updating, drawing, and quitting an example.
+ * updating, drawing, and quitting an project.
  */
 class BaseProject
 {
   public:
     virtual ~BaseProject() = default;
 
-    virtual bool Init(Context &context)        = 0;
-    virtual bool Update(Context &context)      = 0;
-    virtual bool Draw(Context &context)        = 0;
-    virtual void Quit(Context &context)        = 0;
+    virtual bool Init(Context &context)   = 0;
+    virtual bool Update(Context &context) = 0;
+    virtual bool Draw(Context &context)   = 0;
+    virtual void Quit(Context &context)   = 0;
 
-  protected:
-    std::string Name {};
+    static std::string Name;
 };
 
 class ProjectManager
