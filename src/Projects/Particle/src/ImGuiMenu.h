@@ -1,7 +1,7 @@
 #ifndef INCLUDE_SRC_IMGUIMENU_H_
 #define INCLUDE_SRC_IMGUIMENU_H_
 
-#include "imgui.h"
+#include <imgui.h>
 #include <functional>
 #include <string>
 
@@ -11,7 +11,7 @@ void ImGuiParticleWindow();
 /// The user is not supposed to use this functions in main code
 namespace ImGuiPrivate
 {
-void WindowMain(ImGuiWindowFlags WinFlags);
+void WindowMain();
 
 // Show::What
 void ShowForce();  // left

@@ -27,6 +27,12 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
 {
     try
     {
+        ConsoleLogBuffer::addMessage("Welcome to Ankush's Garage");
+        ConsoleLogBuffer::addMessage("Press 'a' or 'd' to change between projects");
+        ConsoleLogBuffer::addMessage("Help: The keyboard layout doesn't matter, ");
+        ConsoleLogBuffer::addMessage("use the physical keys in your keyboard to ");
+        ConsoleLogBuffer::addMessage("to change the examples");
+
         gContext.init();
 
         ProjectManager::registerAllProjects();
@@ -169,7 +175,6 @@ SDL_AppResult SDL_AppIterate(void *appstate)
     {
         PROFILE_SCOPE;
         Utils::Time::updateDeltaTime();
-        Projects[projectIndex]->Update();
 
         // exit early if window is minimised
         if (SDL_GetWindowFlags(gContext.mWindow) & SDL_WINDOW_MINIMIZED)
@@ -197,14 +202,18 @@ SDL_AppResult SDL_AppIterate(void *appstate)
             ImGui::DockBuilderAddNode(gContext.mainViewportId);
             ImGui::DockBuilderSetNodeSize(gContext.mainViewportId, ImGui::GetMainViewport()->Size);
 
-            auto dockIdLeft = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Left, 0.3,
-                                                          nullptr, &gContext.mainViewportId);
+            auto dockIdLeft = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Left,
+                                                          0.2, nullptr, &gContext.mainViewportId);
 
-            auto dockIdBottom = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Down, 0.3,
-                                                            nullptr, &gContext.mainViewportId);
+            auto dockIdBottom = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Down,
+                                                            0.2, nullptr, &gContext.mainViewportId);
+
+            auto dockIdRight = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Right,
+                                                           0.4, nullptr, &gContext.mainViewportId);
 
             ImGui::DockBuilderDockWindow("Ankush's Garage - ToolBox", dockIdLeft);
             ImGui::DockBuilderDockWindow("Console", dockIdBottom);
+            ImGui::DockBuilderDockWindow("Control Panel", dockIdRight);
             ImGui::DockBuilderDockWindow(projectWindowName.c_str(), gContext.mainViewportId);
 
             ImGui::DockBuilderFinish(gContext.mainViewportId);
@@ -260,6 +269,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
             ImGui::End();
         }
 
+        Projects[projectIndex]->Update();
         // Start Drawing
         ImGui::Render();
         ImDrawData *drawData = ImGui::GetDrawData();

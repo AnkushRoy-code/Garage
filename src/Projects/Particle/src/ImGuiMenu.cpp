@@ -2,6 +2,9 @@
 
 #include "Particle.h"
 #include "ParticleController.h"
+#include "imgui.h"
+
+#include <imgui_internal.h>
 
 #include <string>
 #include <array>
@@ -21,22 +24,12 @@ void HelpMarker(const std::string &str)
 
 void ImGuiParticleWindow()
 {
-    ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Once);
-    ImGui::SetNextWindowSize(ImVec2(360, 480), ImGuiCond_Once);
-    ImGui::SetNextWindowSizeConstraints(ImVec2(320, 480), ImVec2(500, 480), nullptr, nullptr);
-
-    ImGuiWindowFlags window_flags = 0;
-
-    window_flags |= ImGuiWindowFlags_NoMove;
-    window_flags |= ImGuiWindowFlags_NoCollapse;
-    /* window_flags |= ImGuiWindowFlags_MenuBar; */
-
-    ImGuiPrivate::WindowMain(window_flags);
+    ImGuiPrivate::WindowMain();
 }
 
-void ImGuiPrivate::WindowMain(ImGuiWindowFlags WinFlags)
+void ImGuiPrivate::WindowMain()
 {
-    if (ImGui::Begin("Control Panel", nullptr, WinFlags))
+    if (ImGui::Begin("Control Panel"))
     {
         ShowGlobalVariables();
 
