@@ -1,7 +1,7 @@
 var class_triangle =
 [
-    [ "Draw", "class_triangle.html#a338ee10ea6ebb34858d25cc034736823", null ],
-    [ "Init", "class_triangle.html#a6b815584e1eab4da8bb0c8b113518eb0", null ],
-    [ "Quit", "class_triangle.html#a5dbac75bd21423e20a9611e5fc098fb5", null ],
-    [ "Update", "class_triangle.html#a35fd6bcc07e9645392c29708c9599fdf", null ]
+    [ "Draw", "class_triangle.html#a241d9c609b1dbb02234006c932d1b354", null ],
+    [ "Init", "class_triangle.html#abdfd35aec84f6c8f46bfa4bc1b283c6b", null ],
+    [ "Quit", "class_triangle.html#aa60c86332131f5c43ac858511bf98423", null ],
+    [ "Update", "class_triangle.html#a8ab716715f06ccf10cc452882d4e3696", null ]
 ];

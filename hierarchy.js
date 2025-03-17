@@ -5,6 +5,8 @@ var hierarchy =
       [ "SimpleExample", "class_simple_example.html", null ],
       [ "Triangle", "class_triangle.html", null ]
     ] ],
+    [ "ConsoleLogBuffer", "class_console_log_buffer.html", null ],
+    [ "ConsoleLogMessage", "struct_console_log_message.html", null ],
     [ "Context", "struct_context.html", null ],
     [ "std::exception", null, [
       [ "SDL_Exception", "class_s_d_l___exception.html", null ]

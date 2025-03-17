@@ -1,7 +1,7 @@
 var class_simple_example =
 [
-    [ "Draw", "class_simple_example.html#a7a7ff98b00a03846813320f4bd44b1b4", null ],
-    [ "Init", "class_simple_example.html#a3224b8b2b48c7729ce86dd5ca7fca33d", null ],
-    [ "Quit", "class_simple_example.html#a1c5b88fa32f9b6e4b26996e3960faa67", null ],
-    [ "Update", "class_simple_example.html#aaede3fd3322f0640294f491c401cef70", null ]
+    [ "Draw", "class_simple_example.html#ad4eadee5fc9667df08c9c64bbfc64650", null ],
+    [ "Init", "class_simple_example.html#a9ac76ed70901bf997b10c55f2629c50a", null ],
+    [ "Quit", "class_simple_example.html#af02b7f4595c57cf00b8e51e1bb18d87f", null ],
+    [ "Update", "class_simple_example.html#a6839c837fce10a468a021548f81f24a0", null ]
 ];

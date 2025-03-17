@@ -4,6 +4,8 @@ var annotated_dup =
       [ "Time", "class_utils_1_1_time.html", null ]
     ] ],
     [ "BaseProject", "class_base_project.html", "class_base_project" ],
+    [ "ConsoleLogBuffer", "class_console_log_buffer.html", null ],
+    [ "ConsoleLogMessage", "struct_console_log_message.html", "struct_console_log_message" ],
     [ "Context", "struct_context.html", "struct_context" ],
     [ "Particle", "class_particle.html", "class_particle" ],
     [ "ParticleData", "struct_particle_data.html", "struct_particle_data" ],

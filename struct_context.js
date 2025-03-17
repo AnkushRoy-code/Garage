@@ -5,6 +5,7 @@ var struct_context =
     [ "init", "struct_context.html#a29146137dbdb16814f4994de6c21c27f", null ],
     [ "down", "struct_context.html#a3dd7912e908d5da086c62e884a05d319", null ],
     [ "left", "struct_context.html#a6213632faa7327df40e941f8b0741e68", null ],
+    [ "mainViewportId", "struct_context.html#a618f933057732923ea051ca8016e3252", null ],
     [ "mDevice", "struct_context.html#a4dbb5eac9406f22dc801c31ea261b3d2", null ],
     [ "mProjectPass", "struct_context.html#a336a2b1676e6223a02bb6d10adc79e5a", null ],
     [ "mProjectSampler", "struct_context.html#ad9fa3f5ab6ef1a3f9c04b1544ba86a18", null ],

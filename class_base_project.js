@@ -1,8 +1,8 @@
 var class_base_project =
 [
     [ "~BaseProject", "class_base_project.html#a00d5b29887bd1da1922dfadc2c4f3e03", null ],
-    [ "Draw", "class_base_project.html#ae91b5e571989802f3af56c794afd7e2a", null ],
-    [ "Init", "class_base_project.html#af298273d9107363f9109de492c7a43a7", null ],
-    [ "Quit", "class_base_project.html#aef8d45dca41f3937bafeda1e1337974c", null ],
-    [ "Update", "class_base_project.html#a5fef85ce33e863e451f64b69fc635489", null ]
+    [ "Draw", "class_base_project.html#ac07df7f9bc2df9a072a485073e462a57", null ],
+    [ "Init", "class_base_project.html#a3290175ae3463d71ef9dd2422f9f1af0", null ],
+    [ "Quit", "class_base_project.html#a3c36b2dcbe93caf5924de78982efe470", null ],
+    [ "Update", "class_base_project.html#a43cf6674c274cfc53a639f4954b916e9", null ]
 ];

@@ -18,7 +18,7 @@ var namespaces_dup =
       [ "ShowMaxDistSliders", "namespace_im_gui_private.html#a67825903a33ec93648a7688d895b51bc", null ],
       [ "ShowMinDist", "namespace_im_gui_private.html#a0a504cd9d50747b9b871a6272503fc8c", null ],
       [ "ShowMinDistSliders", "namespace_im_gui_private.html#a35527a57de49bbd971ecf809f0f822ef", null ],
-      [ "WindowMain", "namespace_im_gui_private.html#a375742f31e13fcc2ff23c969eee0cdaa", null ]
+      [ "WindowMain", "namespace_im_gui_private.html#a5d0c0806e88fd80f8785239cda0006f6", null ]
     ] ],
     [ "ParticleController", "namespace_particle_controller.html", [
       [ "changeAllMax", "namespace_particle_controller.html#a201614b9d6f1afb0220809f96a328c5d", null ],

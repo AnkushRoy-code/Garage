@@ -15,5 +15,5 @@ var _im_gui_menu_8h =
     [ "ImGuiPrivate::ShowMaxDistSliders", "namespace_im_gui_private.html#a67825903a33ec93648a7688d895b51bc", null ],
     [ "ImGuiPrivate::ShowMinDist", "namespace_im_gui_private.html#a0a504cd9d50747b9b871a6272503fc8c", null ],
     [ "ImGuiPrivate::ShowMinDistSliders", "namespace_im_gui_private.html#a35527a57de49bbd971ecf809f0f822ef", null ],
-    [ "ImGuiPrivate::WindowMain", "namespace_im_gui_private.html#a375742f31e13fcc2ff23c969eee0cdaa", null ]
+    [ "ImGuiPrivate::WindowMain", "namespace_im_gui_private.html#a5d0c0806e88fd80f8785239cda0006f6", null ]
 ];

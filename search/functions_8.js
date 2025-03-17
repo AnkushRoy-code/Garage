@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['quit_0',['Quit',['../class_base_project.html#aef8d45dca41f3937bafeda1e1337974c',1,'BaseProject::Quit()'],['../class_particle.html#a0d3d7004254bbc3f851ec12911554b2b',1,'Particle::Quit()'],['../class_simple_example.html#a1c5b88fa32f9b6e4b26996e3960faa67',1,'SimpleExample::Quit()'],['../class_triangle.html#a5dbac75bd21423e20a9611e5fc098fb5',1,'Triangle::Quit()']]]
+  ['populaterandomforce_0',['populateRandomForce',['../namespace_particle_controller.html#aea3ed261e60cd74c4a081be603206d5b',1,'ParticleController']]],
+  ['populaterandommaxdistance_1',['populateRandomMaxDistance',['../namespace_particle_controller.html#adf4c448fb322e7a7d82be35f39b02750',1,'ParticleController']]],
+  ['populaterandommindistance_2',['populateRandomMinDistance',['../namespace_particle_controller.html#a3b873e0d789414c336e57c11b61c2f9a',1,'ParticleController']]]
 ];

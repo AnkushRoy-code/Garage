@@ -1,15 +1,6 @@
 var searchData=
 [
-  ['sdl_5fappevent_0',['SDL_AppEvent',['../_main_2_main_8cpp.html#aa1a484aa7972b8018e724425066066b4',1,'Main.cpp']]],
-  ['sdl_5fappinit_1',['SDL_AppInit',['../_main_2_main_8cpp.html#a4985adfb048a4ae4e1c5296a4fc7affe',1,'Main.cpp']]],
-  ['sdl_5fappiterate_2',['SDL_AppIterate',['../_main_2_main_8cpp.html#a7038050dca8c80a0133d600fb008b6db',1,'Main.cpp']]],
-  ['sdl_5fappquit_3',['SDL_AppQuit',['../_main_2_main_8cpp.html#a31f80ce4f4926b0c6fe01a9644f3c837',1,'Main.cpp']]],
-  ['sdl_5fexception_4',['SDL_Exception',['../class_s_d_l___exception.html#a36a93f8167d0fb73517a28d968bc110a',1,'SDL_Exception']]],
-  ['showcolorsliders_5',['ShowColorSliders',['../namespace_im_gui_private.html#ada605cd9440eba8fbae29131d753ce3d',1,'ImGuiPrivate']]],
-  ['showforce_6',['ShowForce',['../namespace_im_gui_private.html#ab5f41f2e3a042f12132776f9c2525050',1,'ImGuiPrivate']]],
-  ['showglobalvariables_7',['ShowGlobalVariables',['../namespace_im_gui_private.html#a22bebb03aaf6bac8d448da98336f053f',1,'ImGuiPrivate']]],
-  ['showmaxdist_8',['ShowMaxDist',['../namespace_im_gui_private.html#a1ed3409a4a144ec0bfcfbd9b39cf3647',1,'ImGuiPrivate']]],
-  ['showmaxdistsliders_9',['ShowMaxDistSliders',['../namespace_im_gui_private.html#a67825903a33ec93648a7688d895b51bc',1,'ImGuiPrivate']]],
-  ['showmindist_10',['ShowMinDist',['../namespace_im_gui_private.html#a0a504cd9d50747b9b871a6272503fc8c',1,'ImGuiPrivate']]],
-  ['showmindistsliders_11',['ShowMinDistSliders',['../namespace_im_gui_private.html#a35527a57de49bbd971ecf809f0f822ef',1,'ImGuiPrivate']]]
+  ['registerallprojects_0',['registerAllProjects',['../class_project_manager.html#aa21ad77b998e9d8f6c7339560e1b0c8a',1,'ProjectManager']]],
+  ['registerproject_1',['registerProject',['../class_project_manager.html#a958d8c7a6f1cfb173abf28a4added5ed',1,'ProjectManager']]],
+  ['resetforce_2',['resetForce',['../namespace_particle_controller.html#aa4ac37d507aae7c6f43305e05bc3af6e',1,'ParticleController']]]
 ];
