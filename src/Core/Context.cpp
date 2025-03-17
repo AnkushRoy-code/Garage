@@ -20,8 +20,7 @@ void Context::init()
 
     if (!mDevice) { throw SDL_Exception("Unable to create SDL_GPUDevice"); }
 
-    // window Ratio:- 4:3 -> (4 + 1):3 taking into account the toolbox
-    mWindow = SDL_CreateWindow("Ankush's Garage", 800, 480,
+    mWindow = SDL_CreateWindow("Ankush's Garage", 1280, 720,
                                SDL_WINDOW_HIGH_PIXEL_DENSITY | SDL_WINDOW_RESIZABLE);
 
     if (!mWindow) { throw SDL_Exception("Unable to create SDL_Window"); }

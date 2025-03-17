@@ -27,11 +27,10 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
 {
     try
     {
-        ConsoleLogBuffer::addMessage("Welcome to Ankush's Garage");
-        ConsoleLogBuffer::addMessage("Press 'a' or 'd' to change between projects");
-        ConsoleLogBuffer::addMessage("Help: The keyboard layout doesn't matter, ");
-        ConsoleLogBuffer::addMessage("use the physical keys in your keyboard to ");
-        ConsoleLogBuffer::addMessage("to change the examples");
+        ConsoleLogBuffer::addMessage("Welcome to Ankush's Garage\n"
+                                     "Press 'a' or 'd' to change between projects\n\n"
+                                     "Help: The keyboard layout doesn't matter, use the physical "
+                                     "keys in your keyboard to change the examples");
 
         gContext.init();
 
@@ -203,7 +202,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
             ImGui::DockBuilderSetNodeSize(gContext.mainViewportId, ImGui::GetMainViewport()->Size);
 
             auto dockIdLeft = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Left,
-                                                          0.2, nullptr, &gContext.mainViewportId);
+                                                          0.3, nullptr, &gContext.mainViewportId);
 
             auto dockIdBottom = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Down,
                                                             0.2, nullptr, &gContext.mainViewportId);
@@ -248,23 +247,29 @@ SDL_AppResult SDL_AppIterate(void *appstate)
             ImGui::Begin("Console");
 
             const auto cl = ConsoleLogBuffer::ConsoleLogs;
-            for (size_t i = 0; i < cl.size(); ++i)
+
+            if (ImGui::BeginTable("ConsoleLogWindowTable", 2,
+                                  ImGuiTableFlags_NoSavedSettings | ImGuiTableFlags_BordersInner))
             {
-                const auto &lg = cl[i];
+                ImGui::TableSetupColumn("Console Message", ImGuiTableColumnFlags_WidthStretch);
+                ImGui::TableSetupColumn("Time", ImGuiTableColumnFlags_WidthFixed, 70);
+                for (int i = 0; i < cl.size(); ++i)
+                {
+                    if (i % 2 == 0)
+                        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.8f, 0.8f, 0.8f, 1.0f));
+                    else
+                        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
 
-                if (i % 2 == 0)
-                    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.8f, 0.8f, 0.8f, 1.0f));
-                else
-                    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
+                    const auto &lg = cl[i];
+                    ImGui::TableNextRow();
+                    ImGui::TableNextColumn();
+                    ImGui::TextWrapped("%s", lg.message.c_str());
+                    ImGui::TableNextColumn();
+                    ImGui::TextWrapped("[%s]", lg.timestamp.c_str());
 
-                ImGui::Text("%s", lg.message.c_str());
-                ImGui::SameLine(ImGui::GetContentRegionAvail().x
-                                - ImGui::CalcTextSize(lg.timestamp.c_str()).x);
-                ImGui::Text("[%s]", lg.timestamp.c_str());
-
-                ImGui::Separator();
-
-                ImGui::PopStyleColor();
+                    ImGui::PopStyleColor();
+                }
+                ImGui::EndTable();
             }
             ImGui::End();
         }
