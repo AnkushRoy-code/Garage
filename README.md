@@ -50,9 +50,3 @@ If you're using Visual Studio just open the `.sln` file in you VS and compile & 
 The compiled executable is present in `build/src/Main/Garage` if you compiled
 it using the `cli` and not `Visual Studio`, you can run it by either cd to
 `src/Main` and `./Garage` or just directly do `./src/Main/Garage` both of these work.
-
-
-See what I did there? It's called time waste. I did it just for you Shibam.
-Later on I will change it so that it's more direct and there's no yapping in
-between.
-
