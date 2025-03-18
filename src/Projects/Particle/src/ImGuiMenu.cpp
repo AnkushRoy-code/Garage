@@ -42,13 +42,6 @@ void ImGuiPrivate::WindowMain()
 
 void ImGuiPrivate::ShowGlobalVariables()
 {
-
-    ImGuiIO &io = ImGui::GetIO();
-    (void)io;
-
-    ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate,
-                io.Framerate);
-
     auto m_ImGuiWindowWidth = ImGui::GetWindowWidth();
 
     ImGui::SeparatorText("Global variables");
