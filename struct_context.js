@@ -5,6 +5,7 @@ var struct_context =
     [ "init", "struct_context.html#a29146137dbdb16814f4994de6c21c27f", null ],
     [ "changeState", "struct_context.html#a5519130e8578a5913d8fffee536ceeeb", null ],
     [ "down", "struct_context.html#a3dd7912e908d5da086c62e884a05d319", null ],
+    [ "height", "struct_context.html#a739c078fee0bb19a95f3dee7dc108739", null ],
     [ "left", "struct_context.html#a6213632faa7327df40e941f8b0741e68", null ],
     [ "mainViewportId", "struct_context.html#a618f933057732923ea051ca8016e3252", null ],
     [ "mDevice", "struct_context.html#a4dbb5eac9406f22dc801c31ea261b3d2", null ],
@@ -16,5 +17,6 @@ var struct_context =
     [ "pressedD", "struct_context.html#aca61c727e1c4c3359004820c2ce830e7", null ],
     [ "projectIndex", "struct_context.html#ab14b0f7a1c8c4518a8f0e47ba25249e1", null ],
     [ "right", "struct_context.html#a8757eebbecd0cde0649b4ed2cdf0086d", null ],
-    [ "up", "struct_context.html#a624935b316a90f4b33476c7722672eaa", null ]
+    [ "up", "struct_context.html#a624935b316a90f4b33476c7722672eaa", null ],
+    [ "width", "struct_context.html#a6d0fc950bf72cf1e1360d83c744199fb", null ]
 ];

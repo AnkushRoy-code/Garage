@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['y_0',['y',['../struct_particle_positions.html#af058157caeacf14c5626c9796a6aec44',1,'ParticlePositions::y'],['../struct_particle_velocity.html#a2f3f14c88a1794be387544b8b9cad879',1,'ParticleVelocity::y']]],
-  ['yellow_1',['YELLOW',['../_particle_8h.html#a7d057e869f105e3803d4c67b52d3b86eae735a848bf82163a19236ead1c3ef2d2',1,'Particle.h']]]
+  ['_7ebaseproject_0',['~BaseProject',['../class_base_project.html#a00d5b29887bd1da1922dfadc2c4f3e03',1,'BaseProject']]],
+  ['_7econtext_1',['~Context',['../struct_context.html#a2d34e4556448e40693f61d15e091b604',1,'Context']]],
+  ['_7eimguiui_2',['~ImGuiUI',['../class_im_gui_u_i.html#a51498d3085177ae3e4695df75173a0ae',1,'ImGuiUI']]]
 ];

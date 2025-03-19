@@ -14,9 +14,8 @@ var hierarchy =
     [ "ImGuiUI", "class_im_gui_u_i.html", [
       [ "Particle", "class_particle.html", null ]
     ] ],
+    [ "ParticleContainer", "class_particle_container.html", null ],
     [ "ParticleData", "struct_particle_data.html", null ],
-    [ "ParticlePositions", "struct_particle_positions.html", null ],
-    [ "ParticleVelocity", "struct_particle_velocity.html", null ],
     [ "ProjectManager", "class_project_manager.html", null ],
     [ "Utils::Time", "class_utils_1_1_time.html", null ]
 ];

@@ -1,10 +1,10 @@
 var _im_gui_menu_8h =
 [
-    [ "ImGuiPrivate::checkBool", "namespace_im_gui_private.html#af7c5ca5b3855560081d37380fd58202a", null ],
-    [ "ImGuiPrivate::checkBoolMaxDist", "namespace_im_gui_private.html#a4e13df00f2a888464e4bedf037c430d2", null ],
-    [ "ImGuiPrivate::checkBoolMinDist", "namespace_im_gui_private.html#a728b49830096b347abeb605da4a1ac6d", null ],
+    [ "ImGuiPrivate::createColorSlider", "namespace_im_gui_private.html#af834e4b68d8c86045ba445683436f1be", null ],
     [ "ImGuiPrivate::createColorTreeNode", "namespace_im_gui_private.html#accdea2b990969c95f9aaf64fe7838f55", null ],
+    [ "ImGuiPrivate::createMaxDistSlider", "namespace_im_gui_private.html#ab5e8ecb4999c011f75dedfdb9247e663", null ],
     [ "ImGuiPrivate::createMaxDistTreeNode", "namespace_im_gui_private.html#aebd20925d6a1046503ec5388c906ab12", null ],
+    [ "ImGuiPrivate::createMinDistSlider", "namespace_im_gui_private.html#adb7e3a2a42cdfcf5b78ea7817049f290", null ],
     [ "ImGuiPrivate::createMinDistTreeNode", "namespace_im_gui_private.html#a66a4546e4a62ab2893519bb0edbde08b", null ],
     [ "ImGuiPrivate::createTreeNodeWithSliders", "namespace_im_gui_private.html#a6db5ef1717ccdd608e9ad1f02cd53fd7", null ],
     [ "ImGuiParticleWindow", "_im_gui_menu_8h.html#a37ff17ce39ebdd230dc87fa4a154a424", null ],

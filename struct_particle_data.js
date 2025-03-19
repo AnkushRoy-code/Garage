@@ -1,9 +1,9 @@
 var struct_particle_data =
 [
-    [ "Force", "struct_particle_data.html#aef3d4f1c9258d9a9c705f743e454b56d", null ],
+    [ "Force", "struct_particle_data.html#ac13cb183df70dfd72e3f79287ef21a6f", null ],
     [ "ImGuiWindowWidth", "struct_particle_data.html#a7c43e4c9efc07da336ae4f7503e1b346", null ],
-    [ "MaxDist", "struct_particle_data.html#a08d37a32bb808571b0f5a6614a0cb991", null ],
-    [ "MinDist", "struct_particle_data.html#a3c60c32cf472b98ebe6927087aed5b10", null ],
+    [ "MaxDist", "struct_particle_data.html#a5ae8a9d360b0d5c142a6b0ec3d97a17e", null ],
+    [ "MinDist", "struct_particle_data.html#a7d68b44c47ff831073ed5459af14d7cb", null ],
     [ "NumOfParticleColor", "struct_particle_data.html#aef739fba247dc3d8a2766a87c07dbcc1", null ],
     [ "ParticleCount", "struct_particle_data.html#adfcf1044251a32cda7e2fae58880be9e", null ],
     [ "Radius", "struct_particle_data.html#a376f13cbc36c49d330cff64351613694", null ],

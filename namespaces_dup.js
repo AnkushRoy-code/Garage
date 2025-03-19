@@ -13,11 +13,11 @@ var namespaces_dup =
       [ "Update", "namespace_im_gui_core.html#a029577255e6fa7b0339568cac5da425d", null ]
     ] ],
     [ "ImGuiPrivate", "namespace_im_gui_private.html", [
-      [ "checkBool", "namespace_im_gui_private.html#af7c5ca5b3855560081d37380fd58202a", null ],
-      [ "checkBoolMaxDist", "namespace_im_gui_private.html#a4e13df00f2a888464e4bedf037c430d2", null ],
-      [ "checkBoolMinDist", "namespace_im_gui_private.html#a728b49830096b347abeb605da4a1ac6d", null ],
+      [ "createColorSlider", "namespace_im_gui_private.html#af834e4b68d8c86045ba445683436f1be", null ],
       [ "createColorTreeNode", "namespace_im_gui_private.html#accdea2b990969c95f9aaf64fe7838f55", null ],
+      [ "createMaxDistSlider", "namespace_im_gui_private.html#ab5e8ecb4999c011f75dedfdb9247e663", null ],
       [ "createMaxDistTreeNode", "namespace_im_gui_private.html#aebd20925d6a1046503ec5388c906ab12", null ],
+      [ "createMinDistSlider", "namespace_im_gui_private.html#adb7e3a2a42cdfcf5b78ea7817049f290", null ],
       [ "createMinDistTreeNode", "namespace_im_gui_private.html#a66a4546e4a62ab2893519bb0edbde08b", null ],
       [ "createTreeNodeWithSliders", "namespace_im_gui_private.html#a6db5ef1717ccdd608e9ad1f02cd53fd7", null ],
       [ "ShowColorSliders", "namespace_im_gui_private.html#ada605cd9440eba8fbae29131d753ce3d", null ],
@@ -46,6 +46,12 @@ var namespaces_dup =
       [ "populateRandomMaxDistance", "namespace_particle_controller.html#adf4c448fb322e7a7d82be35f39b02750", null ],
       [ "populateRandomMinDistance", "namespace_particle_controller.html#a3b873e0d789414c336e57c11b61c2f9a", null ],
       [ "resetForce", "namespace_particle_controller.html#aa4ac37d507aae7c6f43305e05bc3af6e", null ]
+    ] ],
+    [ "ParticleDefaultData", "namespace_particle_default_data.html", [
+      [ "ColorMap", "namespace_particle_default_data.html#a1a9427c6593195db6007fd849c7208b6", null ],
+      [ "m_defaultForceValue", "namespace_particle_default_data.html#abe4fa7aca24d7c5607875ecb31818c8e", null ],
+      [ "m_defaultMaxDistanceValue", "namespace_particle_default_data.html#a0caf2a0ef9833563fb7d77dd5e0d6c8c", null ],
+      [ "m_defaultMinDistanceValue", "namespace_particle_default_data.html#a19a408ef1a83a9396470aa25ee912e0f", null ]
     ] ],
     [ "Renderer", "namespace_renderer.html", [
       [ "DrawToTex", "namespace_renderer.html#ab77cb9e48999aff25c8c752582ecde8e", null ],
