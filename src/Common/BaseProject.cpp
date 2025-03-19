@@ -1,7 +1,6 @@
 #include "Common/BaseProject.h"
 
 std::vector<std::unique_ptr<BaseProject>> Projects {};
-std::string BaseProject::Name {};
 bool BaseProject::hasUI = false;
 
 std::vector<std::unique_ptr<BaseProject>> ProjectManager::projects {};

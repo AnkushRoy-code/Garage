@@ -15,7 +15,6 @@
 
 void ImGuiCore::Init()
 {
-    // ImGui Setup
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO &io = ImGui::GetIO();
@@ -120,26 +119,56 @@ void ImGuiCore::Update()
         auto dockIdRight = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Right, 0.4,
                                                        nullptr, &gContext.mainViewportId);
 
-        const char *projectWindowName = "###TexTitle";
-
         ImGui::DockBuilderDockWindow("Ankush's Garage - ToolBox", dockIdLeft);
         ImGui::DockBuilderDockWindow("Console", dockIdBottom);
         ImGui::DockBuilderDockWindow("Control Panel", dockIdRight);
-        ImGui::DockBuilderDockWindow(projectWindowName, gContext.mainViewportId);
+        ImGui::DockBuilderDockWindow("###TexTitle", gContext.mainViewportId);
 
         ImGui::DockBuilderFinish(gContext.mainViewportId);
     }
 
+    if (ImGui::Begin("Ankush's Garage - ToolBox"))
     {
-        ImGui::Begin("Ankush's Garage - ToolBox");
-        const auto d = Utils::Time::deltaTime();
 
+        const auto d = Utils::Time::deltaTime();
         ImGui::Text("%.3f ms/frame (%.1f FPS)", d, 1000.0f / d);
+
+        static std::vector<const char *> names;
+        static bool firstTime = true;
+
+        if (firstTime)
+        {
+            firstTime = false;
+            names.reserve(Projects.size());
+            for (const auto &project: Projects)
+            {
+                names.push_back(project->getName().c_str());
+            }
+        }
+
+        if (ImGui::BeginCombo("Project", names[gContext.projectIndex]))
+        {
+            for (int i = 0; i < Projects.size(); i++)
+            {
+                bool isSelected = (gContext.projectIndex == i);
+                if (ImGui::Selectable(names[i], isSelected))
+                {
+                    if (i != gContext.projectIndex)
+                    {
+                        Projects[gContext.projectIndex]->Quit();
+                        gContext.projectIndex = i;
+                        Projects[gContext.projectIndex]->Init();
+                    }
+                }
+                if (isSelected) ImGui::SetItemDefaultFocus();
+            }
+            ImGui::EndCombo();
+        }
         ImGui::End();
     }
 
+    if (ImGui::Begin("Console"))
     {
-        ImGui::Begin("Console");
 
         const auto cl = ConsoleLogBuffer::ConsoleLogs;
 

@@ -21,7 +21,7 @@ class BaseProject
     virtual bool Draw()   = 0;
     virtual void Quit()   = 0;
 
-    static std::string Name;
+    [[nodiscard]] virtual const std::string &getName() = 0;
     static bool hasUI;
 };
 

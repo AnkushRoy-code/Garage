@@ -89,7 +89,8 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2 {0, 0});
         {
             // Draw the project to the screen ImGui window
-            const auto projectWindowName = "Project - " + BaseProject::Name + "###TexTitle";
+            const auto projectWindowName =
+                "Project - " + Projects[gContext.projectIndex]->getName() + "###TexTitle";
             ImGui::Begin(projectWindowName.c_str(), nullptr, ImGuiWindowFlags_NoCollapse);
 
             const SDL_GPUTextureSamplerBinding bind {gContext.mProjectTexture,

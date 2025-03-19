@@ -4,7 +4,6 @@
 
 bool SimpleExample::Init()
 {
-    Name = "SimpleExample";
     hasUI = false;
     ConsoleLogBuffer::addMessage("SimpleExample Initialised\n");
     return true;

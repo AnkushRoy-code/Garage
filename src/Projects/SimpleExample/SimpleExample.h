@@ -60,6 +60,12 @@ class SimpleExample : public BaseProject
      * @throws SDL_Exception if an SDL operation fails.
      */
     void Quit() override;
+
+    
+    std::string name = "SimpleExample";
+    [[nodiscard]] const std::string &getName() override {
+        return name;
+    }
 };
 
 #endif  // INCLUDE_SIMPLEEXAMPLE_SIMPLEEXAMPLE_H_

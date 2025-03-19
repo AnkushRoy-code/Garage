@@ -10,6 +10,11 @@ class Particle : public BaseProject, public ImGuiUI
     bool Draw() override;
     void Quit() override;
 
+    std::string name = "Particle";
+    [[nodiscard]] const std::string &getName() override {
+        return name;
+    }
+
     bool DrawUI() override;
 };
 

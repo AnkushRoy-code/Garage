@@ -21,6 +21,11 @@ class Triangle : public BaseProject
     bool Update() override;
     bool Draw() override;
     void Quit() override;
+
+    std::string name = "Triangle";
+    [[nodiscard]] const std::string &getName() override {
+        return name;
+    }
 };
 
 #endif  // INCLUDE_TRIANGLE_TRIANGLE_H_

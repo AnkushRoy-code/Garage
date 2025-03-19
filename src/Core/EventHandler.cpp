@@ -72,11 +72,9 @@ void changeState()
     {
         if (!Projects.empty() && gContext.projectIndex < Projects.size())
         {
-            // Calculate target index
             const size_t newIndex =
                 gContext.pressedA ? std::max(int(0), gContext.projectIndex - 1)
                                   : std::min(gContext.projectIndex + 1, int(Projects.size()) - 1);
-            // Perform transition
             if (newIndex != gContext.projectIndex)
             {
                 Projects[gContext.projectIndex]->Quit();

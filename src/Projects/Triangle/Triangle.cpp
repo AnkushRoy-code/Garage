@@ -18,7 +18,6 @@ bool Triangle::UseScissorRect   = false;
 bool Triangle::Init()
 {
     PROFILE_SCOPE_N("Triangle::Init");
-    Name = "Triangle";
     hasUI = false;
 
     SDL_GPUShader *vertexShader =
