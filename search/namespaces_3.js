@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['simpleexample_0',['SimpleExample',['../namespace_simple_example.html',1,'']]]
+  ['particlecontroller_0',['ParticleController',['../namespace_particle_controller.html',1,'']]]
 ];

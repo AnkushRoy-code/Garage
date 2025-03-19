@@ -11,6 +11,9 @@ var hierarchy =
     [ "std::exception", null, [
       [ "SDL_Exception", "class_s_d_l___exception.html", null ]
     ] ],
+    [ "ImGuiUI", "class_im_gui_u_i.html", [
+      [ "Particle", "class_particle.html", null ]
+    ] ],
     [ "ParticleData", "struct_particle_data.html", null ],
     [ "ParticlePositions", "struct_particle_positions.html", null ],
     [ "ParticleVelocity", "struct_particle_velocity.html", null ],

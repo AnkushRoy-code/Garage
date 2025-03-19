@@ -156,8 +156,6 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a4dbb5eac9406f22dc801c31ea261b3d2" id="r_a4dbb5eac9406f22dc801c31ea261b3d2"><td class="memItemLeft" align="right" valign="top">SDL_GPUDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4dbb5eac9406f22dc801c31ea261b3d2">mDevice</a> {}</td></tr>
 <tr class="memdesc:a4dbb5eac9406f22dc801c31ea261b3d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the SDL GPU device instance.  <br /></td></tr>
 <tr class="separator:a4dbb5eac9406f22dc801c31ea261b3d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39f82915d1e7891eba816aaedfe26047" id="r_a39f82915d1e7891eba816aaedfe26047"><td class="memItemLeft" align="right" valign="top">SDL_GPURenderPass *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39f82915d1e7891eba816aaedfe26047">mRenderPass</a> {}</td></tr>
-<tr class="separator:a39f82915d1e7891eba816aaedfe26047"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a336a2b1676e6223a02bb6d10adc79e5a" id="r_a336a2b1676e6223a02bb6d10adc79e5a"><td class="memItemLeft" align="right" valign="top">SDL_GPURenderPass *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a336a2b1676e6223a02bb6d10adc79e5a">mProjectPass</a> {}</td></tr>
 <tr class="separator:a336a2b1676e6223a02bb6d10adc79e5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af54ea749c7f38c3534863ab94dd510dc" id="r_af54ea749c7f38c3534863ab94dd510dc"><td class="memItemLeft" align="right" valign="top">SDL_GPUTexture *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af54ea749c7f38c3534863ab94dd510dc">mProjectTexture</a> {}</td></tr>
@@ -176,8 +174,17 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a624935b316a90f4b33476c7722672eaa" id="r_a624935b316a90f4b33476c7722672eaa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a624935b316a90f4b33476c7722672eaa">up</a> {}</td></tr>
 <tr class="memdesc:a624935b316a90f4b33476c7722672eaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if the up key is pressed.  <br /></td></tr>
 <tr class="separator:a624935b316a90f4b33476c7722672eaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8f9ad3df97c94f48694f4db5a67155d" id="r_af8f9ad3df97c94f48694f4db5a67155d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8f9ad3df97c94f48694f4db5a67155d">pressedA</a> {}</td></tr>
+<tr class="separator:af8f9ad3df97c94f48694f4db5a67155d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca61c727e1c4c3359004820c2ce830e7" id="r_aca61c727e1c4c3359004820c2ce830e7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca61c727e1c4c3359004820c2ce830e7">pressedD</a> {}</td></tr>
+<tr class="separator:aca61c727e1c4c3359004820c2ce830e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5519130e8578a5913d8fffee536ceeeb" id="r_a5519130e8578a5913d8fffee536ceeeb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5519130e8578a5913d8fffee536ceeeb">changeState</a> {}</td></tr>
+<tr class="memdesc:a5519130e8578a5913d8fffee536ceeeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if a or d was pressed an the state needs to change.  <br /></td></tr>
+<tr class="separator:a5519130e8578a5913d8fffee536ceeeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a618f933057732923ea051ca8016e3252" id="r_a618f933057732923ea051ca8016e3252"><td class="memItemLeft" align="right" valign="top">ImGuiID&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a618f933057732923ea051ca8016e3252">mainViewportId</a> {}</td></tr>
 <tr class="separator:a618f933057732923ea051ca8016e3252"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab14b0f7a1c8c4518a8f0e47ba25249e1" id="r_ab14b0f7a1c8c4518a8f0e47ba25249e1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab14b0f7a1c8c4518a8f0e47ba25249e1">projectIndex</a> {}</td></tr>
+<tr class="separator:ab14b0f7a1c8c4518a8f0e47ba25249e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Structure representing the application context. </p>
@@ -252,6 +259,22 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a5519130e8578a5913d8fffee536ceeeb" name="a5519130e8578a5913d8fffee536ceeeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5519130e8578a5913d8fffee536ceeeb">&#9670;&#160;</a></span>changeState</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Context::changeState {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>True if a or d was pressed an the state needs to change. </p>
+
+</div>
+</div>
 <a id="a3dd7912e908d5da086c62e884a05d319" name="a3dd7912e908d5da086c62e884a05d319"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3dd7912e908d5da086c62e884a05d319">&#9670;&#160;</a></span>down</h2>
 
@@ -356,20 +379,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a39f82915d1e7891eba816aaedfe26047" name="a39f82915d1e7891eba816aaedfe26047"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a39f82915d1e7891eba816aaedfe26047">&#9670;&#160;</a></span>mRenderPass</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">SDL_GPURenderPass* Context::mRenderPass {}</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="afdee30a946411a7713c703e572894ac6" name="afdee30a946411a7713c703e572894ac6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afdee30a946411a7713c703e572894ac6">&#9670;&#160;</a></span>mWindow</h2>
 
@@ -383,6 +392,48 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Pointer to the SDL window instance. </p>
+
+</div>
+</div>
+<a id="af8f9ad3df97c94f48694f4db5a67155d" name="af8f9ad3df97c94f48694f4db5a67155d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8f9ad3df97c94f48694f4db5a67155d">&#9670;&#160;</a></span>pressedA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Context::pressedA {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aca61c727e1c4c3359004820c2ce830e7" name="aca61c727e1c4c3359004820c2ce830e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca61c727e1c4c3359004820c2ce830e7">&#9670;&#160;</a></span>pressedD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Context::pressedD {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab14b0f7a1c8c4518a8f0e47ba25249e1" name="ab14b0f7a1c8c4518a8f0e47ba25249e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab14b0f7a1c8c4518a8f0e47ba25249e1">&#9670;&#160;</a></span>projectIndex</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Context::projectIndex {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

@@ -3,6 +3,15 @@ var namespaces_dup =
     [ "Common", "namespace_common.html", [
       [ "LoadShader", "namespace_common.html#ac6711603d8b911cc9205b543a7fef805", null ]
     ] ],
+    [ "EventHandler", "namespace_event_handler.html", [
+      [ "handleEvents", "namespace_event_handler.html#a6c2a6e20c2bb4c7e1e48a7610651dbe9", null ]
+    ] ],
+    [ "ImGuiCore", "namespace_im_gui_core.html", [
+      [ "Draw", "namespace_im_gui_core.html#a75994c358a10d6abf6c4040e28c44971", null ],
+      [ "Init", "namespace_im_gui_core.html#a94e28c124e688e199cd8dc22bf04985d", null ],
+      [ "Quit", "namespace_im_gui_core.html#a785d45adedd2c51fe846324c32cc7d26", null ],
+      [ "Update", "namespace_im_gui_core.html#a029577255e6fa7b0339568cac5da425d", null ]
+    ] ],
     [ "ImGuiPrivate", "namespace_im_gui_private.html", [
       [ "checkBool", "namespace_im_gui_private.html#af7c5ca5b3855560081d37380fd58202a", null ],
       [ "checkBoolMaxDist", "namespace_im_gui_private.html#a4e13df00f2a888464e4bedf037c430d2", null ],
@@ -37,6 +46,10 @@ var namespaces_dup =
       [ "populateRandomMaxDistance", "namespace_particle_controller.html#adf4c448fb322e7a7d82be35f39b02750", null ],
       [ "populateRandomMinDistance", "namespace_particle_controller.html#a3b873e0d789414c336e57c11b61c2f9a", null ],
       [ "resetForce", "namespace_particle_controller.html#aa4ac37d507aae7c6f43305e05bc3af6e", null ]
+    ] ],
+    [ "Renderer", "namespace_renderer.html", [
+      [ "DrawToTex", "namespace_renderer.html#ab77cb9e48999aff25c8c752582ecde8e", null ],
+      [ "Init", "namespace_renderer.html#a919dd3310b2427abe522ee40719dc37a", null ]
     ] ],
     [ "SimpleExample", "namespace_simple_example.html", null ],
     [ "Utils", "namespace_utils.html", "namespace_utils" ]

@@ -7,6 +7,7 @@ var annotated_dup =
     [ "ConsoleLogBuffer", "class_console_log_buffer.html", null ],
     [ "ConsoleLogMessage", "struct_console_log_message.html", "struct_console_log_message" ],
     [ "Context", "struct_context.html", "struct_context" ],
+    [ "ImGuiUI", "class_im_gui_u_i.html", "class_im_gui_u_i" ],
     [ "Particle", "class_particle.html", "class_particle" ],
     [ "ParticleData", "struct_particle_data.html", "struct_particle_data" ],
     [ "ParticlePositions", "struct_particle_positions.html", "struct_particle_positions" ],

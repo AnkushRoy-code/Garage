@@ -125,28 +125,26 @@ $(function(){initNavTree('_main_2_main_8cpp.html',''); initResizable(true); });
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">Main.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="_console_8h_source.html">Core/Console.h</a>&quot;</code><br />
-<code>#include &lt;filesystem&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="_renderer_8h_source.html">Core/Renderer/Renderer.h</a>&quot;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
-<code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;SDL3/SDL.h&gt;</code><br />
 <code>#include &lt;SDL3/SDL_main.h&gt;</code><br />
 <code>#include &lt;imgui.h&gt;</code><br />
-<code>#include &lt;imgui_internal.h&gt;</code><br />
 <code>#include &lt;backends/imgui_impl_sdl3.h&gt;</code><br />
-<code>#include &lt;backends/imgui_impl_sdlgpu3.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="_base_project_8h_source.html">Common/BaseProject.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_context_8h_source.html">Core/Context.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_console_8h_source.html">Core/Console.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_event_handler_8h_source.html">Core/EventHandler.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_im_gui_core_8h_source.html">Core/ImGuiCore/ImGuiCore.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_base_project_8h_source.html">Common/BaseProject.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_common_8h_source.html">Common/Common.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_time_8h_source.html">Utils/Time.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_s_d_l___exception_8h_source.html">Common/SDL_Exception.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_time_8h_source.html">Utils/Time.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
@@ -163,13 +161,6 @@ Functions</h2></td></tr>
 <tr class="separator:a7038050dca8c80a0133d600fb008b6db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31f80ce4f4926b0c6fe01a9644f3c837" id="r_a31f80ce4f4926b0c6fe01a9644f3c837"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31f80ce4f4926b0c6fe01a9644f3c837">SDL_AppQuit</a> (void *appstate, SDL_AppResult result)</td></tr>
 <tr class="separator:a31f80ce4f4926b0c6fe01a9644f3c837"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a70eb0d46d49e8b6c2172ec80430083bb" id="r_a70eb0d46d49e8b6c2172ec80430083bb"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::unique_ptr&lt; <a class="el" href="class_base_project.html">BaseProject</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70eb0d46d49e8b6c2172ec80430083bb">Projects</a> {}</td></tr>
-<tr class="separator:a70eb0d46d49e8b6c2172ec80430083bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61ad088a1b9297b22ecb616aebb25a3d" id="r_a61ad088a1b9297b22ecb616aebb25a3d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61ad088a1b9297b22ecb616aebb25a3d">projectIndex</a> {}</td></tr>
-<tr class="separator:a61ad088a1b9297b22ecb616aebb25a3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a8aa5d9cdf38353a6c4919e0d1fab61cb" name="a8aa5d9cdf38353a6c4919e0d1fab61cb"></a>
@@ -266,35 +257,6 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">SDL_AppResult</td>          <td class="paramname"><span class="paramname"><em>result</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="a61ad088a1b9297b22ecb616aebb25a3d" name="a61ad088a1b9297b22ecb616aebb25a3d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61ad088a1b9297b22ecb616aebb25a3d">&#9670;&#160;</a></span>projectIndex</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int projectIndex {}</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a70eb0d46d49e8b6c2172ec80430083bb" name="a70eb0d46d49e8b6c2172ec80430083bb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a70eb0d46d49e8b6c2172ec80430083bb">&#9670;&#160;</a></span>Projects</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;std::unique_ptr&lt;<a class="el" href="class_base_project.html">BaseProject</a>&gt; &gt; Projects {}</td>
         </tr>
       </table>
 </div><div class="memdoc">
