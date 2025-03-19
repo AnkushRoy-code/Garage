@@ -110,18 +110,18 @@ void ImGuiCore::Update()
         ImGui::DockBuilderAddNode(gContext.mainViewportId);
         ImGui::DockBuilderSetNodeSize(gContext.mainViewportId, ImGui::GetMainViewport()->Size);
 
-        auto dockIdLeft = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Left, 0.3,
-                                                      nullptr, &gContext.mainViewportId);
+        auto dockIdRight = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Right, 0.25,
+                                                       nullptr, &gContext.mainViewportId);
 
-        auto dockIdBottom = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Down, 0.2,
+        auto dockIdBottom = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Down, 0.3,
                                                         nullptr, &gContext.mainViewportId);
 
-        auto dockIdRight = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Right, 0.4,
-                                                       nullptr, &gContext.mainViewportId);
+        auto dockIdLeft = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Left, 0.25,
+                                                      nullptr, &gContext.mainViewportId);
 
         ImGui::DockBuilderDockWindow("Ankush's Garage - ToolBox", dockIdLeft);
         ImGui::DockBuilderDockWindow("Console", dockIdBottom);
-        ImGui::DockBuilderDockWindow("Control Panel", dockIdRight);
+        ImGui::DockBuilderDockWindow("###ProjectUI", dockIdRight);
         ImGui::DockBuilderDockWindow("###TexTitle", gContext.mainViewportId);
 
         ImGui::DockBuilderFinish(gContext.mainViewportId);

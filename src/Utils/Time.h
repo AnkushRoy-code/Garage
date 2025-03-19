@@ -35,7 +35,7 @@ class Time
     /**
      * @brief Retrieves the time elapsed between the last two frames.
      *
-     * @return The delta time in seconds.
+     * @return The delta time in milliseconds.
      */
     static double deltaTime() noexcept;
 

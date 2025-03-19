@@ -55,9 +55,8 @@ SDL_AppResult EventHandler::handleEvents(SDL_Event *event)
     {
         ImGuiIO &io = ImGui::GetIO();
         (void)io;
-        int w, h;
-        SDL_GetWindowSize(gContext.mWindow, &w, &h);
-        io.DisplaySize = ImVec2((float)w, (float)h);
+        SDL_GetWindowSize(gContext.mWindow, &gContext.width, &gContext.height);
+        io.DisplaySize = ImVec2((float)gContext.width, (float)gContext.height);
     }
 
     // Change Project

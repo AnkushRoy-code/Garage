@@ -1,6 +1,6 @@
 #include "ImGuiMenu.h"
 
-#include "Particle.h"
+#include "ParticleData.h"
 #include "ParticleController.h"
 #include "imgui.h"
 
@@ -29,7 +29,7 @@ void ImGuiParticleWindow()
 
 void ImGuiPrivate::WindowMain()
 {
-    if (ImGui::Begin("Control Panel"))
+    if (ImGui::Begin("Control Panel###ProjectUI"))
     {
         ShowGlobalVariables();
 
@@ -209,12 +209,13 @@ void ImGuiPrivate::createMinDistTreeNode(const std::string &label, int colorInde
             if (otherColor == colorIndex)
             {
                 ImGui::SliderInt(sliderLabel.c_str(),
-                                 &gParticleData.MinDist[colorIndex][otherColor], 1, 30, "%d",
-                                 ImGuiSliderFlags_AlwaysClamp);
+                                 &gParticleData.MinDist[(colorIndex * COLOR_COUNT) + otherColor], 1,
+                                 30, "%d", ImGuiSliderFlags_AlwaysClamp);
             }
             else
             {
-                checkBoolMinDist(colorIndex, static_cast<ParticleColour>(otherColor), sliderLabel);
+                createMinDistSlider(colorIndex, static_cast<ParticleColour>(otherColor),
+                                    sliderLabel);
             }
         });
 }
@@ -228,12 +229,13 @@ void ImGuiPrivate::createMaxDistTreeNode(const std::string &label, int colorInde
             if (otherColor == colorIndex)
             {
                 ImGui::SliderInt(sliderLabel.c_str(),
-                                 &gParticleData.MaxDist[colorIndex][otherColor], 150, 300, "%d",
-                                 ImGuiSliderFlags_AlwaysClamp);
+                                 &gParticleData.MaxDist[(colorIndex * COLOR_COUNT) + otherColor],
+                                 150, 300, "%d", ImGuiSliderFlags_AlwaysClamp);
             }
             else
             {
-                checkBoolMaxDist(colorIndex, static_cast<ParticleColour>(otherColor), sliderLabel);
+                createMaxDistSlider(colorIndex, static_cast<ParticleColour>(otherColor),
+                                    sliderLabel);
             }
         });
 }
@@ -259,21 +261,21 @@ void ImGuiPrivate::createTreeNodeWithSliders(
     ImGui::Spacing();
 }
 
-void ImGuiPrivate::checkBoolMinDist(int start, int end, const std::string &string)
+void ImGuiPrivate::createMinDistSlider(int start, int end, const std::string &string)
 {
     if (gParticleData.NumOfParticleColor >= end + 1)
     {
-        ImGui::SliderInt(string.c_str(), &gParticleData.MinDist[start][end], 1, 30, "%d",
-                         ImGuiSliderFlags_AlwaysClamp);
+        ImGui::SliderInt(string.c_str(), &gParticleData.MinDist[(start * COLOR_COUNT) + end], 1, 30,
+                         "%d", ImGuiSliderFlags_AlwaysClamp);
     }
 }
 
-void ImGuiPrivate::checkBoolMaxDist(int start, int end, const std::string &string)
+void ImGuiPrivate::createMaxDistSlider(int start, int end, const std::string &string)
 {
     if (gParticleData.NumOfParticleColor >= end + 1)
     {
-        ImGui::SliderInt(string.c_str(), &gParticleData.MaxDist[start][end], 150, 300, "%d",
-                         ImGuiSliderFlags_AlwaysClamp);
+        ImGui::SliderInt(string.c_str(), &gParticleData.MaxDist[(start * COLOR_COUNT) + end], 150,
+                         300, "%d", ImGuiSliderFlags_AlwaysClamp);
     }
 }
 
@@ -337,18 +339,21 @@ void ImGuiPrivate::createColorTreeNode(const std::string &label, int colorIndex)
             if (otherColor == colorIndex)
             {
                 ImGui::SliderFloat(sliderLabel.c_str(),
-                                   &gParticleData.Force[colorIndex][otherColor], -1, 1, "%.2f",
-                                   ImGuiSliderFlags_AlwaysClamp);
+                                   &gParticleData.Force[(colorIndex * COLOR_COUNT) + otherColor],
+                                   -1, 1, "%.2f", ImGuiSliderFlags_AlwaysClamp);
             }
-            else { checkBool(colorIndex, static_cast<ParticleColour>(otherColor), sliderLabel); }
+            else
+            {
+                createColorSlider(colorIndex, static_cast<ParticleColour>(otherColor), sliderLabel);
+            }
         });
 }
 
-void ImGuiPrivate::checkBool(int start, int end, const std::string &string)
+void ImGuiPrivate::createColorSlider(int start, int end, const std::string &string)
 {
     if (gParticleData.NumOfParticleColor >= end + 1)
     {
-        ImGui::SliderFloat(string.c_str(), &gParticleData.Force[start][end], -1, 1, "%.3f",
-                           ImGuiSliderFlags_AlwaysClamp);
+        ImGui::SliderFloat(string.c_str(), &gParticleData.Force[(start * COLOR_COUNT) + end], -1, 1,
+                           "%.3f", ImGuiSliderFlags_AlwaysClamp);
     }
 }

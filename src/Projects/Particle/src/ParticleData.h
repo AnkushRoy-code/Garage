@@ -2,19 +2,6 @@
 #define INCLUDE_SRC_PARTICLE_H_
 
 #include <array>
-#include <cstdint>
-
-struct ParticlePositions
-{
-    float x;
-    float y;
-};
-
-struct ParticleVelocity
-{
-    float x;
-    float y;
-};
 
 enum ParticleColour
 {
@@ -31,7 +18,7 @@ enum ParticleColour
 
 struct ParticleData
 {
-    int Radius              = 3; // To be implemented
+    int Radius              = 3;
     int ParticleCount       = 100;
     int NumOfParticleColor  = 4;
     int ImGuiWindowWidth    = 360;
@@ -42,9 +29,9 @@ struct ParticleData
     bool ShowSameMinDist    = false;
     bool ShowSameMaxDist    = false;
 
-    std::array<std::array<float, COLOR_COUNT>, COLOR_COUNT> Force {};
-    std::array<std::array<int, COLOR_COUNT>, COLOR_COUNT> MinDist {};
-    std::array<std::array<int, COLOR_COUNT>, COLOR_COUNT> MaxDist {};
+    std::array<float, COLOR_COUNT * COLOR_COUNT> Force {};
+    std::array<int, COLOR_COUNT * COLOR_COUNT> MinDist {};
+    std::array<int, COLOR_COUNT * COLOR_COUNT> MaxDist {};
 };
 
 extern ParticleData gParticleData;

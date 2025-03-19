@@ -23,7 +23,7 @@ void Context::init()
 
     if (!mDevice) { throw SDL_Exception("Unable to create SDL_GPUDevice"); }
 
-    mWindow = SDL_CreateWindow("Ankush's Garage", 1280, 720,
+    mWindow = SDL_CreateWindow("Ankush's Garage", width, height,
                                SDL_WINDOW_HIGH_PIXEL_DENSITY | SDL_WINDOW_RESIZABLE);
 
     if (!mWindow) { throw SDL_Exception("Unable to create SDL_Window"); }

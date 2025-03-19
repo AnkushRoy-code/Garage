@@ -33,9 +33,9 @@ void createTreeNodeWithSliders(
     int colorIndex,
     const std::function<void(const std::string &, int, int)> &sliderFunc);
 
-void checkBoolMinDist(int start, int end, const std::string &string);
-void checkBoolMaxDist(int start, int end, const std::string &string);
-void checkBool(int start, int end, const std::string &string);
+void createMinDistSlider(int start, int end, const std::string &string);
+void createMaxDistSlider(int start, int end, const std::string &string);
+void createColorSlider(int start, int end, const std::string &string);
 
 }  // namespace ImGuiPrivate
 

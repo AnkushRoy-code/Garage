@@ -47,13 +47,15 @@ struct Context
     bool up {};     ///< True if the up key is pressed
     bool pressedA {};
     bool pressedD {};
-    bool changeState {}; ///< True if a or d was pressed an the state needs to change.
+    bool changeState {};  ///< True if a or d was pressed an the state needs to change.
 
     ImGuiID mainViewportId {};
 
+    int width {1280};
+    int height {720};
+
     int projectIndex {};
 };
-
 
 extern Context gContext;
 

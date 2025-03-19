@@ -1,11 +1,12 @@
 #include "ParticleController.h"
-#include "Projects/Particle/src/Particle.h"
+#include "Projects/Particle/src/ParticleData.h"
+#include "Projects/Particle/src/ParticleDefaultData.h"
+#include "Projects/Particle/src/ParticleContainer.h"
 
-// TODO
 void ParticleController::initializeParticle(unsigned int ParticleCount,
                                             unsigned int NumOfParticleColor)
 {
-    // m_particles.clear();
+    gParticles.clear();
 
     for (int color = 0; color < NumOfParticleColor; color++)
     {
@@ -13,7 +14,7 @@ void ParticleController::initializeParticle(unsigned int ParticleCount,
         {
             auto x = disPositionX(gen);
             auto y = disPositionY(gen);
-            // m_particles.addParticle(x, y, color);
+            gParticles.addParticle(x, y, color);
         }
     }
 }
@@ -24,7 +25,7 @@ void ParticleController::changeAllMin(int value)
     {
         for (int j = 0; j < 8; ++j)
         {
-            gParticleData.MinDist[i][j] = value;
+            gParticleData.MinDist[(i * COLOR_COUNT) + j] = value;
         }
     }
 }
@@ -35,19 +36,18 @@ void ParticleController::changeAllMax(int value)
     {
         for (int j = 0; j < 8; ++j)
         {
-            gParticleData.MaxDist[i][j] = value;
+            gParticleData.MaxDist[(i * COLOR_COUNT) + j] = value;
         }
     }
 }
 
-// TODO
 void ParticleController::defaultForce()
 {
     for (int i = 0; i < 8; ++i)
     {
         for (int j = 0; j < 8; ++j)
         {
-            // gParticleData.Force[i][j] = m_defaultForceValue[i][j];
+            gParticleData.Force[(i * COLOR_COUNT) + j] = ParticleDefaultData::m_defaultForceValue[(i * COLOR_COUNT) + j];
         }
     }
 }
@@ -59,7 +59,8 @@ void ParticleController::defaultMinDistance()
     {
         for (int j = 0; j < 8; ++j)
         {
-            // gParticleData.MinDist[i][j] = m_defaultForceValue[i][j];
+            gParticleData.MinDist[(i * COLOR_COUNT) + j] =
+                ParticleDefaultData::m_defaultMinDistanceValue[(i * COLOR_COUNT) + j];
         }
     }
 }
@@ -71,7 +72,8 @@ void ParticleController::defaultMaxDistance()
     {
         for (int j = 0; j < 8; ++j)
         {
-            // gParticleData.MaxDist[i][j] = m_defaultForceValue[i][j];
+            gParticleData.MaxDist[(i * COLOR_COUNT) + j] =
+                ParticleDefaultData::m_defaultMaxDistanceValue[(i * COLOR_COUNT) + j];
         }
     }
 }
@@ -82,7 +84,7 @@ void ParticleController::populateRandomForce()
     {
         for (int j = 0; j < 8; ++j)
         {
-            gParticleData.Force[i][j] = disForce(gen);
+            gParticleData.Force[(i * COLOR_COUNT) + j] = disForce(gen);
         }
     }
 }
@@ -93,7 +95,7 @@ void ParticleController::populateRandomMinDistance()
     {
         for (int j = 0; j < 8; ++j)
         {
-            gParticleData.MinDist[i][j] = disMinDist(gen);
+            gParticleData.MinDist[(i * COLOR_COUNT) + j] = disMinDist(gen);
         }
     }
 }
@@ -104,7 +106,7 @@ void ParticleController::populateRandomMaxDistance()
     {
         for (int j = 0; j < 8; ++j)
         {
-            gParticleData.MaxDist[i][j] = disMaxDist(gen);
+            gParticleData.MaxDist[(i * COLOR_COUNT) + j] = disMaxDist(gen);
         }
     }
 }
@@ -115,7 +117,7 @@ void ParticleController::minimiseForce()
     {
         for (int j = 0; j < 8; ++j)
         {
-            gParticleData.Force[i][j] = minForce;
+            gParticleData.Force[(i * COLOR_COUNT) + j] = minForce;
         }
     }
 }
@@ -126,7 +128,7 @@ void ParticleController::minimiseMinDistance()
     {
         for (int j = 0; j < 8; ++j)
         {
-            gParticleData.MinDist[i][j] = minMinDist;
+            gParticleData.MinDist[(i * COLOR_COUNT) + j] = minMinDist;
         }
     }
 }
@@ -137,7 +139,7 @@ void ParticleController::minimiseMaxDistance()
     {
         for (int j = 0; j < 8; ++j)
         {
-            gParticleData.MaxDist[i][j] = minMaxDist;
+            gParticleData.MaxDist[(i * COLOR_COUNT) + j] = minMaxDist;
         }
     }
 }
@@ -148,7 +150,7 @@ void ParticleController::maximiseForce()
     {
         for (int j = 0; j < 8; ++j)
         {
-            gParticleData.Force[i][j] = maxForce;
+            gParticleData.Force[(i * COLOR_COUNT) + j] = maxForce;
         }
     }
 }
@@ -159,7 +161,7 @@ void ParticleController::maximiseMinDistance()
     {
         for (int j = 0; j < 8; ++j)
         {
-            gParticleData.MinDist[i][j] = maxMinDist;
+            gParticleData.MinDist[(i * COLOR_COUNT) + j] = maxMinDist;
         }
     }
 }
@@ -170,7 +172,7 @@ void ParticleController::maximiseMaxDistance()
     {
         for (int j = 0; j < 8; ++j)
         {
-            gParticleData.MaxDist[i][j] = maxMaxDist;
+            gParticleData.MaxDist[(i * COLOR_COUNT) + j] = maxMaxDist;
         }
     }
 }
@@ -181,7 +183,7 @@ void ParticleController::resetForce()
     {
         for (int j = 0; j < 8; ++j)
         {
-            gParticleData.Force[i][j] = 0;
+            gParticleData.Force[(i * COLOR_COUNT) + j] = 0;
         }
     }
 }

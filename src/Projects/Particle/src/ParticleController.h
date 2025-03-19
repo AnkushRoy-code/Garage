@@ -1,4 +1,4 @@
-/// This file is used by ImGuiMenu
+/// This file is used by ImGuiMenu. It controlls the number/other parameters of particles
 #ifndef INCLUDE_SRC_PARTICLECONTROLLER_CPP_
 #define INCLUDE_SRC_PARTICLECONTROLLER_CPP_
 

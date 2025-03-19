@@ -1,12 +1,17 @@
 add_library(
     Particle
-    src/Main.cpp
-    src/Particle.cpp
-    src/Particle.h
-    src/ParticleController.cpp
-    src/ParticleController.h
     src/ImGuiMenu.cpp
     src/ImGuiMenu.h
+    src/Main.cpp
+    src/Main.h
+    src/ParticleContainer.cpp
+    src/ParticleContainer.h
+    src/ParticleController.cpp
+    src/ParticleController.h
+    src/ParticleData.cpp
+    src/ParticleData.h
+    src/ParticleDefaultData.cpp
+    src/ParticleDefaultData.h
 )
 
 if(TRACY_PROFILE)
