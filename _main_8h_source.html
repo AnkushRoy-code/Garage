@@ -139,20 +139,29 @@ $(function(){initNavTree('_main_8h_source.html',''); initResizable(true); });
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_particle.html#a6211dfb22ddb6ac45d543d38a66cbaf4">Draw</a>() <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_particle.html#a309fd0294f883c359585059f4cc1963e">Quit</a>() <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_particle.html#a4947ce058ee99b8bc2a4ada011310940">DrawUI</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>};</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_particle.html#a20039760b0501863ec264537e9838199">   13</a></span>    std::string <a class="code hl_variable" href="class_particle.html#a20039760b0501863ec264537e9838199">name</a> = <span class="stringliteral">&quot;Particle&quot;</span>;</div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="}">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_particle.html#a5c22797919c747ddcc01853404a0d112">   14</a></span>    [[nodiscard]] <span class="keyword">const</span> std::string &amp;<a class="code hl_function" href="class_particle.html#a5c22797919c747ddcc01853404a0d112">getName</a>()<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="class_particle.html#a20039760b0501863ec264537e9838199">name</a>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    }</div>
 </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#endif  </span><span class="comment">// INCLUDE_SRC_MAIN_H_</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_particle.html#a4947ce058ee99b8bc2a4ada011310940">DrawUI</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>};</div>
+</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#endif  </span><span class="comment">// INCLUDE_SRC_MAIN_H_</span></div>
 <div class="ttc" id="a_base_project_8h_html"><div class="ttname"><a href="_base_project_8h.html">BaseProject.h</a></div></div>
 <div class="ttc" id="aclass_base_project_html"><div class="ttname"><a href="class_base_project.html">BaseProject</a></div><div class="ttdoc">Structure representing an project application instance.</div><div class="ttdef"><b>Definition</b> BaseProject.h:15</div></div>
 <div class="ttc" id="aclass_im_gui_u_i_html"><div class="ttname"><a href="class_im_gui_u_i.html">ImGuiUI</a></div><div class="ttdef"><b>Definition</b> BaseProject.h:29</div></div>
 <div class="ttc" id="aclass_particle_html"><div class="ttname"><a href="class_particle.html">Particle</a></div><div class="ttdef"><b>Definition</b> Main.h:7</div></div>
-<div class="ttc" id="aclass_particle_html_a309fd0294f883c359585059f4cc1963e"><div class="ttname"><a href="class_particle.html#a309fd0294f883c359585059f4cc1963e">Particle::Quit</a></div><div class="ttdeci">void Quit() override</div><div class="ttdef"><b>Definition</b> Main.cpp:20</div></div>
-<div class="ttc" id="aclass_particle_html_a4947ce058ee99b8bc2a4ada011310940"><div class="ttname"><a href="class_particle.html#a4947ce058ee99b8bc2a4ada011310940">Particle::DrawUI</a></div><div class="ttdeci">bool DrawUI() override</div><div class="ttdef"><b>Definition</b> Main.cpp:22</div></div>
-<div class="ttc" id="aclass_particle_html_a6211dfb22ddb6ac45d543d38a66cbaf4"><div class="ttname"><a href="class_particle.html#a6211dfb22ddb6ac45d543d38a66cbaf4">Particle::Draw</a></div><div class="ttdeci">bool Draw() override</div><div class="ttdef"><b>Definition</b> Main.cpp:16</div></div>
-<div class="ttc" id="aclass_particle_html_a62aaf8f033fda34297db67babc6553c2"><div class="ttname"><a href="class_particle.html#a62aaf8f033fda34297db67babc6553c2">Particle::Update</a></div><div class="ttdeci">bool Update() override</div><div class="ttdef"><b>Definition</b> Main.cpp:12</div></div>
-<div class="ttc" id="aclass_particle_html_a6838d70c4921e2772ee44944e3cf1724"><div class="ttname"><a href="class_particle.html#a6838d70c4921e2772ee44944e3cf1724">Particle::Init</a></div><div class="ttdeci">bool Init() override</div><div class="ttdef"><b>Definition</b> Main.cpp:6</div></div>
+<div class="ttc" id="aclass_particle_html_a20039760b0501863ec264537e9838199"><div class="ttname"><a href="class_particle.html#a20039760b0501863ec264537e9838199">Particle::name</a></div><div class="ttdeci">std::string name</div><div class="ttdef"><b>Definition</b> Main.h:13</div></div>
+<div class="ttc" id="aclass_particle_html_a309fd0294f883c359585059f4cc1963e"><div class="ttname"><a href="class_particle.html#a309fd0294f883c359585059f4cc1963e">Particle::Quit</a></div><div class="ttdeci">void Quit() override</div><div class="ttdef"><b>Definition</b> Main.cpp:18</div></div>
+<div class="ttc" id="aclass_particle_html_a4947ce058ee99b8bc2a4ada011310940"><div class="ttname"><a href="class_particle.html#a4947ce058ee99b8bc2a4ada011310940">Particle::DrawUI</a></div><div class="ttdeci">bool DrawUI() override</div><div class="ttdef"><b>Definition</b> Main.cpp:20</div></div>
+<div class="ttc" id="aclass_particle_html_a5c22797919c747ddcc01853404a0d112"><div class="ttname"><a href="class_particle.html#a5c22797919c747ddcc01853404a0d112">Particle::getName</a></div><div class="ttdeci">const std::string &amp; getName() override</div><div class="ttdef"><b>Definition</b> Main.h:14</div></div>
+<div class="ttc" id="aclass_particle_html_a6211dfb22ddb6ac45d543d38a66cbaf4"><div class="ttname"><a href="class_particle.html#a6211dfb22ddb6ac45d543d38a66cbaf4">Particle::Draw</a></div><div class="ttdeci">bool Draw() override</div><div class="ttdef"><b>Definition</b> Main.cpp:14</div></div>
+<div class="ttc" id="aclass_particle_html_a62aaf8f033fda34297db67babc6553c2"><div class="ttname"><a href="class_particle.html#a62aaf8f033fda34297db67babc6553c2">Particle::Update</a></div><div class="ttdeci">bool Update() override</div><div class="ttdef"><b>Definition</b> Main.cpp:10</div></div>
+<div class="ttc" id="aclass_particle_html_a6838d70c4921e2772ee44944e3cf1724"><div class="ttname"><a href="class_particle.html#a6838d70c4921e2772ee44944e3cf1724">Particle::Init</a></div><div class="ttdeci">bool Init() override</div><div class="ttdef"><b>Definition</b> Main.cpp:5</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
