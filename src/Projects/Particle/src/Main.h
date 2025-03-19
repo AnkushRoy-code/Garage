@@ -3,12 +3,14 @@
 
 #include "Common/BaseProject.h"
 
-class Particle : public BaseProject
+class Particle : public BaseProject, public ImGuiUI
 {
     bool Init() override;
     bool Update() override;
     bool Draw() override;
     void Quit() override;
+
+    bool DrawUI() override;
 };
 
 #endif  // INCLUDE_SRC_MAIN_H_

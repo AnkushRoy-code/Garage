@@ -1,8 +1,8 @@
 #ifndef INCLUDE_CORE_CONTEXT_H_
 #define INCLUDE_CORE_CONTEXT_H_
 
-#include "imgui.h"
 #include <SDL3/SDL.h>
+#include <imgui.h>
 
 /**
  * @brief Structure representing the application context.
@@ -36,18 +36,22 @@ struct Context
     // Data
     SDL_Window *mWindow {};     ///< Pointer to the SDL window instance.
     SDL_GPUDevice *mDevice {};  ///< Pointer to the SDL GPU device instance.
-    SDL_GPURenderPass *mRenderPass {};
     SDL_GPURenderPass *mProjectPass {};
     SDL_GPUTexture *mProjectTexture {};
     SDL_GPUSampler *mProjectSampler {};
 
-    // Boolean variables representing key states for movement input
+    // I might have these in a different bitset later on.
     bool right {};  ///< True if the right key is pressed
     bool left {};   ///< True if the left key is pressed
     bool down {};   ///< True if the down key is pressed
     bool up {};     ///< True if the up key is pressed
+    bool pressedA {};
+    bool pressedD {};
+    bool changeState {}; ///< True if a or d was pressed an the state needs to change.
 
     ImGuiID mainViewportId {};
+
+    int projectIndex {};
 };
 
 

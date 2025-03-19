@@ -5,12 +5,12 @@
 
 bool Particle::Init()
 {
-    Name = "Particle";
+    Name  = "Particle";
+    hasUI = true;
     return true;
 }
 bool Particle::Update()
 {
-    ImGuiParticleWindow();
     return true;
 }
 bool Particle::Draw()
@@ -18,3 +18,9 @@ bool Particle::Draw()
     return true;
 }
 void Particle::Quit() {}
+
+bool Particle::DrawUI()
+{
+    ImGuiParticleWindow();
+    return true;
+}

@@ -19,6 +19,7 @@ bool Triangle::Init()
 {
     PROFILE_SCOPE_N("Triangle::Init");
     Name = "Triangle";
+    hasUI = false;
 
     SDL_GPUShader *vertexShader =
         Common::LoadShader(gContext.mDevice, "RawTriangle.vert", 0, 0, 0, 0);

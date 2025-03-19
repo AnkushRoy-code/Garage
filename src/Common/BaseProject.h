@@ -22,6 +22,14 @@ class BaseProject
     virtual void Quit()   = 0;
 
     static std::string Name;
+    static bool hasUI;
+};
+
+class ImGuiUI
+{
+  public:
+    virtual ~ImGuiUI()    = default;
+    virtual bool DrawUI() = 0;
 };
 
 class ProjectManager
@@ -41,5 +49,7 @@ class ProjectManager
     static std::vector<std::unique_ptr<BaseProject>>
         projects;  ///< A vector that holds the projects
 };
+
+extern std::vector<std::unique_ptr<BaseProject>> Projects;
 
 #endif  // INCLUDE_COMMON_BASEPROJECT_H_
