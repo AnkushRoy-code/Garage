@@ -2,8 +2,10 @@
 #include "Core/Context.h"
 #include "Projects/Particle/src/ParticleData.h"
 #include "Utils/Time.h"
+
 #include <cmath>
 #include <cstddef>
+#include <thread>
 
 ParticleContainer gParticles {};
 
@@ -16,6 +18,64 @@ ParticleContainer::ParticleContainer()
     mColors.reserve(8000);
 }
 
+void updateParticle(int i, float halfWidth, float halfHeight, float &xVelocity, float &yVelocity)
+{
+    for (size_t j = 0; j < gParticles.mPositions_Y.size(); j++)
+    {
+        if (i == j) continue;  // Skip self-interaction
+
+        float dx = gParticles.mPositions_X[j] - gParticles.mPositions_X[i];
+        float dy = gParticles.mPositions_Y[j] - gParticles.mPositions_Y[i];
+
+        // Wrap around particle force calculation
+        if (dx > halfWidth) { dx -= gContext.width; }
+        else if (dx < -halfWidth) { dx += gContext.width; }
+
+        if (dy > halfHeight) { dy -= gContext.height; }
+        else if (dy < -halfHeight) { dy += gContext.height; }
+
+        // Calculate distance
+        float distanceSquared = dx * dx + dy * dy;
+
+        if (distanceSquared == 0.0f) continue;  // Skip if particles overlap
+
+        int colorI = gParticles.mColors[i];
+        int colorJ = gParticles.mColors[j];
+
+        // Determine force based on distance
+        float force = 0.0f;
+
+        int index = (colorI * COLOR_COUNT) + colorJ;
+
+        float minDistSquared = gParticleData.MinDist[index] * gParticleData.MinDist[index];
+        float maxDistSquared = gParticleData.MaxDist[index] * gParticleData.MaxDist[index];
+
+        if (distanceSquared < minDistSquared)
+        {
+            force          = -1.0f;
+            float distance = std::sqrt(distanceSquared);
+
+            float fx = force * (dx / distance);
+            float fy = force * (dy / distance);
+
+            xVelocity += fx;
+            yVelocity += fy;
+        }
+
+        else if (distanceSquared <= maxDistSquared)
+        {
+            force          = gParticleData.Force[index];
+            float distance = std::sqrt(distanceSquared);
+
+            float fx = force * (dx / distance);
+            float fy = force * (dy / distance);
+
+            xVelocity += fx;
+            yVelocity += fy;
+        }
+    }
+}
+
 void ParticleContainer::update()
 {
     float halfWidth  = 0.5f * gContext.width;
@@ -23,71 +83,40 @@ void ParticleContainer::update()
 
     const float dampingFactor = 0.95f;
 
-    for (size_t i = 0; i < mPositions_Y.size(); i++)
+    size_t numParticles = mPositions_Y.size();
+    int numThreads      = std::thread::hardware_concurrency();
+    if (numThreads == 0) { numThreads = 2; }
+
+    size_t particlesPerThread = (numParticles + numThreads - 1) / numThreads;
+    std::vector<std::thread> threads;
+    threads.reserve(numThreads);
+
+    for (unsigned int t = 0; t < numThreads; t++)
     {
-        float xVelocity = mVelocity_X[i];
-        float yVelocity = mVelocity_Y[i];
-
-        for (size_t j = 0; j < mPositions_Y.size(); j++)
-        {
-            if (i == j) continue;  // Skip self-interaction
-
-            float dx = mPositions_X[j] - mPositions_X[i];
-            float dy = mPositions_Y[j] - mPositions_Y[i];
-
-            // Wrap around particle force calculation
-            if (dx > halfWidth) { dx -= gContext.width; }
-            else if (dx < -halfWidth) { dx += gContext.width; }
-
-            if (dy > halfHeight) { dy -= gContext.height; }
-            else if (dy < -halfHeight) { dy += gContext.height; }
-
-            // Calculate distance
-            float distanceSquared = dx * dx + dy * dy;
-
-            if (distanceSquared == 0.0f) continue;  // Skip if particles overlap
-
-            int colorI = mColors[i];
-            int colorJ = mColors[j];
-
-            // Determine force based on distance
-            float force = 0.0f;
-
-            int index = (colorI * COLOR_COUNT) + colorJ;
-
-            float minDistSquared = gParticleData.MinDist[index] * gParticleData.MinDist[index];
-            float maxDistSquared = gParticleData.MaxDist[index] * gParticleData.MaxDist[index];
-
-            if (distanceSquared < minDistSquared)
+        size_t start = t * particlesPerThread;
+        size_t end   = std::min(numParticles, start + particlesPerThread);
+        threads.emplace_back(
+            [this, start, end, halfWidth, halfHeight, dampingFactor]()
             {
-                force          = -1.0f;
-                float distance = std::sqrt(distanceSquared);
+                for (size_t i = start; i < end; i++)
+                {
+                    float xVelocity = mVelocity_X[i];
+                    float yVelocity = mVelocity_Y[i];
 
-                float fx = force * (dx / distance);
-                float fy = force * (dy / distance);
+                    updateParticle(i, halfWidth, halfHeight, xVelocity, yVelocity);
 
-                xVelocity += fx;
-                yVelocity += fy;
-            }
+                    mPositions_X[i] += xVelocity * Utils::Time::deltaTime();
+                    mPositions_Y[i] += yVelocity * Utils::Time::deltaTime();
 
-            else if (distanceSquared <= maxDistSquared)
-            {
-                force          = gParticleData.Force[index];
-                float distance = std::sqrt(distanceSquared);
+                    mVelocity_X[i] = xVelocity * dampingFactor;
+                    mVelocity_Y[i] = yVelocity * dampingFactor;
+                }
+            });
+    }
 
-                float fx = force * (dx / distance);
-                float fy = force * (dy / distance);
-
-                xVelocity += fx;
-                yVelocity += fy;
-            }
-        }
-
-        mPositions_X[i] += xVelocity * Utils::Time::deltaTime();
-        mPositions_Y[i] += yVelocity * Utils::Time::deltaTime();
-
-        mVelocity_X[i] = xVelocity * dampingFactor;
-        mVelocity_Y[i] = yVelocity * dampingFactor;
+    for (auto &thread: threads)
+    {
+        thread.join();
     }
 
     wrapAround();
