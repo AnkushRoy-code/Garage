@@ -7,4 +7,4 @@ if(TRACY_PROFILE)
 endif()
 
 target_include_directories(Core PRIVATE "${CMAKE_SOURCE_DIR}/src" ${imgui_SOURCE_DIR})
-target_link_libraries(Core PRIVATE Projects SDL3::SDL3-shared imgui CoreImGui Renderer)
+target_link_libraries(Core PRIVATE Projects SDL3::SDL3-shared imgui implot CoreImGui Renderer)

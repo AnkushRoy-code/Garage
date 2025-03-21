@@ -1,8 +1,11 @@
 #include "Main.h"
+
 #include "Projects/Particle/src/ImGuiMenu.h"
 #include "Projects/Particle/src/ParticleContainer.h"
 #include "Projects/Particle/src/ParticleController.h"
 #include "Projects/Particle/src/ParticleData.h"
+
+#include "Common/Common.h"
 
 bool Particle::Init()
 {
@@ -16,6 +19,7 @@ bool Particle::Init()
 }
 bool Particle::Update()
 {
+    PROFILE_SCOPE_N("Particle Update");
     gParticles.update();
     return true;
 }

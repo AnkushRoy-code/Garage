@@ -1,15 +1,17 @@
 #include "ImGuiCore.h"
 
-#include "Common/SDL_Exception.h"
 #include "Core/Console.h"
 #include "Core/Context.h"
 #include "Common/BaseProject.h"
-#include "SDL3/SDL_gpu.h"
+#include "Common/SDL_Exception.h"
 #include "Utils/Time.h"
-#include <backends/imgui_impl_sdl3.h>
+
+#include <SDL3/SDL_gpu.h>
 
 #include <filesystem>
 
+#include <implot.h>
+#include <backends/imgui_impl_sdl3.h>
 #include <backends/imgui_impl_sdlgpu3.h>
 #include <imgui_internal.h>
 
@@ -17,6 +19,7 @@ void ImGuiCore::Init()
 {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
+    ImPlot::CreateContext();
     ImGuiIO &io = ImGui::GetIO();
     (void)io;
 
@@ -88,8 +91,40 @@ void ImGuiCore::Quit()
 {
     ImGui_ImplSDL3_Shutdown();
     ImGui_ImplSDLGPU3_Shutdown();
+    ImPlot::DestroyContext();
     ImGui::DestroyContext();
 }
+
+struct ScrollingBuffer
+{
+    int MaxSize;
+    int Offset;
+    ImVector<ImVec2> Data;
+    ScrollingBuffer(int max_size = 2000)
+    {
+        MaxSize = max_size;
+        Offset  = 0;
+        Data.reserve(MaxSize);
+    }
+    void AddPoint(float x, float y)
+    {
+        if (Data.size() < MaxSize)
+            Data.push_back(ImVec2(x, y));
+        else
+        {
+            Data[Offset] = ImVec2(x, y);
+            Offset       = (Offset + 1) % MaxSize;
+        }
+    }
+    void Erase()
+    {
+        if (Data.size() > 0)
+        {
+            Data.shrink(0);
+            Offset = 0;
+        }
+    }
+};
 
 void ImGuiCore::Update()
 {
@@ -110,8 +145,8 @@ void ImGuiCore::Update()
         ImGui::DockBuilderAddNode(gContext.mainViewportId);
         ImGui::DockBuilderSetNodeSize(gContext.mainViewportId, ImGui::GetMainViewport()->Size);
 
-        auto dockIdRight = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Right, 0.25,
-                                                       nullptr, &gContext.mainViewportId);
+        auto dockIdRight = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Right,
+                                                       0.25, nullptr, &gContext.mainViewportId);
 
         auto dockIdBottom = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Down, 0.3,
                                                         nullptr, &gContext.mainViewportId);
@@ -129,10 +164,6 @@ void ImGuiCore::Update()
 
     if (ImGui::Begin("Ankush's Garage - ToolBox"))
     {
-
-        const auto d = Utils::Time::deltaTime();
-        ImGui::Text("%.3f ms/frame (%.1f FPS)", d, 1000.0f / d);
-
         static std::vector<const char *> names;
         static bool firstTime = true;
 
@@ -164,6 +195,34 @@ void ImGuiCore::Update()
             }
             ImGui::EndCombo();
         }
+
+        {
+            static ScrollingBuffer fpsBuf;
+            const float currentTime = Utils::Time::getTicks() / 1000.0f;
+            const float deltaTime   = Utils::Time::deltaTime();
+            float fps               = 1000.0f / deltaTime;
+            static float t          = 0;
+            t += deltaTime / 1000.0;
+
+            fpsBuf.AddPoint(t, fps);
+
+            static ImPlotAxisFlags flags = ImPlotAxisFlags_NoTickLabels;
+
+            static float history = 10.0f;
+            ImGui::SliderFloat("History", &history, 1, 30, "%.1f s");
+
+            if (ImPlot::BeginPlot("FPS Plot", ImVec2(-1, 250)))
+            {
+                ImPlot::SetupAxes("Time (s)", "FPS", flags, 0);
+                ImPlot::SetupAxisLimits(ImAxis_X1, t - history, t, ImGuiCond_Always);
+                ImPlot::SetupAxisLimits(ImAxis_Y1, -1, 60);
+
+                ImPlot::PlotLine("FPS", &fpsBuf.Data[0].x, &fpsBuf.Data[0].y, fpsBuf.Data.size(), 0,
+                                 fpsBuf.Offset, 2 * sizeof(float));
+                ImPlot::EndPlot();
+            }
+        }
+
         ImGui::End();
     }
 

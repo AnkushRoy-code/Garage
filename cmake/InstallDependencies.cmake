@@ -4,6 +4,7 @@ include(cmake/CPM.cmake)
 # clone drains all my internet. I have limited daily. Also GIT_SHALLOW doesn't work how it sould
 # even after I give it proper tags or even commit.
 
+# ############################SDL###############################
 CPMAddPackage(
     NAME SDL3
     VERSION 3.2.8
@@ -11,6 +12,7 @@ CPMAddPackage(
     URL_HASH SHA256=13388fabb361de768ecdf2b65e52bb27d1054cae6ccb6942ba926e378e00db03
 )
 
+# ############################ImGui###############################
 CPMAddPackage(
     NAME imgui
     VERSION 1.91.8-docking
@@ -20,8 +22,8 @@ CPMAddPackage(
 
 # ImGui doesn't have any CMakeLists.txt so we create our own. If you're not using SDL3 as your
 # backend you might like to use this:
-# https://github.com/cpm-cmake/CPM.cmake/wiki/More-Snippets#imgui, it is much more simpler and easier
-# than what I am doing. Hopefully it adds SDL3 & SDL3_GPU support soon.
+# https://github.com/cpm-cmake/CPM.cmake/wiki/More-Snippets#imgui, it is much more simpler and
+# easier than what I am doing. Hopefully it adds SDL3 & SDL3_GPU support soon.
 
 if(imgui_ADDED)
     file(
@@ -41,27 +43,50 @@ if(imgui_ADDED)
     target_link_libraries(imgui PUBLIC SDL3::SDL3-shared)
 endif()
 
+CPMAddPackage(
+    NAME implot
+    VERSION 1.92.x
+    URL https://github.com/epezent/implot/archive/3da8bd34299965d3b0ab124df743fe3e076fa222.zip
+    URL_HASH SHA256=e9b439a94aa6f09fcf12ed9c2cd784efe5e99e96242122aa683e690b29f7a59f
+)
+
+if(implot_ADDED)
+    file(
+        GLOB
+        implot_sources
+        ${implot_SOURCE_DIR}/implot.h
+        ${implot_SOURCE_DIR}/implot_internal.h
+        ${implot_SOURCE_DIR}/implot.cpp
+        ${implot_SOURCE_DIR}/implot_items.cpp
+        ${implot_SOURCE_DIR}/implot_demo.cpp
+    )
+    add_library(implot STATIC ${implot_sources})
+
+    target_include_directories(implot PUBLIC ${imgui_SOURCE_DIR} ${implot_SOURCE_DIR})
+    target_link_libraries(implot PUBLIC SDL3::SDL3-shared imgui)
+endif()
+
+# ############################Catch2###############################
 if(TESTING)
     CPMAddPackage("gh:catchorg/Catch2@3.8.0") # Nothing rn
 endif()
 
+# ############################Tracy Profiler###############################
 if(TRACY_PROFILE_COMPATIBILITY) # For my old lappy
     option(TRACY_ENABLE "" ON)
     CPMAddPackage(
         NAME Tracy
-        VERSION 
-        URL https://github.com/wolfpld/tracy/archive/refs/tags/v0.11.1.tar.gz
+        VERSION URL https://github.com/wolfpld/tracy/archive/refs/tags/v0.11.1.tar.gz
         URL_HASH SHA256=2c11ca816f2b756be2730f86b0092920419f3dabc7a7173829ffd897d91888a1
         OPTIONS "TRACY_TIMER_FALLBACK ON"
-    ) 
+    )
 endif()
 
 if(TRACY_PROFILE)
     option(TRACY_ENABLE "" ON)
     CPMAddPackage(
         NAME Tracy
-        VERSION 
-        URL https://github.com/wolfpld/tracy/archive/refs/tags/v0.11.1.tar.gz
+        VERSION URL https://github.com/wolfpld/tracy/archive/refs/tags/v0.11.1.tar.gz
         URL_HASH SHA256=2c11ca816f2b756be2730f86b0092920419f3dabc7a7173829ffd897d91888a1
-    ) 
+    )
 endif()

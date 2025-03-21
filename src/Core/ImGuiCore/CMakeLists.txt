@@ -4,4 +4,4 @@
 add_library(CoreImGui STATIC ImGuiCore.h ImGuiCore.cpp)
 
 target_include_directories(CoreImGui PRIVATE "${CMAKE_SOURCE_DIR}/src")
-target_link_libraries(CoreImGui PRIVATE imgui)
+target_link_libraries(CoreImGui PRIVATE imgui implot)

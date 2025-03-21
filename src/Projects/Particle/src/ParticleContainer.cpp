@@ -84,6 +84,8 @@ void ParticleContainer::update()
     const float dampingFactor = 0.95f;
 
     size_t numParticles = mPositions_Y.size();
+
+    // https://www.baeldung.com/cs/servers-threads-number
     int numThreads      = std::thread::hardware_concurrency();
     if (numThreads == 0) { numThreads = 2; }
 
