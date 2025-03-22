@@ -11,7 +11,10 @@
 #include <backends/imgui_impl_sdl3.h>
 #include <backends/imgui_impl_sdlgpu3.h>
 
-Context gContext;
+Core::Context gContext;
+
+namespace Core
+{
 
 void Context::init()
 {
@@ -43,3 +46,5 @@ Context::~Context()
     ImGuiCore::Quit();
     SDL_ReleaseWindowFromGPUDevice(mDevice, mWindow);
 }
+
+}  // namespace Core

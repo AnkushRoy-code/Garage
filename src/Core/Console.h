@@ -4,6 +4,9 @@
 #include <vector>
 #include <string>
 
+namespace Core
+{
+
 struct ConsoleLogMessage
 {
     std::string message;
@@ -24,4 +27,5 @@ class ConsoleLogBuffer
     static std::string getCurrentTime();
 };
 
+}  // namespace Core
 #endif  // INCLUDE_CORE_CONSOLE_CPP_

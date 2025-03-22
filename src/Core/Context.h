@@ -4,6 +4,9 @@
 #include <SDL3/SDL.h>
 #include <imgui.h>
 
+namespace Core
+{
+
 /**
  * @brief Structure representing the application context.
  *
@@ -57,6 +60,8 @@ struct Context
     int projectIndex {};
 };
 
-extern Context gContext;
+}  // namespace Core
+
+extern Core::Context gContext;
 
 #endif  // INCLUDE_CORE_CONTEXT_H_

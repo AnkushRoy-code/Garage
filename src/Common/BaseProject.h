@@ -5,6 +5,9 @@
 #include <string>
 #include <vector>
 
+namespace Common
+{
+
 /**
  * @brief Structure representing an project application instance.
  *
@@ -50,6 +53,8 @@ class ProjectManager
         projects;  ///< A vector that holds the projects
 };
 
-extern std::vector<std::unique_ptr<BaseProject>> Projects;
+}  // namespace Common
+
+extern std::vector<std::unique_ptr<Common::BaseProject>> Projects;
 
 #endif  // INCLUDE_COMMON_BASEPROJECT_H_

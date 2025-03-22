@@ -3,7 +3,7 @@
 
 #include "Common/BaseProject.h"
 
-class Particle : public BaseProject, public ImGuiUI
+class Particle : public Common::BaseProject, public Common::ImGuiUI
 {
     bool Init() override;
     bool Update() override;

@@ -4,7 +4,7 @@
 #include "Projects/Particle/src/Main.h"
 #include <memory>
 
-void ProjectManager::registerAllProjects()
+void Common::ProjectManager::registerAllProjects()
 {
     ProjectManager::registerProject(std::make_unique<SimpleExample>());
     ProjectManager::registerProject(std::make_unique<Triangle>());

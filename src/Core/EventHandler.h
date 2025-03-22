@@ -3,7 +3,7 @@
 
 #include "SDL3/SDL.h"
 
-namespace EventHandler
+namespace Core::EventHandler
 {
 SDL_AppResult handleEvents(SDL_Event *event);
 }

@@ -1,7 +1,7 @@
 #ifndef INCLUDE_RENDERER_RENDERER_H_
 #define INCLUDE_RENDERER_RENDERER_H_
 
-namespace Renderer  {
+namespace Core::Renderer  {
 void Init();
 void DrawToTex();
 }

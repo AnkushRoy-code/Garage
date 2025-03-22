@@ -5,7 +5,7 @@
 #include "Common/BaseProject.h"
 #include <SDL3/SDL_gpu.h>
 
-class Triangle : public BaseProject
+class Triangle : public Common::BaseProject
 {
     static SDL_GPUViewport SmallViewport;
     static SDL_Rect ScissorRect;

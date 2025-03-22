@@ -1,7 +1,7 @@
 #ifndef INCLUDE_COREIMGUI_COREIMGUI_H_
 #define INCLUDE_COREIMGUI_COREIMGUI_H_
 
-namespace ImGuiCore
+namespace Core::ImGuiCore
 {
 void Update();
 void Draw();

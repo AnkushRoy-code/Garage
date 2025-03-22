@@ -15,7 +15,7 @@
 #include <backends/imgui_impl_sdlgpu3.h>
 #include <imgui_internal.h>
 
-void ImGuiCore::Init()
+void Core::ImGuiCore::Init()
 {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -87,7 +87,7 @@ void ImGuiCore::Init()
     ImGui_ImplSDLGPU3_Init(&init_info);
 }
 
-void ImGuiCore::Quit()
+void Core::ImGuiCore::Quit()
 {
     ImGui_ImplSDL3_Shutdown();
     ImGui_ImplSDLGPU3_Shutdown();
@@ -126,7 +126,7 @@ struct ScrollingBuffer
     }
 };
 
-void ImGuiCore::Update()
+void Core::ImGuiCore::Update()
 {
     ImGui_ImplSDLGPU3_NewFrame();
     ImGui_ImplSDLGPU3_NewFrame();
@@ -260,16 +260,16 @@ void ImGuiCore::Update()
     // I'll be honest with ya gpt helped me with this one. I was stuck find a way to add new
     // function to my BaseProject without needing to change it in all of the projects...
     // look at ff4cb73 for reference.
-    if (BaseProject::hasUI)
+    if (Common::BaseProject::hasUI)
     {
-        if (auto imgui_project = dynamic_cast<ImGuiUI *>(Projects[gContext.projectIndex].get()))
+        if (auto imgui_project = dynamic_cast<Common::ImGuiUI *>(Projects[gContext.projectIndex].get()))
         {
             imgui_project->DrawUI();
         }
     }
 }
 
-void ImGuiCore::Draw()
+void Core::ImGuiCore::Draw()
 {
     ImGui::Render();
     ImDrawData *drawData = ImGui::GetDrawData();

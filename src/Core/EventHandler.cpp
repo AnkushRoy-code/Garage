@@ -4,7 +4,7 @@
 #include "SDL3/SDL_init.h"
 
 void changeState();
-SDL_AppResult EventHandler::handleEvents(SDL_Event *event)
+SDL_AppResult Core::EventHandler::handleEvents(SDL_Event *event)
 {
     if (event->type == SDL_EVENT_QUIT)
     {

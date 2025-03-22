@@ -2,7 +2,6 @@
 #define INCLUDE_SIMPLEEXAMPLE_SIMPLEEXAMPLE_H_
 
 #include "Common/BaseProject.h"
-#include "Core/Context.h"
 
 /**
  * @namespace SimpleExample
@@ -11,7 +10,7 @@
  * This example provides a minimal structure that all other examples should follow.
  * Every function is mandatory, but they can be left empty if not required.
  */
-class SimpleExample : public BaseProject
+class SimpleExample : public Common::BaseProject
 {
 
     /**

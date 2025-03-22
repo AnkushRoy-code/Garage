@@ -49,7 +49,7 @@ bool Triangle::Init()
     SDL_ReleaseGPUShader(gContext.mDevice, vertexShader);
     SDL_ReleaseGPUShader(gContext.mDevice, fragmentShader);
 
-    ConsoleLogBuffer::addMessage("Triangle Initialised\n"
+    Core::ConsoleLogBuffer::addMessage("Triangle Initialised\n"
                                  "Press Left to toggle wireframe mode\n"
                                  "Press Down to toggle small viewport\n"
                                  "Press Right to toggle scissor rect");

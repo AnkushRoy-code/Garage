@@ -3,6 +3,9 @@
 #include <sstream>
 #include <iomanip>
 
+namespace Core
+{
+
 int ConsoleLogBuffer::index = 0;
 std::vector<ConsoleLogMessage> ConsoleLogBuffer::ConsoleLogs {};
 
@@ -39,3 +42,5 @@ std::string ConsoleLogBuffer::getCurrentTime()
     oss << std::put_time(&tm_buf, "%H:%M:%S");
     return oss.str();
 }
+
+}  // namespace Core

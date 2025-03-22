@@ -5,7 +5,7 @@
 bool SimpleExample::Init()
 {
     hasUI = false;
-    ConsoleLogBuffer::addMessage("SimpleExample Initialised\n");
+    Core::ConsoleLogBuffer::addMessage("SimpleExample Initialised\n");
     return true;
 }
 bool SimpleExample::Update()

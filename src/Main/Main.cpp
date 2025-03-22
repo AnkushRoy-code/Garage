@@ -24,7 +24,7 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
     try
     {
         // clang-format off
-        ConsoleLogBuffer::addMessage(
+        Core::ConsoleLogBuffer::addMessage(
             "Welcome to Ankush's Garage\n"
             "Press 'a' or 'd' to change between projects\n\n"
             "Help: The keyboard layout doesn't matter, use the physical "
@@ -33,8 +33,8 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
         // clang-format on
         gContext.init();
 
-        ProjectManager::registerAllProjects();
-        Projects = ProjectManager::getProjects();
+        Common::ProjectManager::registerAllProjects();
+        Projects = Common::ProjectManager::getProjects();
         Projects[0]->Init();
     }
 
@@ -63,7 +63,7 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
 {
     PROFILE_SCOPE;
     ImGui_ImplSDL3_ProcessEvent(event);
-    return EventHandler::handleEvents(event);
+    return Core::EventHandler::handleEvents(event);
 }
 
 SDL_AppResult SDL_AppIterate(void *appstate)
@@ -82,7 +82,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
             return SDL_APP_CONTINUE;
         }
 
-        ImGuiCore::Update();
+        Core::ImGuiCore::Update();
         // TODO: Fix whatever this shit has happened.
         // Hours Wasted: 1
         // This doesn't work with this being inside the ImGuiCore::Update(); function. fsr
@@ -102,8 +102,8 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         }
         ImGui::PopStyleVar();
 
-        Renderer::DrawToTex();
-        ImGuiCore::Draw();
+        Core::Renderer::DrawToTex();
+        Core::ImGuiCore::Draw();
     }
 
     catch (const SDL_Exception &e)

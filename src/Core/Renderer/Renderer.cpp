@@ -4,7 +4,7 @@
 #include "Common/BaseProject.h"
 #include "Common/SDL_Exception.h"
 
-void Renderer::Init()
+void Core::Renderer::Init()
 {
     SDL_SetGPUSwapchainParameters(gContext.mDevice, gContext.mWindow,
                                   SDL_GPU_SWAPCHAINCOMPOSITION_SDR, SDL_GPU_PRESENTMODE_MAILBOX);
@@ -34,7 +34,7 @@ void Renderer::Init()
     gContext.mProjectSampler = SDL_CreateGPUSampler(gContext.mDevice, &samplerInfo);
 }
 
-void Renderer::DrawToTex()
+void Core::Renderer::DrawToTex()
 {
     SDL_GPUCommandBuffer *commandBufferProjects = SDL_AcquireGPUCommandBuffer(gContext.mDevice);
     if (!commandBufferProjects)
