@@ -5,7 +5,7 @@ var searchData=
   ['changeallmin_2',['changeAllMin',['../namespace_particle_controller.html#a61aec187c58fcb0afdf6fbfba42b2977',1,'ParticleController']]],
   ['changestate_3',['changeState',['../_event_handler_8cpp.html#ab813c6f8436492261f3869d21ded2f17',1,'EventHandler.cpp']]],
   ['clear_4',['clear',['../class_particle_container.html#ae56518d8550675a26cdb1b6c894ab942',1,'ParticleContainer']]],
-  ['context_5',['Context',['../struct_context.html#a0dd9110359bd4d184b7ccd1872d57966',1,'Context']]],
+  ['context_5',['Context',['../struct_core_1_1_context.html#ab03c1d0058a43aec9f49755072c5399f',1,'Core::Context']]],
   ['createcolorslider_6',['createColorSlider',['../namespace_im_gui_private.html#af834e4b68d8c86045ba445683436f1be',1,'ImGuiPrivate']]],
   ['createcolortreenode_7',['createColorTreeNode',['../namespace_im_gui_private.html#accdea2b990969c95f9aaf64fe7838f55',1,'ImGuiPrivate']]],
   ['createmaxdistslider_8',['createMaxDistSlider',['../namespace_im_gui_private.html#ab5e8ecb4999c011f75dedfdb9247e663',1,'ImGuiPrivate']]],

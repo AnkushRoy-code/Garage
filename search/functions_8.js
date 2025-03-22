@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['particlecontainer_0',['ParticleContainer',['../class_particle_container.html#a76d21bdb5141158cf664d65e2d8b1db7',1,'ParticleContainer']]],
-  ['populaterandomforce_1',['populateRandomForce',['../namespace_particle_controller.html#aea3ed261e60cd74c4a081be603206d5b',1,'ParticleController']]],
-  ['populaterandommaxdistance_2',['populateRandomMaxDistance',['../namespace_particle_controller.html#adf4c448fb322e7a7d82be35f39b02750',1,'ParticleController']]],
-  ['populaterandommindistance_3',['populateRandomMinDistance',['../namespace_particle_controller.html#a3b873e0d789414c336e57c11b61c2f9a',1,'ParticleController']]]
+  ['maximiseforce_0',['maximiseForce',['../namespace_particle_controller.html#a1b622963fa0ff6bec69d179911395d64',1,'ParticleController']]],
+  ['maximisemaxdistance_1',['maximiseMaxDistance',['../namespace_particle_controller.html#afbcbfdd18692dbb02eeed873a5561be9',1,'ParticleController']]],
+  ['maximisemindistance_2',['maximiseMinDistance',['../namespace_particle_controller.html#a02c5d0d273f7ebf8713c733dc9da1b3b',1,'ParticleController']]],
+  ['minimiseforce_3',['minimiseForce',['../namespace_particle_controller.html#abcbf7756c0410b5f6e04234620d59a56',1,'ParticleController']]],
+  ['minimisemaxdistance_4',['minimiseMaxDistance',['../namespace_particle_controller.html#a280fb4e3a02c008b927540b8d993279e',1,'ParticleController']]],
+  ['minimisemindistance_5',['minimiseMinDistance',['../namespace_particle_controller.html#a506fa117b89237ce045bbec226fe19fa',1,'ParticleController']]]
 ];

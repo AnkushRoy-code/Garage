@@ -1,7 +1,7 @@
 var _base_project_8h =
 [
-    [ "BaseProject", "class_base_project.html", "class_base_project" ],
-    [ "ImGuiUI", "class_im_gui_u_i.html", "class_im_gui_u_i" ],
-    [ "ProjectManager", "class_project_manager.html", null ],
-    [ "Projects", "_base_project_8h.html#a70eb0d46d49e8b6c2172ec80430083bb", null ]
+    [ "Common::BaseProject", "class_common_1_1_base_project.html", "class_common_1_1_base_project" ],
+    [ "Common::ImGuiUI", "class_common_1_1_im_gui_u_i.html", "class_common_1_1_im_gui_u_i" ],
+    [ "Common::ProjectManager", "class_common_1_1_project_manager.html", null ],
+    [ "Projects", "_base_project_8h.html#a640ddc02f53b79b66ecd72bd76754321", null ]
 ];

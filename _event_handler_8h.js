@@ -1,4 +1,4 @@
 var _event_handler_8h =
 [
-    [ "EventHandler::handleEvents", "namespace_event_handler.html#a6c2a6e20c2bb4c7e1e48a7610651dbe9", null ]
+    [ "Core::EventHandler::handleEvents", "namespace_core_1_1_event_handler.html#a39acf9c3777a874b930b4f1a4cf9e301", null ]
 ];

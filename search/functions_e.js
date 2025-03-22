@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['_7ebaseproject_0',['~BaseProject',['../class_base_project.html#a00d5b29887bd1da1922dfadc2c4f3e03',1,'BaseProject']]],
-  ['_7econtext_1',['~Context',['../struct_context.html#a2d34e4556448e40693f61d15e091b604',1,'Context']]],
-  ['_7eimguiui_2',['~ImGuiUI',['../class_im_gui_u_i.html#a51498d3085177ae3e4695df75173a0ae',1,'ImGuiUI']]]
+  ['what_0',['what',['../class_s_d_l___exception.html#a537ba9507d6ab163cb6d11f1df666bf8',1,'SDL_Exception']]],
+  ['windowmain_1',['WindowMain',['../namespace_im_gui_private.html#a5d0c0806e88fd80f8785239cda0006f6',1,'ImGuiPrivate']]],
+  ['wraparound_2',['wrapAround',['../class_particle_container.html#a2884dc556e5854fec913bf76a2538e14',1,'ParticleContainer']]]
 ];

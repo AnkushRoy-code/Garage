@@ -1,5 +1,5 @@
 var _context_8h =
 [
-    [ "Context", "struct_context.html", "struct_context" ],
-    [ "gContext", "_context_8h.html#aba969d9b228fc168c8f40a92c8d79cc4", null ]
+    [ "Core::Context", "struct_core_1_1_context.html", "struct_core_1_1_context" ],
+    [ "gContext", "_context_8h.html#a87c6ab4ac0ff7845ecee242a0a854d60", null ]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['eventhandler_0',['EventHandler',['../namespace_event_handler.html',1,'']]]
+  ['imguiprivate_0',['ImGuiPrivate',['../namespace_im_gui_private.html',1,'']]]
 ];

@@ -1,5 +1,5 @@
 var _renderer_8h =
 [
-    [ "Renderer::DrawToTex", "namespace_renderer.html#ab77cb9e48999aff25c8c752582ecde8e", null ],
-    [ "Renderer::Init", "namespace_renderer.html#a919dd3310b2427abe522ee40719dc37a", null ]
+    [ "Core::Renderer::DrawToTex", "namespace_core_1_1_renderer.html#a5c58c11eb3aa0c22431baa84369d4e23", null ],
+    [ "Core::Renderer::Init", "namespace_core_1_1_renderer.html#ae5bee95c102f59cc1ee8c9b7ca693a6c", null ]
 ];

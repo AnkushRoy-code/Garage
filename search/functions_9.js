@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['quit_0',['Quit',['../class_base_project.html#a3c36b2dcbe93caf5924de78982efe470',1,'BaseProject::Quit()'],['../class_particle.html#a309fd0294f883c359585059f4cc1963e',1,'Particle::Quit()'],['../class_simple_example.html#af02b7f4595c57cf00b8e51e1bb18d87f',1,'SimpleExample::Quit()'],['../class_triangle.html#aa60c86332131f5c43ac858511bf98423',1,'Triangle::Quit()'],['../namespace_im_gui_core.html#a785d45adedd2c51fe846324c32cc7d26',1,'ImGuiCore::Quit()']]]
+  ['particlecontainer_0',['ParticleContainer',['../class_particle_container.html#a76d21bdb5141158cf664d65e2d8b1db7',1,'ParticleContainer']]],
+  ['populaterandomforce_1',['populateRandomForce',['../namespace_particle_controller.html#aea3ed261e60cd74c4a081be603206d5b',1,'ParticleController']]],
+  ['populaterandommaxdistance_2',['populateRandomMaxDistance',['../namespace_particle_controller.html#adf4c448fb322e7a7d82be35f39b02750',1,'ParticleController']]],
+  ['populaterandommindistance_3',['populateRandomMinDistance',['../namespace_particle_controller.html#a3b873e0d789414c336e57c11b61c2f9a',1,'ParticleController']]]
 ];

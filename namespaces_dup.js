@@ -1,17 +1,7 @@
 var namespaces_dup =
 [
-    [ "Common", "namespace_common.html", [
-      [ "LoadShader", "namespace_common.html#ac6711603d8b911cc9205b543a7fef805", null ]
-    ] ],
-    [ "EventHandler", "namespace_event_handler.html", [
-      [ "handleEvents", "namespace_event_handler.html#a6c2a6e20c2bb4c7e1e48a7610651dbe9", null ]
-    ] ],
-    [ "ImGuiCore", "namespace_im_gui_core.html", [
-      [ "Draw", "namespace_im_gui_core.html#a75994c358a10d6abf6c4040e28c44971", null ],
-      [ "Init", "namespace_im_gui_core.html#a94e28c124e688e199cd8dc22bf04985d", null ],
-      [ "Quit", "namespace_im_gui_core.html#a785d45adedd2c51fe846324c32cc7d26", null ],
-      [ "Update", "namespace_im_gui_core.html#a029577255e6fa7b0339568cac5da425d", null ]
-    ] ],
+    [ "Common", "namespace_common.html", "namespace_common" ],
+    [ "Core", "namespace_core.html", "namespace_core" ],
     [ "ImGuiPrivate", "namespace_im_gui_private.html", [
       [ "createColorSlider", "namespace_im_gui_private.html#af834e4b68d8c86045ba445683436f1be", null ],
       [ "createColorTreeNode", "namespace_im_gui_private.html#accdea2b990969c95f9aaf64fe7838f55", null ],
@@ -52,10 +42,6 @@ var namespaces_dup =
       [ "m_defaultForceValue", "namespace_particle_default_data.html#abe4fa7aca24d7c5607875ecb31818c8e", null ],
       [ "m_defaultMaxDistanceValue", "namespace_particle_default_data.html#a0caf2a0ef9833563fb7d77dd5e0d6c8c", null ],
       [ "m_defaultMinDistanceValue", "namespace_particle_default_data.html#a19a408ef1a83a9396470aa25ee912e0f", null ]
-    ] ],
-    [ "Renderer", "namespace_renderer.html", [
-      [ "DrawToTex", "namespace_renderer.html#ab77cb9e48999aff25c8c752582ecde8e", null ],
-      [ "Init", "namespace_renderer.html#a919dd3310b2427abe522ee40719dc37a", null ]
     ] ],
     [ "SimpleExample", "namespace_simple_example.html", null ],
     [ "Utils", "namespace_utils.html", "namespace_utils" ]
