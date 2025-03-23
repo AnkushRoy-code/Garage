@@ -21,15 +21,15 @@ bool Triangle::Init()
     hasUI = false;
 
     SDL_GPUShader *vertexShader =
-        Common::LoadShader(gContext.mDevice, "RawTriangle.vert", 0, 0, 0, 0);
+        Common::LoadShader(gContext.device, "RawTriangle.vert", 0, 0, 0, 0);
     if (vertexShader == nullptr) { throw SDL_Exception("Failed to create vertex shader!"); }
 
     SDL_GPUShader *fragmentShader =
-        Common::LoadShader(gContext.mDevice, "SolidColor.frag", 0, 0, 0, 0);
+        Common::LoadShader(gContext.device, "SolidColor.frag", 0, 0, 0, 0);
     if (fragmentShader == nullptr) { throw SDL_Exception("Failed to create fragment shader!"); }
 
     SDL_GPUColorTargetDescription colorTargetDesc = {};
-    colorTargetDesc.format = SDL_GetGPUSwapchainTextureFormat(gContext.mDevice, gContext.mWindow);
+    colorTargetDesc.format = SDL_GetGPUSwapchainTextureFormat(gContext.device, gContext.window);
 
     SDL_GPUGraphicsPipelineCreateInfo pipelineCreateInfo {};
     pipelineCreateInfo.vertex_shader                         = vertexShader;
@@ -39,15 +39,15 @@ bool Triangle::Init()
     pipelineCreateInfo.target_info.num_color_targets         = 1;
 
     pipelineCreateInfo.rasterizer_state.fill_mode = SDL_GPU_FILLMODE_FILL;
-    FillPipeline = SDL_CreateGPUGraphicsPipeline(gContext.mDevice, &pipelineCreateInfo);
+    FillPipeline = SDL_CreateGPUGraphicsPipeline(gContext.device, &pipelineCreateInfo);
     if (FillPipeline == nullptr) { throw SDL_Exception("Failed to create fill pipeline!"); }
 
     pipelineCreateInfo.rasterizer_state.fill_mode = SDL_GPU_FILLMODE_LINE;
-    LinePipeline = SDL_CreateGPUGraphicsPipeline(gContext.mDevice, &pipelineCreateInfo);
+    LinePipeline = SDL_CreateGPUGraphicsPipeline(gContext.device, &pipelineCreateInfo);
     if (LinePipeline == nullptr) { throw SDL_Exception("Failed to create line pipeline!"); }
 
-    SDL_ReleaseGPUShader(gContext.mDevice, vertexShader);
-    SDL_ReleaseGPUShader(gContext.mDevice, fragmentShader);
+    SDL_ReleaseGPUShader(gContext.device, vertexShader);
+    SDL_ReleaseGPUShader(gContext.device, fragmentShader);
 
     Core::ConsoleLogBuffer::addMessage("Triangle Initialised\n"
                                  "Press Left to toggle wireframe mode\n"
@@ -72,11 +72,11 @@ bool Triangle::Update()
 bool Triangle::Draw()
 {
     PROFILE_SCOPE_N("Triangle::Draw");
-    SDL_BindGPUGraphicsPipeline(gContext.mProjectPass,
+    SDL_BindGPUGraphicsPipeline(gContext.projectPass,
                                 UseWireframeMode ? LinePipeline : FillPipeline);
-    if (UseSmallViewport) { SDL_SetGPUViewport(gContext.mProjectPass, &SmallViewport); }
-    if (UseScissorRect) { SDL_SetGPUScissor(gContext.mProjectPass, &ScissorRect); }
-    SDL_DrawGPUPrimitives(gContext.mProjectPass, 3, 1, 0, 0);
+    if (UseSmallViewport) { SDL_SetGPUViewport(gContext.projectPass, &SmallViewport); }
+    if (UseScissorRect) { SDL_SetGPUScissor(gContext.projectPass, &ScissorRect); }
+    SDL_DrawGPUPrimitives(gContext.projectPass, 3, 1, 0, 0);
 
     return true;
 }
@@ -84,8 +84,8 @@ bool Triangle::Draw()
 void Triangle::Quit()
 {
     PROFILE_SCOPE_N("Triangle::Quit");
-    SDL_ReleaseGPUGraphicsPipeline(gContext.mDevice, FillPipeline);
-    SDL_ReleaseGPUGraphicsPipeline(gContext.mDevice, LinePipeline);
+    SDL_ReleaseGPUGraphicsPipeline(gContext.device, FillPipeline);
+    SDL_ReleaseGPUGraphicsPipeline(gContext.device, LinePipeline);
 
     UseWireframeMode = false;
     UseSmallViewport = false;

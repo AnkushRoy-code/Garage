@@ -1,6 +1,7 @@
 #ifndef INCLUDE_CORE_CONSOLE_CPP_
 #define INCLUDE_CORE_CONSOLE_CPP_
 
+#include "SDL3/SDL_pixels.h"
 #include <vector>
 #include <string>
 

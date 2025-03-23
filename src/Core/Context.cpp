@@ -20,18 +20,18 @@ void Context::init()
 {
     if (!SDL_Init(SDL_INIT_VIDEO)) { throw SDL_Exception("Couldn't initialize SDL"); }
 
-    mDevice = SDL_CreateGPUDevice(SDL_GPU_SHADERFORMAT_SPIRV | SDL_GPU_SHADERFORMAT_DXIL
+    device = SDL_CreateGPUDevice(SDL_GPU_SHADERFORMAT_SPIRV | SDL_GPU_SHADERFORMAT_DXIL
                                       | SDL_GPU_SHADERFORMAT_MSL,
                                   false, nullptr);
 
-    if (!mDevice) { throw SDL_Exception("Unable to create SDL_GPUDevice"); }
+    if (!device) { throw SDL_Exception("Unable to create SDL_GPUDevice"); }
 
-    mWindow = SDL_CreateWindow("Ankush's Garage", width, height,
+    window = SDL_CreateWindow("Ankush's Garage", width, height,
                                SDL_WINDOW_HIGH_PIXEL_DENSITY | SDL_WINDOW_RESIZABLE);
 
-    if (!mWindow) { throw SDL_Exception("Unable to create SDL_Window"); }
+    if (!window) { throw SDL_Exception("Unable to create SDL_Window"); }
 
-    if (!SDL_ClaimWindowForGPUDevice(mDevice, mWindow))
+    if (!SDL_ClaimWindowForGPUDevice(device, window))
     {
         throw SDL_Exception("Unable to claim window for device");
     }
@@ -44,7 +44,7 @@ void Context::init()
 Context::~Context()
 {
     ImGuiCore::Quit();
-    SDL_ReleaseWindowFromGPUDevice(mDevice, mWindow);
+    SDL_ReleaseWindowFromGPUDevice(device, window);
 }
 
 }  // namespace Core

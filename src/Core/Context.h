@@ -37,11 +37,11 @@ struct Context
     void init();
 
     // Data
-    SDL_Window *mWindow {};     ///< Pointer to the SDL window instance.
-    SDL_GPUDevice *mDevice {};  ///< Pointer to the SDL GPU device instance.
-    SDL_GPURenderPass *mProjectPass {};
-    SDL_GPUTexture *mProjectTexture {};
-    SDL_GPUSampler *mProjectSampler {};
+    SDL_Window *window {};     ///< Pointer to the SDL window instance.
+    SDL_GPUDevice *device {};  ///< Pointer to the SDL GPU device instance.
+    SDL_GPURenderPass *projectPass {};
+    SDL_GPUTexture *projectTexture {};
+    SDL_GPUSampler *projectSampler {};
 
     // I might have these in a different bitset later on.
     bool right {};  ///< True if the right key is pressed

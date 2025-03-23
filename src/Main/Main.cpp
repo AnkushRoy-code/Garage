@@ -72,17 +72,19 @@ SDL_AppResult SDL_AppIterate(void *appstate)
     {
         PROFILE_SCOPE;
         Utils::Time::updateDeltaTime();
+
         Projects[gContext.projectIndex]->Update();
 
         // no need to draw if window is minimised. But sure need to update the state. If needed
         // pause it. Idk why I keep updating like it even matters. But gud design if it ever matters
-        if (SDL_GetWindowFlags(gContext.mWindow) & SDL_WINDOW_MINIMIZED)
+        if (SDL_GetWindowFlags(gContext.window) & SDL_WINDOW_MINIMIZED)
         {
             Utils::Time::capFPS();
             return SDL_APP_CONTINUE;
         }
 
         Core::ImGuiCore::Update();
+
         // TODO: Fix whatever this shit has happened.
         // Hours Wasted: 1
         // This doesn't work with this being inside the ImGuiCore::Update(); function. fsr
@@ -93,8 +95,8 @@ SDL_AppResult SDL_AppIterate(void *appstate)
                 "Project - " + Projects[gContext.projectIndex]->getName() + "###TexTitle";
             ImGui::Begin(projectWindowName.c_str(), nullptr, ImGuiWindowFlags_NoCollapse);
 
-            const SDL_GPUTextureSamplerBinding bind {gContext.mProjectTexture,
-                                                     gContext.mProjectSampler};
+            const SDL_GPUTextureSamplerBinding bind {gContext.projectTexture,
+                                                     gContext.projectSampler};
             const auto size = ImGui::GetWindowSize();
 
             ImGui::Image((ImTextureID)&bind, {size.x, size.y - 19.0f});
@@ -125,6 +127,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
     }
 
     Utils::Time::capFPS();
+
     PROFILE_FRAME;
     return SDL_APP_CONTINUE;
 }

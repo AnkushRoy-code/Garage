@@ -28,7 +28,7 @@ void Core::ImGuiCore::Init()
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
     int w, h;
-    SDL_GetWindowSize(gContext.mWindow, &w, &h);
+    SDL_GetWindowSize(gContext.window, &w, &h);
     io.DisplaySize = ImVec2((float)w, (float)h);
 
     ImGui::StyleColorsDark();
@@ -78,11 +78,11 @@ void Core::ImGuiCore::Init()
     colors[ImGuiCol_TabSelectedOverline]  = ImVec4(0.29f, 0.30f, 0.41f, 0.80f);
     colors[ImGuiCol_TabDimmedSelected]    = ImVec4(0.42f, 0.44f, 0.53f, 0.62f);
 
-    ImGui_ImplSDL3_InitForSDLGPU(gContext.mWindow);
+    ImGui_ImplSDL3_InitForSDLGPU(gContext.window);
     ImGui_ImplSDLGPU3_InitInfo init_info {};
-    init_info.Device = gContext.mDevice;
+    init_info.Device = gContext.device;
     init_info.ColorTargetFormat =
-        SDL_GetGPUSwapchainTextureFormat(gContext.mDevice, gContext.mWindow);
+        SDL_GetGPUSwapchainTextureFormat(gContext.device, gContext.window);
     init_info.MSAASamples = SDL_GPU_SAMPLECOUNT_1;
     ImGui_ImplSDLGPU3_Init(&init_info);
 }
@@ -274,11 +274,11 @@ void Core::ImGuiCore::Draw()
     ImGui::Render();
     ImDrawData *drawData = ImGui::GetDrawData();
 
-    SDL_GPUCommandBuffer *commandBuffer = SDL_AcquireGPUCommandBuffer(gContext.mDevice);
+    SDL_GPUCommandBuffer *commandBuffer = SDL_AcquireGPUCommandBuffer(gContext.device);
     if (!commandBuffer) { throw SDL_Exception("AcquireGPUCommandBuffer failed!"); }
 
     SDL_GPUTexture *swapchainTexture;
-    if (!SDL_AcquireGPUSwapchainTexture(commandBuffer, gContext.mWindow, &swapchainTexture, nullptr,
+    if (!SDL_AcquireGPUSwapchainTexture(commandBuffer, gContext.window, &swapchainTexture, nullptr,
                                         nullptr))
     {
         throw SDL_Exception("WaitAndAcquireGPUSwapchainTexture failed!");
