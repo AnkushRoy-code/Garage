@@ -4,7 +4,7 @@ include(cmake/CPM.cmake)
 # clone drains all my internet. I have limited daily. Also GIT_SHALLOW doesn't work how it sould
 # even after I give it proper tags or even commit.
 
-# ############################SDL###############################
+# ############################ SDL ###############################
 CPMAddPackage(
     NAME SDL3
     VERSION 3.2.8
@@ -12,7 +12,7 @@ CPMAddPackage(
     URL_HASH SHA256=13388fabb361de768ecdf2b65e52bb27d1054cae6ccb6942ba926e378e00db03
 )
 
-# ############################ImGui###############################
+# ############################ ImGui ###############################
 CPMAddPackage(
     NAME imgui
     VERSION 1.91.8-docking
@@ -66,12 +66,12 @@ if(implot_ADDED)
     target_link_libraries(implot PUBLIC SDL3::SDL3-shared imgui)
 endif()
 
-# ############################Catch2###############################
+# ############################ Catch2 ###############################
 if(TESTING)
     CPMAddPackage("gh:catchorg/Catch2@3.8.0") # Nothing rn
 endif()
 
-# ############################Tracy Profiler###############################
+# ############################ Tracy Profiler ###############################
 if(TRACY_PROFILE_COMPATIBILITY) # For my old lappy
     option(TRACY_ENABLE "" ON)
     CPMAddPackage(
@@ -90,3 +90,11 @@ if(TRACY_PROFILE)
         URL_HASH SHA256=2c11ca816f2b756be2730f86b0092920419f3dabc7a7173829ffd897d91888a1
     )
 endif()
+
+############################ miniaudio ###############################
+CPMAddPackage(
+    NAME miniaudio
+    VERSION 0.11.22
+    URL https://github.com/mackron/miniaudio/archive/refs/tags/0.11.22.tar.gz
+    URL_HASH SHA256=bcb07bfb27e6fa94d34da73ba2d5642d4940b208ec2a660dbf4e52e6b7cd492f
+)
