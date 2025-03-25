@@ -1,4 +1,9 @@
 var searchData=
 [
-  ['quit_0',['Quit',['../class_common_1_1_base_project.html#a1062f949e0880ddd59b38eb5adb9f78a',1,'Common::BaseProject::Quit()'],['../class_particle.html#a309fd0294f883c359585059f4cc1963e',1,'Particle::Quit()'],['../class_simple_example.html#af02b7f4595c57cf00b8e51e1bb18d87f',1,'SimpleExample::Quit()'],['../class_triangle.html#aa60c86332131f5c43ac858511bf98423',1,'Triangle::Quit()'],['../namespace_core_1_1_im_gui_core.html#ac8076911122e6180ff213ee9c82219eb',1,'Core::ImGuiCore::Quit()']]]
+  ['scrollingbuffer_0',['ScrollingBuffer',['../struct_scrolling_buffer.html#a560cfd1673aa1108ce089410a55a7cb9',1,'ScrollingBuffer']]],
+  ['sdl_5fappevent_1',['SDL_AppEvent',['../_main_8cpp.html#aa1a484aa7972b8018e724425066066b4',1,'Main.cpp']]],
+  ['sdl_5fappinit_2',['SDL_AppInit',['../_main_8cpp.html#a4985adfb048a4ae4e1c5296a4fc7affe',1,'Main.cpp']]],
+  ['sdl_5fappiterate_3',['SDL_AppIterate',['../_main_8cpp.html#a7038050dca8c80a0133d600fb008b6db',1,'Main.cpp']]],
+  ['sdl_5fappquit_4',['SDL_AppQuit',['../_main_8cpp.html#a31f80ce4f4926b0c6fe01a9644f3c837',1,'Main.cpp']]],
+  ['sdl_5fexception_5',['SDL_Exception',['../class_s_d_l___exception.html#a36a93f8167d0fb73517a28d968bc110a',1,'SDL_Exception']]]
 ];

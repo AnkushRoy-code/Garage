@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['time_0',['Time',['../class_utils_1_1_time.html',1,'Utils']]],
-  ['triangle_1',['Triangle',['../class_triangle.html',1,'']]]
+  ['renderdata_0',['RenderData',['../struct_core_1_1_render_data.html',1,'Core']]]
 ];

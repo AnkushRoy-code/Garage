@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['timestamp_0',['timestamp',['../struct_core_1_1_console_log_message.html#a111da37a8e512b63f379516b5c7a93f0',1,'Core::ConsoleLogMessage']]]
+  ['renderdata_0',['renderData',['../struct_core_1_1_context.html#a82382780d4c92f67f9a9999c29a7a488',1,'Core::Context']]]
 ];

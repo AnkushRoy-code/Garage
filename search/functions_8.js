@@ -1,9 +1,4 @@
 var searchData=
 [
-  ['maximiseforce_0',['maximiseForce',['../namespace_particle_controller.html#a1b622963fa0ff6bec69d179911395d64',1,'ParticleController']]],
-  ['maximisemaxdistance_1',['maximiseMaxDistance',['../namespace_particle_controller.html#afbcbfdd18692dbb02eeed873a5561be9',1,'ParticleController']]],
-  ['maximisemindistance_2',['maximiseMinDistance',['../namespace_particle_controller.html#a02c5d0d273f7ebf8713c733dc9da1b3b',1,'ParticleController']]],
-  ['minimiseforce_3',['minimiseForce',['../namespace_particle_controller.html#abcbf7756c0410b5f6e04234620d59a56',1,'ParticleController']]],
-  ['minimisemaxdistance_4',['minimiseMaxDistance',['../namespace_particle_controller.html#a280fb4e3a02c008b927540b8d993279e',1,'ParticleController']]],
-  ['minimisemindistance_5',['minimiseMinDistance',['../namespace_particle_controller.html#a506fa117b89237ce045bbec226fe19fa',1,'ParticleController']]]
+  ['quit_0',['Quit',['../class_common_1_1_base_project.html#a1062f949e0880ddd59b38eb5adb9f78a',1,'Common::BaseProject::Quit()'],['../class_simple_example.html#af02b7f4595c57cf00b8e51e1bb18d87f',1,'SimpleExample::Quit()'],['../class_triangle.html#aa60c86332131f5c43ac858511bf98423',1,'Triangle::Quit()'],['../namespace_core_1_1_im_gui_core.html#ac8076911122e6180ff213ee9c82219eb',1,'Core::ImGuiCore::Quit()']]]
 ];

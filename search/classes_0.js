@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['baseproject_0',['BaseProject',['../class_common_1_1_base_project.html',1,'Common']]]
+  ['appstate_0',['AppState',['../struct_core_1_1_app_state.html',1,'Core']]]
 ];

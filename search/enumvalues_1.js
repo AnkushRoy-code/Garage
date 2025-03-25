@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['color_5fcount_0',['COLOR_COUNT',['../_particle_data_8h.html#a7d057e869f105e3803d4c67b52d3b86ea496fbcd07039ae663b1cb959e5b1782d',1,'ParticleData.h']]],
-  ['cyan_1',['CYAN',['../_particle_data_8h.html#a7d057e869f105e3803d4c67b52d3b86eaafe71cad474c15ce63b300c470eef8cc',1,'ParticleData.h']]]
+  ['count_0',['COUNT',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17a1be400d5e61f648476e94b5629a21992',1,'Core']]]
 ];

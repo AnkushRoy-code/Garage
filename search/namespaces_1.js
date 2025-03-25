@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['imguiprivate_0',['ImGuiPrivate',['../namespace_im_gui_private.html',1,'']]]
+  ['simpleexample_0',['SimpleExample',['../namespace_simple_example.html',1,'']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['hasui_0',['hasUI',['../class_common_1_1_base_project.html#aedda77c1bb2b7ab40c061652f356f114',1,'Common::BaseProject']]],
-  ['height_1',['height',['../struct_core_1_1_context.html#af3e66be151881761a139663d9d085465',1,'Core::Context']]]
+  ['gcontext_0',['gContext',['../_context_8cpp.html#a87c6ab4ac0ff7845ecee242a0a854d60',1,'gContext:&#160;Context.cpp'],['../_context_8h.html#a87c6ab4ac0ff7845ecee242a0a854d60',1,'gContext:&#160;Context.cpp']]]
 ];

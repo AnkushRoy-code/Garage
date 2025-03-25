@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['registerprojects_2ecpp_0',['RegisterProjects.cpp',['../_register_projects_8cpp.html',1,'']]],
-  ['renderer_2ecpp_1',['Renderer.cpp',['../_renderer_8cpp.html',1,'']]],
-  ['renderer_2eh_2',['Renderer.h',['../_renderer_8h.html',1,'']]]
+  ['sdl_5fexception_2eh_0',['SDL_Exception.h',['../_s_d_l___exception_8h.html',1,'']]],
+  ['simpleexample_2ecpp_1',['SimpleExample.cpp',['../_simple_example_8cpp.html',1,'']]],
+  ['simpleexample_2eh_2',['SimpleExample.h',['../_simple_example_8h.html',1,'']]]
 ];

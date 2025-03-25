@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['red_0',['RED',['../_particle_data_8h.html#a7d057e869f105e3803d4c67b52d3b86eaf80f9a890089d211842d59625e561f88',1,'ParticleData.h']]]
+  ['left_0',['LEFT',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17a7e0c75bdec4e7677bbcc865b77e6cdc6',1,'Core']]]
 ];
