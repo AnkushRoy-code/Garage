@@ -28,7 +28,7 @@ void Core::ImGuiCore::Init()
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
     int w, h;
-    SDL_GetWindowSize(gContext.window, &w, &h);
+    SDL_GetWindowSize(gContext.renderData.window, &w, &h);
     io.DisplaySize = ImVec2((float)w, (float)h);
 
     ImGui::StyleColorsDark();
@@ -78,11 +78,11 @@ void Core::ImGuiCore::Init()
     colors[ImGuiCol_TabSelectedOverline]  = ImVec4(0.29f, 0.30f, 0.41f, 0.80f);
     colors[ImGuiCol_TabDimmedSelected]    = ImVec4(0.42f, 0.44f, 0.53f, 0.62f);
 
-    ImGui_ImplSDL3_InitForSDLGPU(gContext.window);
+    ImGui_ImplSDL3_InitForSDLGPU(gContext.renderData.window);
     ImGui_ImplSDLGPU3_InitInfo init_info {};
-    init_info.Device = gContext.device;
+    init_info.Device = gContext.renderData.device;
     init_info.ColorTargetFormat =
-        SDL_GetGPUSwapchainTextureFormat(gContext.device, gContext.window);
+        SDL_GetGPUSwapchainTextureFormat(gContext.renderData.device, gContext.renderData.window);
     init_info.MSAASamples = SDL_GPU_SAMPLECOUNT_1;
     ImGui_ImplSDLGPU3_Init(&init_info);
 }
@@ -132,34 +132,35 @@ void Core::ImGuiCore::Update()
     ImGui_ImplSDLGPU3_NewFrame();
     ImGui::NewFrame();
 
-    gContext.mainViewportId = ImGui::DockSpaceOverViewport();
+    gContext.appState.mainViewportId = ImGui::DockSpaceOverViewport();
 
     static bool imguiIniExists = std::filesystem::exists("imgui.ini");
     static bool firstTime      = true;
+    static const auto vpID = gContext.appState.mainViewportId;
 
     if (firstTime && !imguiIniExists)
     {
         firstTime = false;
 
-        ImGui::DockBuilderRemoveNode(gContext.mainViewportId);
-        ImGui::DockBuilderAddNode(gContext.mainViewportId);
-        ImGui::DockBuilderSetNodeSize(gContext.mainViewportId, ImGui::GetMainViewport()->Size);
+        ImGui::DockBuilderRemoveNode(gContext.appState.mainViewportId);
+        ImGui::DockBuilderAddNode(gContext.appState.mainViewportId);
+        ImGui::DockBuilderSetNodeSize(gContext.appState.mainViewportId, ImGui::GetMainViewport()->Size);
 
-        auto dockIdRight = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Right,
-                                                       0.25, nullptr, &gContext.mainViewportId);
+        auto dockIdRight = ImGui::DockBuilderSplitNode(gContext.appState.mainViewportId, ImGuiDir_Right,
+                                                       0.25, nullptr, &gContext.appState.mainViewportId);
 
-        auto dockIdBottom = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Down, 0.3,
-                                                        nullptr, &gContext.mainViewportId);
+        auto dockIdBottom = ImGui::DockBuilderSplitNode(gContext.appState.mainViewportId, ImGuiDir_Down, 0.3,
+                                                        nullptr, &gContext.appState.mainViewportId);
 
-        auto dockIdLeft = ImGui::DockBuilderSplitNode(gContext.mainViewportId, ImGuiDir_Left, 0.25,
-                                                      nullptr, &gContext.mainViewportId);
+        auto dockIdLeft = ImGui::DockBuilderSplitNode(gContext.appState.mainViewportId, ImGuiDir_Left, 0.25,
+                                                      nullptr, &gContext.appState.mainViewportId);
 
         ImGui::DockBuilderDockWindow("Ankush's Garage - ToolBox", dockIdLeft);
         ImGui::DockBuilderDockWindow("Console", dockIdBottom);
         ImGui::DockBuilderDockWindow("###ProjectUI", dockIdRight);
-        ImGui::DockBuilderDockWindow("###TexTitle", gContext.mainViewportId);
+        ImGui::DockBuilderDockWindow("###TexTitle", gContext.appState.mainViewportId);
 
-        ImGui::DockBuilderFinish(gContext.mainViewportId);
+        ImGui::DockBuilderFinish(gContext.appState.mainViewportId);
     }
 
     if (ImGui::Begin("Ankush's Garage - ToolBox"))
@@ -177,18 +178,18 @@ void Core::ImGuiCore::Update()
             }
         }
 
-        if (ImGui::BeginCombo("Project", names[gContext.projectIndex]))
+        if (ImGui::BeginCombo("Project", names[gContext.appState.projectIndex]))
         {
             for (int i = 0; i < Projects.size(); i++)
             {
-                bool isSelected = (gContext.projectIndex == i);
+                bool isSelected = (gContext.appState.projectIndex == i);
                 if (ImGui::Selectable(names[i], isSelected))
                 {
-                    if (i != gContext.projectIndex)
+                    if (i != gContext.appState.projectIndex)
                     {
-                        Projects[gContext.projectIndex]->Quit();
-                        gContext.projectIndex = i;
-                        Projects[gContext.projectIndex]->Init();
+                        Projects[gContext.appState.projectIndex]->Quit();
+                        gContext.appState.projectIndex = i;
+                        Projects[gContext.appState.projectIndex]->Init();
                     }
                 }
                 if (isSelected) ImGui::SetItemDefaultFocus();
@@ -262,7 +263,7 @@ void Core::ImGuiCore::Update()
     // look at ff4cb73 for reference.
     if (Common::BaseProject::hasUI)
     {
-        if (auto imgui_project = dynamic_cast<Common::ImGuiUI *>(Projects[gContext.projectIndex].get()))
+        if (auto imgui_project = dynamic_cast<Common::ImGuiUI *>(Projects[gContext.appState.projectIndex].get()))
         {
             imgui_project->DrawUI();
         }
@@ -274,11 +275,11 @@ void Core::ImGuiCore::Draw()
     ImGui::Render();
     ImDrawData *drawData = ImGui::GetDrawData();
 
-    SDL_GPUCommandBuffer *commandBuffer = SDL_AcquireGPUCommandBuffer(gContext.device);
+    SDL_GPUCommandBuffer *commandBuffer = SDL_AcquireGPUCommandBuffer(gContext.renderData.device);
     if (!commandBuffer) { throw SDL_Exception("AcquireGPUCommandBuffer failed!"); }
 
     SDL_GPUTexture *swapchainTexture;
-    if (!SDL_AcquireGPUSwapchainTexture(commandBuffer, gContext.window, &swapchainTexture, nullptr,
+    if (!SDL_AcquireGPUSwapchainTexture(commandBuffer, gContext.renderData.window, &swapchainTexture, nullptr,
                                         nullptr))
     {
         throw SDL_Exception("WaitAndAcquireGPUSwapchainTexture failed!");

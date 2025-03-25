@@ -63,7 +63,7 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
 {
     PROFILE_SCOPE;
     ImGui_ImplSDL3_ProcessEvent(event);
-    return Core::EventHandler::handleEvents(event);
+    return Core::EventHandler::handleEvents(event, gContext.inputHandler);
 }
 
 SDL_AppResult SDL_AppIterate(void *appstate)
@@ -73,11 +73,11 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         PROFILE_SCOPE;
         Utils::Time::updateDeltaTime();
 
-        Projects[gContext.projectIndex]->Update();
+        Projects[gContext.appState.projectIndex]->Update();
 
         // no need to draw if window is minimised. But sure need to update the state. If needed
         // pause it. Idk why I keep updating like it even matters. But gud design if it ever matters
-        if (SDL_GetWindowFlags(gContext.window) & SDL_WINDOW_MINIMIZED)
+        if (SDL_GetWindowFlags(gContext.renderData.window) & SDL_WINDOW_MINIMIZED)
         {
             Utils::Time::capFPS();
             return SDL_APP_CONTINUE;
@@ -92,11 +92,11 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         {
             // Draw the project to the screen ImGui window
             const auto projectWindowName =
-                "Project - " + Projects[gContext.projectIndex]->getName() + "###TexTitle";
+                "Project - " + Projects[gContext.appState.projectIndex]->getName() + "###TexTitle";
             ImGui::Begin(projectWindowName.c_str(), nullptr, ImGuiWindowFlags_NoCollapse);
 
-            const SDL_GPUTextureSamplerBinding bind {gContext.projectTexture,
-                                                     gContext.projectSampler};
+            const SDL_GPUTextureSamplerBinding bind {gContext.renderData.projectTexture,
+                                                     gContext.renderData.projectSampler};
             const auto size = ImGui::GetWindowSize();
 
             ImGui::Image((ImTextureID)&bind, {size.x, size.y - 19.0f});
@@ -126,6 +126,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         return SDL_APP_FAILURE;
     }
 
+    gContext.inputHandler.endFrame();
     Utils::Time::capFPS();
 
     PROFILE_FRAME;

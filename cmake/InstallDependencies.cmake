@@ -98,3 +98,19 @@ CPMAddPackage(
     URL https://github.com/mackron/miniaudio/archive/refs/tags/0.11.22.tar.gz
     URL_HASH SHA256=bcb07bfb27e6fa94d34da73ba2d5642d4940b208ec2a660dbf4e52e6b7cd492f
 )
+
+############################ EnTT ###############################
+
+# CPMAddPackage(
+#     NAME EnTT
+#     VERSION 3.15.0
+#     URL https://github.com/skypjack/entt/archive/refs/tags/v3.15.0.tar.gz
+#     URL_HASH SHA256=01466fcbf77618a79b62891510c0bbf25ac2804af5751c84982b413852234d66
+#     # EnTT's CMakeLists screws with configuration options
+#     DOWNLOAD_ONLY True
+# )
+
+# if (EnTT_ADDED)
+#   add_library(EnTT INTERFACE)
+#   target_include_directories(EnTT INTERFACE ${EnTT_SOURCE_DIR}/src)
+# endif()
