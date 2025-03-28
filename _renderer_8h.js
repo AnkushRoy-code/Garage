@@ -1,5 +1,5 @@
 var _renderer_8h =
 [
-    [ "Core::Renderer::DrawToTex", "namespace_core_1_1_renderer.html#a5c58c11eb3aa0c22431baa84369d4e23", null ],
+    [ "Core::Renderer::DrawProjectToTexture", "namespace_core_1_1_renderer.html#a3f9801b8e74b4c9417aa938f6fc0085a", null ],
     [ "Core::Renderer::Init", "namespace_core_1_1_renderer.html#ae5bee95c102f59cc1ee8c9b7ca693a6c", null ]
 ];

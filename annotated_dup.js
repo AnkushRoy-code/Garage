@@ -16,8 +16,12 @@ var annotated_dup =
     [ "Utils", "namespace_utils.html", [
       [ "Time", "class_utils_1_1_time.html", null ]
     ] ],
+    [ "Boids", "class_boids.html", "class_boids" ],
+    [ "Matrix4x4", "struct_matrix4x4.html", "struct_matrix4x4" ],
     [ "ScrollingBuffer", "struct_scrolling_buffer.html", "struct_scrolling_buffer" ],
     [ "SDL_Exception", "class_s_d_l___exception.html", "class_s_d_l___exception" ],
     [ "SimpleExample", "class_simple_example.html", "class_simple_example" ],
+    [ "SpriteInstance", "struct_sprite_instance.html", "struct_sprite_instance" ],
+    [ "stbi_io_callbacks", "structstbi__io__callbacks.html", "structstbi__io__callbacks" ],
     [ "Triangle", "class_triangle.html", "class_triangle" ]
 ];

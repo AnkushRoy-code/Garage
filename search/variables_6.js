@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['index_0',['index',['../class_core_1_1_console_log_buffer.html#accdd3b8a2488a715901dbe0ccaa348dd',1,'Core::ConsoleLogBuffer']]],
-  ['inputhandler_1',['inputHandler',['../struct_core_1_1_context.html#af75ed1a0a029d3e36b8d835b56df4be7',1,'Core::Context']]]
+  ['g_0',['g',['../struct_sprite_instance.html#ae38a0f604b2bbc2afdf6e23b2c24764b',1,'SpriteInstance']]],
+  ['gcontext_1',['gContext',['../_context_8cpp.html#a87c6ab4ac0ff7845ecee242a0a854d60',1,'gContext:&#160;Context.cpp'],['../_context_8h.html#a87c6ab4ac0ff7845ecee242a0a854d60',1,'gContext:&#160;Context.cpp']]]
 ];

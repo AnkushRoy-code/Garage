@@ -125,29 +125,118 @@ $(function(){initNavTree('_common_8cpp.html',''); initResizable(true); });
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">Common.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="_common_8h_source.html">Common/Common.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_s_d_l___exception_8h_source.html">Common/SDL_Exception.h</a>&quot;</code><br />
+<code>#include &quot;SDL3/SDL_surface.h&quot;</code><br />
 <code>#include &lt;SDL3/SDL_gpu.h&gt;</code><br />
 <code>#include &lt;cassert&gt;</code><br />
 <code>#include &lt;filesystem&gt;</code><br />
 <code>#include &lt;fstream&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
+<code>#include &quot;<a class="el" href="stb__image_8h_source.html">stb_image.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_common.html">Common</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a18372412ad2fc3ce1e3240b3cf0efe78" id="r_a18372412ad2fc3ce1e3240b3cf0efe78"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18372412ad2fc3ce1e3240b3cf0efe78">STB_IMAGE_IMPLEMENTATION</a></td></tr>
+<tr class="separator:a18372412ad2fc3ce1e3240b3cf0efe78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cdb9c42c21645876b3977da46360aeb" id="r_a0cdb9c42c21645876b3977da46360aeb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0cdb9c42c21645876b3977da46360aeb">STBI_MALLOC</a>&#160;&#160;&#160;SDL_malloc</td></tr>
+<tr class="separator:a0cdb9c42c21645876b3977da46360aeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af262c72041603843d1a626953a2d0823" id="r_af262c72041603843d1a626953a2d0823"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af262c72041603843d1a626953a2d0823">STBI_REALLOC</a>&#160;&#160;&#160;SDL_realloc</td></tr>
+<tr class="separator:af262c72041603843d1a626953a2d0823"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2cc2cce48ec90c087c78c1f1d0ecf36" id="r_aa2cc2cce48ec90c087c78c1f1d0ecf36"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2cc2cce48ec90c087c78c1f1d0ecf36">STBI_FREE</a>&#160;&#160;&#160;SDL_free</td></tr>
+<tr class="separator:aa2cc2cce48ec90c087c78c1f1d0ecf36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af15296e4bf23e0ac47219d8b902a37cb" id="r_af15296e4bf23e0ac47219d8b902a37cb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af15296e4bf23e0ac47219d8b902a37cb">STBI_ONLY_HDR</a></td></tr>
+<tr class="separator:af15296e4bf23e0ac47219d8b902a37cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ac6711603d8b911cc9205b543a7fef805" id="r_ac6711603d8b911cc9205b543a7fef805"><td class="memItemLeft" align="right" valign="top">SDL_GPUShader *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_common.html#ac6711603d8b911cc9205b543a7fef805">Common::LoadShader</a> (SDL_GPUDevice *device, const std::string &amp;shaderFilename, Uint32 samplerCount, Uint32 uniformBufferCount, Uint32 storageBufferCount, Uint32 storageTextureCount)</td></tr>
 <tr class="memdesc:ac6711603d8b911cc9205b543a7fef805"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a function that returns a compiled shader after taking the path to shader.  <br /></td></tr>
 <tr class="separator:ac6711603d8b911cc9205b543a7fef805"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bfa706f5ce182cb55b0c50edb7e6066" id="r_a6bfa706f5ce182cb55b0c50edb7e6066"><td class="memItemLeft" align="right" valign="top">SDL_Surface *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_common.html#a6bfa706f5ce182cb55b0c50edb7e6066">Common::LoadImage</a> (const std::string &amp;imageFileName, int desiredChannels)</td></tr>
+<tr class="separator:a6bfa706f5ce182cb55b0c50edb7e6066"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a18372412ad2fc3ce1e3240b3cf0efe78" name="a18372412ad2fc3ce1e3240b3cf0efe78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18372412ad2fc3ce1e3240b3cf0efe78">&#9670;&#160;</a></span>STB_IMAGE_IMPLEMENTATION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STB_IMAGE_IMPLEMENTATION</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa2cc2cce48ec90c087c78c1f1d0ecf36" name="aa2cc2cce48ec90c087c78c1f1d0ecf36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2cc2cce48ec90c087c78c1f1d0ecf36">&#9670;&#160;</a></span>STBI_FREE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STBI_FREE&#160;&#160;&#160;SDL_free</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0cdb9c42c21645876b3977da46360aeb" name="a0cdb9c42c21645876b3977da46360aeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cdb9c42c21645876b3977da46360aeb">&#9670;&#160;</a></span>STBI_MALLOC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STBI_MALLOC&#160;&#160;&#160;SDL_malloc</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af15296e4bf23e0ac47219d8b902a37cb" name="af15296e4bf23e0ac47219d8b902a37cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af15296e4bf23e0ac47219d8b902a37cb">&#9670;&#160;</a></span>STBI_ONLY_HDR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STBI_ONLY_HDR</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af262c72041603843d1a626953a2d0823" name="af262c72041603843d1a626953a2d0823"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af262c72041603843d1a626953a2d0823">&#9670;&#160;</a></span>STBI_REALLOC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STBI_REALLOC&#160;&#160;&#160;SDL_realloc</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

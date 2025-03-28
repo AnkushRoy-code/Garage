@@ -10,7 +10,7 @@ var namespace_core =
       [ "Update", "namespace_core_1_1_im_gui_core.html#aaf5fd889f2e8f86422cc02251a3d7dd7", null ]
     ] ],
     [ "Renderer", "namespace_core_1_1_renderer.html", [
-      [ "DrawToTex", "namespace_core_1_1_renderer.html#a5c58c11eb3aa0c22431baa84369d4e23", null ],
+      [ "DrawProjectToTexture", "namespace_core_1_1_renderer.html#a3f9801b8e74b4c9417aa938f6fc0085a", null ],
       [ "Init", "namespace_core_1_1_renderer.html#ae5bee95c102f59cc1ee8c9b7ca693a6c", null ]
     ] ],
     [ "AppState", "struct_core_1_1_app_state.html", "struct_core_1_1_app_state" ],

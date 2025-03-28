@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['consolelogs_0',['ConsoleLogs',['../class_core_1_1_console_log_buffer.html#a1142036c112165e52cd69cc65d4f6927',1,'Core::ConsoleLogBuffer']]]
+  ['b_0',['b',['../struct_sprite_instance.html#a7f440f9be614416d98cad4f9b2ac9403',1,'SpriteInstance']]]
 ];
