@@ -3,7 +3,7 @@
 
 namespace Core::Renderer  {
 void Init();
-void DrawToTex();
+void DrawProjectToTexture();
 }
 
 #endif  // INCLUDE_RENDERER_RENDERER_H_

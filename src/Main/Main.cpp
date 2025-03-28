@@ -19,6 +19,8 @@
 #include "Common/SDL_Exception.h"
 #include "Utils/Time.h"
 
+bool HandleWindowResize();
+
 SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
 {
     try
@@ -95,6 +97,15 @@ SDL_AppResult SDL_AppIterate(void *appstate)
                 "Project - " + Projects[gContext.appState.projectIndex]->getName() + "###TexTitle";
             ImGui::Begin(projectWindowName.c_str(), nullptr, ImGuiWindowFlags_NoCollapse);
 
+            if (!HandleWindowResize())
+            {
+                ImGui::End();
+                ImGui::PopStyleVar();
+                return SDL_APP_CONTINUE;
+            }
+
+            Core::Renderer::DrawProjectToTexture();
+
             const SDL_GPUTextureSamplerBinding bind {gContext.renderData.projectTexture,
                                                      gContext.renderData.projectSampler};
             const auto size = ImGui::GetWindowSize();
@@ -104,7 +115,6 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         }
         ImGui::PopStyleVar();
 
-        Core::Renderer::DrawToTex();
         Core::ImGuiCore::Draw();
     }
 
@@ -136,4 +146,21 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 void SDL_AppQuit(void *appstate, SDL_AppResult result)
 {
     // Do stuff when needed
+}
+
+bool HandleWindowResize()
+{
+    ImVec2 view = ImGui::GetWindowSize();
+
+    if (view.x != gContext.appState.ProjectWindowX || view.y != gContext.appState.ProjectWindowY)
+    {
+        if (view.x == 0 || view.y == 0) { return false; }  // window is minimised
+        gContext.appState.ProjectWindowX = view.x;
+        gContext.appState.ProjectWindowY = view.y;
+        // RecreateFramebuffer();
+
+        return true;
+    }
+
+    return true;
 }

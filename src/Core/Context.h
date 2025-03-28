@@ -22,6 +22,8 @@ struct RenderData
 struct AppState
 {
     ImGuiID mainViewportId = 0;
+    float ProjectWindowX   = 0;
+    float ProjectWindowY   = 0;
     int projectIndex       = 0;
 };
 

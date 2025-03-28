@@ -4,6 +4,7 @@
 #include <SDL3/SDL_gpu.h>
 #include <string>
 
+
 #ifdef TRACY_ENABLE
 #    include <tracy/Tracy.hpp>
 #    define PROFILE_SCOPE         ZoneScoped
@@ -36,6 +37,8 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
                           Uint32 uniformBufferCount,
                           Uint32 storageBufferCount,
                           Uint32 storageTextureCount);
+
+SDL_Surface* LoadImage(const std::string &imageFileName, int desiredChannels);
 }  // namespace Common
 
 #endif  // INCLUDE_COMMON_COMMON_H_

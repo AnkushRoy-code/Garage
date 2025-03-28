@@ -1,11 +1,19 @@
 #include "Common/Common.h"
 #include "Common/SDL_Exception.h"
+#include "SDL3/SDL_surface.h"
 
 #include <SDL3/SDL_gpu.h>
 #include <cassert>
 #include <filesystem>
 #include <fstream>
 #include <vector>
+
+#define STB_IMAGE_IMPLEMENTATION
+#define STBI_MALLOC  SDL_malloc
+#define STBI_REALLOC SDL_realloc
+#define STBI_FREE    SDL_free
+#define STBI_ONLY_HDR
+#include "stb_image.h"
 
 namespace Common
 {
@@ -76,6 +84,42 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
     if (shader == nullptr) { throw SDL_Exception("Failed to create Shader"); }
 
     return shader;
+}
+
+SDL_Surface *LoadImage(const std::string &imageFileName, int desiredChannels)
+{
+    static bool basePathFound = false;
+    static std::string BasePath {};
+
+    if (!basePathFound)
+    {
+        BasePath      = SDL_GetBasePath();
+        basePathFound = true;
+    }
+
+    std::string fullPath {};
+    SDL_Surface *result;
+    SDL_PixelFormat format;
+
+    fullPath = BasePath + "res/Images/" + (imageFileName + ".bmp");
+
+    result = SDL_LoadBMP(fullPath.c_str());
+    if (result == nullptr) { throw SDL_Exception("Failed to create image"); }
+
+    if (desiredChannels == 4) { format = SDL_PIXELFORMAT_ABGR8888; }
+    else
+    {
+        SDL_DestroySurface(result);
+        return nullptr;
+    }
+    if (result->format != format)
+    {
+        SDL_Surface *next = SDL_ConvertSurface(result, format);
+        SDL_DestroySurface(result);
+        result = next;
+    }
+
+    return result;
 }
 
 }  // namespace Common

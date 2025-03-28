@@ -5,6 +5,7 @@
 #include "Core/Console.h"
 #include "Core/Context.h"
 #include "Core/EventHandler.h"
+#include <iostream>
 
 SDL_GPUViewport Triangle::SmallViewport = {160, 120, 320, 240, 0.1f, 1.0f};
 SDL_Rect Triangle::ScissorRect          = {320, 240, 320, 240};
@@ -74,11 +75,30 @@ bool Triangle::Update()
 bool Triangle::Draw()
 {
     PROFILE_SCOPE_N("Triangle::Draw");
+
+    SDL_GPUCommandBuffer *commandBufferProjects =
+        SDL_AcquireGPUCommandBuffer(gContext.renderData.device);
+    if (!commandBufferProjects) { std::cerr << "failed to aquire GPU\n"; }
+
+    const SDL_GPUColorTargetInfo projectTargetInfo {
+        .texture     = gContext.renderData.projectTexture,
+        .clear_color = SDL_FColor {0.45f, 0.55f, 0.60f, 1.00f},
+        .load_op     = SDL_GPU_LOADOP_CLEAR,
+        .store_op    = SDL_GPU_STOREOP_STORE,
+        .cycle       = true,
+    };
+
+    gContext.renderData.projectPass =
+        SDL_BeginGPURenderPass(commandBufferProjects, &projectTargetInfo, 1, nullptr);
+
     SDL_BindGPUGraphicsPipeline(gContext.renderData.projectPass,
                                 UseWireframeMode ? LinePipeline : FillPipeline);
     if (UseSmallViewport) { SDL_SetGPUViewport(gContext.renderData.projectPass, &SmallViewport); }
     if (UseScissorRect) { SDL_SetGPUScissor(gContext.renderData.projectPass, &ScissorRect); }
     SDL_DrawGPUPrimitives(gContext.renderData.projectPass, 3, 1, 0, 0);
+
+    SDL_EndGPURenderPass(gContext.renderData.projectPass);
+    SDL_SubmitGPUCommandBuffer(commandBufferProjects);
 
     return true;
 }
