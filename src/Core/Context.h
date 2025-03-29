@@ -2,6 +2,7 @@
 #define INCLUDE_CORE_CONTEXT_H_
 
 #include "Core/EventHandler.h"
+
 #include <SDL3/SDL.h>
 #include <imgui.h>
 

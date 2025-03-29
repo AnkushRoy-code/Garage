@@ -2,7 +2,7 @@
 #define INCLUDE_COMMON_SDLEXCEPTION_H_
 
 #include <SDL3/SDL.h>
-#include <SDL3/SDL_error.h>
+
 #include <exception>
 #include <string>
 

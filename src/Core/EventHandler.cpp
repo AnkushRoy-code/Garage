@@ -1,4 +1,5 @@
 #include "EventHandler.h"
+
 #include "Core/Context.h"
 #include "Common/BaseProject.h"
 
@@ -12,7 +13,7 @@ Core::InputHandler::InputHandler()
 
 void Core::InputHandler::updateKey(KEY action, bool pressed)
 {
-    auto index = static_cast<std::size_t>(action);
+    const auto index = static_cast<std::size_t>(action);
     if (pressed)
     {
         if (Keys[index] == KEY_STATE::IDLE || Keys[index] == KEY_STATE::RELEASED)

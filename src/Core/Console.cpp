@@ -1,4 +1,5 @@
 #include "Console.h"
+
 #include <chrono>
 #include <sstream>
 #include <iomanip>
@@ -11,7 +12,7 @@ std::vector<ConsoleLogMessage> ConsoleLogBuffer::ConsoleLogs {};
 
 void ConsoleLogBuffer::addMessage(const std::string &msg)
 {
-    std::string timestamp      = getCurrentTime();
+    const std::string timestamp      = getCurrentTime();
     ConsoleLogMessage logEntry = {msg, timestamp};
     {
         if (ConsoleLogs.size() < MAX_MESSAGES) { ConsoleLogs.push_back(logEntry); }
@@ -30,8 +31,8 @@ const std::vector<ConsoleLogMessage> &ConsoleLogBuffer::getMessages()
 
 std::string ConsoleLogBuffer::getCurrentTime()
 {
-    auto now       = std::chrono::system_clock::now();
-    auto in_time_t = std::chrono::system_clock::to_time_t(now);
+    const auto now       = std::chrono::system_clock::now();
+    const auto in_time_t = std::chrono::system_clock::to_time_t(now);
     std::tm tm_buf {};
 #ifdef _WIN32
     localtime_s(&tm_buf, &in_time_t);

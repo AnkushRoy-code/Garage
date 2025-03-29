@@ -6,10 +6,9 @@
 #include "Common/SDL_Exception.h"
 #include "Utils/Time.h"
 
-#include <SDL3/SDL_gpu.h>
-
 #include <filesystem>
 
+#include <SDL3/SDL_gpu.h>
 #include <implot.h>
 #include <backends/imgui_impl_sdl3.h>
 #include <backends/imgui_impl_sdlgpu3.h>
@@ -136,7 +135,7 @@ void Core::ImGuiCore::Update()
 
     static bool imguiIniExists = std::filesystem::exists("imgui.ini");
     static bool firstTime      = true;
-    static const auto vpID = gContext.appState.mainViewportId;
+    static const auto vpID     = gContext.appState.mainViewportId;
 
     if (firstTime && !imguiIniExists)
     {
@@ -144,16 +143,20 @@ void Core::ImGuiCore::Update()
 
         ImGui::DockBuilderRemoveNode(gContext.appState.mainViewportId);
         ImGui::DockBuilderAddNode(gContext.appState.mainViewportId);
-        ImGui::DockBuilderSetNodeSize(gContext.appState.mainViewportId, ImGui::GetMainViewport()->Size);
+        ImGui::DockBuilderSetNodeSize(gContext.appState.mainViewportId,
+                                      ImGui::GetMainViewport()->Size);
 
-        auto dockIdRight = ImGui::DockBuilderSplitNode(gContext.appState.mainViewportId, ImGuiDir_Right,
-                                                       0.25, nullptr, &gContext.appState.mainViewportId);
+        auto dockIdRight =
+            ImGui::DockBuilderSplitNode(gContext.appState.mainViewportId, ImGuiDir_Right, 0.25,
+                                        nullptr, &gContext.appState.mainViewportId);
 
-        auto dockIdBottom = ImGui::DockBuilderSplitNode(gContext.appState.mainViewportId, ImGuiDir_Down, 0.3,
-                                                        nullptr, &gContext.appState.mainViewportId);
+        auto dockIdBottom =
+            ImGui::DockBuilderSplitNode(gContext.appState.mainViewportId, ImGuiDir_Down, 0.3,
+                                        nullptr, &gContext.appState.mainViewportId);
 
-        auto dockIdLeft = ImGui::DockBuilderSplitNode(gContext.appState.mainViewportId, ImGuiDir_Left, 0.25,
-                                                      nullptr, &gContext.appState.mainViewportId);
+        auto dockIdLeft =
+            ImGui::DockBuilderSplitNode(gContext.appState.mainViewportId, ImGuiDir_Left, 0.25,
+                                        nullptr, &gContext.appState.mainViewportId);
 
         ImGui::DockBuilderDockWindow("Ankush's Garage - ToolBox", dockIdLeft);
         ImGui::DockBuilderDockWindow("Console", dockIdBottom);
@@ -166,11 +169,11 @@ void Core::ImGuiCore::Update()
     if (ImGui::Begin("Ankush's Garage - ToolBox"))
     {
         static std::vector<const char *> names;
-        static bool firstTime = true;
+        static bool firsstTime = true;
 
-        if (firstTime)
+        if (firsstTime)
         {
-            firstTime = false;
+            firsstTime = false;
             names.reserve(Projects.size());
             for (const auto &project: Projects)
             {
@@ -182,7 +185,7 @@ void Core::ImGuiCore::Update()
         {
             for (int i = 0; i < Projects.size(); i++)
             {
-                bool isSelected = (gContext.appState.projectIndex == i);
+                const bool isSelected = (gContext.appState.projectIndex == i);
                 if (ImGui::Selectable(names[i], isSelected))
                 {
                     if (i != gContext.appState.projectIndex)
@@ -201,7 +204,7 @@ void Core::ImGuiCore::Update()
             static ScrollingBuffer fpsBuf;
             const float currentTime = Utils::Time::getTicks() / 1000.0f;
             const float deltaTime   = Utils::Time::deltaTime();
-            float fps               = 1000.0f / deltaTime;
+            const float fps               = 1000.0f / deltaTime;
             static float t          = 0;
             t += deltaTime / 1000.0;
 
@@ -216,7 +219,7 @@ void Core::ImGuiCore::Update()
             {
                 ImPlot::SetupAxes("Time (s)", "FPS", flags, 0);
                 ImPlot::SetupAxisLimits(ImAxis_X1, t - history, t, ImGuiCond_Always);
-                ImPlot::SetupAxisLimits(ImAxis_Y1, -1, 60);
+                ImPlot::SetupAxisLimits(ImAxis_Y1, -1, 65);
 
                 ImPlot::PlotLine("FPS", &fpsBuf.Data[0].x, &fpsBuf.Data[0].y, fpsBuf.Data.size(), 0,
                                  fpsBuf.Offset, 2 * sizeof(float));
@@ -263,7 +266,8 @@ void Core::ImGuiCore::Update()
     // look at ff4cb73 for reference.
     if (Common::BaseProject::hasUI)
     {
-        if (auto imgui_project = dynamic_cast<Common::ImGuiUI *>(Projects[gContext.appState.projectIndex].get()))
+        if (auto imgui_project =
+                dynamic_cast<Common::ImGuiUI *>(Projects[gContext.appState.projectIndex].get()))
         {
             imgui_project->DrawUI();
         }
@@ -279,8 +283,8 @@ void Core::ImGuiCore::Draw()
     if (!commandBuffer) { throw SDL_Exception("AcquireGPUCommandBuffer failed!"); }
 
     SDL_GPUTexture *swapchainTexture;
-    if (!SDL_AcquireGPUSwapchainTexture(commandBuffer, gContext.renderData.window, &swapchainTexture, nullptr,
-                                        nullptr))
+    if (!SDL_AcquireGPUSwapchainTexture(commandBuffer, gContext.renderData.window,
+                                        &swapchainTexture, nullptr, nullptr))
     {
         throw SDL_Exception("WaitAndAcquireGPUSwapchainTexture failed!");
     }

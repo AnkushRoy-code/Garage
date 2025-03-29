@@ -82,6 +82,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         if (SDL_GetWindowFlags(gContext.renderData.window) & SDL_WINDOW_MINIMIZED)
         {
             Utils::Time::capFPS();
+            Core::ConsoleLogBuffer::addMessage("The thing is minimised...");
             return SDL_APP_CONTINUE;
         }
 

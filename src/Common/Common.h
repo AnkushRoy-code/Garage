@@ -2,6 +2,7 @@
 #define INCLUDE_COMMON_COMMON_H_
 
 #include <SDL3/SDL_gpu.h>
+
 #include <string>
 
 

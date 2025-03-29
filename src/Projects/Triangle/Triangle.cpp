@@ -30,16 +30,18 @@ bool Triangle::Init()
         Common::LoadShader(gContext.renderData.device, "SolidColor.frag", 0, 0, 0, 0);
     if (fragmentShader == nullptr) { throw SDL_Exception("Failed to create fragment shader!"); }
 
-    SDL_GPUColorTargetDescription colorTargetDesc = {};
-    colorTargetDesc.format =
-        SDL_GetGPUSwapchainTextureFormat(gContext.renderData.device, gContext.renderData.window);
+    const SDL_GPUColorTargetDescription colorTargetDesc = {
+        .format = SDL_GetGPUSwapchainTextureFormat(gContext.renderData.device,
+                                                   gContext.renderData.window),
+    };
 
-    SDL_GPUGraphicsPipelineCreateInfo pipelineCreateInfo {};
-    pipelineCreateInfo.vertex_shader                         = vertexShader;
-    pipelineCreateInfo.fragment_shader                       = fragmentShader;
-    pipelineCreateInfo.primitive_type                        = SDL_GPU_PRIMITIVETYPE_TRIANGLELIST;
-    pipelineCreateInfo.target_info.color_target_descriptions = &colorTargetDesc;
-    pipelineCreateInfo.target_info.num_color_targets         = 1;
+    SDL_GPUGraphicsPipelineCreateInfo pipelineCreateInfo {
+        .vertex_shader   = vertexShader,
+        .fragment_shader = fragmentShader,
+        .primitive_type  = SDL_GPU_PRIMITIVETYPE_TRIANGLELIST,
+    };
+    pipelineCreateInfo.target_info.color_target_descriptions = &colorTargetDesc,
+    pipelineCreateInfo.target_info.num_color_targets         = 1,
 
     pipelineCreateInfo.rasterizer_state.fill_mode = SDL_GPU_FILLMODE_FILL;
     FillPipeline = SDL_CreateGPUGraphicsPipeline(gContext.renderData.device, &pipelineCreateInfo);

@@ -2,7 +2,6 @@
 
 #include "Core/ImGuiCore/ImGuiCore.h"
 #include "Core/Renderer/Renderer.h"
-#include "SDL3/SDL_video.h"
 #include "Common/SDL_Exception.h"
 #include "Utils/Time.h"
 
