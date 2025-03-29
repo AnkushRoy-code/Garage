@@ -7,15 +7,12 @@
 typedef struct SpriteInstance
 {
     float x, y, z;
-    float size;
-    float r, g, b, a;
     float rotation;
-    float _padding[3];
+    float r, g, b, a;
 } SpriteInstance;
 
 struct data {
     float r, g, b, a;
-    float size;
     float rotation;
 };
 

@@ -1,9 +1,8 @@
 struct SpriteData
 {
     float3 Position;
-    float Size;
-    float4 Color;
     float Rotation;
+    float4 Color;
 };
 
 struct Output
@@ -35,7 +34,7 @@ Output main(uint id : SV_VertexID)
     float s = sin(sprite.Rotation);
 
     float2 coord = vertexPos[vert];
-    coord *= sprite.Size;
+    coord *= 16.0f; // size = 16.0f
     float2x2 rotation = {c, s, -s, c};
     coord = mul(coord, rotation);
 

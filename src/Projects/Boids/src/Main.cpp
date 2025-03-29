@@ -15,9 +15,9 @@ bool Boids::Init()
     hasUI = true;
 
     SDL_GPUShader *vertShader =
-        Common::LoadShader(gContext.renderData.device, "PullSpriteBatchMy.vert", 0, 1, 1, 0);
+        Common::LoadShader(gContext.renderData.device, "PullSpriteBatch.vert", 0, 1, 1, 0);
     SDL_GPUShader *fragShader =
-        Common::LoadShader(gContext.renderData.device, "TexturedQuadColorMy.frag", 0, 0, 0, 0);
+        Common::LoadShader(gContext.renderData.device, "TexturedQuadColor.frag", 0, 0, 0, 0);
 
     SDL_srand(0);
 
@@ -67,9 +67,7 @@ bool Boids::Init()
     BoidsData.g        = 1.0f;
     BoidsData.b        = 1.0f;
     BoidsData.a        = 1.0f;
-    BoidsData.size     = 32;
     BoidsData.rotation = 1;
-
     return true;
 }
 bool Boids::Update()
@@ -121,7 +119,6 @@ bool Boids::Draw()
             dataPtr[i].x        = i * 50 % (int)w;
             dataPtr[i].y        = i * 50 % (int)h;
             dataPtr[i].z        = 0.0f;
-            dataPtr[i].size     = BoidsData.size;
             dataPtr[i].r        = BoidsData.r;
             dataPtr[i].g        = BoidsData.g;
             dataPtr[i].b        = BoidsData.b;
@@ -183,7 +180,6 @@ bool Boids::DrawUI()
         ImGui::SliderFloat("G", &BoidsData.g, 0, 1);
         ImGui::SliderFloat("B", &BoidsData.b, 0, 1);
         ImGui::SliderFloat("A", &BoidsData.a, 0, 1);
-        ImGui::SliderFloat("Size", &BoidsData.size, 16, 64);
         ImGui::SliderFloat("Rotation", &BoidsData.rotation, -1, 1);
 
         ImGui::End();
