@@ -1,16 +1,4 @@
 var searchData=
 [
-  ['r_0',['r',['../struct_sprite_instance.html#a198cbf2a32a13684e6c9c04700998bd5',1,'SpriteInstance']]],
-  ['read_1',['read',['../structstbi__io__callbacks.html#a623e46b3a2a019611601409926283a88',1,'stbi_io_callbacks']]],
-  ['registerallprojects_2',['registerAllProjects',['../class_common_1_1_project_manager.html#ab0506e770cdb70dcacde7626dce42ba0',1,'Common::ProjectManager']]],
-  ['registerproject_3',['registerProject',['../class_common_1_1_project_manager.html#a830faca7f70f5e85b7df417086ff54f3',1,'Common::ProjectManager']]],
-  ['registerprojects_2ecpp_4',['RegisterProjects.cpp',['../_register_projects_8cpp.html',1,'']]],
-  ['released_5',['RELEASED',['../namespace_core.html#a5d0e1ed351134590764ed1f6afbb1761af24329d27f3ccc150074739b72888980',1,'Core']]],
-  ['renderdata_6',['RenderData',['../struct_core_1_1_render_data.html',1,'Core']]],
-  ['renderdata_7',['renderData',['../struct_core_1_1_context.html#a82382780d4c92f67f9a9999c29a7a488',1,'Core::Context']]],
-  ['renderer_2ecpp_8',['Renderer.cpp',['../_renderer_8cpp.html',1,'']]],
-  ['renderer_2eh_9',['Renderer.h',['../_renderer_8h.html',1,'']]],
-  ['renderpipeline_10',['RenderPipeline',['../class_boids.html#af5043229e8d085d25a86703fce4b4348',1,'Boids']]],
-  ['right_11',['RIGHT',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17a6cdb4bd934713688e25f9e0432058d09',1,'Core']]],
-  ['rotation_12',['rotation',['../struct_sprite_instance.html#a3ee0844177f2b3f09c7575e81ebafaf7',1,'SpriteInstance']]]
+  ['quit_0',['Quit',['../class_common_1_1_base_project.html#a1062f949e0880ddd59b38eb5adb9f78a',1,'Common::BaseProject::Quit()'],['../class_boids.html#a1e4af2dd090dfaf7bdf27d595b1bc54f',1,'Boids::Quit()'],['../class_simple_example.html#af02b7f4595c57cf00b8e51e1bb18d87f',1,'SimpleExample::Quit()'],['../class_triangle.html#aa60c86332131f5c43ac858511bf98423',1,'Triangle::Quit()'],['../namespace_core_1_1_im_gui_core.html#ac8076911122e6180ff213ee9c82219eb',1,'Core::ImGuiCore::Quit()']]]
 ];

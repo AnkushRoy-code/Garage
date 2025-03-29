@@ -9,6 +9,7 @@ var hierarchy =
     [ "Core::ConsoleLogBuffer", "class_core_1_1_console_log_buffer.html", null ],
     [ "Core::ConsoleLogMessage", "struct_core_1_1_console_log_message.html", null ],
     [ "Core::Context", "struct_core_1_1_context.html", null ],
+    [ "data", "structdata.html", null ],
     [ "std::exception", null, [
       [ "SDL_Exception", "class_s_d_l___exception.html", null ]
     ] ],
