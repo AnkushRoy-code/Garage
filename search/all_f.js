@@ -1,18 +1,4 @@
 var searchData=
 [
-  ['particle_20simulator_0',['Particle Simulator',['../index.html#autotoc_md7',1,'']]],
-  ['per_20example_1',['Per Example',['../md_usage.html#autotoc_md3',1,'']]],
-  ['pressed_2',['PRESSED',['../namespace_core.html#a5d0e1ed351134590764ed1f6afbb1761ab0d535bd04b3d212573e20e183c55722',1,'Core']]],
-  ['profile_5fframe_3',['PROFILE_FRAME',['../_common_8h.html#a9cc6505623e4f99286930e44756ce139',1,'Common.h']]],
-  ['profile_5fscope_4',['PROFILE_SCOPE',['../_common_8h.html#af70a0509f450d49a82d2ba2e5b9a60b6',1,'Common.h']]],
-  ['profile_5fscope_5fn_5',['PROFILE_SCOPE_N',['../_common_8h.html#a862fd40aa252ac8fc0ff6ad0aff3a3af',1,'Common.h']]],
-  ['projectindex_6',['projectIndex',['../struct_core_1_1_app_state.html#ae7c1b77e86c607297ea4102320a2fbe4',1,'Core::AppState']]],
-  ['projectmanager_7',['ProjectManager',['../class_common_1_1_project_manager.html',1,'Common']]],
-  ['projectpass_8',['projectPass',['../struct_core_1_1_render_data.html#a57c73bfa6ef85ad3b8d6d7b47dcdbd34',1,'Core::RenderData']]],
-  ['projects_9',['Projects',['../index.html#autotoc_md6',1,'My Projects'],['../_base_project_8cpp.html#a640ddc02f53b79b66ecd72bd76754321',1,'Projects:&#160;BaseProject.cpp'],['../_base_project_8h.html#a640ddc02f53b79b66ecd72bd76754321',1,'Projects:&#160;BaseProject.cpp']]],
-  ['projects_10',['projects',['../class_common_1_1_project_manager.html#a99f24d7937f6c05a9d42af11405fb4cf',1,'Common::ProjectManager']]],
-  ['projectsampler_11',['projectSampler',['../struct_core_1_1_render_data.html#a64f6d2c3587755dac7b617c9267346ba',1,'Core::RenderData']]],
-  ['projecttexture_12',['projectTexture',['../struct_core_1_1_render_data.html#aa3025193b75bbefe1ef20e63d2753dc5',1,'Core::RenderData']]],
-  ['projectwindowx_13',['ProjectWindowX',['../struct_core_1_1_app_state.html#a0f65c5f810056c7bea1fb4361c17161f',1,'Core::AppState']]],
-  ['projectwindowy_14',['ProjectWindowY',['../struct_core_1_1_app_state.html#aaf4387fd51e86420ee369c2a1d00f178',1,'Core::AppState']]]
+  ['quit_0',['Quit',['../class_common_1_1_base_project.html#a1062f949e0880ddd59b38eb5adb9f78a',1,'Common::BaseProject::Quit()'],['../class_boids.html#a1e4af2dd090dfaf7bdf27d595b1bc54f',1,'Boids::Quit()'],['../class_simple_example.html#af02b7f4595c57cf00b8e51e1bb18d87f',1,'SimpleExample::Quit()'],['../class_triangle.html#aa60c86332131f5c43ac858511bf98423',1,'Triangle::Quit()'],['../namespace_core_1_1_im_gui_core.html#ac8076911122e6180ff213ee9c82219eb',1,'Core::ImGuiCore::Quit()']]]
 ];

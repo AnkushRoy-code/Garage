@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['a_0',['A',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17a5b4f4ca4aff7dc49ad1f72bcc19e4d6e',1,'Core']]],
-  ['a_1',['a',['../struct_sprite_instance.html#ad2d099ac6dd17178f5e9811beaaaf486',1,'SpriteInstance::a'],['../structdata.html#a2f3e4b7c65027c87d3666b1f3c0b9017',1,'data::a']]],
-  ['addmessage_2',['addMessage',['../class_core_1_1_console_log_buffer.html#a54b45313a7c2ca8ca44c77ca57463765',1,'Core::ConsoleLogBuffer']]],
-  ['addpoint_3',['AddPoint',['../struct_scrolling_buffer.html#ac70901a6df22ecc9d80175f7b489d3e4',1,'ScrollingBuffer']]],
-  ['ankush_20s_20garage_4',['Ankush&apos;s Garage',['../index.html',1,'']]],
-  ['appstate_5',['AppState',['../struct_core_1_1_app_state.html',1,'Core']]],
-  ['appstate_6',['appState',['../struct_core_1_1_context.html#adfe3f7cb498fd5b6eb5213b51eb6293b',1,'Core::Context']]]
+  ['b_0',['b',['../struct_sprite_instance.html#a7f440f9be614416d98cad4f9b2ac9403',1,'SpriteInstance::b'],['../structdata.html#a5106f799bdfe6d35234d5fef93ec5d7d',1,'data::b']]],
+  ['baseproject_1',['BaseProject',['../class_common_1_1_base_project.html',1,'Common']]],
+  ['baseproject_2ecpp_2',['BaseProject.cpp',['../_base_project_8cpp.html',1,'']]],
+  ['baseproject_2eh_3',['BaseProject.h',['../_base_project_8h.html',1,'']]],
+  ['boids_4',['Boids',['../class_boids.html',1,'']]],
+  ['boidsdata_5',['BoidsData',['../_projects_2_boids_2src_2_main_8cpp.html#a381116f82f086ba82a4deb8a52900c4b',1,'BoidsData:&#160;Main.cpp'],['../_main_8h.html#a381116f82f086ba82a4deb8a52900c4b',1,'BoidsData:&#160;Main.cpp']]]
 ];

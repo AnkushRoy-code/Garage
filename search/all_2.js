@@ -1,9 +1,20 @@
 var searchData=
 [
-  ['b_0',['b',['../struct_sprite_instance.html#a7f440f9be614416d98cad4f9b2ac9403',1,'SpriteInstance::b'],['../structdata.html#a5106f799bdfe6d35234d5fef93ec5d7d',1,'data::b']]],
-  ['baseproject_1',['BaseProject',['../class_common_1_1_base_project.html',1,'Common']]],
-  ['baseproject_2ecpp_2',['BaseProject.cpp',['../_base_project_8cpp.html',1,'']]],
-  ['baseproject_2eh_3',['BaseProject.h',['../_base_project_8h.html',1,'']]],
-  ['boids_4',['Boids',['../class_boids.html',1,'']]],
-  ['boidsdata_5',['BoidsData',['../_projects_2_boids_2src_2_main_8cpp.html#a381116f82f086ba82a4deb8a52900c4b',1,'BoidsData:&#160;Main.cpp'],['../_main_8h.html#a381116f82f086ba82a4deb8a52900c4b',1,'BoidsData:&#160;Main.cpp']]]
+  ['capfps_0',['capFPS',['../class_utils_1_1_time.html#ae98651118e44c639e978db5e95b58c1f',1,'Utils::Time']]],
+  ['common_1',['Common',['../namespace_common.html',1,'']]],
+  ['common_2ecpp_2',['Common.cpp',['../_common_8cpp.html',1,'']]],
+  ['common_2eh_3',['Common.h',['../_common_8h.html',1,'']]],
+  ['console_2ecpp_4',['Console.cpp',['../_console_8cpp.html',1,'']]],
+  ['console_2eh_5',['Console.h',['../_console_8h.html',1,'']]],
+  ['consolelogbuffer_6',['ConsoleLogBuffer',['../class_core_1_1_console_log_buffer.html',1,'Core']]],
+  ['consolelogmessage_7',['ConsoleLogMessage',['../struct_core_1_1_console_log_message.html',1,'Core']]],
+  ['consolelogs_8',['ConsoleLogs',['../class_core_1_1_console_log_buffer.html#a1142036c112165e52cd69cc65d4f6927',1,'Core::ConsoleLogBuffer']]],
+  ['context_9',['Context',['../struct_core_1_1_context.html',1,'Core::Context'],['../struct_core_1_1_context.html#ab03c1d0058a43aec9f49755072c5399f',1,'Core::Context::Context()']]],
+  ['context_2ecpp_10',['Context.cpp',['../_context_8cpp.html',1,'']]],
+  ['context_2eh_11',['Context.h',['../_context_8h.html',1,'']]],
+  ['core_12',['Core',['../namespace_core.html',1,'']]],
+  ['core_3a_3aeventhandler_13',['EventHandler',['../namespace_core_1_1_event_handler.html',1,'Core']]],
+  ['core_3a_3aimguicore_14',['ImGuiCore',['../namespace_core_1_1_im_gui_core.html',1,'Core']]],
+  ['core_3a_3arenderer_15',['Renderer',['../namespace_core_1_1_renderer.html',1,'Core']]],
+  ['count_16',['COUNT',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17a1be400d5e61f648476e94b5629a21992',1,'Core']]]
 ];

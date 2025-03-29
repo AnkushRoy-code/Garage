@@ -7,5 +7,7 @@ var dir_a2f0e5642e47e7ed59fe0f0829eafb5f =
     [ "Context.cpp", "_context_8cpp.html", "_context_8cpp" ],
     [ "Context.h", "_context_8h.html", "_context_8h" ],
     [ "EventHandler.cpp", "_event_handler_8cpp.html", null ],
-    [ "EventHandler.h", "_event_handler_8h.html", "_event_handler_8h" ]
+    [ "EventHandler.h", "_event_handler_8h.html", "_event_handler_8h" ],
+    [ "Music.cpp", "_music_8cpp.html", null ],
+    [ "Music.h", "_music_8h.html", null ]
 ];
