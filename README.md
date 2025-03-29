@@ -1,28 +1,33 @@
 # Garage
-A simple Garage where I (plan to) put up all of my past projects. That is Cross
-Platform and Cross GPU_API? It can run in all `Metal`/`Vulkan`/`DX11` or `DX12` IDK
-It's all possible just because of SDL_GPU_API
+A simple Garage where I put up some of my projects. That is Cross Platform. It
+can run in all `Metal`/`Vulkan`/`DX11` or `DX12` idk. It's all possible just
+because of SDL_GPU_API
 
-## Yapping
-You can compile it easily if you have a newer version of `c++ compiler` I have
-tested it to have been compiled by `gcc`, `clang`, `msvc`, `Visual Studio`.
+## Compilation
+Compiling is straightforward, you just need a modern C++ compiler. It has been tested with:
+- `gcc`
+- `clang`
+- `msvc`
+- `Visual Studio`
 
-Also you'd need `CMake` I can't think of any other dependency. But if something
-doesn't compile please open an issue I'll look into that. All other libraries
-are auto fetched using `CPM` that also is fetched using `CMake` so you don't
-have to worry about most of the dependencies :)
-
-Yeah you also need `git` to clone the repo or just download the `.zip` file
-from Github, I might talk useless stuff but I am not teaching you how to do
-that.
-
-Okay, now. The commands.
+## Dependencies
+- CMake (If you have a CMake version less than 3.30 then change the root `CMakeLists.txt:01` to something less)
+- Git
+- A C/C++ compiler that supports C++23 or more.
+- Additional Dependencies (That you do not have to worry about):
+  - SDL3
+  - Dear ImGui
+  - ImPlot
+  - Tracy Profiler (Off by default)
+  - miniaudio
 
 ### Clone
 ```bash
 git clone --depth=1 https://github.com/AnkushRoy-code/Garage.git
 ```
-Remove `--depth=1` if you want to work on my Garage.
+
+> [!NOTE]
+> Remove `--depth=1` if you want to clone the old stuff.
 
 ### Build
 
@@ -33,20 +38,26 @@ cd Garage
 # make the build files
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 ```
-
-You can add `-G` flag to generate your favourite make system. For example
-`cmake -G "Unix Makefiles"`.
+> [!NOTE]
+> You can add `-G` flag to generate your favourite make system. For example `cmake -G "Unix Makefiles"`.
 
 #### Compile the project
+For Visual Studio users, open the `.sln` file, make sure to select `Garage.exe` as the target (as it may default to something else), and build the project from there.
+
 ```bash
 cmake --build build --config Release -j 8
 ```
-Building will take time because it builds the whole SDL3 repo. A very big
-project. Takes about 3 mins in my potato lappy.
+> [!NOTE]
+> Building this for the first time will take a while.
 
-If you're using Visual Studio just open the `.sln` file in you VS and compile & run it.
+### Running the Project
+If compiled via CLI (not Visual Studio), the executable is located at `build/src/Main/Garage`. Run it using:
+```bash
+# Navigate to the executable's directory
+cd src/Main && ./Garage
+```
+Or simply:
+```bash
+./src/Main/Garage
+```
 
-#### Running the project
-The compiled executable is present in `build/src/Main/Garage` if you compiled
-it using the `cli` and not `Visual Studio`, you can run it by either cd to
-`src/Main` and `./Garage` or just directly do `./src/Main/Garage` both of these work.
