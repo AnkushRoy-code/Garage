@@ -82,7 +82,7 @@ bool Triangle::Draw()
 
     const SDL_GPUColorTargetInfo projectTargetInfo {
         .texture     = gContext.renderData.projectTexture,
-        .clear_color = SDL_FColor {0.45f, 0.55f, 0.60f, 1.00f},
+        .clear_color = {0.45f, 0.55f, 0.60f, 1.00f},
         .load_op     = SDL_GPU_LOADOP_CLEAR,
         .store_op    = SDL_GPU_STOREOP_STORE,
         .cycle       = true,

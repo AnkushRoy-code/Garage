@@ -1,17 +1,14 @@
 struct SpriteData
 {
     float3 Position;
-    float Rotation;
-    float2 Scale;
-    float2 Padding;
-    float TexU, TexV, TexW, TexH;
+    float Size;
     float4 Color;
+    float Rotation;
 };
 
 struct Output
-{
-    float2 Texcoord : TEXCOORD0;
-    float4 Color : TEXCOORD1;
+{    
+    float4 Color : TEXCOORD0;
     float4 Position : SV_Position;
 };
 
@@ -22,32 +19,23 @@ cbuffer UniformBlock : register(b0, space1)
     float4x4 ViewProjectionMatrix : packoffset(c0);
 };
 
-static const uint triangleIndices[6] = {0, 1, 2, 3, 2, 1};
-static const float2 vertexPos[4] = {
-    {0.0f, 0.0f},
-    {1.0f, 0.0f},
-    {0.0f, 1.0f},
-    {1.0f, 1.0f}
+static const float2 vertexPos[3] = {
+    {-0.5f, -1.0f },
+    { 0.5f, -1.0f },
+    { 0.0f,  1.0f } 
 };
 
 Output main(uint id : SV_VertexID)
 {
-    uint spriteIndex = id / 6;
-    uint vert = triangleIndices[id % 6];
+    uint spriteIndex = id / 3;
+    uint vert = id % 3;
     SpriteData sprite = DataBuffer[spriteIndex];
-
-    float2 texcoord[4] = {
-        {sprite.TexU,               sprite.TexV              },
-        {sprite.TexU + sprite.TexW, sprite.TexV              },
-        {sprite.TexU,               sprite.TexV + sprite.TexH},
-        {sprite.TexU + sprite.TexW, sprite.TexV + sprite.TexH}
-    };
 
     float c = cos(sprite.Rotation);
     float s = sin(sprite.Rotation);
 
     float2 coord = vertexPos[vert];
-    coord *= sprite.Scale;
+    coord *= sprite.Size;
     float2x2 rotation = {c, s, -s, c};
     coord = mul(coord, rotation);
 
@@ -56,7 +44,6 @@ Output main(uint id : SV_VertexID)
     Output output;
 
     output.Position = mul(ViewProjectionMatrix, float4(coordWithDepth, 1.0f));
-    output.Texcoord = texcoord[vert];
     output.Color = sprite.Color;
 
     return output;

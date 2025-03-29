@@ -1,22 +1,23 @@
 #include "Main.h"
 #include "Common/Common.h"
-#include "Common/SDL_Exception.h"
 #include "Core/Context.h"
-#include "SDL3/SDL_gpu.h"
-#include "Utils/Time.h"
+#include "imgui.h"
+#include <SDL3/SDL_gpu.h>
 #include <cmath>
 #include <iostream>
 
-static const int SPRITE_COUNT = 400;
+static const int SPRITE_COUNT = 100;
+
+data BoidsData {};
 
 bool Boids::Init()
 {
     hasUI = true;
 
     SDL_GPUShader *vertShader =
-        Common::LoadShader(gContext.renderData.device, "PullSpriteBatch.vert", 0, 1, 1, 0);
+        Common::LoadShader(gContext.renderData.device, "PullSpriteBatchMy.vert", 0, 1, 1, 0);
     SDL_GPUShader *fragShader =
-        Common::LoadShader(gContext.renderData.device, "TexturedQuadColor.frag", 1, 0, 0, 0);
+        Common::LoadShader(gContext.renderData.device, "TexturedQuadColorMy.frag", 0, 0, 0, 0);
 
     SDL_srand(0);
 
@@ -44,46 +45,10 @@ bool Boids::Init()
     createInfo.vertex_shader   = vertShader;
     createInfo.fragment_shader = fragShader;
 
-    RenderPipeline = SDL_CreateGPUGraphicsPipeline(gContext.renderData.device, &createInfo);
+    renderPipeline = SDL_CreateGPUGraphicsPipeline(gContext.renderData.device, &createInfo);
 
     SDL_ReleaseGPUShader(gContext.renderData.device, vertShader);
     SDL_ReleaseGPUShader(gContext.renderData.device, fragShader);
-
-    SDL_Surface *imageData = Common::LoadImage("Boid", 4);
-    if (imageData == nullptr) { throw SDL_Exception("Couldn't load ImageData!"); }
-
-    SDL_GPUTransferBufferCreateInfo bufCreateInfo {};
-    bufCreateInfo.usage = SDL_GPU_TRANSFERBUFFERUSAGE_UPLOAD;
-    bufCreateInfo.size  = imageData->w * imageData->h * 4;
-
-    SDL_GPUTransferBuffer *textureTransferBuffer =
-        SDL_CreateGPUTransferBuffer(gContext.renderData.device, &bufCreateInfo);
-
-    auto textureTransferPtr =
-        SDL_MapGPUTransferBuffer(gContext.renderData.device, textureTransferBuffer, false);
-    SDL_memcpy(textureTransferPtr, imageData->pixels, imageData->w * imageData->h * 4);
-    SDL_UnmapGPUTransferBuffer(gContext.renderData.device, textureTransferBuffer);
-
-    SDL_GPUTextureCreateInfo texCreateInfo {};
-    texCreateInfo.type                 = SDL_GPU_TEXTURETYPE_2D;
-    texCreateInfo.format               = SDL_GPU_TEXTUREFORMAT_R8G8B8A8_UNORM;
-    texCreateInfo.width                = imageData->w;
-    texCreateInfo.height               = imageData->h;
-    texCreateInfo.layer_count_or_depth = 1;
-    texCreateInfo.num_levels           = 1;
-    texCreateInfo.usage                = SDL_GPU_TEXTUREUSAGE_SAMPLER;
-
-    Texture = SDL_CreateGPUTexture(gContext.renderData.device, &texCreateInfo);
-
-    SDL_GPUSamplerCreateInfo samplerCreateInfo {};
-    samplerCreateInfo.min_filter     = SDL_GPU_FILTER_NEAREST;
-    samplerCreateInfo.mag_filter     = SDL_GPU_FILTER_NEAREST;
-    samplerCreateInfo.mipmap_mode    = SDL_GPU_SAMPLERMIPMAPMODE_NEAREST;
-    samplerCreateInfo.address_mode_u = SDL_GPU_SAMPLERADDRESSMODE_CLAMP_TO_EDGE;
-    samplerCreateInfo.address_mode_v = SDL_GPU_SAMPLERADDRESSMODE_CLAMP_TO_EDGE;
-    samplerCreateInfo.address_mode_w = SDL_GPU_SAMPLERADDRESSMODE_CLAMP_TO_EDGE;
-
-    Sampler = SDL_CreateGPUSampler(gContext.renderData.device, &samplerCreateInfo);
 
     SDL_GPUTransferBufferCreateInfo tBufCreateInfo {};
     tBufCreateInfo.usage = SDL_GPU_TRANSFERBUFFERUSAGE_UPLOAD;
@@ -98,27 +63,12 @@ bool Boids::Init()
 
     SpriteDataBuffer = SDL_CreateGPUBuffer(gContext.renderData.device, &newBufCreateInfo);
 
-    // Transfer the up-front data
-    SDL_GPUCommandBuffer *uploadCmdBuf = SDL_AcquireGPUCommandBuffer(gContext.renderData.device);
-    SDL_GPUCopyPass *copyPass          = SDL_BeginGPUCopyPass(uploadCmdBuf);
-
-    SDL_GPUTextureTransferInfo tTransferInfo {};
-    tTransferInfo.transfer_buffer = textureTransferBuffer;
-    tTransferInfo.offset          = 0;
-
-    SDL_GPUTextureRegion region {};
-    region.texture = Texture;
-    region.w       = imageData->w;
-    region.h       = imageData->h;
-    region.d       = 1;
-
-    SDL_UploadToGPUTexture(copyPass, &tTransferInfo, &region, false);
-
-    SDL_EndGPUCopyPass(copyPass);
-    SDL_SubmitGPUCommandBuffer(uploadCmdBuf);
-
-    SDL_DestroySurface(imageData);
-    SDL_ReleaseGPUTransferBuffer(gContext.renderData.device, textureTransferBuffer);
+    BoidsData.r        = 0.0f;
+    BoidsData.g        = 1.0f;
+    BoidsData.b        = 1.0f;
+    BoidsData.a        = 1.0f;
+    BoidsData.size     = 32;
+    BoidsData.rotation = 1;
 
     return true;
 }
@@ -166,42 +116,32 @@ bool Boids::Draw()
         auto *dataPtr = static_cast<SpriteInstance *>(
             SDL_MapGPUTransferBuffer(gContext.renderData.device, SpriteDataTransferBuffer, true));
 
-        static float uCoords[4] = {0.0f, 0.5f, 0.0f, 0.5f};
-        static float vCoords[4] = {0.0f, 0.0f, 0.5f, 0.5f};
-
-        for (Uint32 i = 0; i < SPRITE_COUNT; i += 1)
+        for (Uint32 i = 0; i < SPRITE_COUNT; i++)
         {
-            Sint32 ravioli = 0;
-            dataPtr[i].x   = (i * 200) % (int)w;
-            dataPtr[i].y   = (i * 100) % (int)h;
-            dataPtr[i].z   = 0;
-            // dataPtr[i].rotation = SDL_PI_F * 2 * std::sin(Utils::Time::getTicks() / 1000.0f);
-            dataPtr[i].rotation = SDL_PI_F * 2;
-            dataPtr[i].w        = 32;
-            dataPtr[i].h        = 32;
-            dataPtr[i].tex_u    = uCoords[ravioli];
-            dataPtr[i].tex_v    = vCoords[ravioli];
-            dataPtr[i].tex_w    = 1.0f;
-            dataPtr[i].tex_h    = 1.0f;
-            dataPtr[i].r        = 1.0f;
-            dataPtr[i].g        = 1.0f;
-            dataPtr[i].b        = 1.0f;
-            dataPtr[i].a        = 1.0f;
+            dataPtr[i].x        = i * 50 % (int)w;
+            dataPtr[i].y        = i * 50 % (int)h;
+            dataPtr[i].z        = 0.0f;
+            dataPtr[i].size     = BoidsData.size;
+            dataPtr[i].r        = BoidsData.r;
+            dataPtr[i].g        = BoidsData.g;
+            dataPtr[i].b        = BoidsData.b;
+            dataPtr[i].a        = BoidsData.a;
+            dataPtr[i].rotation = SDL_PI_F * BoidsData.rotation;
         }
 
         SDL_UnmapGPUTransferBuffer(gContext.renderData.device, SpriteDataTransferBuffer);
 
-        SDL_GPUTransferBufferLocation sm {};
-        sm.transfer_buffer = SpriteDataTransferBuffer;
-        sm.offset          = 0;
+        SDL_GPUTransferBufferLocation transferBufferLocation {};
+        transferBufferLocation.transfer_buffer = SpriteDataTransferBuffer;
+        transferBufferLocation.offset          = 0;
 
-        SDL_GPUBufferRegion sr {};
-        sr.buffer = SpriteDataBuffer;
-        sr.offset = 0;
-        sr.size   = SPRITE_COUNT * sizeof(SpriteInstance);
+        SDL_GPUBufferRegion bufferRegion {};
+        bufferRegion.buffer = SpriteDataBuffer;
+        bufferRegion.offset = 0;
+        bufferRegion.size   = SPRITE_COUNT * sizeof(SpriteInstance);
 
         SDL_GPUCopyPass *copyPass = SDL_BeginGPUCopyPass(cmdBuf);
-        SDL_UploadToGPUBuffer(copyPass, &sm, &sr, true);
+        SDL_UploadToGPUBuffer(copyPass, &transferBufferLocation, &bufferRegion, true);
         SDL_EndGPUCopyPass(copyPass);
 
         SDL_GPUColorTargetInfo tinfo {};
@@ -209,21 +149,16 @@ bool Boids::Draw()
         tinfo.cycle       = false;
         tinfo.load_op     = SDL_GPU_LOADOP_CLEAR;
         tinfo.store_op    = SDL_GPU_STOREOP_STORE;
-        tinfo.clear_color = {0.45f, 0.55f, 0.60f, 1.00f};
+        tinfo.clear_color = {0.45f, 0.55f, 0.60f, 1.00f},
 
         gContext.renderData.projectPass = SDL_BeginGPURenderPass(cmdBuf, &tinfo, 1, nullptr);
 
-        SDL_BindGPUGraphicsPipeline(gContext.renderData.projectPass, RenderPipeline);
+        SDL_BindGPUGraphicsPipeline(gContext.renderData.projectPass, renderPipeline);
         SDL_BindGPUVertexStorageBuffers(gContext.renderData.projectPass, 0, &SpriteDataBuffer, 1);
 
-        SDL_GPUTextureSamplerBinding binding {};
-        binding.texture = Texture;
-        binding.sampler = Sampler;
-
-        SDL_BindGPUFragmentSamplers(gContext.renderData.projectPass, 0, &binding, 1);
         SDL_PushGPUVertexUniformData(cmdBuf, 0, &cameraMatrix, sizeof(Matrix4x4));
 
-        SDL_DrawGPUPrimitives(gContext.renderData.projectPass, SPRITE_COUNT * 6, 1, 0, 0);
+        SDL_DrawGPUPrimitives(gContext.renderData.projectPass, SPRITE_COUNT * 3, 1, 0, 1);
 
         SDL_EndGPURenderPass(gContext.renderData.projectPass);
     }
@@ -234,14 +169,25 @@ bool Boids::Draw()
 
 void Boids::Quit()
 {
-    SDL_ReleaseGPUGraphicsPipeline(gContext.renderData.device, RenderPipeline);
-    SDL_ReleaseGPUSampler(gContext.renderData.device, Sampler);
-    SDL_ReleaseGPUTexture(gContext.renderData.device, Texture);
+    SDL_ReleaseGPUGraphicsPipeline(gContext.renderData.device, renderPipeline);
     SDL_ReleaseGPUTransferBuffer(gContext.renderData.device, SpriteDataTransferBuffer);
     SDL_ReleaseGPUBuffer(gContext.renderData.device, SpriteDataBuffer);
 }
 
 bool Boids::DrawUI()
 {
+
+    if (ImGui::Begin("Boids Controller###ProjectUI"))
+    {
+        ImGui::SliderFloat("R", &BoidsData.r, 0, 1);
+        ImGui::SliderFloat("G", &BoidsData.g, 0, 1);
+        ImGui::SliderFloat("B", &BoidsData.b, 0, 1);
+        ImGui::SliderFloat("A", &BoidsData.a, 0, 1);
+        ImGui::SliderFloat("Size", &BoidsData.size, 16, 64);
+        ImGui::SliderFloat("Rotation", &BoidsData.rotation, -1, 1);
+
+        ImGui::End();
+    }
+
     return true;
 }

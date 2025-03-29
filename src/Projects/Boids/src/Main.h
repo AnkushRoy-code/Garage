@@ -7,11 +7,19 @@
 typedef struct SpriteInstance
 {
     float x, y, z;
-    float rotation;
-    float w, h, padding_a, padding_b;
-    float tex_u, tex_v, tex_w, tex_h;
+    float size;
     float r, g, b, a;
+    float rotation;
+    float _padding[3];
 } SpriteInstance;
+
+struct data {
+    float r, g, b, a;
+    float size;
+    float rotation;
+};
+
+extern data BoidsData;
 
 typedef struct Matrix4x4
 {
@@ -21,8 +29,8 @@ typedef struct Matrix4x4
     float m41, m42, m43, m44;
 } Matrix4x4;
 
-Matrix4x4 Matrix4x4_CreateOrthographicOffCenter(float left, float right, float bottom, float top, float zNearPlane, float zFarPlane);
-
+Matrix4x4 Matrix4x4_CreateOrthographicOffCenter(
+    float left, float right, float bottom, float top, float zNearPlane, float zFarPlane);
 
 class Boids : public Common::BaseProject, public Common::ImGuiUI
 {
@@ -39,9 +47,7 @@ class Boids : public Common::BaseProject, public Common::ImGuiUI
 
     bool DrawUI() override;
 
-    SDL_GPUGraphicsPipeline *RenderPipeline;
-    SDL_GPUSampler *Sampler;
-    SDL_GPUTexture *Texture;
+    SDL_GPUGraphicsPipeline *renderPipeline;
     SDL_GPUTransferBuffer *SpriteDataTransferBuffer;
     SDL_GPUBuffer *SpriteDataBuffer;
 };
