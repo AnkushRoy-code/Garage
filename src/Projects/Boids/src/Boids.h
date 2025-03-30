@@ -1,7 +1,6 @@
 #ifndef INCLUDE_SRC_BOIDS_H_
 #define INCLUDE_SRC_BOIDS_H_
 
-#include "glm/fwd.hpp"
 #include <SDL3/SDL_pixels.h>
 #include <glm/glm.hpp>
 #include <vector>
@@ -26,15 +25,15 @@ class BoidsContainer
     [[nodiscard]] const std::vector<BoidsEntity> &getBoids() const;
 
   public:
-    glm::vec4 Color  = {0.4f, 0.2f, 0.9f, 1.0f};
-    float seperation = 10;
-    float alignment  = 14;
-    float cohesion   = 2;
+    glm::vec4 Color  = {0.455f, 0.780f, 0.925f, 0.5f};
+    float seperation = 0.05f;
+    float alignment  = 0.05f;
+    float cohesion   = 0.0005f;
 
   private:
     std::vector<BoidsEntity> BoidsVec {};
-    const unsigned int NUM_BOIDS = 10;  // changing this requires building the transfer buffers. So
-                                        // I refrained from doing that.
+    const unsigned int NUM_BOIDS = 100;  // changing this requires building the transfer buffers. So
+                                         // I refrained from doing that.
 };
 
 #endif  // INCLUDE_SRC_BOIDS_H_

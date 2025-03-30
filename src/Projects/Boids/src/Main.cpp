@@ -1,6 +1,7 @@
 #include "Main.h"
 #include "Common/Common.h"
 #include "Core/Context.h"
+#include "SDL3/SDL_stdinc.h"
 #include "imgui.h"
 #include <SDL3/SDL_gpu.h>
 #include <cmath>
@@ -125,7 +126,7 @@ bool Boids::Draw()
             dataPtr[i].g        = boidsContainer.Color.g;
             dataPtr[i].b        = boidsContainer.Color.b;
             dataPtr[i].a        = boidsContainer.Color.a;
-            dataPtr[i].rotation = boid.Rotation;
+            dataPtr[i].rotation = boid.Rotation - SDL_PI_F * 0.5;
             i++;
         }
         i = 0;
@@ -148,7 +149,7 @@ bool Boids::Draw()
         SDL_EndGPUCopyPass(copyPass);
 
         const SDL_GPUColorTargetInfo tinfo {.texture     = gContext.renderData.projectTexture,
-                                            .clear_color = {0.45f, 0.55f, 0.60f, 1.00f},
+                                            .clear_color = {0.094f, 0.094f, 0.145f, 1.00f},
                                             .load_op     = SDL_GPU_LOADOP_CLEAR,
                                             .store_op    = SDL_GPU_STOREOP_STORE,
                                             .cycle       = false};
@@ -184,9 +185,13 @@ bool Boids::DrawUI()
         ImGui::SeparatorText("Options");
         ImGui::TextWrapped("Boids Color Picker");
         ImGui::ColorEdit4("", (float *)&boidsContainer.Color, ImGuiColorEditFlags_AlphaPreviewHalf);
-        ImGui::SliderFloat("Seperation", &boidsContainer.seperation, 0, 100);
-        ImGui::SliderFloat("Alignment", &boidsContainer.alignment, 0, 100);
-        ImGui::SliderFloat("Cohesion", &boidsContainer.cohesion, 0, 100);
+        ImGui::SliderFloat("Seperation", &boidsContainer.seperation, 0.0f, 0.1f);
+        ImGui::SliderFloat("Alignment", &boidsContainer.alignment, 0.0f, 0.1f);
+        static float a = 0.05;
+        if (ImGui::SliderFloat("Cohesion", &a, 0.0f, 0.1f))
+        {  // imgui is not good with small values
+            boidsContainer.cohesion = 0.001 * a;
+        }
 
         ImGui::End();
     }
