@@ -11,4 +11,4 @@ if(TRACY_PROFILE)
 endif()
 
 target_link_libraries(Boids PRIVATE imgui glm::glm)
-target_include_directories(Boids PRIVATE "${CMAKE_SOURCE_DIR}/src" ${imgui_SOURCE_DIR})
+target_include_directories(Boids PRIVATE "${CMAKE_SOURCE_DIR}/src" ${imgui_SOURCE_DIR} ${glm_SOURCE_DIR})
