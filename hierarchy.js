@@ -6,10 +6,11 @@ var hierarchy =
       [ "SimpleExample", "class_simple_example.html", null ],
       [ "Triangle", "class_triangle.html", null ]
     ] ],
+    [ "BoidsContainer", "class_boids_container.html", null ],
+    [ "BoidsEntity", "struct_boids_entity.html", null ],
     [ "Core::ConsoleLogBuffer", "class_core_1_1_console_log_buffer.html", null ],
     [ "Core::ConsoleLogMessage", "struct_core_1_1_console_log_message.html", null ],
     [ "Core::Context", "struct_core_1_1_context.html", null ],
-    [ "data", "structdata.html", null ],
     [ "std::exception", null, [
       [ "SDL_Exception", "class_s_d_l___exception.html", null ]
     ] ],

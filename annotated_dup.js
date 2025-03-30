@@ -17,7 +17,8 @@ var annotated_dup =
       [ "Time", "class_utils_1_1_time.html", null ]
     ] ],
     [ "Boids", "class_boids.html", "class_boids" ],
-    [ "data", "structdata.html", "structdata" ],
+    [ "BoidsContainer", "class_boids_container.html", "class_boids_container" ],
+    [ "BoidsEntity", "struct_boids_entity.html", "struct_boids_entity" ],
     [ "Matrix4x4", "struct_matrix4x4.html", "struct_matrix4x4" ],
     [ "ScrollingBuffer", "struct_scrolling_buffer.html", "struct_scrolling_buffer" ],
     [ "SDL_Exception", "class_s_d_l___exception.html", "class_s_d_l___exception" ],

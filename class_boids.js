@@ -6,6 +6,7 @@ var class_boids =
     [ "Init", "class_boids.html#a0c33367616b71d17d56d873f6d674128", null ],
     [ "Quit", "class_boids.html#a1e4af2dd090dfaf7bdf27d595b1bc54f", null ],
     [ "Update", "class_boids.html#a296ceb61bd3b312228e2f068cbf6c38a", null ],
+    [ "boidsContainer", "class_boids.html#a4e27f2925600492f7da63c942cb3bc62", null ],
     [ "name", "class_boids.html#ad240d88ba3dd895b60c3870da9668bcd", null ],
     [ "renderPipeline", "class_boids.html#a7bca8f54778172a5c34b7076969ef54c", null ],
     [ "SpriteDataBuffer", "class_boids.html#ada7fc5e957ace5b4a815bdd7e0884f2c", null ],
