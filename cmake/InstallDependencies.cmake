@@ -99,6 +99,15 @@ CPMAddPackage(
     URL_HASH SHA256=bcb07bfb27e6fa94d34da73ba2d5642d4940b208ec2a660dbf4e52e6b7cd492f
 )
 
+############################ GLM ###############################
+CPMAddPackage(
+    NAME glm
+    VERSION 1.0.1
+    URL https://github.com/g-truc/glm/archive/refs/tags/1.0.1.tar.gz
+    URL_HASH SHA256=9f3174561fd26904b23f0db5e560971cbf9b3cbda0b280f04d5c379d03bf234c
+)
+
+
 ############################ EnTT ###############################
 
 # CPMAddPackage(
