@@ -2,6 +2,7 @@
 #define INCLUDE_SRC_MAIN_H_
 
 #include "Common/BaseProject.h"
+#include "Projects/Boids/src/Boids.h"
 #include "SDL3/SDL_gpu.h"
 
 typedef struct SpriteInstance
@@ -10,13 +11,6 @@ typedef struct SpriteInstance
     float rotation;
     float r, g, b, a;
 } SpriteInstance;
-
-struct data {
-    float r, g, b, a;
-    float rotation;
-};
-
-extern data BoidsData;
 
 typedef struct Matrix4x4
 {
@@ -47,6 +41,8 @@ class Boids : public Common::BaseProject, public Common::ImGuiUI
     SDL_GPUGraphicsPipeline *renderPipeline;
     SDL_GPUTransferBuffer *SpriteDataTransferBuffer;
     SDL_GPUBuffer *SpriteDataBuffer;
+
+    BoidsContainer boidsContainer {};
 };
 
 #endif  // INCLUDE_SRC_MAIN_H_

@@ -6,10 +6,6 @@
 #include <cmath>
 #include <iostream>
 
-static const int SPRITE_COUNT = 100;
-
-data BoidsData {};
-
 bool Boids::Init()
 {
     hasUI = true;
@@ -56,7 +52,7 @@ bool Boids::Init()
 
     const SDL_GPUTransferBufferCreateInfo tBufCreateInfo {
         .usage = SDL_GPU_TRANSFERBUFFERUSAGE_UPLOAD,
-        .size  = SPRITE_COUNT * sizeof(SpriteInstance),
+        .size  = static_cast<Uint32>(boidsContainer.numBoids() * sizeof(SpriteInstance)),
     };
 
     SpriteDataTransferBuffer =
@@ -64,23 +60,19 @@ bool Boids::Init()
 
     const SDL_GPUBufferCreateInfo newBufCreateInfo {
         .usage = SDL_GPU_BUFFERUSAGE_GRAPHICS_STORAGE_READ,
-        .size  = SPRITE_COUNT * sizeof(SpriteInstance),
+        .size  = static_cast<Uint32>(boidsContainer.numBoids() * sizeof(SpriteInstance)),
 
     };
 
     SpriteDataBuffer = SDL_CreateGPUBuffer(gContext.renderData.device, &newBufCreateInfo);
 
-    BoidsData.r        = 0.0f;
-    BoidsData.g        = 1.0f;
-    BoidsData.b        = 1.0f;
-    BoidsData.a        = 1.0f;
-    BoidsData.rotation = 1;
-
+    boidsContainer.init();
     return true;
 }
 bool Boids::Update()
 {
     PROFILE_SCOPE_N("Boids Update");
+    boidsContainer.update();
     return true;
 }
 
@@ -122,17 +114,21 @@ bool Boids::Draw()
         auto *dataPtr = static_cast<SpriteInstance *>(
             SDL_MapGPUTransferBuffer(gContext.renderData.device, SpriteDataTransferBuffer, true));
 
-        for (Uint32 i = 0; i < SPRITE_COUNT; i++)
+        static int i = 0;
+
+        for (const auto &boid: boidsContainer.getBoids())
         {
-            dataPtr[i].x        = i * 50 % (int)w;
-            dataPtr[i].y        = i * 50 % (int)h;
-            dataPtr[i].z        = 0.0f;
-            dataPtr[i].r        = BoidsData.r;
-            dataPtr[i].g        = BoidsData.g;
-            dataPtr[i].b        = BoidsData.b;
-            dataPtr[i].a        = BoidsData.a;
-            dataPtr[i].rotation = SDL_PI_F * BoidsData.rotation;
+            dataPtr[i].x        = boid.Position.x;
+            dataPtr[i].y        = boid.Position.y;
+            dataPtr[i].z        = 0.0f;  // why do I even have this?
+            dataPtr[i].r        = boidsContainer.Color.r;
+            dataPtr[i].g        = boidsContainer.Color.g;
+            dataPtr[i].b        = boidsContainer.Color.b;
+            dataPtr[i].a        = boidsContainer.Color.a;
+            dataPtr[i].rotation = boid.Rotation;
+            i++;
         }
+        i = 0;
 
         SDL_UnmapGPUTransferBuffer(gContext.renderData.device, SpriteDataTransferBuffer);
 
@@ -144,7 +140,7 @@ bool Boids::Draw()
         const SDL_GPUBufferRegion bufferRegion {
             .buffer = SpriteDataBuffer,
             .offset = 0,
-            .size   = SPRITE_COUNT * sizeof(SpriteInstance),
+            .size   = static_cast<Uint32>(boidsContainer.numBoids() * sizeof(SpriteInstance)),
         };
 
         SDL_GPUCopyPass *copyPass = SDL_BeginGPUCopyPass(cmdBuf);
@@ -164,7 +160,8 @@ bool Boids::Draw()
 
         SDL_PushGPUVertexUniformData(cmdBuf, 0, &cameraMatrix, sizeof(Matrix4x4));
 
-        SDL_DrawGPUPrimitives(gContext.renderData.projectPass, SPRITE_COUNT * 3, 1, 0, 1);
+        SDL_DrawGPUPrimitives(gContext.renderData.projectPass, boidsContainer.numBoids() * 3, 1, 0,
+                              1);
 
         SDL_EndGPURenderPass(gContext.renderData.projectPass);
     }
@@ -182,14 +179,14 @@ void Boids::Quit()
 
 bool Boids::DrawUI()
 {
-
     if (ImGui::Begin("Boids Controller###ProjectUI"))
     {
-        ImGui::SliderFloat("R", &BoidsData.r, 0, 1);
-        ImGui::SliderFloat("G", &BoidsData.g, 0, 1);
-        ImGui::SliderFloat("B", &BoidsData.b, 0, 1);
-        ImGui::SliderFloat("A", &BoidsData.a, 0, 1);
-        ImGui::SliderFloat("Rotation", &BoidsData.rotation, -1, 1);
+        ImGui::SeparatorText("Options");
+        ImGui::TextWrapped("Boids Color Picker");
+        ImGui::ColorEdit4("", (float *)&boidsContainer.Color, ImGuiColorEditFlags_AlphaPreviewHalf);
+        ImGui::SliderFloat("Seperation", &boidsContainer.seperation, 0, 100);
+        ImGui::SliderFloat("Alignment", &boidsContainer.alignment, 0, 100);
+        ImGui::SliderFloat("Cohesion", &boidsContainer.cohesion, 0, 100);
 
         ImGui::End();
     }
