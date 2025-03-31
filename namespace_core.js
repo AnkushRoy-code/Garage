@@ -11,7 +11,8 @@ var namespace_core =
     ] ],
     [ "Renderer", "namespace_core_1_1_renderer.html", [
       [ "DrawProjectToTexture", "namespace_core_1_1_renderer.html#a3f9801b8e74b4c9417aa938f6fc0085a", null ],
-      [ "Init", "namespace_core_1_1_renderer.html#ae5bee95c102f59cc1ee8c9b7ca693a6c", null ]
+      [ "Init", "namespace_core_1_1_renderer.html#ae5bee95c102f59cc1ee8c9b7ca693a6c", null ],
+      [ "ResizeProjectTexture", "namespace_core_1_1_renderer.html#a6472fb81ebc2cda76a26e23df9dbc2ac", null ]
     ] ],
     [ "AppState", "struct_core_1_1_app_state.html", "struct_core_1_1_app_state" ],
     [ "ConsoleLogBuffer", "class_core_1_1_console_log_buffer.html", null ],
