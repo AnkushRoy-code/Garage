@@ -5,4 +5,4 @@ if (TRACY_PROFILE)
 endif()
 
 target_include_directories(Common PRIVATE "${CMAKE_SOURCE_DIR}/src")
-target_link_libraries(Common PRIVATE SDL3::SDL3-shared imgui)
+target_link_libraries(Common PRIVATE SDL3::SDL3-shared imgui glm::glm)

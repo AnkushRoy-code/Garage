@@ -1,6 +1,8 @@
 #include "Boids.h"
 #include "Core/Context.h"
+#include "SDL3/SDL_stdinc.h"
 #include "Utils/Time.h"
+#include "glm/exponential.hpp"
 #include "glm/trigonometric.hpp"
 #include <cmath>
 #include <random>
@@ -110,7 +112,7 @@ void BoidsContainer::update()
         if (BoidPos->y < margin) { BoidVel->y += turnfactor; }
         else if (BoidPos->y > h - margin) { BoidVel->y -= turnfactor; }
 
-        float speed          = std::sqrtf(BoidVel->x * BoidVel->x + BoidVel->y * BoidVel->y);
+        float speed          = glm::sqrt(BoidVel->x * BoidVel->x + BoidVel->y * BoidVel->y);
         const float minSpeed = 3.0f;
         const float maxSpeed = 6.0f;
 
@@ -140,8 +142,7 @@ void BoidsContainer::update()
         auto targetRotation = glm::atan(BoidVel->y, BoidVel->x);
 
         auto diff =
-            glm::mod(targetRotation - BoidsVec[i].Rotation + std::numbers::pi, std::numbers::pi * 2)
-            - std::numbers::pi;
+            glm::mod(targetRotation - BoidsVec[i].Rotation + SDL_PI_F, SDL_PI_F * 2) - SDL_PI_F;
 
         BoidsVec[i].Rotation += diff * 0.5f;
     }
