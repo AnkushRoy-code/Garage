@@ -158,8 +158,8 @@ bool HandleWindowResize()
         if (view.x == 0 || view.y == 0) { return false; }  // window is minimised
         gContext.appState.ProjectWindowX = view.x;
         gContext.appState.ProjectWindowY = view.y;
-        // RecreateFramebuffer();
 
+        Core::Renderer::ResizeProjectTexture(view.x, view.y);
         return true;
     }
 

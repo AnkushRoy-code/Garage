@@ -2,6 +2,7 @@
 #define INCLUDE_CORE_CONTEXT_H_
 
 #include "Core/EventHandler.h"
+#include "SDL3/SDL_gpu.h"
 
 #include <SDL3/SDL.h>
 #include <imgui.h>
@@ -15,7 +16,9 @@ struct RenderData
     SDL_GPUDevice *device          = nullptr;
     SDL_GPURenderPass *projectPass = nullptr;
     SDL_GPUTexture *projectTexture = nullptr;
+    SDL_GPUTexture *resolveTexture = nullptr;
     SDL_GPUSampler *projectSampler = nullptr;
+    SDL_GPUSampleCount sampleCount = SDL_GPU_SAMPLECOUNT_1;
     int width                      = 1280;
     int height                     = 720;
 };

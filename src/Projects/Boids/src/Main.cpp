@@ -39,11 +39,16 @@ bool Boids::Init()
         .num_color_targets         = 1,
     };
 
+    const SDL_GPUMultisampleState mState = {
+        .sample_count = gContext.renderData.sampleCount,
+    };
+
     const SDL_GPUGraphicsPipelineCreateInfo createInfo {
-        .vertex_shader   = vertShader,
-        .fragment_shader = fragShader,
-        .primitive_type  = SDL_GPU_PRIMITIVETYPE_TRIANGLELIST,
-        .target_info     = targetInfo,
+        .vertex_shader     = vertShader,
+        .fragment_shader   = fragShader,
+        .primitive_type    = SDL_GPU_PRIMITIVETYPE_TRIANGLELIST,
+        .multisample_state = mState,
+        .target_info       = targetInfo,
     };
 
     renderPipeline = SDL_CreateGPUGraphicsPipeline(gContext.renderData.device, &createInfo);
@@ -148,11 +153,21 @@ bool Boids::Draw()
         SDL_UploadToGPUBuffer(copyPass, &transferBufferLocation, &bufferRegion, true);
         SDL_EndGPUCopyPass(copyPass);
 
-        const SDL_GPUColorTargetInfo tinfo {.texture     = gContext.renderData.projectTexture,
-                                            .clear_color = {0.094f, 0.094f, 0.145f, 1.00f},
-                                            .load_op     = SDL_GPU_LOADOP_CLEAR,
-                                            .store_op    = SDL_GPU_STOREOP_STORE,
-                                            .cycle       = false};
+        SDL_GPUColorTargetInfo tinfo {.texture     = gContext.renderData.projectTexture,
+                                      .clear_color = {0.094f, 0.094f, 0.145f, 1.00f},
+                                      .load_op     = SDL_GPU_LOADOP_CLEAR,
+                                      .store_op    = SDL_GPU_STOREOP_STORE,
+                                      .cycle       = false};
+
+        if (gContext.renderData.sampleCount == SDL_GPU_SAMPLECOUNT_1)
+        {
+            tinfo.store_op = SDL_GPU_STOREOP_STORE;
+        }
+        else
+        {
+            tinfo.store_op        = SDL_GPU_STOREOP_RESOLVE;
+            tinfo.resolve_texture = gContext.renderData.resolveTexture;
+        }
 
         gContext.renderData.projectPass = SDL_BeginGPURenderPass(cmdBuf, &tinfo, 1, nullptr);
 
@@ -165,6 +180,28 @@ bool Boids::Draw()
                               1);
 
         SDL_EndGPURenderPass(gContext.renderData.projectPass);
+
+        SDL_GPUTexture *blitSourceTexture =
+            (tinfo.resolve_texture != nullptr) ? tinfo.resolve_texture : tinfo.texture;
+
+        const SDL_GPUBlitRegion blitSrc = {
+            .texture = blitSourceTexture,
+            .w       = (Uint32)gContext.appState.ProjectWindowX,
+            .h       = (Uint32)gContext.appState.ProjectWindowY,
+        };
+
+        const SDL_GPUBlitRegion blitDst = {
+            .texture = gContext.renderData.projectTexture,
+            .w       = (Uint32)gContext.appState.ProjectWindowX,
+            .h       = (Uint32)gContext.appState.ProjectWindowY,
+        };
+
+        const SDL_GPUBlitInfo blitInfo = {.source      = blitSrc,
+                                          .destination = blitDst,
+                                          .load_op     = SDL_GPU_LOADOP_DONT_CARE,
+                                          .filter      = SDL_GPU_FILTER_LINEAR};
+
+        SDL_BlitGPUTexture(cmdBuf, &blitInfo);
     }
 
     SDL_SubmitGPUCommandBuffer(cmdBuf);

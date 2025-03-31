@@ -5,6 +5,7 @@
 #include "Core/Console.h"
 #include "Core/Context.h"
 #include "Core/EventHandler.h"
+#include "SDL3/SDL_gpu.h"
 #include <iostream>
 
 SDL_GPUViewport Triangle::SmallViewport = {160, 120, 320, 240, 0.1f, 1.0f};
@@ -40,14 +41,20 @@ bool Triangle::Init()
         .fragment_shader = fragmentShader,
         .primitive_type  = SDL_GPU_PRIMITIVETYPE_TRIANGLELIST,
     };
+
     pipelineCreateInfo.target_info.color_target_descriptions = &colorTargetDesc,
     pipelineCreateInfo.target_info.num_color_targets         = 1,
 
+    pipelineCreateInfo.multisample_state.sample_count = gContext.renderData.sampleCount;
+
+    // the two pipelines only differ in fill_mode
     pipelineCreateInfo.rasterizer_state.fill_mode = SDL_GPU_FILLMODE_FILL;
+
     FillPipeline = SDL_CreateGPUGraphicsPipeline(gContext.renderData.device, &pipelineCreateInfo);
     if (FillPipeline == nullptr) { throw SDL_Exception("Failed to create fill pipeline!"); }
 
     pipelineCreateInfo.rasterizer_state.fill_mode = SDL_GPU_FILLMODE_LINE;
+
     LinePipeline = SDL_CreateGPUGraphicsPipeline(gContext.renderData.device, &pipelineCreateInfo);
     if (LinePipeline == nullptr) { throw SDL_Exception("Failed to create line pipeline!"); }
 
@@ -82,13 +89,23 @@ bool Triangle::Draw()
         SDL_AcquireGPUCommandBuffer(gContext.renderData.device);
     if (!commandBufferProjects) { std::cerr << "failed to aquire GPU\n"; }
 
-    const SDL_GPUColorTargetInfo projectTargetInfo {
+    SDL_GPUColorTargetInfo projectTargetInfo {
         .texture     = gContext.renderData.projectTexture,
         .clear_color = {0.45f, 0.55f, 0.60f, 1.00f},
         .load_op     = SDL_GPU_LOADOP_CLEAR,
         .store_op    = SDL_GPU_STOREOP_STORE,
         .cycle       = true,
     };
+
+    if (gContext.renderData.sampleCount == SDL_GPU_SAMPLECOUNT_1)
+    {
+        projectTargetInfo.store_op = SDL_GPU_STOREOP_STORE;
+    }
+    else
+    {
+        projectTargetInfo.store_op        = SDL_GPU_STOREOP_RESOLVE;
+        projectTargetInfo.resolve_texture = gContext.renderData.resolveTexture;
+    }
 
     gContext.renderData.projectPass =
         SDL_BeginGPURenderPass(commandBufferProjects, &projectTargetInfo, 1, nullptr);
@@ -100,6 +117,30 @@ bool Triangle::Draw()
     SDL_DrawGPUPrimitives(gContext.renderData.projectPass, 3, 1, 0, 0);
 
     SDL_EndGPURenderPass(gContext.renderData.projectPass);
+
+    SDL_GPUTexture *blitSourceTexture = (projectTargetInfo.resolve_texture != nullptr)
+                                            ? projectTargetInfo.resolve_texture
+                                            : projectTargetInfo.texture;
+
+    const SDL_GPUBlitRegion blitSrc = {
+        .texture = blitSourceTexture,
+        .w       = (Uint32)gContext.appState.ProjectWindowX,
+        .h       = (Uint32)gContext.appState.ProjectWindowY,
+    };
+
+    const SDL_GPUBlitRegion blitDst = {
+        .texture = gContext.renderData.projectTexture,
+        .w       = (Uint32)gContext.appState.ProjectWindowX,
+        .h       = (Uint32)gContext.appState.ProjectWindowY,
+    };
+
+    const SDL_GPUBlitInfo blitInfo = {.source      = blitSrc,
+                                      .destination = blitDst,
+                                      .load_op     = SDL_GPU_LOADOP_DONT_CARE,
+                                      .filter      = SDL_GPU_FILTER_LINEAR};
+
+    SDL_BlitGPUTexture(commandBufferProjects, &blitInfo);
+
     SDL_SubmitGPUCommandBuffer(commandBufferProjects);
 
     return true;

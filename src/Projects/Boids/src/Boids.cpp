@@ -18,15 +18,16 @@ void BoidsContainer::init()
 
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_real_distribution<> disX(0, w / 2);
-    std::uniform_real_distribution<> disY(0, h / 2);
+    std::uniform_real_distribution<> disX(0, w);
+    std::uniform_real_distribution<> disY(0, h);
+    std::uniform_real_distribution<> vel(-3.0f, 3.0f);
 
     for (unsigned int i = 0; i < NUM_BOIDS; ++i)
     {
         BoidsEntity boid {};
         boid.Position.x = disX(gen);
         boid.Position.y = disY(gen);
-        boid.Velocity   = glm::vec2(3.0f, 3.0f);
+        boid.Velocity   = glm::vec2(vel(gen), vel(gen));
         boid.Rotation   = 0.0f;
         BoidsVec.push_back(boid);
     }
@@ -136,7 +137,13 @@ void BoidsContainer::update()
         BoidPos->y += BoidVel->y * Utils::Time::deltaTime() / 30.0f;
 
         // update rotation
-        BoidsVec[i].Rotation = glm::atan(BoidVel->y, BoidVel->x);
+        auto targetRotation = glm::atan(BoidVel->y, BoidVel->x);
+
+        auto diff =
+            glm::mod(targetRotation - BoidsVec[i].Rotation + std::numbers::pi, std::numbers::pi * 2)
+            - std::numbers::pi;
+
+        BoidsVec[i].Rotation += diff * 0.5f;
     }
 }
 
