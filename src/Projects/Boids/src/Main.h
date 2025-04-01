@@ -39,8 +39,8 @@ class Boids : public Common::BaseProject, public Common::ImGuiUI
     bool DrawUI() override;
 
     SDL_GPUGraphicsPipeline *renderPipeline;
-    SDL_GPUTransferBuffer *SpriteDataTransferBuffer;
-    SDL_GPUBuffer *SpriteDataBuffer;
+    SDL_GPUTransferBuffer *boidsDataTransferBuffer;
+    SDL_GPUBuffer *boidsDataBuffer;
 
     BoidsContainer boidsContainer {};
 };

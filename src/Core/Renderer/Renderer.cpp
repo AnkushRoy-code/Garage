@@ -91,8 +91,8 @@ void Core::Renderer::ResizeProjectTexture(int w, int h)
         .type                 = SDL_GPU_TEXTURETYPE_2D,
         .format               = format,
         .usage                = SDL_GPU_TEXTUREUSAGE_SAMPLER | SDL_GPU_TEXTUREUSAGE_COLOR_TARGET,
-        .width                = (Uint32)w,
-        .height               = (Uint32)h,
+        .width                = (Uint32)(w * gContext.renderData.resolutionScale),
+        .height               = (Uint32)(h * gContext.renderData.resolutionScale),
         .layer_count_or_depth = 1,
         .num_levels           = 1,
         .sample_count         = gContext.renderData.sampleCount,
@@ -105,8 +105,8 @@ void Core::Renderer::ResizeProjectTexture(int w, int h)
         .type                 = SDL_GPU_TEXTURETYPE_2D,
         .format               = format,
         .usage                = SDL_GPU_TEXTUREUSAGE_SAMPLER | SDL_GPU_TEXTUREUSAGE_COLOR_TARGET,
-        .width                = (Uint32)w,
-        .height               = (Uint32)h,
+        .width                = (Uint32)(w * gContext.renderData.resolutionScale),
+        .height               = (Uint32)(h * gContext.renderData.resolutionScale),
         .layer_count_or_depth = 1,
         .num_levels           = 1};
 

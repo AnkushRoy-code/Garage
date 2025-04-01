@@ -155,6 +155,7 @@ bool HandleWindowResize()
 
     if (view.x != gContext.appState.ProjectWindowX || view.y != gContext.appState.ProjectWindowY)
     {
+        gContext.inputHandler.updateKey(Core::RESIZE_PROJECT_WINDOW, true);
         if (view.x == 0 || view.y == 0) { return false; }  // window is minimised
         gContext.appState.ProjectWindowX = view.x;
         gContext.appState.ProjectWindowY = view.y;

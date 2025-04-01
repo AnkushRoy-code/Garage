@@ -19,6 +19,7 @@ struct RenderData
     SDL_GPUTexture *resolveTexture = nullptr;
     SDL_GPUSampler *projectSampler = nullptr;
     SDL_GPUSampleCount sampleCount = SDL_GPU_SAMPLECOUNT_1;
+    float resolutionScale          = 1.0f;  // %
     int width                      = 1280;
     int height                     = 720;
 };

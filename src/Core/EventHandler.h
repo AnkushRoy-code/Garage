@@ -9,6 +9,7 @@ namespace Core
 
 enum KEY
 {
+    RESIZE_PROJECT_WINDOW,
     RIGHT,
     LEFT,
     UP,

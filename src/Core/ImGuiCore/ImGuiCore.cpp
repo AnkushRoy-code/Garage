@@ -4,7 +4,9 @@
 #include "Core/Context.h"
 #include "Common/BaseProject.h"
 #include "Common/SDL_Exception.h"
+#include "Core/Renderer/Renderer.h"
 #include "Utils/Time.h"
+#include "imgui.h"
 
 #include <filesystem>
 
@@ -180,7 +182,9 @@ void Core::ImGuiCore::Update()
                 names.push_back(project->getName().c_str());
             }
         }
+        ImGui::SeparatorText("Projects");
 
+        // Project selector
         if (ImGui::BeginCombo("Project", names[gContext.appState.projectIndex]))
         {
             for (int i = 0; i < Projects.size(); i++)
@@ -200,11 +204,24 @@ void Core::ImGuiCore::Update()
             ImGui::EndCombo();
         }
 
+        ImGui::SeparatorText("Controls");
+        // resolution
+        static int res = 100;
+        ImGui::Text("Scale Resolution");
+        if (ImGui::SliderInt("###yetanotherid", &res, 25, 500, "%d%%"))
+        {
+            gContext.renderData.resolutionScale = res / 100.0f;
+            Core::Renderer::ResizeProjectTexture(gContext.appState.ProjectWindowX,
+                                                 gContext.appState.ProjectWindowY);
+        }
+
+        ImGui::SeparatorText("Data");
+        // fps graph
         {
             static ScrollingBuffer fpsBuf;
             const float currentTime = Utils::Time::getTicks() / 1000.0f;
             const float deltaTime   = Utils::Time::deltaTime();
-            const float fps               = 1000.0f / deltaTime;
+            const float fps         = 1000.0f / deltaTime;
             static float t          = 0;
             t += deltaTime / 1000.0;
 
@@ -226,9 +243,8 @@ void Core::ImGuiCore::Update()
                 ImPlot::EndPlot();
             }
         }
-
-        ImGui::End();
     }
+    ImGui::End();
 
     if (ImGui::Begin("Console"))
     {
@@ -258,8 +274,8 @@ void Core::ImGuiCore::Update()
             }
             ImGui::EndTable();
         }
-        ImGui::End();
     }
+    ImGui::End();
 
     // I'll be honest with ya gpt helped me with this one. I was stuck find a way to add new
     // function to my BaseProject without needing to change it in all of the projects...

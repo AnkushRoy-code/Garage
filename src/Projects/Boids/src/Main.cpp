@@ -1,6 +1,7 @@
 #include "Main.h"
 #include "Common/Common.h"
 #include "Core/Context.h"
+#include "Core/EventHandler.h"
 #include "SDL3/SDL_stdinc.h"
 #include "imgui.h"
 #include <SDL3/SDL_gpu.h>
@@ -58,23 +59,24 @@ bool Boids::Init()
 
     const SDL_GPUTransferBufferCreateInfo tBufCreateInfo {
         .usage = SDL_GPU_TRANSFERBUFFERUSAGE_UPLOAD,
-        .size  = static_cast<Uint32>(boidsContainer.numBoids() * sizeof(SpriteInstance)),
+        .size  = (Uint32)(boidsContainer.numBoids() * sizeof(SpriteInstance)),
     };
 
-    SpriteDataTransferBuffer =
+    boidsDataTransferBuffer =
         SDL_CreateGPUTransferBuffer(gContext.renderData.device, &tBufCreateInfo);
 
     const SDL_GPUBufferCreateInfo newBufCreateInfo {
         .usage = SDL_GPU_BUFFERUSAGE_GRAPHICS_STORAGE_READ,
-        .size  = static_cast<Uint32>(boidsContainer.numBoids() * sizeof(SpriteInstance)),
+        .size  = (Uint32)(boidsContainer.numBoids() * sizeof(SpriteInstance)),
 
     };
 
-    SpriteDataBuffer = SDL_CreateGPUBuffer(gContext.renderData.device, &newBufCreateInfo);
+    boidsDataBuffer = SDL_CreateGPUBuffer(gContext.renderData.device, &newBufCreateInfo);
 
     boidsContainer.init();
     return true;
 }
+
 bool Boids::Update()
 {
     PROFILE_SCOPE_N("Boids Update");
@@ -118,7 +120,7 @@ bool Boids::Draw()
     if (gContext.renderData.projectTexture)
     {
         auto *dataPtr = static_cast<SpriteInstance *>(
-            SDL_MapGPUTransferBuffer(gContext.renderData.device, SpriteDataTransferBuffer, true));
+            SDL_MapGPUTransferBuffer(gContext.renderData.device, boidsDataTransferBuffer, true));
 
         static int i = 0;
 
@@ -136,17 +138,17 @@ bool Boids::Draw()
         }
         i = 0;
 
-        SDL_UnmapGPUTransferBuffer(gContext.renderData.device, SpriteDataTransferBuffer);
+        SDL_UnmapGPUTransferBuffer(gContext.renderData.device, boidsDataTransferBuffer);
 
         const SDL_GPUTransferBufferLocation transferBufferLocation {
-            .transfer_buffer = SpriteDataTransferBuffer,
+            .transfer_buffer = boidsDataTransferBuffer,
             .offset          = 0,
         };
 
         const SDL_GPUBufferRegion bufferRegion {
-            .buffer = SpriteDataBuffer,
+            .buffer = boidsDataBuffer,
             .offset = 0,
-            .size   = static_cast<Uint32>(boidsContainer.numBoids() * sizeof(SpriteInstance)),
+            .size   = (Uint32)(boidsContainer.numBoids() * sizeof(SpriteInstance)),
         };
 
         SDL_GPUCopyPass *copyPass = SDL_BeginGPUCopyPass(cmdBuf);
@@ -172,7 +174,7 @@ bool Boids::Draw()
         gContext.renderData.projectPass = SDL_BeginGPURenderPass(cmdBuf, &tinfo, 1, nullptr);
 
         SDL_BindGPUGraphicsPipeline(gContext.renderData.projectPass, renderPipeline);
-        SDL_BindGPUVertexStorageBuffers(gContext.renderData.projectPass, 0, &SpriteDataBuffer, 1);
+        SDL_BindGPUVertexStorageBuffers(gContext.renderData.projectPass, 0, &boidsDataBuffer, 1);
 
         SDL_PushGPUVertexUniformData(cmdBuf, 0, &cameraMatrix, sizeof(Matrix4x4));
 
@@ -211,27 +213,29 @@ bool Boids::Draw()
 void Boids::Quit()
 {
     SDL_ReleaseGPUGraphicsPipeline(gContext.renderData.device, renderPipeline);
-    SDL_ReleaseGPUTransferBuffer(gContext.renderData.device, SpriteDataTransferBuffer);
-    SDL_ReleaseGPUBuffer(gContext.renderData.device, SpriteDataBuffer);
+    SDL_ReleaseGPUTransferBuffer(gContext.renderData.device, boidsDataTransferBuffer);
+    SDL_ReleaseGPUBuffer(gContext.renderData.device, boidsDataBuffer);
 }
 
 bool Boids::DrawUI()
 {
-    if (ImGui::Begin("Boids Controller###ProjectUI"))
+    if (ImGui::Begin("Boids Controller###ProjectUI", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
     {
         ImGui::SeparatorText("Options");
-        ImGui::TextWrapped("Boids Color Picker");
-        ImGui::ColorEdit4("", (float *)&boidsContainer.Color, ImGuiColorEditFlags_AlphaPreviewHalf);
-        ImGui::SliderFloat("Seperation", &boidsContainer.seperation, 0.0f, 0.1f);
-        ImGui::SliderFloat("Alignment", &boidsContainer.alignment, 0.0f, 0.1f);
+        ImGui::Text("Boids Color Picker");
+        ImGui::ColorEdit4("###abultabul", (float *)&boidsContainer.Color,
+                          ImGuiColorEditFlags_AlphaPreviewHalf);
+        ImGui::Text("Seperation");
+        ImGui::SliderFloat("###tabulabul", &boidsContainer.seperation, 0.0f, 0.1f);
+        ImGui::Text("Alignment");
+        ImGui::SliderFloat("###loremipusummyass", &boidsContainer.alignment, 0.0f, 0.1f);
         static float a = 0.05;
-        if (ImGui::SliderFloat("Cohesion", &a, 0.0f, 0.1f))
+        ImGui::Text("Cohesion");
+        if (ImGui::SliderFloat("###someRandomfuckingIdthatisnotempty", &a, 0.0f, 0.1f))
         {  // imgui is not good with small values
             boidsContainer.cohesion = 0.001 * a;
         }
-
-        ImGui::End();
     }
-
+    ImGui::End();
     return true;
 }
