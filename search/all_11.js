@@ -12,13 +12,12 @@ var searchData=
   ['sdl_5fexception_2eh_9',['SDL_Exception.h',['../_s_d_l___exception_8h.html',1,'']]],
   ['sdl_5fmain_5fuse_5fcallbacks_10',['SDL_MAIN_USE_CALLBACKS',['../_main_2_main_8cpp.html#a8aa5d9cdf38353a6c4919e0d1fab61cb',1,'Main.cpp']]],
   ['seperation_11',['seperation',['../class_boids_container.html#a7abc1704f145551fce8698bfba06f89f',1,'BoidsContainer']]],
-  ['set_12',['Mendelbroth Set',['../index.html#autotoc_md11',1,'']]],
-  ['set_13',['Goldbert set',['../index.html#autotoc_md12',1,'']]],
-  ['simpleexample_14',['SimpleExample',['../class_simple_example.html',1,'SimpleExample'],['../namespace_simple_example.html',1,'SimpleExample']]],
+  ['set_12',['Mendelbroth Set',['../index.html#autotoc_md15',1,'']]],
+  ['set_13',['Goldbert set',['../index.html#autotoc_md16',1,'']]],
+  ['simpleexample_14',['SimpleExample',['../class_simple_example.html',1,'SimpleExample'],['../namespace_simple_example.html',1,'SimpleExample'],['../index.html#autotoc_md8',1,'SimpleExample']]],
   ['simpleexample_2ecpp_15',['SimpleExample.cpp',['../_simple_example_8cpp.html',1,'']]],
   ['simpleexample_2eh_16',['SimpleExample.h',['../_simple_example_8h.html',1,'']]],
-  ['simulator_17',['Particle Simulator',['../index.html#autotoc_md7',1,'']]],
-  ['smallviewport_18',['SmallViewport',['../class_triangle.html#af476a83a8475a37a3eb5d01b97bfa26f',1,'Triangle']]],
-  ['spriteinstance_19',['SpriteInstance',['../struct_sprite_instance.html',1,'SpriteInstance'],['../_main_8h.html#aca8727f211215c690792d2d42cb16a24',1,'SpriteInstance:&#160;Main.h']]],
-  ['started_20',['Getting Started',['../index.html#autotoc_md14',1,'']]]
+  ['smallviewport_17',['SmallViewport',['../class_triangle.html#af476a83a8475a37a3eb5d01b97bfa26f',1,'Triangle']]],
+  ['spriteinstance_18',['SpriteInstance',['../struct_sprite_instance.html',1,'SpriteInstance'],['../_main_8h.html#aca8727f211215c690792d2d42cb16a24',1,'SpriteInstance:&#160;Main.h']]],
+  ['started_19',['Started',['../index.html#autotoc_md18',1,'Getting Started'],['../bug.html#_bug000001',1,'Getting Started']]]
 ];

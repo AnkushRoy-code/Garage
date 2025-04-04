@@ -26,16 +26,22 @@ var NAVTREE =
 [
   [ "Ankush's Garage", "index.html", [
     [ "My Projects", "index.html#autotoc_md6", [
-      [ "Particle Simulator", "index.html#autotoc_md7", null ],
-      [ "Few Fractals", "index.html#autotoc_md8", [
-        [ "Normal fractal", "index.html#autotoc_md9", null ],
-        [ "Fern Fractals", "index.html#autotoc_md10", null ],
-        [ "Mendelbroth Set", "index.html#autotoc_md11", null ],
-        [ "Goldbert set", "index.html#autotoc_md12", null ]
+      [ "Dummy Projects", "index.html#autotoc_md7", [
+        [ "SimpleExample", "index.html#autotoc_md8", null ],
+        [ "Triangle", "index.html#autotoc_md9", null ]
+      ] ],
+      [ "Real Projects", "index.html#autotoc_md10", [
+        [ "Boids", "index.html#autotoc_md11", null ],
+        [ "Few Fractals (Under Construction)", "index.html#autotoc_md12", [
+          [ "Normal fractal (Da tree)", "index.html#autotoc_md13", null ],
+          [ "Fern Fractals", "index.html#autotoc_md14", null ],
+          [ "Mendelbroth Set", "index.html#autotoc_md15", null ],
+          [ "Goldbert set", "index.html#autotoc_md16", null ]
+        ] ]
       ] ]
     ] ],
-    [ "Features", "index.html#autotoc_md13", null ],
-    [ "Getting Started", "index.html#autotoc_md14", null ],
+    [ "Features", "index.html#autotoc_md17", null ],
+    [ "Getting Started", "index.html#autotoc_md18", null ],
     [ "Usage", "md_usage.html", [
       [ "Interface", "md_usage.html#autotoc_md1", [
         [ "Keys", "md_usage.html#autotoc_md2", null ]
@@ -44,7 +50,9 @@ var NAVTREE =
         [ "Example", "md_usage.html#autotoc_md4", null ]
       ] ]
     ] ],
+    [ "Deprecated List", "deprecated.html", null ],
     [ "Todo List", "todo.html", null ],
+    [ "Bug List", "bug.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -80,7 +88,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_base_project_8cpp.html",
-"struct_core_1_1_context.html#af75ed1a0a029d3e36b8d835b56df4be7"
+"struct_core_1_1_context.html#ab321f6d66a227cad7ab837ea47883896"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

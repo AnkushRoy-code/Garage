@@ -9,5 +9,5 @@ var searchData=
   ['init_6',['init',['../struct_core_1_1_context.html#adb5053434ec631c69898965abd380b7c',1,'Core::Context::init()'],['../class_boids_container.html#a789f8b56d5aedb2f9ab932bff0bc560c',1,'BoidsContainer::init()'],['../class_utils_1_1_time.html#a020426edc297d60e10c178cb0dfce619',1,'Utils::Time::init()']]],
   ['inputhandler_7',['InputHandler',['../class_core_1_1_input_handler.html',1,'Core::InputHandler'],['../class_core_1_1_input_handler.html#aebeef45b92013eb143c5626b5afd8888',1,'Core::InputHandler::InputHandler()']]],
   ['inputhandler_8',['inputHandler',['../struct_core_1_1_context.html#af75ed1a0a029d3e36b8d835b56df4be7',1,'Core::Context']]],
-  ['interface_9',['Interface',['../md_usage.html#autotoc_md1',1,'Interface'],['../todo.html#_todo000001',1,'Interface']]]
+  ['interface_9',['Interface',['../md_usage.html#autotoc_md1',1,'']]]
 ];
