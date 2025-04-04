@@ -14,7 +14,6 @@
 #include <backends/imgui_impl_sdlgpu3.h>
 
 #include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
 #include <SDL3/SDL_gpu.h>
 #include <SDL3/SDL_scancode.h>
 

@@ -1,4 +1,5 @@
 #define SDL_MAIN_USE_CALLBACKS 1
+#include <SDL3/SDL_main.h> // only need in main.cpp
 #include "Core/Common/pch.h"
 
 #include "Core/Common/Common.h"
