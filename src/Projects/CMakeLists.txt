@@ -1,3 +1,5 @@
+add_subdirectory(Common)
+
 add_library(Projects 
     SimpleExample/SimpleExample.h 
     SimpleExample/SimpleExample.cpp 

@@ -1,7 +1,7 @@
 #ifndef INCLUDE_SRC_MAIN_H_
 #define INCLUDE_SRC_MAIN_H_
 
-#include "Common/BaseProject.h"
+#include "Projects/Common/BaseProject.h"
 #include "Projects/Boids/src/Boids.h"
 #include "SDL3/SDL_gpu.h"
 

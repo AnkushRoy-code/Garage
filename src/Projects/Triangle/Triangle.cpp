@@ -1,6 +1,6 @@
 #include "Projects/Triangle/Triangle.h"
-#include "Common/Common.h"
-#include "Common/SDL_Exception.h"
+#include "Projects/Common/Common.h"
+#include "Projects/Common/SDL_Exception.h"
 
 #include "Core/Console.h"
 #include "Core/Context.h"

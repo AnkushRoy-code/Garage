@@ -1,7 +1,7 @@
 #include "EventHandler.h"
 
 #include "Core/Context.h"
-#include "Common/BaseProject.h"
+#include "Projects/Common/BaseProject.h"
 
 #include <SDL3/SDL_scancode.h>
 #include <SDL3/SDL.h>

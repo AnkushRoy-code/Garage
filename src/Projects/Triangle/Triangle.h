@@ -2,7 +2,7 @@
 
 #define INCLUDE_TRIANGLE_TRIANGLE_H_
 
-#include "Common/BaseProject.h"
+#include "Projects/Common/BaseProject.h"
 #include <SDL3/SDL_gpu.h>
 
 class Triangle : public Common::BaseProject

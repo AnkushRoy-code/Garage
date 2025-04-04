@@ -1,8 +1,8 @@
 #include "Renderer.h"
 
 #include "Core/Context.h"
-#include "Common/BaseProject.h"
-#include "Common/SDL_Exception.h"
+#include "Projects/Common/BaseProject.h"
+#include "Projects/Common/SDL_Exception.h"
 #include "SDL3/SDL_gpu.h"
 
 void Core::Renderer::Init()

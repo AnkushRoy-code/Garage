@@ -1,5 +1,5 @@
 #include "Main.h"
-#include "Common/Common.h"
+#include "Projects/Common/Common.h"
 #include "Core/Context.h"
 #include "Core/EventHandler.h"
 #include "SDL3/SDL_stdinc.h"
@@ -12,6 +12,7 @@ bool Boids::Init()
 {
     hasUI = true;
 
+    // pipeline creation
     SDL_GPUShader *vertShader =
         Common::LoadShader(gContext.renderData.device, "PullSpriteBatch.vert", 0, 1, 1, 0);
     SDL_GPUShader *fragShader =
@@ -41,7 +42,7 @@ bool Boids::Init()
     };
 
     const SDL_GPUMultisampleState mState = {
-        .sample_count = gContext.renderData.sampleCount,
+        .sample_count = gContext.renderData.sampleCount,  // MSAA or not
     };
 
     const SDL_GPUGraphicsPipelineCreateInfo createInfo {
@@ -57,6 +58,7 @@ bool Boids::Init()
     SDL_ReleaseGPUShader(gContext.renderData.device, vertShader);
     SDL_ReleaseGPUShader(gContext.renderData.device, fragShader);
 
+    // Transfer buffers creation
     const SDL_GPUTransferBufferCreateInfo tBufCreateInfo {
         .usage = SDL_GPU_TRANSFERBUFFERUSAGE_UPLOAD,
         .size  = (Uint32)(boidsContainer.numBoids() * sizeof(SpriteInstance)),
@@ -84,8 +86,13 @@ bool Boids::Update()
     return true;
 }
 
-Matrix4x4 Matrix4x4_CreateOrthographicOffCenter(
-    float left, float right, float bottom, float top, float zNearPlane, float zFarPlane)
+Matrix4x4 Matrix4x4_CreateOrthographicOffCenter(  // I don't even remember where I stole it from
+    float left,
+    float right,
+    float bottom,
+    float top,
+    float zNearPlane,
+    float zFarPlane)
 {
     return {2.0f / (right - left),
             0,
@@ -119,11 +126,11 @@ bool Boids::Draw()
 
     if (gContext.renderData.projectTexture)
     {
+        // upload the data to transfer buffer
         auto *dataPtr = static_cast<SpriteInstance *>(
             SDL_MapGPUTransferBuffer(gContext.renderData.device, boidsDataTransferBuffer, true));
 
         static int i = 0;
-
         for (const auto &boid: boidsContainer.getBoids())
         {
             dataPtr[i].x        = boid.Position.x;
@@ -137,9 +144,9 @@ bool Boids::Draw()
             i++;
         }
         i = 0;
-
         SDL_UnmapGPUTransferBuffer(gContext.renderData.device, boidsDataTransferBuffer);
 
+        // upload the data to gpu from transfer buffers
         const SDL_GPUTransferBufferLocation transferBufferLocation {
             .transfer_buffer = boidsDataTransferBuffer,
             .offset          = 0,
@@ -191,6 +198,9 @@ bool Boids::Draw()
             .w       = (Uint32)gContext.appState.ProjectWindowX,
             .h       = (Uint32)gContext.appState.ProjectWindowY,
         };
+
+        SDL_BindGPUFragmentStorageTextures(gContext.renderData.projectPass, 1,
+                                           &gContext.renderData.projectTexture, 2);
 
         const SDL_GPUBlitRegion blitDst = {
             .texture = gContext.renderData.projectTexture,

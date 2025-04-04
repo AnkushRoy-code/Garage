@@ -1,4 +1,4 @@
-#include "Common/BaseProject.h"
+#include "Projects/Common/BaseProject.h"
 
 std::vector<std::unique_ptr<Common::BaseProject>> Projects {};
 

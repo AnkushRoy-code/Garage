@@ -1,7 +1,7 @@
 #ifndef INCLUDE_SIMPLEEXAMPLE_SIMPLEEXAMPLE_H_
 #define INCLUDE_SIMPLEEXAMPLE_SIMPLEEXAMPLE_H_
 
-#include "Common/BaseProject.h"
+#include "Projects/Common/BaseProject.h"
 
 /**
  * @namespace SimpleExample

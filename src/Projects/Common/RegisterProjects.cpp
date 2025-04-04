@@ -1,4 +1,4 @@
-#include "Common/BaseProject.h"
+#include "Projects/Common/BaseProject.h"
 
 #include "Projects/SimpleExample/SimpleExample.h"
 #include "Projects/Triangle/Triangle.h"

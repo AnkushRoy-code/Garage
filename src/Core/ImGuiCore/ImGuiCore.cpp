@@ -2,8 +2,8 @@
 
 #include "Core/Console.h"
 #include "Core/Context.h"
-#include "Common/BaseProject.h"
-#include "Common/SDL_Exception.h"
+#include "Projects/Common/BaseProject.h"
+#include "Projects/Common/SDL_Exception.h"
 #include "Core/Renderer/Renderer.h"
 #include "Utils/Time.h"
 #include "imgui.h"
