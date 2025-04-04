@@ -3,11 +3,14 @@
 
 ## Interface
 
-Using the interface is not the best right now. It still has work to do.
-
-@todo The interface has to improve
+The user interface is pretty self explanatory. I ain't doing shit today I am
+really lazy will document it later. Also the A/D keys mentioned below do not
+work. I thought I might need them to do other stuff in my projects like move
+and stuff so I removed the thingy...now you will have to use your mouse.
 
 ### Keys
+@deprecated these keys have been deprecated see above for ans
+
 <center>
     | Keys | Action |
     | -------------- | --------------- |
