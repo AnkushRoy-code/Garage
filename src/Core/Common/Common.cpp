@@ -1,6 +1,6 @@
-#include "Projects/Common/Common.h"
+#include "Core/Common/Common.h"
 
-#include "Projects/Common/SDL_Exception.h"
+#include "Core/Common/SDL_Exception.h"
 
 #include <SDL3/SDL_gpu.h>
 

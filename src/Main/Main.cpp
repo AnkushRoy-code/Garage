@@ -15,8 +15,8 @@
 #include "Core/EventHandler.h"
 #include "Core/ImGuiCore/ImGuiCore.h"
 #include "Projects/Common/BaseProject.h"
-#include "Projects/Common/Common.h"
-#include "Projects/Common/SDL_Exception.h"
+#include "Core/Common/Common.h"
+#include "Core/Common/SDL_Exception.h"
 #include "Utils/Time.h"
 
 bool HandleWindowResize();

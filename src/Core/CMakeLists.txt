@@ -1,6 +1,7 @@
 add_library(Core STATIC Context.h Context.cpp Console.h Console.cpp EventHandler.h EventHandler.cpp)
 add_subdirectory(ImGuiCore)
 add_subdirectory(Renderer)
+add_subdirectory(Common)
 
 if(TRACY_PROFILE)
     target_link_libraries(Core PUBLIC Tracy::TracyClient)

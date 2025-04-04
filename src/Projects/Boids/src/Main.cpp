@@ -1,5 +1,5 @@
 #include "Main.h"
-#include "Projects/Common/Common.h"
+#include "Core/Common/Common.h"
 #include "Core/Context.h"
 #include "Core/EventHandler.h"
 #include "SDL3/SDL_stdinc.h"

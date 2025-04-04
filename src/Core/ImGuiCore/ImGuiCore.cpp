@@ -3,7 +3,7 @@
 #include "Core/Console.h"
 #include "Core/Context.h"
 #include "Projects/Common/BaseProject.h"
-#include "Projects/Common/SDL_Exception.h"
+#include "Core/Common/SDL_Exception.h"
 #include "Core/Renderer/Renderer.h"
 #include "Utils/Time.h"
 #include "imgui.h"

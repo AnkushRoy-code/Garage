@@ -1,8 +1,9 @@
-add_library(Common STATIC BaseProject.h BaseProject.cpp RegisterProjects.cpp Common.h Common.cpp SDL_Exception.h)
+add_library(projects_common STATIC BaseProject.h BaseProject.cpp RegisterProjects.cpp)
+add_library(Projects::Common ALIAS projects_common)
 
-if (TRACY_PROFILE) 
-    target_link_libraries(Common PUBLIC Tracy::TracyClient)
+if(TRACY_PROFILE)
+    target_link_libraries(Projects::Common PUBLIC Tracy::TracyClient)
 endif()
 
-target_include_directories(Common PRIVATE "${CMAKE_SOURCE_DIR}/src")
-target_link_libraries(Common PRIVATE SDL3::SDL3-shared imgui glm::glm)
+target_include_directories(projects_common PRIVATE "${CMAKE_SOURCE_DIR}/src")
+target_link_libraries(projects_common PRIVATE SDL3::SDL3-shared imgui glm::glm)

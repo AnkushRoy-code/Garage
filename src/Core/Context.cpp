@@ -2,7 +2,7 @@
 
 #include "Core/ImGuiCore/ImGuiCore.h"
 #include "Core/Renderer/Renderer.h"
-#include "Projects/Common/SDL_Exception.h"
+#include "Core/Common/SDL_Exception.h"
 #include "Utils/Time.h"
 
 #include <SDL3/SDL_gpu.h>
