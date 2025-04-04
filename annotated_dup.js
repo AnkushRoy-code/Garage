@@ -24,6 +24,5 @@ var annotated_dup =
     [ "SDL_Exception", "class_s_d_l___exception.html", "class_s_d_l___exception" ],
     [ "SimpleExample", "class_simple_example.html", "class_simple_example" ],
     [ "SpriteInstance", "struct_sprite_instance.html", "struct_sprite_instance" ],
-    [ "stbi_io_callbacks", "structstbi__io__callbacks.html", "structstbi__io__callbacks" ],
     [ "Triangle", "class_triangle.html", "class_triangle" ]
 ];

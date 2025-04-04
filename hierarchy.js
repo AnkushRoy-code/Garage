@@ -23,6 +23,5 @@ var hierarchy =
     [ "Core::RenderData", "struct_core_1_1_render_data.html", null ],
     [ "ScrollingBuffer", "struct_scrolling_buffer.html", null ],
     [ "SpriteInstance", "struct_sprite_instance.html", null ],
-    [ "stbi_io_callbacks", "structstbi__io__callbacks.html", null ],
     [ "Utils::Time", "class_utils_1_1_time.html", null ]
 ];

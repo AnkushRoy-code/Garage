@@ -7,8 +7,8 @@ var class_boids =
     [ "Quit", "class_boids.html#a1e4af2dd090dfaf7bdf27d595b1bc54f", null ],
     [ "Update", "class_boids.html#a296ceb61bd3b312228e2f068cbf6c38a", null ],
     [ "boidsContainer", "class_boids.html#a4e27f2925600492f7da63c942cb3bc62", null ],
+    [ "boidsDataBuffer", "class_boids.html#a4ac4786f123ecd1023d694e397a32956", null ],
+    [ "boidsDataTransferBuffer", "class_boids.html#a0f74737fab1fc13affbd11ce2b3f8a66", null ],
     [ "name", "class_boids.html#ad240d88ba3dd895b60c3870da9668bcd", null ],
-    [ "renderPipeline", "class_boids.html#a7bca8f54778172a5c34b7076969ef54c", null ],
-    [ "SpriteDataBuffer", "class_boids.html#ada7fc5e957ace5b4a815bdd7e0884f2c", null ],
-    [ "SpriteDataTransferBuffer", "class_boids.html#a17a2c64a1590c082c9ed68f6d201dc5c", null ]
+    [ "renderPipeline", "class_boids.html#a7bca8f54778172a5c34b7076969ef54c", null ]
 ];

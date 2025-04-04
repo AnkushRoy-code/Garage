@@ -5,6 +5,7 @@ var struct_core_1_1_render_data =
     [ "projectPass", "struct_core_1_1_render_data.html#a57c73bfa6ef85ad3b8d6d7b47dcdbd34", null ],
     [ "projectSampler", "struct_core_1_1_render_data.html#a64f6d2c3587755dac7b617c9267346ba", null ],
     [ "projectTexture", "struct_core_1_1_render_data.html#aa3025193b75bbefe1ef20e63d2753dc5", null ],
+    [ "resolutionScale", "struct_core_1_1_render_data.html#a9430f036e146a7f2894918ce2744c348", null ],
     [ "resolveTexture", "struct_core_1_1_render_data.html#ae8a4fbf894e56f7c007659db1466b475", null ],
     [ "sampleCount", "struct_core_1_1_render_data.html#a542cdfc40d8616111787176f47237780", null ],
     [ "width", "struct_core_1_1_render_data.html#a51f9459a02f6ee6e4a3830e2a078b9dd", null ],

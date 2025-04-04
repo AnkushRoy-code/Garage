@@ -9,6 +9,8 @@ var searchData=
   ['boids_2eh_6',['Boids.h',['../_boids_8h.html',1,'']]],
   ['boidscontainer_7',['BoidsContainer',['../class_boids_container.html',1,'BoidsContainer'],['../class_boids_container.html#ac3d905532b81c387fc2254c6569dce9c',1,'BoidsContainer::BoidsContainer()']]],
   ['boidscontainer_8',['boidsContainer',['../class_boids.html#a4e27f2925600492f7da63c942cb3bc62',1,'Boids']]],
-  ['boidsentity_9',['BoidsEntity',['../struct_boids_entity.html',1,'']]],
-  ['boidsvec_10',['BoidsVec',['../class_boids_container.html#a6d3dac811ef706574f4067269a8a4aab',1,'BoidsContainer']]]
+  ['boidsdatabuffer_9',['boidsDataBuffer',['../class_boids.html#a4ac4786f123ecd1023d694e397a32956',1,'Boids']]],
+  ['boidsdatatransferbuffer_10',['boidsDataTransferBuffer',['../class_boids.html#a0f74737fab1fc13affbd11ce2b3f8a66',1,'Boids']]],
+  ['boidsentity_11',['BoidsEntity',['../struct_boids_entity.html',1,'']]],
+  ['boidsvec_12',['BoidsVec',['../class_boids_container.html#a6d3dac811ef706574f4067269a8a4aab',1,'BoidsContainer']]]
 ];

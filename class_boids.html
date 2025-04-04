@@ -164,10 +164,10 @@ Private Attributes</h2></td></tr>
 <tr class="separator:ad240d88ba3dd895b60c3870da9668bcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bca8f54778172a5c34b7076969ef54c" id="r_a7bca8f54778172a5c34b7076969ef54c"><td class="memItemLeft" align="right" valign="top">SDL_GPUGraphicsPipeline *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7bca8f54778172a5c34b7076969ef54c">renderPipeline</a></td></tr>
 <tr class="separator:a7bca8f54778172a5c34b7076969ef54c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17a2c64a1590c082c9ed68f6d201dc5c" id="r_a17a2c64a1590c082c9ed68f6d201dc5c"><td class="memItemLeft" align="right" valign="top">SDL_GPUTransferBuffer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17a2c64a1590c082c9ed68f6d201dc5c">SpriteDataTransferBuffer</a></td></tr>
-<tr class="separator:a17a2c64a1590c082c9ed68f6d201dc5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada7fc5e957ace5b4a815bdd7e0884f2c" id="r_ada7fc5e957ace5b4a815bdd7e0884f2c"><td class="memItemLeft" align="right" valign="top">SDL_GPUBuffer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada7fc5e957ace5b4a815bdd7e0884f2c">SpriteDataBuffer</a></td></tr>
-<tr class="separator:ada7fc5e957ace5b4a815bdd7e0884f2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f74737fab1fc13affbd11ce2b3f8a66" id="r_a0f74737fab1fc13affbd11ce2b3f8a66"><td class="memItemLeft" align="right" valign="top">SDL_GPUTransferBuffer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f74737fab1fc13affbd11ce2b3f8a66">boidsDataTransferBuffer</a></td></tr>
+<tr class="separator:a0f74737fab1fc13affbd11ce2b3f8a66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ac4786f123ecd1023d694e397a32956" id="r_a4ac4786f123ecd1023d694e397a32956"><td class="memItemLeft" align="right" valign="top">SDL_GPUBuffer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ac4786f123ecd1023d694e397a32956">boidsDataBuffer</a></td></tr>
+<tr class="separator:a4ac4786f123ecd1023d694e397a32956"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e27f2925600492f7da63c942cb3bc62" id="r_a4e27f2925600492f7da63c942cb3bc62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_boids_container.html">BoidsContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e27f2925600492f7da63c942cb3bc62">boidsContainer</a> {}</td></tr>
 <tr class="separator:a4e27f2925600492f7da63c942cb3bc62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -369,6 +369,50 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a4ac4786f123ecd1023d694e397a32956" name="a4ac4786f123ecd1023d694e397a32956"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ac4786f123ecd1023d694e397a32956">&#9670;&#160;</a></span>boidsDataBuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SDL_GPUBuffer* Boids::boidsDataBuffer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0f74737fab1fc13affbd11ce2b3f8a66" name="a0f74737fab1fc13affbd11ce2b3f8a66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f74737fab1fc13affbd11ce2b3f8a66">&#9670;&#160;</a></span>boidsDataTransferBuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SDL_GPUTransferBuffer* Boids::boidsDataTransferBuffer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ad240d88ba3dd895b60c3870da9668bcd" name="ad240d88ba3dd895b60c3870da9668bcd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad240d88ba3dd895b60c3870da9668bcd">&#9670;&#160;</a></span>name</h2>
 
@@ -402,50 +446,6 @@ Additional Inherited Members</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">SDL_GPUGraphicsPipeline* Boids::renderPipeline</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ada7fc5e957ace5b4a815bdd7e0884f2c" name="ada7fc5e957ace5b4a815bdd7e0884f2c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada7fc5e957ace5b4a815bdd7e0884f2c">&#9670;&#160;</a></span>SpriteDataBuffer</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">SDL_GPUBuffer* Boids::SpriteDataBuffer</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a17a2c64a1590c082c9ed68f6d201dc5c" name="a17a2c64a1590c082c9ed68f6d201dc5c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a17a2c64a1590c082c9ed68f6d201dc5c">&#9670;&#160;</a></span>SpriteDataTransferBuffer</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">SDL_GPUTransferBuffer* Boids::SpriteDataTransferBuffer</td>
         </tr>
       </table>
   </td>

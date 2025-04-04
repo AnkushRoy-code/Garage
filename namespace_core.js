@@ -21,6 +21,7 @@ var namespace_core =
     [ "InputHandler", "class_core_1_1_input_handler.html", "class_core_1_1_input_handler" ],
     [ "RenderData", "struct_core_1_1_render_data.html", "struct_core_1_1_render_data" ],
     [ "KEY", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17", [
+      [ "RESIZE_PROJECT_WINDOW", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17abfcec50f5180c938216056be73623c5c", null ],
       [ "RIGHT", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17a6cdb4bd934713688e25f9e0432058d09", null ],
       [ "LEFT", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17a7e0c75bdec4e7677bbcc865b77e6cdc6", null ],
       [ "UP", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17aa12ce936ac26fd11fba11e12bfb21e66", null ],

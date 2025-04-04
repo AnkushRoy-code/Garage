@@ -71,7 +71,6 @@ var NAVTREE =
         [ "Functions", "globals_func.html", null ],
         [ "Variables", "globals_vars.html", null ],
         [ "Typedefs", "globals_type.html", null ],
-        [ "Enumerator", "globals_eval.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -81,7 +80,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_base_project_8cpp.html",
-"stb__image_8h.html#ac72f312f610a7df1519ea0f2a2f94be9"
+"struct_core_1_1_render_data.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';
