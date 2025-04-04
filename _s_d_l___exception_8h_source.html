@@ -129,38 +129,36 @@ $(function(){initNavTree('_s_d_l___exception_8h_source.html',''); initResizable(
 <a href="_s_d_l___exception_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef INCLUDE_COMMON_SDLEXCEPTION_H_</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define INCLUDE_COMMON_SDLEXCEPTION_H_</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;SDL3/SDL.h&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;exception&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span></div>
-<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_s_d_l___exception.html">   15</a></span><span class="keyword">class </span><a class="code hl_function" href="class_s_d_l___exception.html#a36a93f8167d0fb73517a28d968bc110a">SDL_Exception</a> final : <span class="keyword">public</span> std::exception</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_s_d_l___exception.html#a16e3591b3b5e4491edadd65b9e258aa7">   18</a></span>    std::string <a class="code hl_variable" href="class_s_d_l___exception.html#a16e3591b3b5e4491edadd65b9e258aa7">msg</a>;  </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="class_s_d_l___exception.html#a36a93f8167d0fb73517a28d968bc110a">   28</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_s_d_l___exception.html#a36a93f8167d0fb73517a28d968bc110a">SDL_Exception</a>(<span class="keyword">const</span> std::string &amp;Msg) :</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <a class="code hl_variable" href="class_s_d_l___exception.html#a16e3591b3b5e4491edadd65b9e258aa7">msg</a>(<span class="stringliteral">&quot;SDL_Error: &quot;</span> + Msg + <span class="stringliteral">&#39;\n&#39;</span> + SDL_GetError())</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    }</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="pch_8h.html">Core/Common/pch.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span></div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="class_s_d_l___exception.html">   12</a></span><span class="keyword">class </span><a class="code hl_function" href="class_s_d_l___exception.html#a36a93f8167d0fb73517a28d968bc110a">SDL_Exception</a> final : <span class="keyword">public</span> std::exception</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_s_d_l___exception.html#a16e3591b3b5e4491edadd65b9e258aa7">   15</a></span>    std::string <a class="code hl_variable" href="class_s_d_l___exception.html#a16e3591b3b5e4491edadd65b9e258aa7">msg</a>;  </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="}">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="class_s_d_l___exception.html#a36a93f8167d0fb73517a28d968bc110a">   25</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_s_d_l___exception.html#a36a93f8167d0fb73517a28d968bc110a">SDL_Exception</a>(<span class="keyword">const</span> std::string &amp;Msg) :</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <a class="code hl_variable" href="class_s_d_l___exception.html#a16e3591b3b5e4491edadd65b9e258aa7">msg</a>(<span class="stringliteral">&quot;SDL_Error: &quot;</span> + Msg + <span class="stringliteral">&#39;\n&#39;</span> + SDL_GetError())</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    }</div>
 </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
-<div class="foldopen" id="foldopen00038" data-start="{" data-end="}">
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="class_s_d_l___exception.html#a537ba9507d6ab163cb6d11f1df666bf8">   38</a></span>    [[nodiscard]] <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_function" href="class_s_d_l___exception.html#a537ba9507d6ab163cb6d11f1df666bf8">what</a>() const noexcept<span class="keyword"> override</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="class_s_d_l___exception.html#a16e3591b3b5e4491edadd65b9e258aa7">msg</a>.c_str();</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span></div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="class_s_d_l___exception.html#a537ba9507d6ab163cb6d11f1df666bf8">   35</a></span>    [[nodiscard]] <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_function" href="class_s_d_l___exception.html#a537ba9507d6ab163cb6d11f1df666bf8">what</a>() const noexcept<span class="keyword"> override</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="class_s_d_l___exception.html#a16e3591b3b5e4491edadd65b9e258aa7">msg</a>.c_str();</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    }</div>
 </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>};</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
 </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif  </span><span class="comment">// INCLUDE_COMMON_SDLEXCEPTION_H_</span></div>
-<div class="ttc" id="aclass_s_d_l___exception_html_a16e3591b3b5e4491edadd65b9e258aa7"><div class="ttname"><a href="class_s_d_l___exception.html#a16e3591b3b5e4491edadd65b9e258aa7">SDL_Exception::msg</a></div><div class="ttdeci">std::string msg</div><div class="ttdoc">Stores the error message.</div><div class="ttdef"><b>Definition</b> SDL_Exception.h:18</div></div>
-<div class="ttc" id="aclass_s_d_l___exception_html_a36a93f8167d0fb73517a28d968bc110a"><div class="ttname"><a href="class_s_d_l___exception.html#a36a93f8167d0fb73517a28d968bc110a">SDL_Exception::SDL_Exception</a></div><div class="ttdeci">SDL_Exception(const std::string &amp;Msg)</div><div class="ttdoc">Constructs an SDL_Exception with a custom message.</div><div class="ttdef"><b>Definition</b> SDL_Exception.h:28</div></div>
-<div class="ttc" id="aclass_s_d_l___exception_html_a537ba9507d6ab163cb6d11f1df666bf8"><div class="ttname"><a href="class_s_d_l___exception.html#a537ba9507d6ab163cb6d11f1df666bf8">SDL_Exception::what</a></div><div class="ttdeci">const char * what() const noexcept override</div><div class="ttdoc">Returns the error message.</div><div class="ttdef"><b>Definition</b> SDL_Exception.h:38</div></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#endif  </span><span class="comment">// INCLUDE_COMMON_SDLEXCEPTION_H_</span></div>
+<div class="ttc" id="aclass_s_d_l___exception_html_a16e3591b3b5e4491edadd65b9e258aa7"><div class="ttname"><a href="class_s_d_l___exception.html#a16e3591b3b5e4491edadd65b9e258aa7">SDL_Exception::msg</a></div><div class="ttdeci">std::string msg</div><div class="ttdoc">Stores the error message.</div><div class="ttdef"><b>Definition</b> SDL_Exception.h:15</div></div>
+<div class="ttc" id="aclass_s_d_l___exception_html_a36a93f8167d0fb73517a28d968bc110a"><div class="ttname"><a href="class_s_d_l___exception.html#a36a93f8167d0fb73517a28d968bc110a">SDL_Exception::SDL_Exception</a></div><div class="ttdeci">SDL_Exception(const std::string &amp;Msg)</div><div class="ttdoc">Constructs an SDL_Exception with a custom message.</div><div class="ttdef"><b>Definition</b> SDL_Exception.h:25</div></div>
+<div class="ttc" id="aclass_s_d_l___exception_html_a537ba9507d6ab163cb6d11f1df666bf8"><div class="ttname"><a href="class_s_d_l___exception.html#a537ba9507d6ab163cb6d11f1df666bf8">SDL_Exception::what</a></div><div class="ttdeci">const char * what() const noexcept override</div><div class="ttdoc">Returns the error message.</div><div class="ttdef"><b>Definition</b> SDL_Exception.h:35</div></div>
+<div class="ttc" id="apch_8h_html"><div class="ttname"><a href="pch_8h.html">pch.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
