@@ -1,9 +1,7 @@
 #ifndef INCLUDE_COMMON_BASEPROJECT_H_
 #define INCLUDE_COMMON_BASEPROJECT_H_
 
-#include <memory>
-#include <string>
-#include <vector>
+#include "Core/Common/pch.h"
 
 namespace Common
 {

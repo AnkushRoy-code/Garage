@@ -3,7 +3,7 @@
 
 #include "Projects/Common/BaseProject.h"
 #include "Projects/Boids/src/Boids.h"
-#include "SDL3/SDL_gpu.h"
+#include "Core/Common/pch.h"
 
 typedef struct SpriteInstance
 {

@@ -1,9 +1,7 @@
 #ifndef INCLUDE_SRC_BOIDS_H_
 #define INCLUDE_SRC_BOIDS_H_
 
-#include <SDL3/SDL_pixels.h>
-#include <glm/glm.hpp>
-#include <vector>
+#include "Core/Common/pch.h"
 
 struct BoidsEntity
 {

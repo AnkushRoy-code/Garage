@@ -5,11 +5,6 @@
 #include "Core/Common/SDL_Exception.h"
 #include "Utils/Time.h"
 
-#include <SDL3/SDL_gpu.h>
-#include <imgui.h>
-#include <backends/imgui_impl_sdl3.h>
-#include <backends/imgui_impl_sdlgpu3.h>
-
 Core::Context gContext;
 
 namespace Core

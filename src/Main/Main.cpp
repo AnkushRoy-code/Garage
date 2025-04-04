@@ -1,22 +1,16 @@
-#include "Core/Renderer/Renderer.h"
-#include <iostream>
-#include <memory>
-#include <vector>
-
 #define SDL_MAIN_USE_CALLBACKS 1
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
+#include "Core/Common/pch.h"
 
-#include <imgui.h>
-#include <backends/imgui_impl_sdl3.h>
-
-#include "Core/Context.h"
-#include "Core/Console.h"
-#include "Core/EventHandler.h"
-#include "Core/ImGuiCore/ImGuiCore.h"
-#include "Projects/Common/BaseProject.h"
 #include "Core/Common/Common.h"
 #include "Core/Common/SDL_Exception.h"
+#include "Core/Console.h"
+#include "Core/Context.h"
+#include "Core/EventHandler.h"
+#include "Core/ImGuiCore/ImGuiCore.h"
+#include "Core/Renderer/Renderer.h"
+
+#include "Projects/Common/BaseProject.h"
+
 #include "Utils/Time.h"
 
 bool HandleWindowResize();

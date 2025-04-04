@@ -4,9 +4,13 @@ if(TRACY_PROFILE)
     target_link_libraries(${PROJECT_NAME} PUBLIC Tracy::TracyClient)
 endif()
 
-target_link_libraries("${PROJECT_NAME}" PRIVATE Projects::Common Projects Utils SDL3::SDL3-shared imgui Core)
+target_link_libraries("${PROJECT_NAME}" PRIVATE Projects::Common Utils SDL3::SDL3-shared imgui Core)
 target_include_directories("${PROJECT_NAME}" PRIVATE "${CMAKE_SOURCE_DIR}/src")
 
+# FIXME: Doesn't work fsr idk y, it just makes few dublicates of the same precompile header...
+# target_precompile_headers("${PROJECT_NAME}" REUSE_FROM Core)
+
+# Copy shared lib(s) or res if needed
 if(WIN32)
     if(MSVC)
         set_property(

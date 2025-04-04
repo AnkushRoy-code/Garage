@@ -5,8 +5,8 @@
 #include "Core/Console.h"
 #include "Core/Context.h"
 #include "Core/EventHandler.h"
-#include "SDL3/SDL_gpu.h"
-#include <iostream>
+
+#include "Core/Common/pch.h"
 
 SDL_GPUViewport Triangle::SmallViewport = {160, 120, 320, 240, 0.1f, 1.0f};
 SDL_Rect Triangle::ScissorRect          = {320, 240, 320, 240};

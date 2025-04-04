@@ -1,20 +1,15 @@
 #include "ImGuiCore.h"
 
-#include "Core/Console.h"
-#include "Core/Context.h"
-#include "Projects/Common/BaseProject.h"
 #include "Core/Common/SDL_Exception.h"
+#include "Core/Context.h"
+#include "Core/Console.h"
 #include "Core/Renderer/Renderer.h"
+#include "Projects/Common/BaseProject.h"
 #include "Utils/Time.h"
-#include "imgui.h"
 
-#include <filesystem>
-
-#include <SDL3/SDL_gpu.h>
-#include <implot.h>
-#include <backends/imgui_impl_sdl3.h>
-#include <backends/imgui_impl_sdlgpu3.h>
+#include "Core/Common/pch.h"
 #include <imgui_internal.h>
+#include <implot.h>
 
 void Core::ImGuiCore::Init()
 {

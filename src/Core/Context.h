@@ -1,11 +1,9 @@
 #ifndef INCLUDE_CORE_CONTEXT_H_
 #define INCLUDE_CORE_CONTEXT_H_
 
-#include "Core/EventHandler.h"
-#include "SDL3/SDL_gpu.h"
+#include "Common/pch.h"
 
-#include <SDL3/SDL.h>
-#include <imgui.h>
+#include "Core/EventHandler.h"
 
 namespace Core
 {

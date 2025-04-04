@@ -3,7 +3,8 @@
 #include "Core/Context.h"
 #include "Projects/Common/BaseProject.h"
 #include "Core/Common/SDL_Exception.h"
-#include "SDL3/SDL_gpu.h"
+
+#include "Core/Common/pch.h"
 
 void Core::Renderer::Init()
 {

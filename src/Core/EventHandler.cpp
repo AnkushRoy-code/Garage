@@ -3,9 +3,6 @@
 #include "Core/Context.h"
 #include "Projects/Common/BaseProject.h"
 
-#include <SDL3/SDL_scancode.h>
-#include <SDL3/SDL.h>
-
 Core::InputHandler::InputHandler()
 {
     Keys.fill(KEY_STATE::IDLE);

@@ -1,9 +1,5 @@
 #include "Console.h"
 
-#include <chrono>
-#include <sstream>
-#include <iomanip>
-
 namespace Core
 {
 

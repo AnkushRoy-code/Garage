@@ -1,11 +1,6 @@
 #include "Boids.h"
 #include "Core/Context.h"
-#include "SDL3/SDL_stdinc.h"
 #include "Utils/Time.h"
-#include "glm/exponential.hpp"
-#include "glm/trigonometric.hpp"
-#include <cmath>
-#include <random>
 
 BoidsContainer::BoidsContainer()
 {

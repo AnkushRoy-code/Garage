@@ -2,13 +2,6 @@
 
 #include "Core/Common/SDL_Exception.h"
 
-#include <SDL3/SDL_gpu.h>
-
-#include <cassert>
-#include <filesystem>
-#include <fstream>
-#include <vector>
-
 namespace Common
 {
 SDL_GPUShader *LoadShader(SDL_GPUDevice *device,

@@ -1,8 +1,7 @@
 #ifndef INCLUDE_CORE_EVENTHANDLER_H_
 #define INCLUDE_CORE_EVENTHANDLER_H_
 
-#include <SDL3/SDL_init.h>
-#include <array>
+#include "Common/pch.h"
 
 namespace Core
 {

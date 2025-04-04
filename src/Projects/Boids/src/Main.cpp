@@ -2,11 +2,7 @@
 #include "Core/Common/Common.h"
 #include "Core/Context.h"
 #include "Core/EventHandler.h"
-#include "SDL3/SDL_stdinc.h"
-#include "imgui.h"
-#include <SDL3/SDL_gpu.h>
-#include <cmath>
-#include <iostream>
+
 
 bool Boids::Init()
 {

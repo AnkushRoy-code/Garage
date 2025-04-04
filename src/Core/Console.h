@@ -1,8 +1,7 @@
 #ifndef INCLUDE_CORE_CONSOLE_CPP_
 #define INCLUDE_CORE_CONSOLE_CPP_
 
-#include <vector>
-#include <string>
+#include "Common/pch.h"
 
 namespace Core
 {

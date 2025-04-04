@@ -1,10 +1,7 @@
 #ifndef INCLUDE_COMMON_SDLEXCEPTION_H_
 #define INCLUDE_COMMON_SDLEXCEPTION_H_
 
-#include <SDL3/SDL.h>
-
-#include <exception>
-#include <string>
+#include "Core/Common/pch.h"
 
 /**
  * @brief Exception class for handling SDL errors.
