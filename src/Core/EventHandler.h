@@ -26,6 +26,9 @@ enum KEY_STATE
     RELEASED
 };
 
+/**
+ *   @mermaid{eventHandler}
+ */
 class InputHandler
 {
   public:
