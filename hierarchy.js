@@ -8,6 +8,7 @@ var hierarchy =
     ] ],
     [ "BoidsContainer", "class_boids_container.html", null ],
     [ "BoidsEntity", "struct_boids_entity.html", null ],
+    [ "Utils::CapZone", "class_utils_1_1_cap_zone.html", null ],
     [ "Core::ConsoleLogBuffer", "class_core_1_1_console_log_buffer.html", null ],
     [ "Core::ConsoleLogMessage", "struct_core_1_1_console_log_message.html", null ],
     [ "Core::Context", "struct_core_1_1_context.html", null ],

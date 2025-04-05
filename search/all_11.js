@@ -19,5 +19,6 @@ var searchData=
   ['simpleexample_2eh_16',['SimpleExample.h',['../_simple_example_8h.html',1,'']]],
   ['smallviewport_17',['SmallViewport',['../class_triangle.html#af476a83a8475a37a3eb5d01b97bfa26f',1,'Triangle']]],
   ['spriteinstance_18',['SpriteInstance',['../struct_sprite_instance.html',1,'SpriteInstance'],['../_main_8h.html#aca8727f211215c690792d2d42cb16a24',1,'SpriteInstance:&#160;Main.h']]],
-  ['started_19',['Started',['../index.html#autotoc_md18',1,'Getting Started'],['../bug.html#_bug000001',1,'Getting Started']]]
+  ['start_19',['start',['../class_utils_1_1_cap_zone.html#a47852c9a98e54f2278f99428505237de',1,'Utils::CapZone']]],
+  ['started_20',['Started',['../index.html#autotoc_md18',1,'Getting Started'],['../bug.html#_bug000001',1,'Getting Started']]]
 ];

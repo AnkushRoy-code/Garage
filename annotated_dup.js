@@ -14,6 +14,7 @@ var annotated_dup =
       [ "RenderData", "struct_core_1_1_render_data.html", "struct_core_1_1_render_data" ]
     ] ],
     [ "Utils", "namespace_utils.html", [
+      [ "CapZone", "class_utils_1_1_cap_zone.html", "class_utils_1_1_cap_zone" ],
       [ "Time", "class_utils_1_1_time.html", null ]
     ] ],
     [ "Boids", "class_boids.html", "class_boids" ],

@@ -1,5 +1,20 @@
 var NAVTREEINDEX1 =
 {
+"struct_core_1_1_app_state.html#aaf4387fd51e86420ee369c2a1d00f178":[8,0,1,0,3],
+"struct_core_1_1_app_state.html#ae7c1b77e86c607297ea4102320a2fbe4":[7,0,1,3,1],
+"struct_core_1_1_app_state.html#ae7c1b77e86c607297ea4102320a2fbe4":[8,0,1,0,1],
+"struct_core_1_1_console_log_message.html":[7,0,1,5],
+"struct_core_1_1_console_log_message.html":[8,0,1,2],
+"struct_core_1_1_console_log_message.html#a111da37a8e512b63f379516b5c7a93f0":[7,0,1,5,1],
+"struct_core_1_1_console_log_message.html#a111da37a8e512b63f379516b5c7a93f0":[8,0,1,2,1],
+"struct_core_1_1_console_log_message.html#ae04b3f8daa0f8748a981d5570266a2ea":[7,0,1,5,0],
+"struct_core_1_1_console_log_message.html#ae04b3f8daa0f8748a981d5570266a2ea":[8,0,1,2,0],
+"struct_core_1_1_context.html":[7,0,1,6],
+"struct_core_1_1_context.html":[8,0,1,3],
+"struct_core_1_1_context.html#a82382780d4c92f67f9a9999c29a7a488":[7,0,1,6,5],
+"struct_core_1_1_context.html#a82382780d4c92f67f9a9999c29a7a488":[8,0,1,3,5],
+"struct_core_1_1_context.html#ab03c1d0058a43aec9f49755072c5399f":[7,0,1,6,0],
+"struct_core_1_1_context.html#ab03c1d0058a43aec9f49755072c5399f":[8,0,1,3,0],
 "struct_core_1_1_context.html#ab321f6d66a227cad7ab837ea47883896":[7,0,1,6,1],
 "struct_core_1_1_context.html#ab321f6d66a227cad7ab837ea47883896":[8,0,1,3,1],
 "struct_core_1_1_context.html#adb5053434ec631c69898965abd380b7c":[7,0,1,6,2],
@@ -63,5 +78,5 @@ var NAVTREEINDEX1 =
 "struct_sprite_instance.html#acb2b9e58732ed7ac787c41cfaae2749b":[8,0,10,7],
 "struct_sprite_instance.html#ad2d099ac6dd17178f5e9811beaaaf486":[8,0,10,0],
 "struct_sprite_instance.html#ae38a0f604b2bbc2afdf6e23b2c24764b":[8,0,10,2],
-"todo.html":[5]
+"todo.html":[4]
 };

@@ -50,8 +50,8 @@ var NAVTREE =
         [ "Example", "md_usage.html#autotoc_md4", null ]
       ] ]
     ] ],
-    [ "Deprecated List", "deprecated.html", null ],
     [ "Todo List", "todo.html", null ],
+    [ "Deprecated List", "deprecated.html", null ],
     [ "Bug List", "bug.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -88,7 +88,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_base_project_8cpp.html",
-"struct_core_1_1_context.html#ab321f6d66a227cad7ab837ea47883896"
+"struct_core_1_1_app_state.html#aaf4387fd51e86420ee369c2a1d00f178"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';
