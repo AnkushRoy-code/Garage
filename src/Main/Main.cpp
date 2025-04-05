@@ -79,12 +79,14 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         Utils::Time::updateDeltaTime();
 
         renderingDone.store(false);
-        std::jthread updateProject(updateFunc);
+        std::thread updateProject(updateFunc);  // use jthread when macos supports it
 
         // no need to draw if window is minimised. But we sure need to update the state.
         if (SDL_GetWindowFlags(gContext.renderData.window) & SDL_WINDOW_MINIMIZED)
         {
             Utils::Time::capFPS();
+            renderingDone.store(true);
+            updateProject.join();
             return SDL_APP_CONTINUE;
         }
 
@@ -105,6 +107,8 @@ SDL_AppResult SDL_AppIterate(void *appstate)
             {
                 ImGui::End();
                 ImGui::PopStyleVar();
+                renderingDone.store(true);
+                updateProject.join();
                 return SDL_APP_CONTINUE;
             }
 

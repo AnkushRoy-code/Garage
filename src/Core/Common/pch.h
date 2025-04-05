@@ -25,6 +25,7 @@
 #include <memory>
 #include <random>
 #include <thread>
+#include <atomic>
 #include <vector>
 #include <array>
 #include <string>
