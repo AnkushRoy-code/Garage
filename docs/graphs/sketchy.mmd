@@ -1,0 +1,33 @@
+flowchart TD
+    A[Start] --> B((Decision Point))
+    B -->|Yes| C{Choose Path}
+    B -->|No| D[Process End]
+
+    C -->|Option 1| E[Data Processing]
+    C -->|Option 2| F[User Interaction]
+    C -->|Option 3| G[External API]
+
+    E --> H{More Analysis?}
+    H -->|Yes| I[Deep Learning]
+    H -->|No| J[Store Results]
+
+    F --> K{User Feedback?}
+    K -->|Positive| L[Improve UI]
+    K -->|Negative| M[Fix Bugs]
+    K -->|Neutral| N[Monitor Usage]
+
+    G --> O[API Response]
+    O --> P[Process Data]
+    P --> Q{Valid Data?}
+    Q -->|Yes| R[Use Data]
+    Q -->|No| S[Request Again]
+
+    I -.-> X[Final Review]
+    J -.-> X
+    L -.-> X
+    M -.-> X
+    N -.-> X
+    R -.-> X
+    S -.-> X
+    X --> Y((System Ready))
+    Y ==> Z((End))
