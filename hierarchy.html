@@ -143,7 +143,29 @@ $(function(){initNavTree('hierarchy.html',''); initResizable(true); });
 <tr id="row_7_0_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_s_d_l___exception.html" target="_self">SDL_Exception</a></td><td class="desc">Exception class for handling SDL errors </td></tr>
 <tr id="row_8_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_8_" class="arrow" onclick="dynsection.toggleFolder('8_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_common_1_1_im_gui_u_i.html" target="_self">Common::ImGuiUI</a></td><td class="desc"></td></tr>
 <tr id="row_8_0_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_boids.html" target="_self">Boids</a></td><td class="desc"></td></tr>
-<tr id="row_9_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_core_1_1_input_handler.html" target="_self">Core::InputHandler</a></td><td class="desc"></td></tr>
+<tr id="row_9_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_core_1_1_input_handler.html" target="_self">Core::InputHandler</a></td><td class="desc"> <div class="mermaid"> 
+  flowchart LR
+    A["IDLE"] --> B["Pressed?"]
+    B --> C(("Yes")) & D(("No"))
+    D --> A
+    C --> E["PRESSED"]
+    E --> F["Next Frame"]
+    F --> G["HELD"]
+    G --> H["Next Frame"]
+    H --> Z["Pressed?"]
+    Z --> J(("No")) & I(("Yes"))
+    I --> G
+    J --> K["RELEASED"]
+    K --> L["Next Frame"]
+    L --> A
+    A@{ shape: paper-tape}
+    B@{ shape: hex}
+    E@{ shape: paper-tape}
+    G@{ shape: paper-tape}
+    Z@{ shape: hex}
+    K@{ shape: paper-tape}
+  
+ </div>  </td></tr>
 <tr id="row_10_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_matrix4x4.html" target="_self">Matrix4x4</a></td><td class="desc"></td></tr>
 <tr id="row_11_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_common_1_1_project_manager.html" target="_self">Common::ProjectManager</a></td><td class="desc"></td></tr>
 <tr id="row_12_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_core_1_1_render_data.html" target="_self">Core::RenderData</a></td><td class="desc"></td></tr>
@@ -164,11 +186,10 @@ $(function(){initNavTree('hierarchy.html',''); initResizable(true); });
 <script>
   mermaid.initialize({
     startOnLoad: true,
-    theme: 'dark', 
+    theme: 'base', 
     themeVariables: {
-      primaryColor: '#f4f4ff',
-      secondaryColor: 'rgba(244,244,255,0.9)',
-      tertiaryColor: '#F9FAFC',
+        background: '#1e1e2e',
+        lineColor: '#7A8FA8',
     },
   });
 </script>

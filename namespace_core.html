@@ -152,6 +152,29 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_core_1_1_context.html">Context</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_1_1_input_handler.html">InputHandler</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"> <div class="mermaid"> 
+  flowchart LR
+    A["IDLE"] --> B["Pressed?"]
+    B --> C(("Yes")) & D(("No"))
+    D --> A
+    C --> E["PRESSED"]
+    E --> F["Next Frame"]
+    F --> G["HELD"]
+    G --> H["Next Frame"]
+    H --> Z["Pressed?"]
+    Z --> J(("No")) & I(("Yes"))
+    I --> G
+    J --> K["RELEASED"]
+    K --> L["Next Frame"]
+    L --> A
+    A@{ shape: paper-tape}
+    B@{ shape: hex}
+    E@{ shape: paper-tape}
+    G@{ shape: paper-tape}
+    Z@{ shape: hex}
+    K@{ shape: paper-tape}
+  
+ </div>   <a href="class_core_1_1_input_handler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_core_1_1_render_data.html">RenderData</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -236,11 +259,10 @@ Enumerations</h2></td></tr>
 <script>
   mermaid.initialize({
     startOnLoad: true,
-    theme: 'dark', 
+    theme: 'base', 
     themeVariables: {
-      primaryColor: '#f4f4ff',
-      secondaryColor: 'rgba(244,244,255,0.9)',
-      tertiaryColor: '#F9FAFC',
+        background: '#1e1e2e',
+        lineColor: '#7A8FA8',
     },
   });
 </script>
