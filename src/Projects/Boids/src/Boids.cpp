@@ -29,6 +29,7 @@ void BoidsContainer::init()
         BoidsVec.push_back(boid);
     }
 }
+
 void BoidsContainer::changeData(float Seperation, float Alignment, float Cohesion)
 {
     seperation = Seperation;
@@ -130,8 +131,8 @@ void BoidsContainer::update()
             BoidVel->y = (BoidVel->y / speed) * maxSpeed;
         }
 
-        BoidPos->x += BoidVel->x * Utils::Time::deltaTime() / 30.0f;
-        BoidPos->y += BoidVel->y * Utils::Time::deltaTime() / 30.0f;
+        BoidPos->x += BoidVel->x * Utils::Time::deltaTime() / 70.0f;
+        BoidPos->y += BoidVel->y * Utils::Time::deltaTime() / 70.0f;
 
         // update rotation
         auto targetRotation = glm::atan(BoidVel->y, BoidVel->x);

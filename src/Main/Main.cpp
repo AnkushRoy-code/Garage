@@ -1,3 +1,4 @@
+#include "Utils/CapFPS.h"
 #define SDL_MAIN_USE_CALLBACKS 1
 #include <SDL3/SDL_main.h>  // only need in main.cpp
 #include "Core/Common/pch.h"
@@ -15,23 +16,17 @@
 #include "Utils/Time.h"
 
 bool HandleWindowResize();
-
-/**
-* @mermaid{sketchy}
-*/
+std::atomic<bool> renderingDone;
 
 SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
 {
     try
     {
-        // clang-format off
         Core::ConsoleLogBuffer::addMessage(
             "Welcome to Ankush's Garage\n"
-            "Press 'a' or 'd' to change between projects\n\n"
-            "Help: The keyboard layout doesn't matter, use the physical "
-            "keys in your keyboard to change the examples"
-        );
-        // clang-format on
+            "This is a Software I made to showcase my Works that I will build over the years."
+            "So this is a placeholder for all my stuff! I hope you enjoy what I have made until "
+            "now. It might not be much but was HARD");
         gContext.init();
 
         Common::ProjectManager::registerAllProjects();
@@ -67,28 +62,37 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
     return Core::EventHandler::handleEvents(event, gContext.inputHandler);
 }
 
+void updateFunc()
+{
+    while (!renderingDone.load())
+    {
+        Utils::CapZone temp(60);
+        Projects[gContext.appState.projectIndex]->Update();
+    }
+}
+
 SDL_AppResult SDL_AppIterate(void *appstate)
 {
+    PROFILE_SCOPE;
     try
     {
-        PROFILE_SCOPE;
         Utils::Time::updateDeltaTime();
 
-        Projects[gContext.appState.projectIndex]->Update();
+        renderingDone.store(false);
+        std::jthread updateProject(updateFunc);
 
-        // no need to draw if window is minimised. But sure need to update the state. If needed
-        // pause it. Idk why I keep updating like it even matters. But gud design if it ever matters
+        // no need to draw if window is minimised. But we sure need to update the state.
         if (SDL_GetWindowFlags(gContext.renderData.window) & SDL_WINDOW_MINIMIZED)
         {
             Utils::Time::capFPS();
-            Core::ConsoleLogBuffer::addMessage("The thing is minimised...");
             return SDL_APP_CONTINUE;
         }
 
         Core::ImGuiCore::Update();
 
-        // TODO: Fix whatever this shit has happened.
-        // Hours Wasted: 1
+        /// @todo Fix whatever this shit has happened. Can't keep this codeblock inside
+        /// Core::ImGuiCore::Update function
+        // Hours Wasted: 2
         // This doesn't work with this being inside the ImGuiCore::Update(); function. fsr
         ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2 {0, 0});
         {
@@ -104,8 +108,6 @@ SDL_AppResult SDL_AppIterate(void *appstate)
                 return SDL_APP_CONTINUE;
             }
 
-            Core::Renderer::DrawProjectToTexture();
-
             const SDL_GPUTextureSamplerBinding bind {gContext.renderData.projectTexture,
                                                      gContext.renderData.projectSampler};
             const auto size = ImGui::GetWindowSize();
@@ -113,9 +115,18 @@ SDL_AppResult SDL_AppIterate(void *appstate)
             ImGui::Image((ImTextureID)&bind, {size.x, size.y - 19.0f});
             ImGui::End();
         }
+
         ImGui::PopStyleVar();
 
         Core::ImGuiCore::Draw();
+
+        Core::Renderer::DrawProjectToTexture();
+
+        renderingDone.store(true);
+        updateProject.join();
+
+        gContext.inputHandler.endFrame();
+        Utils::Time::capFPS();
     }
 
     catch (const SDL_Exception &e)
@@ -136,10 +147,6 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         return SDL_APP_FAILURE;
     }
 
-    gContext.inputHandler.endFrame();
-    Utils::Time::capFPS();
-
-    PROFILE_FRAME;
     return SDL_APP_CONTINUE;
 }
 
@@ -148,6 +155,7 @@ void SDL_AppQuit(void *appstate, SDL_AppResult result)
     // Do stuff when needed
 }
 
+/// @return false if window is minimised
 bool HandleWindowResize()
 {
     ImVec2 view = ImGui::GetWindowSize();
@@ -155,6 +163,7 @@ bool HandleWindowResize()
     if (view.x != gContext.appState.ProjectWindowX || view.y != gContext.appState.ProjectWindowY)
     {
         gContext.inputHandler.updateKey(Core::RESIZE_PROJECT_WINDOW, true);
+
         if (view.x == 0 || view.y == 0) { return false; }  // window is minimised
         gContext.appState.ProjectWindowX = view.x;
         gContext.appState.ProjectWindowY = view.y;

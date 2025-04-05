@@ -24,8 +24,7 @@ void Time::init() noexcept
 uint32_t Time::getTicks() noexcept
 {
     auto currentTime = std::chrono::high_resolution_clock::now();
-    auto duration    = std::chrono::duration_cast<std::chrono::milliseconds>(
-        currentTime - mStartTime);
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - mStartTime);
     return static_cast<uint32_t>(duration.count());
 }
 
@@ -41,7 +40,7 @@ void Time::updateDeltaTime() noexcept
     mCurrentTime                 = high_resolution_clock::now();
     duration<double> elapsedTime = mCurrentTime - mPreviousTime;
 
-    mDeltaTime    = elapsedTime.count() * 1000; // nano -> miliseconds
+    mDeltaTime    = elapsedTime.count() * 1000;  // nano -> miliseconds
     mPreviousTime = mCurrentTime;
 }
 
@@ -49,12 +48,9 @@ void Time::capFPS()
 {
     using namespace std::chrono;
 
-    auto frameTime = high_resolution_clock::now() - mCurrentTime;
+    auto frameTime = mCurrentTime + mFrameDuration;
 
-    if (frameTime < mFrameDuration)
-    {
-        std::this_thread::sleep_for(mFrameDuration - frameTime);
-    }
+    std::this_thread::sleep_until(frameTime);
 }
 
 }  // namespace Utils

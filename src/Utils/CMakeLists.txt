@@ -1,4 +1,4 @@
-add_library(Utils STATIC Time.h Time.cpp)
+add_library(Utils STATIC Time.h Time.cpp CapFPS.h CapFPS.cpp)
 
 target_include_directories(Utils PRIVATE "${CMAKE_SOURCE_DIR}/src")
 
