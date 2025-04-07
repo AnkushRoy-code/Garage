@@ -17,6 +17,7 @@ class BoidsContainer
     void init();
     void changeData(float Seperation, float Alignment, float Cohesion);
     void update();
+    void quit();
     // clang-format off
     [[nodiscard]] unsigned int numBoids() const noexcept { return NUM_BOIDS; }
     // clang-format on

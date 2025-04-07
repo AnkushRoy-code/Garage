@@ -30,6 +30,10 @@ void BoidsContainer::init()
     }
 }
 
+void BoidsContainer::quit() {
+    BoidsVec.clear();
+}
+
 void BoidsContainer::changeData(float Seperation, float Alignment, float Cohesion)
 {
     seperation = Seperation;

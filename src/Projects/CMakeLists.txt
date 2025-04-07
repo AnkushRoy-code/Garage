@@ -8,6 +8,7 @@ add_library(Projects
 )
 
 add_subdirectory(Boids)
+add_subdirectory(Two_Body_Simulation)
 
 if (TRACY_PROFILE) 
     target_link_libraries(Projects PUBLIC Tracy::TracyClient)

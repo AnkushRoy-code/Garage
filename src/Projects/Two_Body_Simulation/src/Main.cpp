@@ -1,18 +1,66 @@
 #include "Main.h"
 #include "Core/Common/Common.h"
+#include "Projects/Boids/src/Main.h"
 #include "Core/Context.h"
-#include "Core/EventHandler.h"
 
+#include "Core/Common/pch.h"
 
-bool Boids::Init()
+struct Circle
+{
+    glm::vec2 Position;
+    float Radius;
+    float _padding;
+    glm::vec4 Color;
+};
+
+struct CircleContainer
+{
+    std::vector<Circle> CircleVec;
+
+    void init()
+    {
+        CircleVec.reserve(CircleCount);
+
+        const float w = gContext.appState.ProjectWindowX;
+        const float h = gContext.appState.ProjectWindowY;
+
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_real_distribution<> disX(0, w);
+        std::uniform_real_distribution<> disY(0, h);
+        std::uniform_real_distribution<> col(0.0f, 1.0f);
+        std::uniform_real_distribution<> rad(20.0f, 40.0f);
+
+        for (unsigned int i = 0; i < CircleCount; ++i)
+        {
+            Circle circle {};
+            circle.Position = {disX(gen), disY(gen)};
+            circle.Color    = {col(gen), col(gen), col(gen), col(gen)};
+            circle.Radius   = rad(gen);
+
+            CircleVec.push_back(circle);
+        }
+    }
+
+    void quit()
+    {
+        CircleVec.clear();
+    }
+
+    unsigned int CircleCount = 20;
+};
+
+CircleContainer Circles {};
+
+bool Two_Body_Simulation::Init()
 {
     hasUI = true;
 
     // pipeline creation
     SDL_GPUShader *vertShader =
-        Common::LoadShader(gContext.renderData.device, "PullSpriteBatch.vert", 0, 1, 1, 0);
+        Common::LoadShader(gContext.renderData.device, "DrawCircle.vert", 0, 1, 1, 0);
     SDL_GPUShader *fragShader =
-        Common::LoadShader(gContext.renderData.device, "TexturedQuadColor.frag", 0, 0, 0, 0);
+        Common::LoadShader(gContext.renderData.device, "DrawCircle.frag", 0, 0, 0, 0);
 
     const SDL_GPUColorTargetBlendState blendState {
         .src_color_blendfactor = SDL_GPU_BLENDFACTOR_SRC_ALPHA,
@@ -42,7 +90,7 @@ bool Boids::Init()
     const SDL_GPUGraphicsPipelineCreateInfo createInfo {
         .vertex_shader     = vertShader,
         .fragment_shader   = fragShader,
-        .primitive_type    = SDL_GPU_PRIMITIVETYPE_TRIANGLELIST,
+        .primitive_type    = SDL_GPU_PRIMITIVETYPE_TRIANGLESTRIP,
         .multisample_state = mState,
         .target_info       = targetInfo,
     };
@@ -55,61 +103,31 @@ bool Boids::Init()
     // Transfer buffers creation
     const SDL_GPUTransferBufferCreateInfo tBufCreateInfo {
         .usage = SDL_GPU_TRANSFERBUFFERUSAGE_UPLOAD,
-        .size  = (Uint32)(boidsContainer.numBoids() * sizeof(SpriteInstance)),
+        .size  = (Uint32)(Circles.CircleCount * sizeof(Circle)),
     };
 
-    boidsDataTransferBuffer =
-        SDL_CreateGPUTransferBuffer(gContext.renderData.device, &tBufCreateInfo);
+    transferBuffer = SDL_CreateGPUTransferBuffer(gContext.renderData.device, &tBufCreateInfo);
 
     const SDL_GPUBufferCreateInfo newBufCreateInfo {
         .usage = SDL_GPU_BUFFERUSAGE_GRAPHICS_STORAGE_READ,
-        .size  = (Uint32)(boidsContainer.numBoids() * sizeof(SpriteInstance)),
+        .size  = (Uint32)(Circles.CircleCount * sizeof(Circle)),
 
     };
 
-    boidsDataBuffer = SDL_CreateGPUBuffer(gContext.renderData.device, &newBufCreateInfo);
+    dataBuffer = SDL_CreateGPUBuffer(gContext.renderData.device, &newBufCreateInfo);
 
-    boidsContainer.init();
+    Circles.init();
+
     return true;
 }
 
-bool Boids::Update()
+bool Two_Body_Simulation::Update()
 {
-    PROFILE_SCOPE_N("Boids Update");
-    boidsContainer.update();
     return true;
 }
 
-Matrix4x4 Matrix4x4_CreateOrthographicOffCenter(  // I don't even remember where I stole it from
-    float left,
-    float right,
-    float bottom,
-    float top,
-    float zNearPlane,
-    float zFarPlane)
+bool Two_Body_Simulation::Draw()
 {
-    return {2.0f / (right - left),
-            0,
-            0,
-            0,
-            0,
-            2.0f / (top - bottom),
-            0,
-            0,
-            0,
-            0,
-            1.0f / (zNearPlane - zFarPlane),
-            0,
-            (left + right) / (left - right),
-            (top + bottom) / (bottom - top),
-            zNearPlane / (zNearPlane - zFarPlane),
-            1};
-}
-
-bool Boids::Draw()
-{
-    PROFILE_SCOPE_N("Boids Draw");
-
     const float w = gContext.appState.ProjectWindowX;
     const float h = gContext.appState.ProjectWindowY;
 
@@ -121,35 +139,29 @@ bool Boids::Draw()
     if (gContext.renderData.projectTexture)
     {
         // upload the data to transfer buffer
-        auto *dataPtr = static_cast<SpriteInstance *>(
-            SDL_MapGPUTransferBuffer(gContext.renderData.device, boidsDataTransferBuffer, true));
+        auto *dataPtr = static_cast<Circle *>(
+            SDL_MapGPUTransferBuffer(gContext.renderData.device, transferBuffer, true));
 
-        static int i = 0;
-        for (const auto &boid: boidsContainer.getBoids())
+        for (int i = 0; i < Circles.CircleCount; i++)
         {
-            dataPtr[i].x        = boid.Position.x;
-            dataPtr[i].y        = boid.Position.y;
-            dataPtr[i].z        = 0.0f;  // why do I even have this?
-            dataPtr[i].r        = boidsContainer.Color.r;
-            dataPtr[i].g        = boidsContainer.Color.g;
-            dataPtr[i].b        = boidsContainer.Color.b;
-            dataPtr[i].a        = boidsContainer.Color.a;
-            dataPtr[i].rotation = boid.Rotation - SDL_PI_F * 0.5;
-            i++;
+            dataPtr[i].Color    = Circles.CircleVec[i].Color;
+            dataPtr[i].Position = Circles.CircleVec[i].Position;
+            dataPtr[i].Radius   = Circles.CircleVec[i].Radius;
+            dataPtr[i]._padding = 0.0f;
         }
-        i = 0;
-        SDL_UnmapGPUTransferBuffer(gContext.renderData.device, boidsDataTransferBuffer);
+
+        SDL_UnmapGPUTransferBuffer(gContext.renderData.device, transferBuffer);
 
         // upload the data to gpu from transfer buffers
         const SDL_GPUTransferBufferLocation transferBufferLocation {
-            .transfer_buffer = boidsDataTransferBuffer,
+            .transfer_buffer = transferBuffer,
             .offset          = 0,
         };
 
         const SDL_GPUBufferRegion bufferRegion {
-            .buffer = boidsDataBuffer,
+            .buffer = dataBuffer,
             .offset = 0,
-            .size   = (Uint32)(boidsContainer.numBoids() * sizeof(SpriteInstance)),
+            .size   = (Uint32)(Circles.CircleCount * sizeof(Circle)),
         };
 
         SDL_GPUCopyPass *copyPass = SDL_BeginGPUCopyPass(cmdBuf);
@@ -175,12 +187,11 @@ bool Boids::Draw()
         gContext.renderData.projectPass = SDL_BeginGPURenderPass(cmdBuf, &tinfo, 1, nullptr);
 
         SDL_BindGPUGraphicsPipeline(gContext.renderData.projectPass, renderPipeline);
-        SDL_BindGPUVertexStorageBuffers(gContext.renderData.projectPass, 0, &boidsDataBuffer, 1);
+        SDL_BindGPUVertexStorageBuffers(gContext.renderData.projectPass, 0, &dataBuffer, 1);
 
         SDL_PushGPUVertexUniformData(cmdBuf, 0, &cameraMatrix, sizeof(Matrix4x4));
 
-        SDL_DrawGPUPrimitives(gContext.renderData.projectPass, boidsContainer.numBoids() * 3, 1, 0,
-                              1);
+        SDL_DrawGPUPrimitives(gContext.renderData.projectPass, 4, Circles.CircleCount, 0, 0);
 
         SDL_EndGPURenderPass(gContext.renderData.projectPass);
 
@@ -214,33 +225,25 @@ bool Boids::Draw()
     return true;
 }
 
-void Boids::Quit()
+void Two_Body_Simulation::Quit()
 {
-    boidsContainer.quit();
-    SDL_ReleaseGPUGraphicsPipeline(gContext.renderData.device, renderPipeline);
-    SDL_ReleaseGPUTransferBuffer(gContext.renderData.device, boidsDataTransferBuffer);
-    SDL_ReleaseGPUBuffer(gContext.renderData.device, boidsDataBuffer);
+    Circles.quit();
 }
 
-bool Boids::DrawUI()
+bool Two_Body_Simulation::DrawUI()
 {
-    if (ImGui::Begin("Boids Controller###ProjectUI"))
+    if (ImGui::Begin("Two_Body_Simulation Controller###ProjectUI"))
     {
         ImGui::SeparatorText("Options");
-        ImGui::Text("Boids Color Picker");
-        ImGui::ColorEdit4("###abultabul", (float *)&boidsContainer.Color,
-                          ImGuiColorEditFlags_AlphaPreviewHalf);
-        ImGui::Text("Seperation");
-        ImGui::SliderFloat("###tabulabul", &boidsContainer.seperation, 0.0f, 0.1f);
-        ImGui::Text("Alignment");
-        ImGui::SliderFloat("###loremipusummyass", &boidsContainer.alignment, 0.0f, 0.1f);
-        static float a = 0.05;
-        ImGui::Text("Cohesion");
-        if (ImGui::SliderFloat("###someRandomfuckingIdthatisnotempty", &a, 0.0f, 0.1f))
-        {  // imgui is not good with small values
-            boidsContainer.cohesion = 0.001 * a;
-        }
+        ImGui::Text("Circle Color Picker");
+        // ImGui::ColorEdit4("###abultabul", (float *)&circle.Color,
+        //                   ImGuiColorEditFlags_AlphaPreviewHalf);
+
+        // ImGui::SliderFloat("Pos.x", &circle.Position.x, 0.0f, 800.0f);
+        // ImGui::SliderFloat("Pos.y", &circle.Position.y, 0.0f, 800.0f);
+        // ImGui::SliderFloat("Radius", &circle.Radius, 0.0f, 200.0f);
     }
     ImGui::End();
+
     return true;
 }

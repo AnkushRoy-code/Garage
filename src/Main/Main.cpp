@@ -71,6 +71,15 @@ void updateFunc()
     }
 }
 
+/// @brief the update and rendering is done in this callback function
+///
+/// The Update function is always running at 60fps. If for some reason it is unable to run at 60 and
+/// drops below 60, the rendering has to wait. For example if update took 20ms(instead of 16).
+/// Rendering will have to wait for 4ms before it starts rendering next frame.
+///
+/// In the other hand if rendering takes 30ms, Update will not wait. Update will go on at 16ms.
+///
+/// This is to prevent rendering same thing twice and keep physics based problems at minimum.
 SDL_AppResult SDL_AppIterate(void *appstate)
 {
     PROFILE_SCOPE;
@@ -90,6 +99,8 @@ SDL_AppResult SDL_AppIterate(void *appstate)
             return SDL_APP_CONTINUE;
         }
 
+        /// @todo have everything imgui related in a different thread
+        // Hours wasted trying that: 0.2 (about 15mins)
         Core::ImGuiCore::Update();
 
         /// @todo Fix whatever this shit has happened. Can't keep this codeblock inside
@@ -112,6 +123,9 @@ SDL_AppResult SDL_AppIterate(void *appstate)
                 return SDL_APP_CONTINUE;
             }
 
+            // Note to self: Moving this function down causes artifacts when resizing
+            Core::Renderer::DrawProjectToTexture();
+
             const SDL_GPUTextureSamplerBinding bind {gContext.renderData.projectTexture,
                                                      gContext.renderData.projectSampler};
             const auto size = ImGui::GetWindowSize();
@@ -123,8 +137,6 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         ImGui::PopStyleVar();
 
         Core::ImGuiCore::Draw();
-
-        Core::Renderer::DrawProjectToTexture();
 
         renderingDone.store(true);
         updateProject.join();
