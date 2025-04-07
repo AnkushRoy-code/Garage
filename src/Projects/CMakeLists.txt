@@ -13,5 +13,6 @@ if (TRACY_PROFILE)
     target_link_libraries(Projects PUBLIC Tracy::TracyClient)
 endif()
 
-target_link_libraries(Projects PRIVATE Projects::Common Core::Common SDL3::SDL3-shared imgui Core Boids)
+target_link_libraries(Projects PRIVATE Projects::Common Core::Common SDL3::SDL3-shared imgui Core)
 target_include_directories(Projects PRIVATE "${CMAKE_SOURCE_DIR}/src")
+target_precompile_headers(Projects REUSE_FROM Core) 
