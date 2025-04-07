@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['offset_0',['Offset',['../struct_scrolling_buffer.html#a4c63812e44e69d87e4f1b6994a5cc4ae',1,'ScrollingBuffer']]]
+  ['name_0',['name',['../class_boids.html#ad240d88ba3dd895b60c3870da9668bcd',1,'Boids::name'],['../class_simple_example.html#a8ee9e9b49b7b0d3cdd855168d9b8734f',1,'SimpleExample::name'],['../class_triangle.html#ac767c9227f42f3a9b5648da8966cbd59',1,'Triangle::name'],['../class_two___body___simulation.html#a1bd4268ea6662585d99a21f3441c6448',1,'Two_Body_Simulation::name']]],
+  ['num_5fboids_1',['NUM_BOIDS',['../class_boids_container.html#ae26da3576df24fc81a0edd35c6136605',1,'BoidsContainer']]]
 ];

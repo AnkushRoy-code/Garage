@@ -4,11 +4,14 @@ var hierarchy =
     [ "Common::BaseProject", "class_common_1_1_base_project.html", [
       [ "Boids", "class_boids.html", null ],
       [ "SimpleExample", "class_simple_example.html", null ],
-      [ "Triangle", "class_triangle.html", null ]
+      [ "Triangle", "class_triangle.html", null ],
+      [ "Two_Body_Simulation", "class_two___body___simulation.html", null ]
     ] ],
     [ "BoidsContainer", "class_boids_container.html", null ],
     [ "BoidsEntity", "struct_boids_entity.html", null ],
     [ "Utils::CapZone", "class_utils_1_1_cap_zone.html", null ],
+    [ "Circle", "struct_circle.html", null ],
+    [ "CircleContainer", "struct_circle_container.html", null ],
     [ "Core::ConsoleLogBuffer", "class_core_1_1_console_log_buffer.html", null ],
     [ "Core::ConsoleLogMessage", "struct_core_1_1_console_log_message.html", null ],
     [ "Core::Context", "struct_core_1_1_context.html", null ],
@@ -16,7 +19,8 @@ var hierarchy =
       [ "SDL_Exception", "class_s_d_l___exception.html", null ]
     ] ],
     [ "Common::ImGuiUI", "class_common_1_1_im_gui_u_i.html", [
-      [ "Boids", "class_boids.html", null ]
+      [ "Boids", "class_boids.html", null ],
+      [ "Two_Body_Simulation", "class_two___body___simulation.html", null ]
     ] ],
     [ "Core::InputHandler", "class_core_1_1_input_handler.html", null ],
     [ "Matrix4x4", "struct_matrix4x4.html", null ],

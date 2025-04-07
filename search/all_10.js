@@ -1,22 +1,5 @@
 var searchData=
 [
-  ['r_0',['r',['../struct_sprite_instance.html#a198cbf2a32a13684e6c9c04700998bd5',1,'SpriteInstance']]],
-  ['real_20projects_1',['Real Projects',['../index.html#autotoc_md10',1,'']]],
-  ['registerallprojects_2',['registerAllProjects',['../class_common_1_1_project_manager.html#ab0506e770cdb70dcacde7626dce42ba0',1,'Common::ProjectManager']]],
-  ['registerproject_3',['registerProject',['../class_common_1_1_project_manager.html#a830faca7f70f5e85b7df417086ff54f3',1,'Common::ProjectManager']]],
-  ['registerprojects_2ecpp_4',['RegisterProjects.cpp',['../_register_projects_8cpp.html',1,'']]],
-  ['released_5',['RELEASED',['../namespace_core.html#a5d0e1ed351134590764ed1f6afbb1761af24329d27f3ccc150074739b72888980',1,'Core']]],
-  ['renderdata_6',['RenderData',['../struct_core_1_1_render_data.html',1,'Core']]],
-  ['renderdata_7',['renderData',['../struct_core_1_1_context.html#a82382780d4c92f67f9a9999c29a7a488',1,'Core::Context']]],
-  ['renderer_2ecpp_8',['Renderer.cpp',['../_renderer_8cpp.html',1,'']]],
-  ['renderer_2eh_9',['Renderer.h',['../_renderer_8h.html',1,'']]],
-  ['renderingdone_10',['renderingDone',['../_main_2_main_8cpp.html#a1ff79fd65f193e8f26ceb7e9b9c6be33',1,'Main.cpp']]],
-  ['renderpipeline_11',['renderPipeline',['../class_boids.html#a7bca8f54778172a5c34b7076969ef54c',1,'Boids']]],
-  ['resize_5fproject_5fwindow_12',['RESIZE_PROJECT_WINDOW',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17abfcec50f5180c938216056be73623c5c',1,'Core']]],
-  ['resizeprojecttexture_13',['ResizeProjectTexture',['../namespace_core_1_1_renderer.html#a6472fb81ebc2cda76a26e23df9dbc2ac',1,'Core::Renderer']]],
-  ['resolutionscale_14',['resolutionScale',['../struct_core_1_1_render_data.html#a9430f036e146a7f2894918ce2744c348',1,'Core::RenderData']]],
-  ['resolvetexture_15',['resolveTexture',['../struct_core_1_1_render_data.html#ae8a4fbf894e56f7c007659db1466b475',1,'Core::RenderData']]],
-  ['right_16',['RIGHT',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17a6cdb4bd934713688e25f9e0432058d09',1,'Core']]],
-  ['rotation_17',['Rotation',['../struct_boids_entity.html#afe2311d37912595d5377063c8a791cb7',1,'BoidsEntity']]],
-  ['rotation_18',['rotation',['../struct_sprite_instance.html#a3ee0844177f2b3f09c7575e81ebafaf7',1,'SpriteInstance']]]
+  ['quit_0',['Quit',['../class_boids.html#a1e4af2dd090dfaf7bdf27d595b1bc54f',1,'Boids::Quit()'],['../class_common_1_1_base_project.html#a1062f949e0880ddd59b38eb5adb9f78a',1,'Common::BaseProject::Quit()'],['../class_simple_example.html#af02b7f4595c57cf00b8e51e1bb18d87f',1,'SimpleExample::Quit()'],['../class_triangle.html#aa60c86332131f5c43ac858511bf98423',1,'Triangle::Quit()'],['../class_two___body___simulation.html#a5a271b9947d5e4c793ed185c51da798e',1,'Two_Body_Simulation::Quit()'],['../namespace_core_1_1_im_gui_core.html#ac8076911122e6180ff213ee9c82219eb',1,'Core::ImGuiCore::Quit()']]],
+  ['quit_1',['quit',['../class_boids_container.html#ac4e131bb4bd4361406d828bbab98ae25',1,'BoidsContainer::quit()'],['../struct_circle_container.html#ab1f205ebd61b76888f509ed0cf51c44d',1,'CircleContainer::quit()']]]
 ];

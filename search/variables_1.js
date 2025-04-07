@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['b_0',['b',['../struct_sprite_instance.html#a7f440f9be614416d98cad4f9b2ac9403',1,'SpriteInstance']]],
-  ['boidscontainer_1',['boidsContainer',['../class_boids.html#a4e27f2925600492f7da63c942cb3bc62',1,'Boids']]],
-  ['boidsdatabuffer_2',['boidsDataBuffer',['../class_boids.html#a4ac4786f123ecd1023d694e397a32956',1,'Boids']]],
-  ['boidsdatatransferbuffer_3',['boidsDataTransferBuffer',['../class_boids.html#a0f74737fab1fc13affbd11ce2b3f8a66',1,'Boids']]],
-  ['boidsvec_4',['BoidsVec',['../class_boids_container.html#a6d3dac811ef706574f4067269a8a4aab',1,'BoidsContainer']]]
+  ['a_0',['a',['../struct_sprite_instance.html#ad2d099ac6dd17178f5e9811beaaaf486',1,'SpriteInstance']]],
+  ['alignment_1',['alignment',['../class_boids_container.html#a7e3924f3a8a908550f76d9042dbccbc7',1,'BoidsContainer']]],
+  ['appstate_2',['appState',['../struct_core_1_1_context.html#adfe3f7cb498fd5b6eb5213b51eb6293b',1,'Core::Context']]]
 ];

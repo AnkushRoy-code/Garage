@@ -20,10 +20,13 @@ var annotated_dup =
     [ "Boids", "class_boids.html", "class_boids" ],
     [ "BoidsContainer", "class_boids_container.html", "class_boids_container" ],
     [ "BoidsEntity", "struct_boids_entity.html", "struct_boids_entity" ],
+    [ "Circle", "struct_circle.html", "struct_circle" ],
+    [ "CircleContainer", "struct_circle_container.html", "struct_circle_container" ],
     [ "Matrix4x4", "struct_matrix4x4.html", "struct_matrix4x4" ],
     [ "ScrollingBuffer", "struct_scrolling_buffer.html", "struct_scrolling_buffer" ],
     [ "SDL_Exception", "class_s_d_l___exception.html", "class_s_d_l___exception" ],
     [ "SimpleExample", "class_simple_example.html", "class_simple_example" ],
     [ "SpriteInstance", "struct_sprite_instance.html", "struct_sprite_instance" ],
-    [ "Triangle", "class_triangle.html", "class_triangle" ]
+    [ "Triangle", "class_triangle.html", "class_triangle" ],
+    [ "Two_Body_Simulation", "class_two___body___simulation.html", "class_two___body___simulation" ]
 ];

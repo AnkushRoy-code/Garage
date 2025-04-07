@@ -160,6 +160,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a606988c90d7becaa71745c7df7597dda" id="r_a606988c90d7becaa71745c7df7597dda"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a606988c90d7becaa71745c7df7597dda">updateFunc</a> ()</td></tr>
 <tr class="separator:a606988c90d7becaa71745c7df7597dda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7038050dca8c80a0133d600fb008b6db" id="r_a7038050dca8c80a0133d600fb008b6db"><td class="memItemLeft" align="right" valign="top">SDL_AppResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7038050dca8c80a0133d600fb008b6db">SDL_AppIterate</a> (void *appstate)</td></tr>
+<tr class="memdesc:a7038050dca8c80a0133d600fb008b6db"><td class="mdescLeft">&#160;</td><td class="mdescRight">the update and rendering is done in this callback function  <br /></td></tr>
 <tr class="separator:a7038050dca8c80a0133d600fb008b6db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31f80ce4f4926b0c6fe01a9644f3c837" id="r_a31f80ce4f4926b0c6fe01a9644f3c837"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31f80ce4f4926b0c6fe01a9644f3c837">SDL_AppQuit</a> (void *appstate, SDL_AppResult result)</td></tr>
 <tr class="separator:a31f80ce4f4926b0c6fe01a9644f3c837"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -264,7 +265,13 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo</a></b></dt><dd>Fix whatever this shit has happened. Can't keep this codeblock inside <a class="el" href="namespace_core_1_1_im_gui_core.html#aaf5fd889f2e8f86422cc02251a3d7dd7">Core::ImGuiCore::Update</a> function </dd></dl>
+
+<p>the update and rendering is done in this callback function </p>
+<p>The Update function is always running at 60fps. If for some reason it is unable to run at 60 and drops below 60, the rendering has to wait. For example if update took 20ms(instead of 16). Rendering will have to wait for 4ms before it starts rendering next frame.</p>
+<p>In the other hand if rendering takes 30ms, Update will not wait. Update will go on at 16ms.</p>
+<p>This is to prevent rendering same thing twice and keep physics based problems at minimum. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo</a></b></dt><dd>have everything imgui related in a different thread </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo</a></b></dt><dd>Fix whatever this shit has happened. Can't keep this codeblock inside <a class="el" href="namespace_core_1_1_im_gui_core.html#aaf5fd889f2e8f86422cc02251a3d7dd7">Core::ImGuiCore::Update</a> function </dd></dl>
 
 </div>
 </div>

@@ -1,14 +1,11 @@
 var searchData=
 [
-  ['g_0',['g',['../struct_sprite_instance.html#ae38a0f604b2bbc2afdf6e23b2c24764b',1,'SpriteInstance']]],
-  ['garage_1',['Ankush&apos;s Garage',['../index.html',1,'']]],
-  ['gcontext_2',['gContext',['../_context_8cpp.html#a87c6ab4ac0ff7845ecee242a0a854d60',1,'gContext:&#160;Context.cpp'],['../_context_8h.html#a87c6ab4ac0ff7845ecee242a0a854d60',1,'gContext:&#160;Context.cpp']]],
-  ['getboids_3',['getBoids',['../class_boids_container.html#a145222ed8bc2f40918bfe83d4bf2fddc',1,'BoidsContainer']]],
-  ['getcurrenttime_4',['getCurrentTime',['../class_core_1_1_console_log_buffer.html#a04f53614bda7c36918b388f95e840c32',1,'Core::ConsoleLogBuffer']]],
-  ['getmessages_5',['getMessages',['../class_core_1_1_console_log_buffer.html#a2df1f358abd5916488c8b021434e27cb',1,'Core::ConsoleLogBuffer']]],
-  ['getname_6',['getName',['../class_boids.html#afe5dfb2fd0ccbc344e400de21db63ca0',1,'Boids::getName()'],['../class_common_1_1_base_project.html#a0605b5009eac66aac22dddf4dcfcfaac',1,'Common::BaseProject::getName()'],['../class_simple_example.html#af40f4c5f4b661adc5866f1b50f7eea09',1,'SimpleExample::getName()'],['../class_triangle.html#a15d70da59ad094334439ba2d8a37e936',1,'Triangle::getName()']]],
-  ['getprojects_7',['getProjects',['../class_common_1_1_project_manager.html#a7c50018ca631b866e3fc5b3529ac16d8',1,'Common::ProjectManager']]],
-  ['getticks_8',['getTicks',['../class_utils_1_1_time.html#ad6d512e62d5b84aff42e0a7aa7424d43',1,'Utils::Time']]],
-  ['getting_20started_9',['Getting Started',['../index.html#autotoc_md18',1,'Getting Started'],['../bug.html#_bug000001',1,'Getting Started']]],
-  ['goldbert_20set_10',['Goldbert set',['../index.html#autotoc_md16',1,'']]]
+  ['features_0',['Features',['../index.html#autotoc_md17',1,'']]],
+  ['fern_20fractals_1',['Fern Fractals',['../index.html#autotoc_md14',1,'']]],
+  ['few_20fractals_20under_20construction_2',['Few Fractals Under Construction',['../index.html#autotoc_md12',1,'Few Fractals (Under Construction)'],['../todo.html#_todo000003',1,'Few Fractals (Under Construction)']]],
+  ['fillpipeline_3',['FillPipeline',['../class_triangle.html#a23aaca9e0c5738481ca17e2e9591eb39',1,'Triangle']]],
+  ['fps_4',['FPS',['../class_utils_1_1_cap_zone.html#a6eb46f28fb326084b7c10df08813a369',1,'Utils::CapZone']]],
+  ['fractal_20da_20tree_5',['Normal fractal (Da tree)',['../index.html#autotoc_md13',1,'']]],
+  ['fractals_6',['Fern Fractals',['../index.html#autotoc_md14',1,'']]],
+  ['fractals_20under_20construction_7',['Fractals Under Construction',['../index.html#autotoc_md12',1,'Few Fractals (Under Construction)'],['../todo.html#_todo000003',1,'Few Fractals (Under Construction)']]]
 ];
