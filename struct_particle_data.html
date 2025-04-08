@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ankush&#39;s Garage: CircleContainer Struct Reference</title>
+<title>Ankush&#39;s Garage: ParticleData Struct Reference</title>
 <link rel="icon" href="AnkushGarage.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -98,7 +98,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('struct_circle_container.html',''); initResizable(true); });
+$(function(){initNavTree('struct_particle_data.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -127,107 +127,139 @@ $(function(){initNavTree('struct_circle_container.html',''); initResizable(true)
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="struct_circle_container-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">CircleContainer Struct Reference</div></div>
+<a href="struct_particle_data-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">ParticleData Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_particle_8h_source.html">Particle.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a631e61a4729fa2c8870e243a0f708d94" id="r_a631e61a4729fa2c8870e243a0f708d94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a631e61a4729fa2c8870e243a0f708d94">init</a> ()</td></tr>
-<tr class="separator:a631e61a4729fa2c8870e243a0f708d94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1f205ebd61b76888f509ed0cf51c44d" id="r_ab1f205ebd61b76888f509ed0cf51c44d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1f205ebd61b76888f509ed0cf51c44d">quit</a> ()</td></tr>
-<tr class="separator:ab1f205ebd61b76888f509ed0cf51c44d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed195ffe2880c544751d25d145efbf5e" id="r_aed195ffe2880c544751d25d145efbf5e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed195ffe2880c544751d25d145efbf5e">operator==</a> (const <a class="el" href="struct_particle_data.html">ParticleData</a> &amp;other) const</td></tr>
+<tr class="separator:aed195ffe2880c544751d25d145efbf5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a2ff049b95be4083caed470c1ddd054c0" id="r_a2ff049b95be4083caed470c1ddd054c0"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="struct_circle.html">Circle</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ff049b95be4083caed470c1ddd054c0">CircleVec</a></td></tr>
-<tr class="separator:a2ff049b95be4083caed470c1ddd054c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6af857aa80f5fea1e48513218e98b189" id="r_a6af857aa80f5fea1e48513218e98b189"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6af857aa80f5fea1e48513218e98b189">CircleCount</a> = 20</td></tr>
-<tr class="separator:a6af857aa80f5fea1e48513218e98b189"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59a20933135869a913d80cb781b44bda" id="r_a59a20933135869a913d80cb781b44bda"><td class="memItemLeft" align="right" valign="top">glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59a20933135869a913d80cb781b44bda">Position</a></td></tr>
+<tr class="separator:a59a20933135869a913d80cb781b44bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa75093b4169e705220ddd41ef8080a8b" id="r_aa75093b4169e705220ddd41ef8080a8b"><td class="memItemLeft" align="right" valign="top">glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa75093b4169e705220ddd41ef8080a8b">Velocity</a></td></tr>
+<tr class="separator:aa75093b4169e705220ddd41ef8080a8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ae2181f8066bc7b59e5563abcc6e7ea" id="r_a1ae2181f8066bc7b59e5563abcc6e7ea"><td class="memItemLeft" align="right" valign="top">glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ae2181f8066bc7b59e5563abcc6e7ea">Acceleration</a> {}</td></tr>
+<tr class="separator:a1ae2181f8066bc7b59e5563abcc6e7ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c415cff4f4c657eaa7b94d9593d2c99" id="r_a5c415cff4f4c657eaa7b94d9593d2c99"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c415cff4f4c657eaa7b94d9593d2c99">Mass</a></td></tr>
+<tr class="separator:a5c415cff4f4c657eaa7b94d9593d2c99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab8838621ba926c448cfb38925055c0d" id="r_aab8838621ba926c448cfb38925055c0d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab8838621ba926c448cfb38925055c0d">Radius</a></td></tr>
+<tr class="separator:aab8838621ba926c448cfb38925055c0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a153412c2769f48b27446d6db339eb123" id="r_a153412c2769f48b27446d6db339eb123"><td class="memItemLeft" align="right" valign="top">glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a153412c2769f48b27446d6db339eb123">Color</a></td></tr>
+<tr class="separator:a153412c2769f48b27446d6db339eb123"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a631e61a4729fa2c8870e243a0f708d94" name="a631e61a4729fa2c8870e243a0f708d94"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a631e61a4729fa2c8870e243a0f708d94">&#9670;&#160;</a></span>init()</h2>
+<a id="aed195ffe2880c544751d25d145efbf5e" name="aed195ffe2880c544751d25d145efbf5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed195ffe2880c544751d25d145efbf5e">&#9670;&#160;</a></span>operator==()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CircleContainer::init </td>
+          <td class="memname">bool ParticleData::operator== </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_particle_data.html">ParticleData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ab1f205ebd61b76888f509ed0cf51c44d" name="ab1f205ebd61b76888f509ed0cf51c44d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab1f205ebd61b76888f509ed0cf51c44d">&#9670;&#160;</a></span>quit()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CircleContainer::quit </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a6af857aa80f5fea1e48513218e98b189" name="a6af857aa80f5fea1e48513218e98b189"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6af857aa80f5fea1e48513218e98b189">&#9670;&#160;</a></span>CircleCount</h2>
+<a id="a1ae2181f8066bc7b59e5563abcc6e7ea" name="a1ae2181f8066bc7b59e5563abcc6e7ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ae2181f8066bc7b59e5563abcc6e7ea">&#9670;&#160;</a></span>Acceleration</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int CircleContainer::CircleCount = 20</td>
+          <td class="memname">glm::vec2 ParticleData::Acceleration {}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a2ff049b95be4083caed470c1ddd054c0" name="a2ff049b95be4083caed470c1ddd054c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2ff049b95be4083caed470c1ddd054c0">&#9670;&#160;</a></span>CircleVec</h2>
+<a id="a153412c2769f48b27446d6db339eb123" name="a153412c2769f48b27446d6db339eb123"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a153412c2769f48b27446d6db339eb123">&#9670;&#160;</a></span>Color</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="struct_circle.html">Circle</a>&gt; CircleContainer::CircleVec</td>
+          <td class="memname">glm::vec4 ParticleData::Color</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
-<li>/Users/runner/work/Garage/Garage/src/Projects/Two_Body_Simulation/src/<a class="el" href="_projects_2_two___body___simulation_2src_2_main_8cpp.html">Main.cpp</a></li>
+<a id="a5c415cff4f4c657eaa7b94d9593d2c99" name="a5c415cff4f4c657eaa7b94d9593d2c99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c415cff4f4c657eaa7b94d9593d2c99">&#9670;&#160;</a></span>Mass</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float ParticleData::Mass</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a59a20933135869a913d80cb781b44bda" name="a59a20933135869a913d80cb781b44bda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59a20933135869a913d80cb781b44bda">&#9670;&#160;</a></span>Position</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec2 ParticleData::Position</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aab8838621ba926c448cfb38925055c0d" name="aab8838621ba926c448cfb38925055c0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab8838621ba926c448cfb38925055c0d">&#9670;&#160;</a></span>Radius</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float ParticleData::Radius</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa75093b4169e705220ddd41ef8080a8b" name="aa75093b4169e705220ddd41ef8080a8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa75093b4169e705220ddd41ef8080a8b">&#9670;&#160;</a></span>Velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec2 ParticleData::Velocity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following files:<ul>
+<li>/Users/runner/work/Garage/Garage/src/Projects/Two_Body_Simulation/src/<a class="el" href="_particle_8h_source.html">Particle.h</a></li>
+<li>/Users/runner/work/Garage/Garage/src/Projects/Two_Body_Simulation/src/<a class="el" href="_particle_8cpp.html">Particle.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -235,7 +267,7 @@ Public Attributes</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="struct_circle_container.html">CircleContainer</a></li>
+    <li class="navelem"><a class="el" href="struct_particle_data.html">ParticleData</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>

@@ -8,6 +8,7 @@ var class_two___body___simulation =
     [ "Update", "class_two___body___simulation.html#a77b1a89d465d66d1bb3c232f5497d533", null ],
     [ "dataBuffer", "class_two___body___simulation.html#abf430143a1a27f7001455f4c74d6703e", null ],
     [ "name", "class_two___body___simulation.html#a1bd4268ea6662585d99a21f3441c6448", null ],
+    [ "Particles", "class_two___body___simulation.html#aeefb06e6336510933f44b830951172ce", null ],
     [ "renderPipeline", "class_two___body___simulation.html#a378dcb26407e2fe552d7831fd327645f", null ],
     [ "transferBuffer", "class_two___body___simulation.html#a7353f030b10546f25159b0488c465268", null ]
 ];

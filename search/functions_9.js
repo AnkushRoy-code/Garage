@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['matrix4x4_5fcreateorthographicoffcenter_0',['Matrix4x4_CreateOrthographicOffCenter',['../_projects_2_boids_2src_2_main_8cpp.html#a428935f436656138c210713162ebd6c9',1,'Matrix4x4_CreateOrthographicOffCenter(float left, float right, float bottom, float top, float zNearPlane, float zFarPlane):&#160;Main.cpp'],['../_boids_2src_2_main_8h.html#a428935f436656138c210713162ebd6c9',1,'Matrix4x4_CreateOrthographicOffCenter(float left, float right, float bottom, float top, float zNearPlane, float zFarPlane):&#160;Main.cpp']]]
+  ['numboids_0',['numBoids',['../class_boids_container.html#a2f06519af9b6385c6a6916acd25281b6',1,'BoidsContainer']]]
 ];
