@@ -8,8 +8,8 @@ float4 main(Input input) : SV_Target0
 {
     float dist = length(input.LocalUV);
 
-    float edgeWidth = 0.05;
-    float alpha = smoothstep(1.0 - edgeWidth, 1.0, dist);
+    float fade = 0.079;
+    float color = smoothstep(1.0 - fade, 1.0, dist);
 
-    return float4(input.Color.rgb, input.Color.a * (1.0 - alpha));
+    return float4(input.Color.rgb, input.Color.a * (1.0 - color));
 }

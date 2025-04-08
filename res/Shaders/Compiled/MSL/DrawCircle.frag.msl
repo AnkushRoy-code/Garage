@@ -17,7 +17,7 @@ struct main0_in
 fragment main0_out main0(main0_in in [[stage_in]])
 {
     main0_out out = {};
-    out.out_var_SV_Target0 = float4(in.in_var_TEXCOORD0.xyz, in.in_var_TEXCOORD0.w * (1.0 - smoothstep(0.949999988079071044921875, 1.0, length(in.in_var_TEXCOORD1))));
+    out.out_var_SV_Target0 = float4(in.in_var_TEXCOORD0.xyz, in.in_var_TEXCOORD0.w * (1.0 - smoothstep(0.921000003814697265625, 1.0, length(in.in_var_TEXCOORD1))));
     return out;
 }
 
