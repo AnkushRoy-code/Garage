@@ -80,32 +80,6 @@ bool Boids::Update()
     return true;
 }
 
-Matrix4x4 Matrix4x4_CreateOrthographicOffCenter(  // I don't even remember where I stole it from
-    float left,
-    float right,
-    float bottom,
-    float top,
-    float zNearPlane,
-    float zFarPlane)
-{
-    return {2.0f / (right - left),
-            0,
-            0,
-            0,
-            0,
-            2.0f / (top - bottom),
-            0,
-            0,
-            0,
-            0,
-            1.0f / (zNearPlane - zFarPlane),
-            0,
-            (left + right) / (left - right),
-            (top + bottom) / (bottom - top),
-            zNearPlane / (zNearPlane - zFarPlane),
-            1};
-}
-
 bool Boids::Draw()
 {
     PROFILE_SCOPE_N("Boids Draw");
@@ -113,7 +87,7 @@ bool Boids::Draw()
     const float w = gContext.appState.ProjectWindowX;
     const float h = gContext.appState.ProjectWindowY;
 
-    const Matrix4x4 cameraMatrix = Matrix4x4_CreateOrthographicOffCenter(0, w, h, 0, 0, -1);
+    const glm::mat4x4 cameraMatrix = glm::ortho(0.0f, w, h, 0.0f, 0.0f, -1.0f);
 
     SDL_GPUCommandBuffer *cmdBuf = SDL_AcquireGPUCommandBuffer(gContext.renderData.device);
     if (cmdBuf == nullptr) { std::cerr << "unable to aquire command buffer\n"; }
@@ -177,7 +151,7 @@ bool Boids::Draw()
         SDL_BindGPUGraphicsPipeline(gContext.renderData.projectPass, renderPipeline);
         SDL_BindGPUVertexStorageBuffers(gContext.renderData.projectPass, 0, &boidsDataBuffer, 1);
 
-        SDL_PushGPUVertexUniformData(cmdBuf, 0, &cameraMatrix, sizeof(Matrix4x4));
+        SDL_PushGPUVertexUniformData(cmdBuf, 0, &cameraMatrix, sizeof(glm::mat4x4));
 
         SDL_DrawGPUPrimitives(gContext.renderData.projectPass, boidsContainer.numBoids() * 3, 1, 0,
                               1);

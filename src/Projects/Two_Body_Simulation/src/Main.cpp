@@ -1,56 +1,8 @@
 #include "Main.h"
 #include "Core/Common/Common.h"
-#include "Projects/Boids/src/Main.h"
 #include "Core/Context.h"
 
 #include "Core/Common/pch.h"
-
-struct Circle
-{
-    glm::vec2 Position;
-    float Radius;
-    float _padding;
-    glm::vec4 Color;
-};
-
-struct CircleContainer
-{
-    std::vector<Circle> CircleVec;
-
-    void init()
-    {
-        CircleVec.reserve(CircleCount);
-
-        const float w = gContext.appState.ProjectWindowX;
-        const float h = gContext.appState.ProjectWindowY;
-
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::uniform_real_distribution<> disX(0, w);
-        std::uniform_real_distribution<> disY(0, h);
-        std::uniform_real_distribution<> col(0.0f, 1.0f);
-        std::uniform_real_distribution<> rad(20.0f, 40.0f);
-
-        for (unsigned int i = 0; i < CircleCount; ++i)
-        {
-            Circle circle {};
-            circle.Position = {disX(gen), disY(gen)};
-            circle.Color    = {col(gen), col(gen), col(gen), col(gen)};
-            circle.Radius   = rad(gen);
-
-            CircleVec.push_back(circle);
-        }
-    }
-
-    void quit()
-    {
-        CircleVec.clear();
-    }
-
-    unsigned int CircleCount = 20;
-};
-
-CircleContainer Circles {};
 
 bool Two_Body_Simulation::Init()
 {
@@ -100,29 +52,29 @@ bool Two_Body_Simulation::Init()
     SDL_ReleaseGPUShader(gContext.renderData.device, vertShader);
     SDL_ReleaseGPUShader(gContext.renderData.device, fragShader);
 
-    // Transfer buffers creation
     const SDL_GPUTransferBufferCreateInfo tBufCreateInfo {
         .usage = SDL_GPU_TRANSFERBUFFERUSAGE_UPLOAD,
-        .size  = (Uint32)(Circles.CircleCount * sizeof(Circle)),
+        .size  = (Uint32)(Particles.count * sizeof(ParticleDataSend)),
     };
 
     transferBuffer = SDL_CreateGPUTransferBuffer(gContext.renderData.device, &tBufCreateInfo);
 
     const SDL_GPUBufferCreateInfo newBufCreateInfo {
         .usage = SDL_GPU_BUFFERUSAGE_GRAPHICS_STORAGE_READ,
-        .size  = (Uint32)(Circles.CircleCount * sizeof(Circle)),
+        .size  = (Uint32)(Particles.count * sizeof(ParticleDataSend)),
 
     };
 
     dataBuffer = SDL_CreateGPUBuffer(gContext.renderData.device, &newBufCreateInfo);
 
-    Circles.init();
+    Particles.init();
 
     return true;
 }
 
 bool Two_Body_Simulation::Update()
 {
+    Particles.update();
     return true;
 }
 
@@ -131,7 +83,10 @@ bool Two_Body_Simulation::Draw()
     const float w = gContext.appState.ProjectWindowX;
     const float h = gContext.appState.ProjectWindowY;
 
-    const Matrix4x4 cameraMatrix = Matrix4x4_CreateOrthographicOffCenter(0, w, h, 0, 0, -1);
+    const glm::mat4x4 projection      = glm::ortho(0.0f, w, h, 0.0f, 0.0f, -1.0f);
+    const glm::mat4x4 finalProjection = projection;
+    // const glm::mat4x4 offset     = glm::translate(glm::mat4(1.0f), glm::vec3(w / 2, h / 2,
+    // 0.0f)); const glm::mat4x4 finalProjection = projection * offset;
 
     SDL_GPUCommandBuffer *cmdBuf = SDL_AcquireGPUCommandBuffer(gContext.renderData.device);
     if (cmdBuf == nullptr) { std::cerr << "unable to aquire command buffer\n"; }
@@ -139,14 +94,14 @@ bool Two_Body_Simulation::Draw()
     if (gContext.renderData.projectTexture)
     {
         // upload the data to transfer buffer
-        auto *dataPtr = static_cast<Circle *>(
+        auto *dataPtr = static_cast<ParticleDataSend *>(
             SDL_MapGPUTransferBuffer(gContext.renderData.device, transferBuffer, true));
 
-        for (int i = 0; i < Circles.CircleCount; i++)
+        for (int i = 0; i < Particles.count; i++)
         {
-            dataPtr[i].Color    = Circles.CircleVec[i].Color;
-            dataPtr[i].Position = Circles.CircleVec[i].Position;
-            dataPtr[i].Radius   = Circles.CircleVec[i].Radius;
+            dataPtr[i].Color    = Particles.ParticleVec[i].Color;
+            dataPtr[i].Position = Particles.ParticleVec[i].Position;
+            dataPtr[i].Radius   = Particles.ParticleVec[i].Radius;
             dataPtr[i]._padding = 0.0f;
         }
 
@@ -161,7 +116,7 @@ bool Two_Body_Simulation::Draw()
         const SDL_GPUBufferRegion bufferRegion {
             .buffer = dataBuffer,
             .offset = 0,
-            .size   = (Uint32)(Circles.CircleCount * sizeof(Circle)),
+            .size   = (Uint32)(Particles.count * sizeof(ParticleDataSend)),
         };
 
         SDL_GPUCopyPass *copyPass = SDL_BeginGPUCopyPass(cmdBuf);
@@ -189,9 +144,9 @@ bool Two_Body_Simulation::Draw()
         SDL_BindGPUGraphicsPipeline(gContext.renderData.projectPass, renderPipeline);
         SDL_BindGPUVertexStorageBuffers(gContext.renderData.projectPass, 0, &dataBuffer, 1);
 
-        SDL_PushGPUVertexUniformData(cmdBuf, 0, &cameraMatrix, sizeof(Matrix4x4));
+        SDL_PushGPUVertexUniformData(cmdBuf, 0, &finalProjection, sizeof(glm::mat4x4));
 
-        SDL_DrawGPUPrimitives(gContext.renderData.projectPass, 4, Circles.CircleCount, 0, 0);
+        SDL_DrawGPUPrimitives(gContext.renderData.projectPass, 4, Particles.count, 0, 0);
 
         SDL_EndGPURenderPass(gContext.renderData.projectPass);
 
@@ -227,7 +182,7 @@ bool Two_Body_Simulation::Draw()
 
 void Two_Body_Simulation::Quit()
 {
-    Circles.quit();
+    Particles.quit();
 }
 
 bool Two_Body_Simulation::DrawUI()
@@ -235,13 +190,7 @@ bool Two_Body_Simulation::DrawUI()
     if (ImGui::Begin("Two_Body_Simulation Controller###ProjectUI"))
     {
         ImGui::SeparatorText("Options");
-        ImGui::Text("Circle Color Picker");
-        // ImGui::ColorEdit4("###abultabul", (float *)&circle.Color,
-        //                   ImGuiColorEditFlags_AlphaPreviewHalf);
-
-        // ImGui::SliderFloat("Pos.x", &circle.Position.x, 0.0f, 800.0f);
-        // ImGui::SliderFloat("Pos.y", &circle.Position.y, 0.0f, 800.0f);
-        // ImGui::SliderFloat("Radius", &circle.Radius, 0.0f, 200.0f);
+        // ImGui::SliderFloat("Radius", &Radius, 0.0f, 200.0f);
     }
     ImGui::End();
 

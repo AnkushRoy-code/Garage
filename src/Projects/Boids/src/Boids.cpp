@@ -135,8 +135,8 @@ void BoidsContainer::update()
             BoidVel->y = (BoidVel->y / speed) * maxSpeed;
         }
 
-        BoidPos->x += BoidVel->x * Utils::Time::deltaTime() / 70.0f;
-        BoidPos->y += BoidVel->y * Utils::Time::deltaTime() / 70.0f;
+        BoidPos->x += BoidVel->x * Utils::Time::deltaTime() / 20.0f;
+        BoidPos->y += BoidVel->y * Utils::Time::deltaTime() / 20.0f;
 
         // update rotation
         auto targetRotation = glm::atan(BoidVel->y, BoidVel->x);

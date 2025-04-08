@@ -66,6 +66,7 @@ void updateFunc()
 {
     while (!renderingDone.load())
     {
+        Utils::Time::updateDeltaTime();
         Utils::CapZone temp(60);
         Projects[gContext.appState.projectIndex]->Update();
     }
@@ -85,17 +86,15 @@ SDL_AppResult SDL_AppIterate(void *appstate)
     PROFILE_SCOPE;
     try
     {
-        Utils::Time::updateDeltaTime();
-
         renderingDone.store(false);
         std::thread updateProject(updateFunc);  // use jthread when macos supports it
 
         // no need to draw if window is minimised. But we sure need to update the state.
         if (SDL_GetWindowFlags(gContext.renderData.window) & SDL_WINDOW_MINIMIZED)
         {
-            Utils::Time::capFPS();
             renderingDone.store(true);
             updateProject.join();
+            Utils::Time::capFPS();
             return SDL_APP_CONTINUE;
         }
 
