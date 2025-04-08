@@ -5,7 +5,7 @@
 #include "Particle.h"
 #include <SDL3/SDL_gpu.h>
 
-class Two_Body_Simulation : public Common::BaseProject, public Common::ImGuiUI
+class N_Body_Simulation : public Common::BaseProject, public Common::ImGuiUI
 {
     bool Init() override;
     bool Update() override;
@@ -14,7 +14,7 @@ class Two_Body_Simulation : public Common::BaseProject, public Common::ImGuiUI
 
     bool DrawUI() override;
 
-    std::string name = "2-Body-Simulation";
+    std::string name = "N-Body-Simulation";
     [[nodiscard]] const std::string &getName() override
     {
         return name;
@@ -25,6 +25,8 @@ class Two_Body_Simulation : public Common::BaseProject, public Common::ImGuiUI
     SDL_GPUBuffer *dataBuffer;
 
     ParticleContainer Particles {};
+
+    void InitialiseTransferBuffersAndParticleContainer();
 };
 
 #endif  // INCLUDE_2_BODY_SIMULATION_MAIN_H_

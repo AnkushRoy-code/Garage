@@ -30,7 +30,8 @@ void BoidsContainer::init()
     }
 }
 
-void BoidsContainer::quit() {
+void BoidsContainer::quit()
+{
     BoidsVec.clear();
 }
 

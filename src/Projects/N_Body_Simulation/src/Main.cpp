@@ -4,7 +4,27 @@
 
 #include "Core/Common/pch.h"
 
-bool Two_Body_Simulation::Init()
+void N_Body_Simulation::InitialiseTransferBuffersAndParticleContainer()
+{
+    const SDL_GPUTransferBufferCreateInfo tBufCreateInfo {
+        .usage = SDL_GPU_TRANSFERBUFFERUSAGE_UPLOAD,
+        .size  = (Uint32)(ParticleContainer::count * sizeof(ParticleDataSend)),
+    };
+
+    transferBuffer = SDL_CreateGPUTransferBuffer(gContext.renderData.device, &tBufCreateInfo);
+
+    const SDL_GPUBufferCreateInfo newBufCreateInfo {
+        .usage = SDL_GPU_BUFFERUSAGE_GRAPHICS_STORAGE_READ,
+        .size  = (Uint32)(ParticleContainer::count * sizeof(ParticleDataSend)),
+
+    };
+
+    dataBuffer = SDL_CreateGPUBuffer(gContext.renderData.device, &newBufCreateInfo);
+
+    Particles.init();
+}
+
+bool N_Body_Simulation::Init()
 {
     hasUI = true;
 
@@ -52,41 +72,26 @@ bool Two_Body_Simulation::Init()
     SDL_ReleaseGPUShader(gContext.renderData.device, vertShader);
     SDL_ReleaseGPUShader(gContext.renderData.device, fragShader);
 
-    const SDL_GPUTransferBufferCreateInfo tBufCreateInfo {
-        .usage = SDL_GPU_TRANSFERBUFFERUSAGE_UPLOAD,
-        .size  = (Uint32)(Particles.count * sizeof(ParticleDataSend)),
-    };
-
-    transferBuffer = SDL_CreateGPUTransferBuffer(gContext.renderData.device, &tBufCreateInfo);
-
-    const SDL_GPUBufferCreateInfo newBufCreateInfo {
-        .usage = SDL_GPU_BUFFERUSAGE_GRAPHICS_STORAGE_READ,
-        .size  = (Uint32)(Particles.count * sizeof(ParticleDataSend)),
-
-    };
-
-    dataBuffer = SDL_CreateGPUBuffer(gContext.renderData.device, &newBufCreateInfo);
-
-    Particles.init();
+    InitialiseTransferBuffersAndParticleContainer();
 
     return true;
 }
 
-bool Two_Body_Simulation::Update()
+bool N_Body_Simulation::Update()
 {
     Particles.update();
     return true;
 }
 
-bool Two_Body_Simulation::Draw()
+bool N_Body_Simulation::Draw()
 {
     const float w = gContext.appState.ProjectWindowX;
     const float h = gContext.appState.ProjectWindowY;
 
-    const glm::mat4x4 projection      = glm::ortho(0.0f, w, h, 0.0f, 0.0f, -1.0f);
-    const glm::mat4x4 finalProjection = projection;
-    // const glm::mat4x4 offset     = glm::translate(glm::mat4(1.0f), glm::vec3(w / 2, h / 2,
-    // 0.0f)); const glm::mat4x4 finalProjection = projection * offset;
+    const glm::mat4x4 projection = glm::ortho(0.0f, w * 2, h * 2, 0.0f, 0.0f, -1.0f);
+    // const glm::mat4x4 finalProjection = projection;
+    const glm::mat4x4 offset = glm::translate(glm::mat4(1.0f), glm::vec3(w / 2, h / 2, 0.0f));
+    const glm::mat4x4 finalProjection = projection * offset;
 
     SDL_GPUCommandBuffer *cmdBuf = SDL_AcquireGPUCommandBuffer(gContext.renderData.device);
     if (cmdBuf == nullptr) { std::cerr << "unable to aquire command buffer\n"; }
@@ -97,7 +102,7 @@ bool Two_Body_Simulation::Draw()
         auto *dataPtr = static_cast<ParticleDataSend *>(
             SDL_MapGPUTransferBuffer(gContext.renderData.device, transferBuffer, true));
 
-        for (int i = 0; i < Particles.count; i++)
+        for (int i = 0; i < ParticleContainer::count; i++)
         {
             dataPtr[i].Color    = Particles.ParticleVec[i].Color;
             dataPtr[i].Position = Particles.ParticleVec[i].Position;
@@ -116,7 +121,7 @@ bool Two_Body_Simulation::Draw()
         const SDL_GPUBufferRegion bufferRegion {
             .buffer = dataBuffer,
             .offset = 0,
-            .size   = (Uint32)(Particles.count * sizeof(ParticleDataSend)),
+            .size   = (Uint32)(ParticleContainer::count * sizeof(ParticleDataSend)),
         };
 
         SDL_GPUCopyPass *copyPass = SDL_BeginGPUCopyPass(cmdBuf);
@@ -146,7 +151,7 @@ bool Two_Body_Simulation::Draw()
 
         SDL_PushGPUVertexUniformData(cmdBuf, 0, &finalProjection, sizeof(glm::mat4x4));
 
-        SDL_DrawGPUPrimitives(gContext.renderData.projectPass, 4, Particles.count, 0, 0);
+        SDL_DrawGPUPrimitives(gContext.renderData.projectPass, 4, ParticleContainer::count, 0, 0);
 
         SDL_EndGPURenderPass(gContext.renderData.projectPass);
 
@@ -180,14 +185,14 @@ bool Two_Body_Simulation::Draw()
     return true;
 }
 
-void Two_Body_Simulation::Quit()
+void N_Body_Simulation::Quit()
 {
     Particles.quit();
 }
 
-bool Two_Body_Simulation::DrawUI()
+bool N_Body_Simulation::DrawUI()
 {
-    if (ImGui::Begin("Two_Body_Simulation Controller###ProjectUI"))
+    if (ImGui::Begin("N_Body_Simulation Controller###ProjectUI"))
     {
         ImGui::SeparatorText("Options");
         // ImGui::SliderFloat("Radius", &Radius, 0.0f, 200.0f);
