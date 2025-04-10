@@ -12,7 +12,7 @@ var searchData=
   ['renderer_2ecpp_9',['Renderer.cpp',['../_renderer_8cpp.html',1,'']]],
   ['renderer_2eh_10',['Renderer.h',['../_renderer_8h.html',1,'']]],
   ['renderingdone_11',['renderingDone',['../_main_2_main_8cpp.html#a1ff79fd65f193e8f26ceb7e9b9c6be33',1,'Main.cpp']]],
-  ['renderpipeline_12',['renderPipeline',['../class_boids.html#a7bca8f54778172a5c34b7076969ef54c',1,'Boids::renderPipeline'],['../class_two___body___simulation.html#a378dcb26407e2fe552d7831fd327645f',1,'Two_Body_Simulation::renderPipeline']]],
+  ['renderpipeline_12',['renderPipeline',['../class_boids.html#a7bca8f54778172a5c34b7076969ef54c',1,'Boids::renderPipeline'],['../class_n___body___simulation.html#ad9772024d7857a3328353e58fdfd91bd',1,'N_Body_Simulation::renderPipeline']]],
   ['resize_5fproject_5fwindow_13',['RESIZE_PROJECT_WINDOW',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17abfcec50f5180c938216056be73623c5c',1,'Core']]],
   ['resizeprojecttexture_14',['ResizeProjectTexture',['../namespace_core_1_1_renderer.html#a6472fb81ebc2cda76a26e23df9dbc2ac',1,'Core::Renderer']]],
   ['resolutionscale_15',['resolutionScale',['../struct_core_1_1_render_data.html#a9430f036e146a7f2894918ce2744c348',1,'Core::RenderData']]],

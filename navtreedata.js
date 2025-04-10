@@ -25,23 +25,23 @@
 var NAVTREE =
 [
   [ "Ankush's Garage", "index.html", [
-    [ "My Projects", "index.html#autotoc_md6", [
-      [ "Dummy Projects", "index.html#autotoc_md7", [
-        [ "SimpleExample", "index.html#autotoc_md8", null ],
-        [ "Triangle", "index.html#autotoc_md9", null ]
-      ] ],
-      [ "Real Projects", "index.html#autotoc_md10", [
-        [ "Boids", "index.html#autotoc_md11", null ],
-        [ "Few Fractals (Under Construction)", "index.html#autotoc_md12", [
-          [ "Normal fractal (Da tree)", "index.html#autotoc_md13", null ],
-          [ "Fern Fractals", "index.html#autotoc_md14", null ],
-          [ "Mendelbroth Set", "index.html#autotoc_md15", null ],
-          [ "Goldbert set", "index.html#autotoc_md16", null ]
-        ] ]
+    [ "My Projects", "index.html#autotoc_md6", null ],
+    [ "Dummy Projects", "index.html#autotoc_md7", [
+      [ "SimpleExample", "index.html#autotoc_md8", null ],
+      [ "Triangle", "index.html#autotoc_md9", null ]
+    ] ],
+    [ "Real Projects", "index.html#autotoc_md10", [
+      [ "Boids", "index.html#autotoc_md11", null ],
+      [ "N-body-simulation", "index.html#autotoc_md12", null ],
+      [ "Few Fractals (Under Construction)", "index.html#autotoc_md13", [
+        [ "Normal fractal (Da tree)", "index.html#autotoc_md14", null ],
+        [ "Fern Fractals", "index.html#autotoc_md15", null ],
+        [ "Mendelbroth Set", "index.html#autotoc_md16", null ],
+        [ "Goldbert set", "index.html#autotoc_md17", null ]
       ] ]
     ] ],
-    [ "Features", "index.html#autotoc_md17", null ],
-    [ "Getting Started", "index.html#autotoc_md18", null ],
+    [ "Features", "index.html#autotoc_md18", null ],
+    [ "Getting Started", "index.html#autotoc_md19", null ],
     [ "Usage", "md_usage.html", [
       [ "Interface", "md_usage.html#autotoc_md1", [
         [ "Keys", "md_usage.html#autotoc_md2", null ]
@@ -88,7 +88,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_base_project_8cpp.html",
-"namespacemembers_enum.html"
+"namespace_utils.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

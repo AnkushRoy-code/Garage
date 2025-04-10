@@ -15,7 +15,7 @@ var searchData=
   ['consolelogbuffer_12',['ConsoleLogBuffer',['../class_core_1_1_console_log_buffer.html',1,'Core']]],
   ['consolelogmessage_13',['ConsoleLogMessage',['../struct_core_1_1_console_log_message.html',1,'Core']]],
   ['consolelogs_14',['ConsoleLogs',['../class_core_1_1_console_log_buffer.html#a1142036c112165e52cd69cc65d4f6927',1,'Core::ConsoleLogBuffer']]],
-  ['construction_15',['Construction',['../index.html#autotoc_md12',1,'Few Fractals (Under Construction)'],['../todo.html#_todo000003',1,'Few Fractals (Under Construction)']]],
+  ['construction_15',['Construction',['../index.html#autotoc_md13',1,'Few Fractals (Under Construction)'],['../todo.html#_todo000003',1,'Few Fractals (Under Construction)']]],
   ['context_16',['Context',['../struct_core_1_1_context.html',1,'Core::Context'],['../struct_core_1_1_context.html#ab03c1d0058a43aec9f49755072c5399f',1,'Core::Context::Context()']]],
   ['context_2ecpp_17',['Context.cpp',['../_context_8cpp.html',1,'']]],
   ['context_2eh_18',['Context.h',['../_context_8h.html',1,'']]],
@@ -24,5 +24,5 @@ var searchData=
   ['core_3a_3aimguicore_21',['ImGuiCore',['../namespace_core_1_1_im_gui_core.html',1,'Core']]],
   ['core_3a_3arenderer_22',['Renderer',['../namespace_core_1_1_renderer.html',1,'Core']]],
   ['count_23',['COUNT',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17a1be400d5e61f648476e94b5629a21992',1,'Core']]],
-  ['count_24',['count',['../struct_particle_container.html#a94b9e70aa831125deed47fd4e747fa59',1,'ParticleContainer']]]
+  ['count_24',['count',['../struct_predefined_particles_data.html#a12d4cb365b81e4ad20cc5f010f9d2e13',1,'PredefinedParticlesData::count'],['../struct_particle_container.html#a94b9e70aa831125deed47fd4e747fa59',1,'ParticleContainer::count']]]
 ];

@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['time_0',['Time',['../class_utils_1_1_time.html',1,'Utils']]],
-  ['triangle_1',['Triangle',['../class_triangle.html',1,'']]],
-  ['two_5fbody_5fsimulation_2',['Two_Body_Simulation',['../class_two___body___simulation.html',1,'']]]
+  ['scrollingbuffer_0',['ScrollingBuffer',['../struct_scrolling_buffer.html',1,'']]],
+  ['sdl_5fexception_1',['SDL_Exception',['../class_s_d_l___exception.html',1,'']]],
+  ['simpleexample_2',['SimpleExample',['../class_simple_example.html',1,'']]],
+  ['spriteinstance_3',['SpriteInstance',['../struct_sprite_instance.html',1,'']]]
 ];
