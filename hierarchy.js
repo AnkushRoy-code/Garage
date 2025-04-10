@@ -8,6 +8,7 @@ var hierarchy =
       [ "Triangle", "class_triangle.html", null ]
     ] ],
     [ "BoidsContainer", "class_boids_container.html", null ],
+    [ "BoidsDataSend", "struct_boids_data_send.html", null ],
     [ "BoidsEntity", "struct_boids_entity.html", null ],
     [ "Utils::CapZone", "class_utils_1_1_cap_zone.html", null ],
     [ "Core::ConsoleLogBuffer", "class_core_1_1_console_log_buffer.html", null ],
@@ -27,7 +28,7 @@ var hierarchy =
     [ "PredefinedParticlesData", "struct_predefined_particles_data.html", null ],
     [ "Common::ProjectManager", "class_common_1_1_project_manager.html", null ],
     [ "Core::RenderData", "struct_core_1_1_render_data.html", null ],
+    [ "RGB_BoidDataSend", "struct_r_g_b___boid_data_send.html", null ],
     [ "ScrollingBuffer", "struct_scrolling_buffer.html", null ],
-    [ "SpriteInstance", "struct_sprite_instance.html", null ],
     [ "Utils::Time", "class_utils_1_1_time.html", null ]
 ];

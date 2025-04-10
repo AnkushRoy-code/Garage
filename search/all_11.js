@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['r_0',['r',['../struct_sprite_instance.html#a198cbf2a32a13684e6c9c04700998bd5',1,'SpriteInstance']]],
+  ['r_0',['r',['../struct_boids_data_send.html#a4e0a95219a065931591ba10861d2e982',1,'BoidsDataSend']]],
   ['radius_1',['Radius',['../struct_particle_data_send.html#ab96b281cd2f2edb17b400db5796001bf',1,'ParticleDataSend::Radius'],['../struct_particle_data.html#aab8838621ba926c448cfb38925055c0d',1,'ParticleData::Radius']]],
   ['real_20projects_2',['Real Projects',['../index.html#autotoc_md10',1,'']]],
   ['registerallprojects_3',['registerAllProjects',['../class_common_1_1_project_manager.html#ab0506e770cdb70dcacde7626dce42ba0',1,'Common::ProjectManager']]],
@@ -17,7 +17,12 @@ var searchData=
   ['resizeprojecttexture_14',['ResizeProjectTexture',['../namespace_core_1_1_renderer.html#a6472fb81ebc2cda76a26e23df9dbc2ac',1,'Core::Renderer']]],
   ['resolutionscale_15',['resolutionScale',['../struct_core_1_1_render_data.html#a9430f036e146a7f2894918ce2744c348',1,'Core::RenderData']]],
   ['resolvetexture_16',['resolveTexture',['../struct_core_1_1_render_data.html#ae8a4fbf894e56f7c007659db1466b475',1,'Core::RenderData']]],
-  ['right_17',['RIGHT',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17a6cdb4bd934713688e25f9e0432058d09',1,'Core']]],
-  ['rotation_18',['Rotation',['../struct_boids_entity.html#afe2311d37912595d5377063c8a791cb7',1,'BoidsEntity']]],
-  ['rotation_19',['rotation',['../struct_sprite_instance.html#a3ee0844177f2b3f09c7575e81ebafaf7',1,'SpriteInstance']]]
+  ['rgb_17',['rgb',['../class_boids.html#a9fa801ea517ac7b711aabdff540f3363',1,'Boids']]],
+  ['rgb_5fboiddatasend_18',['RGB_BoidDataSend',['../struct_r_g_b___boid_data_send.html',1,'']]],
+  ['rgbboidsdatabuffer_19',['rgbBoidsDataBuffer',['../class_boids.html#a6647880396b06238f501c062447266c7',1,'Boids']]],
+  ['rgbboidsdatatransferbuffer_20',['rgbBoidsDataTransferBuffer',['../class_boids.html#a5a7220a1be42e33641092bf898854d5e',1,'Boids']]],
+  ['rgbrenderpipeline_21',['rgbRenderPipeline',['../class_boids.html#a44d0a46683b96535658d0cf10cf5aabe',1,'Boids']]],
+  ['right_22',['RIGHT',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17a6cdb4bd934713688e25f9e0432058d09',1,'Core']]],
+  ['rotation_23',['Rotation',['../struct_boids_entity.html#afe2311d37912595d5377063c8a791cb7',1,'BoidsEntity']]],
+  ['rotation_24',['rotation',['../struct_boids_data_send.html#a32453abeaf7303360c2da5f6bb0c4532',1,'BoidsDataSend::rotation'],['../struct_r_g_b___boid_data_send.html#a1d7413b420072ba8883efbf9ac94e84c',1,'RGB_BoidDataSend::rotation']]]
 ];
