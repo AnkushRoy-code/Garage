@@ -9,25 +9,29 @@ fast as you can!
 Welcome to the documentation for **Garage: A Collection of My Creations**!  
 This project is a project built using C++, SDL3, and modern graphics APIs.
 
-### Dummy Projects
+## Dummy Projects
 
-#### SimpleExample
+### SimpleExample
 I made this absolute rubbish to test my documentation website and lay a
 foundation for creating other projects...as of now it clears screen that too
 with undefined behaviour in it...😭 I promis I will fix em later.
 
-#### Triangle
-A very important thing every renderer must have! This might be better reference
-to make other projects than SimpleExample...
+### Triangle
+A very important thing every renderer must have, a Triangle ! This might be
+better reference to make other projects than SimpleExample...
 
-### Real Projects
-#### Boids
+## Real Projects
+### Boids
 I made a simple Boids simulation (Birds bOdy Iodine Diodes). That is legit the
 full from of Boids! Simply put it replicates the behaviour of a flock of birds!
 
 It is available as the third example.
 
-#### Few Fractals (Under Construction)
+### N-body-simulation
+I just implemented high-school level physics with some googling to make some
+round objects move in preety ways. N_Body_Simulation
+
+### Few Fractals (Under Construction)
 Hey I made a website and now I have to fill it up with something right!
 
 @todo None of the fractals are done.... I have already made a few fractals in
@@ -36,16 +40,16 @@ it (later) I will try to make them run in GPU instead of CPU.
 
 Made a few fractals (I want) to render. THey are (should be) really fast and low on the resources.
 
-##### Normal fractal (Da tree)
+#### Normal fractal (Da tree)
 Writing some stuff because I can.
 
-##### Fern Fractals
+#### Fern Fractals
 Bushes, it was someone's name too I think.
 
-##### Mendelbroth Set
+#### Mendelbroth Set
 Looks the best imho
 
-##### Goldbert set
+#### Goldbert set
 I am a little foggy never implemented it but wasn't this the 3d fractal?
 
 ## Features
