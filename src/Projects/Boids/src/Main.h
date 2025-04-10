@@ -5,12 +5,19 @@
 #include "Projects/Boids/src/Boids.h"
 #include "Core/Common/pch.h"
 
-typedef struct SpriteInstance
+struct BoidsDataSend
 {
     float x, y, z;
     float rotation;
     float r, g, b, a;
-} SpriteInstance;
+};
+
+struct RGB_BoidDataSend
+{
+    float x, y;
+    float time;
+    float rotation;
+};
 
 class Boids : public Common::BaseProject, public Common::ImGuiUI
 {
@@ -30,6 +37,11 @@ class Boids : public Common::BaseProject, public Common::ImGuiUI
     SDL_GPUGraphicsPipeline *renderPipeline;
     SDL_GPUTransferBuffer *boidsDataTransferBuffer;
     SDL_GPUBuffer *boidsDataBuffer;
+
+    bool rgb = false; // doesn't work
+    SDL_GPUGraphicsPipeline *rgbRenderPipeline;
+    SDL_GPUTransferBuffer *rgbBoidsDataTransferBuffer;
+    SDL_GPUBuffer *rgbBoidsDataBuffer;
 
     BoidsContainer boidsContainer {};
 };

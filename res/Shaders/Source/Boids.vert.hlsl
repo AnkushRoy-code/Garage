@@ -1,4 +1,4 @@
-struct SpriteData
+struct BoidsData
 {
     float3 Position;
     float Rotation;
@@ -11,7 +11,7 @@ struct Output
     float4 Position : SV_Position;
 };
 
-StructuredBuffer<SpriteData> DataBuffer : register(t0, space0);
+StructuredBuffer<BoidsData> DataBuffer : register(t0, space0);
 
 cbuffer UniformBlock : register(b0, space1)
 {
@@ -26,24 +26,24 @@ static const float2 vertexPos[3] = {
 
 Output main(uint id : SV_VertexID)
 {
-    uint spriteIndex = id / 3;
+    uint boidIndex = id / 3;
     uint vert = id % 3;
-    SpriteData sprite = DataBuffer[spriteIndex];
+    BoidsData boid = DataBuffer[boidIndex];
 
-    float c = cos(sprite.Rotation);
-    float s = sin(sprite.Rotation);
+    float c = cos(boid.Rotation);
+    float s = sin(boid.Rotation);
 
     float2 coord = vertexPos[vert];
     coord *= 16.0f; // size = 16.0f
     float2x2 rotation = {c, s, -s, c};
     coord = mul(coord, rotation);
 
-    float3 coordWithDepth = float3(coord + sprite.Position.xy, sprite.Position.z);
+    float3 coordWithDepth = float3(coord + boid.Position.xy, boid.Position.z);
 
     Output output;
 
     output.Position = mul(ViewProjectionMatrix, float4(coordWithDepth, 1.0f));
-    output.Color = sprite.Color;
+    output.Color = boid.Color;
 
     return output;
 }

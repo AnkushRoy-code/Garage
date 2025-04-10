@@ -3,6 +3,8 @@
 #include "Core/Context.h"
 
 #include "Core/Common/pch.h"
+#include "Projects/N_Body_Simulation/src/Particle.h"
+#include "imgui.h"
 
 void N_Body_Simulation::InitialiseTransferBuffersAndParticleContainer()
 {
@@ -20,8 +22,6 @@ void N_Body_Simulation::InitialiseTransferBuffersAndParticleContainer()
     };
 
     dataBuffer = SDL_CreateGPUBuffer(gContext.renderData.device, &newBufCreateInfo);
-
-    Particles.init();
 }
 
 bool N_Body_Simulation::Init()
@@ -74,6 +74,7 @@ bool N_Body_Simulation::Init()
 
     InitialiseTransferBuffersAndParticleContainer();
 
+    Particles.init();
     return true;
 }
 
@@ -195,7 +196,33 @@ bool N_Body_Simulation::DrawUI()
     if (ImGui::Begin("N_Body_Simulation Controller###ProjectUI"))
     {
         ImGui::SeparatorText("Options");
-        // ImGui::SliderFloat("Radius", &Radius, 0.0f, 200.0f);
+
+        static const std::string names[4] = {"Two Bodies", "Four Bodies", "Circular arrangement", "Grid Arrangement"};
+
+        static unsigned int index = 0;
+
+        if (ImGui::BeginCombo("Simulation", names[index].c_str()))
+        {
+            for (int i = 0; i < Particles.ParticlesData.size(); i++)
+            {
+                const bool isSelected = (index == i);
+                if (ImGui::Selectable(names[i].c_str(), isSelected))
+                {
+                    if (i != index)
+                    {
+                        index = i;
+                        Particles.initData(index);
+                        InitialiseTransferBuffersAndParticleContainer();
+                    }
+                }
+                if (isSelected) ImGui::SetItemDefaultFocus();
+            }
+            ImGui::EndCombo();
+        }
+
+        if (ImGui::Button("Restart Simulation")) {
+            Particles.initData(index);
+        }
     }
     ImGui::End();
 

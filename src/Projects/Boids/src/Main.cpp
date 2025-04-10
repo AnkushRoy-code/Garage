@@ -1,8 +1,10 @@
 #include "Main.h"
+
 #include "Core/Common/Common.h"
 #include "Core/Context.h"
-#include "Core/EventHandler.h"
-
+#include "SDL3/SDL_gpu.h"
+#include "Utils/Time.h"
+#include "glm/ext/vector_float2.hpp"
 
 bool Boids::Init()
 {
@@ -10,9 +12,9 @@ bool Boids::Init()
 
     // pipeline creation
     SDL_GPUShader *vertShader =
-        Common::LoadShader(gContext.renderData.device, "PullSpriteBatch.vert", 0, 1, 1, 0);
+        Common::LoadShader(gContext.renderData.device, "Boids.vert", 0, 1, 1, 0);
     SDL_GPUShader *fragShader =
-        Common::LoadShader(gContext.renderData.device, "TexturedQuadColor.frag", 0, 0, 0, 0);
+        Common::LoadShader(gContext.renderData.device, "Boids.frag", 0, 0, 0, 0);
 
     const SDL_GPUColorTargetBlendState blendState {
         .src_color_blendfactor = SDL_GPU_BLENDFACTOR_SRC_ALPHA,
@@ -55,7 +57,7 @@ bool Boids::Init()
     // Transfer buffers creation
     const SDL_GPUTransferBufferCreateInfo tBufCreateInfo {
         .usage = SDL_GPU_TRANSFERBUFFERUSAGE_UPLOAD,
-        .size  = (Uint32)(boidsContainer.numBoids() * sizeof(SpriteInstance)),
+        .size  = (Uint32)(boidsContainer.numBoids() * sizeof(BoidsDataSend)),
     };
 
     boidsDataTransferBuffer =
@@ -63,12 +65,66 @@ bool Boids::Init()
 
     const SDL_GPUBufferCreateInfo newBufCreateInfo {
         .usage = SDL_GPU_BUFFERUSAGE_GRAPHICS_STORAGE_READ,
-        .size  = (Uint32)(boidsContainer.numBoids() * sizeof(SpriteInstance)),
+        .size  = (Uint32)(boidsContainer.numBoids() * sizeof(BoidsDataSend)),
 
     };
 
     boidsDataBuffer = SDL_CreateGPUBuffer(gContext.renderData.device, &newBufCreateInfo);
 
+    // rgb pipeline creation
+
+    SDL_GPUShader *rgbVertShader =
+        Common::LoadShader(gContext.renderData.device, "BoidsRGB.vert", 0, 1, 1, 0);
+    SDL_GPUShader *rgbFragShader =
+        Common::LoadShader(gContext.renderData.device, "BoidsRGB.frag", 0, 0, 0, 0);
+    ;
+
+    const SDL_GPUColorTargetBlendState rgbBlendState = blendState;
+
+    const SDL_GPUColorTargetDescription rgbColorDesc {
+        .format      = SDL_GetGPUSwapchainTextureFormat(gContext.renderData.device,
+                                                        gContext.renderData.window),
+        .blend_state = rgbBlendState,
+    };
+
+    const SDL_GPUGraphicsPipelineTargetInfo rgbTargetInfo {
+        .color_target_descriptions = &rgbColorDesc,
+        .num_color_targets         = 1,
+    };
+
+    const SDL_GPUMultisampleState rgbState = {
+        .sample_count = gContext.renderData.sampleCount,  // MSAA or not
+    };
+
+    const SDL_GPUGraphicsPipelineCreateInfo rgbCreateInfo {
+        .vertex_shader     = rgbVertShader,
+        .fragment_shader   = rgbFragShader,
+        .primitive_type    = SDL_GPU_PRIMITIVETYPE_TRIANGLELIST,
+        .multisample_state = rgbState,
+        .target_info       = rgbTargetInfo,
+    };
+
+    rgbRenderPipeline = SDL_CreateGPUGraphicsPipeline(gContext.renderData.device, &createInfo);
+
+    SDL_ReleaseGPUShader(gContext.renderData.device, rgbVertShader);
+    SDL_ReleaseGPUShader(gContext.renderData.device, rgbFragShader);
+
+    // Transfer buffers creation
+    const SDL_GPUTransferBufferCreateInfo rgbTBufCreateInfo {
+        .usage = SDL_GPU_TRANSFERBUFFERUSAGE_UPLOAD,
+        .size  = (Uint32)(boidsContainer.numBoids() * sizeof(RGB_BoidDataSend)),
+    };
+
+    rgbBoidsDataTransferBuffer =
+        SDL_CreateGPUTransferBuffer(gContext.renderData.device, &rgbTBufCreateInfo);
+
+    const SDL_GPUBufferCreateInfo rgbNewBufCreateInfo {
+        .usage = SDL_GPU_BUFFERUSAGE_GRAPHICS_STORAGE_READ,
+        .size  = (Uint32)(boidsContainer.numBoids() * sizeof(RGB_BoidDataSend)),
+
+    };
+
+    rgbBoidsDataBuffer = SDL_CreateGPUBuffer(gContext.renderData.device, &rgbNewBufCreateInfo);
     boidsContainer.init();
     return true;
 }
@@ -95,40 +151,76 @@ bool Boids::Draw()
     if (gContext.renderData.projectTexture)
     {
         // upload the data to transfer buffer
-        auto *dataPtr = static_cast<SpriteInstance *>(
-            SDL_MapGPUTransferBuffer(gContext.renderData.device, boidsDataTransferBuffer, true));
-
-        static int i = 0;
-        for (const auto &boid: boidsContainer.getBoids())
+        if (!rgb)
         {
-            dataPtr[i].x        = boid.Position.x;
-            dataPtr[i].y        = boid.Position.y;
-            dataPtr[i].z        = 0.0f;  // why do I even have this?
-            dataPtr[i].r        = boidsContainer.Color.r;
-            dataPtr[i].g        = boidsContainer.Color.g;
-            dataPtr[i].b        = boidsContainer.Color.b;
-            dataPtr[i].a        = boidsContainer.Color.a;
-            dataPtr[i].rotation = boid.Rotation - SDL_PI_F * 0.5;
-            i++;
+            auto *dataPtr = static_cast<BoidsDataSend *>(SDL_MapGPUTransferBuffer(
+                gContext.renderData.device, boidsDataTransferBuffer, true));
+
+            static int i = 0;
+            for (const auto &boid: boidsContainer.getBoids())
+            {
+                dataPtr[i].x        = boid.Position.x;
+                dataPtr[i].y        = boid.Position.y;
+                dataPtr[i].z        = 0.0f;  // why do I even have this?
+                dataPtr[i].r        = boidsContainer.Color.r;
+                dataPtr[i].g        = boidsContainer.Color.g;
+                dataPtr[i].b        = boidsContainer.Color.b;
+                dataPtr[i].a        = boidsContainer.Color.a;
+                dataPtr[i].rotation = boid.Rotation - SDL_PI_F * 0.5;
+                i++;
+            }
+            i = 0;
+            SDL_UnmapGPUTransferBuffer(gContext.renderData.device, boidsDataTransferBuffer);
+
+            // upload the data to gpu from transfer buffers
+            const SDL_GPUTransferBufferLocation transferBufferLocation {
+                .transfer_buffer = boidsDataTransferBuffer,
+                .offset          = 0,
+            };
+
+            const SDL_GPUBufferRegion bufferRegion {
+                .buffer = boidsDataBuffer,
+                .offset = 0,
+                .size   = (Uint32)(boidsContainer.numBoids() * sizeof(BoidsDataSend)),
+            };
+
+            SDL_GPUCopyPass *copyPass = SDL_BeginGPUCopyPass(cmdBuf);
+            SDL_UploadToGPUBuffer(copyPass, &transferBufferLocation, &bufferRegion, true);
+            SDL_EndGPUCopyPass(copyPass);
+        }  // if (!rgb)
+        else
+        {
+            auto *dataPtr = static_cast<RGB_BoidDataSend *>(SDL_MapGPUTransferBuffer(
+                gContext.renderData.device, rgbBoidsDataTransferBuffer, true));
+
+            static int i = 0;
+            for (const auto &boid: boidsContainer.getBoids())
+            {
+                dataPtr[i].x        = boid.Position.x;
+                dataPtr[i].y        = boid.Position.y;
+                dataPtr[i].time     = Utils::Time::getTicks();
+                dataPtr[i].rotation = boid.Rotation - SDL_PI_F * 0.5;
+                i++;
+            }
+            i = 0;
+            SDL_UnmapGPUTransferBuffer(gContext.renderData.device, rgbBoidsDataTransferBuffer);
+
+            // upload the data to gpu from transfer buffers
+            const SDL_GPUTransferBufferLocation transferBufferLocation {
+                .transfer_buffer = rgbBoidsDataTransferBuffer,
+                .offset          = 0,
+            };
+
+            const SDL_GPUBufferRegion bufferRegion {
+                .buffer = rgbBoidsDataBuffer,
+                .offset = 0,
+                .size   = (Uint32)(boidsContainer.numBoids() * sizeof(RGB_BoidDataSend)),
+            };
+
+            SDL_GPUCopyPass *copyPass = SDL_BeginGPUCopyPass(cmdBuf);
+            SDL_UploadToGPUBuffer(copyPass, &transferBufferLocation, &bufferRegion, true);
+            SDL_EndGPUCopyPass(copyPass);
         }
-        i = 0;
-        SDL_UnmapGPUTransferBuffer(gContext.renderData.device, boidsDataTransferBuffer);
-
-        // upload the data to gpu from transfer buffers
-        const SDL_GPUTransferBufferLocation transferBufferLocation {
-            .transfer_buffer = boidsDataTransferBuffer,
-            .offset          = 0,
-        };
-
-        const SDL_GPUBufferRegion bufferRegion {
-            .buffer = boidsDataBuffer,
-            .offset = 0,
-            .size   = (Uint32)(boidsContainer.numBoids() * sizeof(SpriteInstance)),
-        };
-
-        SDL_GPUCopyPass *copyPass = SDL_BeginGPUCopyPass(cmdBuf);
-        SDL_UploadToGPUBuffer(copyPass, &transferBufferLocation, &bufferRegion, true);
-        SDL_EndGPUCopyPass(copyPass);
 
         SDL_GPUColorTargetInfo tinfo {.texture     = gContext.renderData.projectTexture,
                                       .clear_color = {0.094f, 0.094f, 0.145f, 1.00f},
@@ -148,15 +240,35 @@ bool Boids::Draw()
 
         gContext.renderData.projectPass = SDL_BeginGPURenderPass(cmdBuf, &tinfo, 1, nullptr);
 
-        SDL_BindGPUGraphicsPipeline(gContext.renderData.projectPass, renderPipeline);
-        SDL_BindGPUVertexStorageBuffers(gContext.renderData.projectPass, 0, &boidsDataBuffer, 1);
+        if (!rgb)
+        {
+            SDL_BindGPUGraphicsPipeline(gContext.renderData.projectPass, renderPipeline);
+            SDL_BindGPUVertexStorageBuffers(gContext.renderData.projectPass, 0, &boidsDataBuffer,
+                                            1);
 
-        SDL_PushGPUVertexUniformData(cmdBuf, 0, &cameraMatrix, sizeof(glm::mat4x4));
+            SDL_PushGPUVertexUniformData(cmdBuf, 0, &cameraMatrix, sizeof(glm::mat4x4));
 
-        SDL_DrawGPUPrimitives(gContext.renderData.projectPass, boidsContainer.numBoids() * 3, 1, 0,
-                              1);
+            SDL_DrawGPUPrimitives(gContext.renderData.projectPass, boidsContainer.numBoids() * 3, 1,
+                                  0, 1);
 
-        SDL_EndGPURenderPass(gContext.renderData.projectPass);
+            SDL_EndGPURenderPass(gContext.renderData.projectPass);
+        }
+        else
+        {
+            SDL_BindGPUGraphicsPipeline(gContext.renderData.projectPass, rgbRenderPipeline);
+            SDL_BindGPUVertexStorageBuffers(gContext.renderData.projectPass, 0, &rgbBoidsDataBuffer,
+                                            1);
+
+            SDL_PushGPUVertexUniformData(cmdBuf, 0, &cameraMatrix, sizeof(glm::mat4x4));
+
+            auto res = glm::vec2 {w, h};
+            SDL_PushGPUFragmentUniformData(cmdBuf, 0, &res, sizeof(glm::vec2));
+
+            SDL_DrawGPUPrimitives(gContext.renderData.projectPass, boidsContainer.numBoids() * 3, 1,
+                                  0, 1);
+
+            SDL_EndGPURenderPass(gContext.renderData.projectPass);
+        }
 
         SDL_GPUTexture *blitSourceTexture =
             (tinfo.resolve_texture != nullptr) ? tinfo.resolve_texture : tinfo.texture;
@@ -194,6 +306,10 @@ void Boids::Quit()
     SDL_ReleaseGPUGraphicsPipeline(gContext.renderData.device, renderPipeline);
     SDL_ReleaseGPUTransferBuffer(gContext.renderData.device, boidsDataTransferBuffer);
     SDL_ReleaseGPUBuffer(gContext.renderData.device, boidsDataBuffer);
+
+    SDL_ReleaseGPUGraphicsPipeline(gContext.renderData.device, rgbRenderPipeline);
+    SDL_ReleaseGPUTransferBuffer(gContext.renderData.device, rgbBoidsDataTransferBuffer);
+    SDL_ReleaseGPUBuffer(gContext.renderData.device, rgbBoidsDataBuffer);
 }
 
 bool Boids::DrawUI()
@@ -201,9 +317,6 @@ bool Boids::DrawUI()
     if (ImGui::Begin("Boids Controller###ProjectUI"))
     {
         ImGui::SeparatorText("Options");
-        ImGui::Text("Boids Color Picker");
-        ImGui::ColorEdit4("###abultabul", (float *)&boidsContainer.Color,
-                          ImGuiColorEditFlags_AlphaPreviewHalf);
         ImGui::Text("Seperation");
         ImGui::SliderFloat("###tabulabul", &boidsContainer.seperation, 0.0f, 0.1f);
         ImGui::Text("Alignment");
@@ -213,6 +326,14 @@ bool Boids::DrawUI()
         if (ImGui::SliderFloat("###someRandomfuckingIdthatisnotempty", &a, 0.0f, 0.1f))
         {  // imgui is not good with small values
             boidsContainer.cohesion = 0.001 * a;
+        }
+        static bool dontuse = false;
+        ImGui::Checkbox("RGB Lighting", &dontuse);
+        if (!rgb)
+        {
+            ImGui::Text("Boids Color Picker");
+            ImGui::ColorEdit4("###abultabul", (float *)&boidsContainer.Color,
+                              ImGuiColorEditFlags_AlphaPreviewHalf);
         }
     }
     ImGui::End();

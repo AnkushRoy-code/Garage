@@ -38,7 +38,7 @@ struct ParticleContainer
     void init();
     void update();
     void quit();
-    void initData(const PredefinedParticlesData &data);
+    void initData(unsigned int index);
     std::vector<PredefinedParticlesData> ParticlesData;
 };
 
