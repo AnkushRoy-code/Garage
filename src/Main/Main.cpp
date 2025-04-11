@@ -1,6 +1,6 @@
-#include "Utils/CapFPS.h"
 #define SDL_MAIN_USE_CALLBACKS 1
 #include <SDL3/SDL_main.h>  // only need in main.cpp
+
 #include "Core/Common/pch.h"
 
 #include "Core/Common/Common.h"
@@ -9,11 +9,14 @@
 #include "Core/Context.h"
 #include "Core/EventHandler.h"
 #include "Core/ImGuiCore/ImGuiCore.h"
+#include "Core/ImGuiCore/GameFPSTracker.h"
 #include "Core/Renderer/Renderer.h"
 
 #include "Projects/Common/BaseProject.h"
 
 #include "Utils/Time.h"
+#include "Utils/Timer.h"
+#include "Utils/CapFPS.h"
 
 bool HandleWindowResize();
 std::atomic<bool> renderingDone;
@@ -68,6 +71,12 @@ void updateFunc()
     {
         Utils::Time::updateDeltaTime();
         Utils::CapZone temp(60);
+
+        static float updateTime = 0.0f;
+
+        Timer riesnt(updateTime);
+        Tracker::AddUpdateFPSPointQueue(updateTime);
+
         Projects[gContext.appState.projectIndex]->Update();
     }
 }
@@ -88,15 +97,20 @@ SDL_AppResult SDL_AppIterate(void *appstate)
     {
         renderingDone.store(false);
         std::thread updateProject(updateFunc);  // use jthread when macos supports it
+        Tracker::registerPoints();
 
         // no need to draw if window is minimised. But we sure need to update the state.
         if (SDL_GetWindowFlags(gContext.renderData.window) & SDL_WINDOW_MINIMIZED)
         {
             renderingDone.store(true);
             updateProject.join();
-            Utils::Time::capFPS();
             return SDL_APP_CONTINUE;
         }
+
+        static float renderTime = 0.0f;
+        Timer riesnt(renderTime);
+
+        Tracker::AddRenderFPSPointQueue(renderTime);
 
         /// @todo have everything imgui related in a different thread
         // Hours wasted trying that: 0.2 (about 15mins)
@@ -137,11 +151,20 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 
         Core::ImGuiCore::Draw();
 
+        // std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
         renderingDone.store(true);
         updateProject.join();
 
         gContext.inputHandler.endFrame();
-        Utils::Time::capFPS();
+
+        if (gContext.appState.hasToChangeIndex)
+        {
+            Projects[gContext.appState.projectIndex]->Quit();
+            gContext.appState.projectIndex = gContext.appState.projectToBeIndex;
+            Projects[gContext.appState.projectIndex]->Init();
+            gContext.appState.hasToChangeIndex = false;
+        }
     }
 
     catch (const SDL_Exception &e)

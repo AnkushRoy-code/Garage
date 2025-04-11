@@ -15,6 +15,9 @@ void Core::Renderer::Init()
         SDL_GetGPUSwapchainTextureFormat(gContext.renderData.device, gContext.renderData.window);
 
     // detect the number of sample_count. highst is 8 but we can work with 4
+#ifdef _WIN32  // could'nt get anti-aliasing working with windows.
+    gContext.renderData.sampleCount = SDL_GPU_SAMPLECOUNT_1;
+#else
     if (SDL_GPUTextureSupportsSampleCount(gContext.renderData.device, format,
                                           SDL_GPU_SAMPLECOUNT_4))
     {
@@ -30,6 +33,7 @@ void Core::Renderer::Init()
     {
         gContext.renderData.sampleCount = SDL_GPU_SAMPLECOUNT_1;
     }
+#endif
 
     const SDL_GPUTextureCreateInfo gpuTextureCreateInfo = {
         .type                 = SDL_GPU_TEXTURETYPE_2D,

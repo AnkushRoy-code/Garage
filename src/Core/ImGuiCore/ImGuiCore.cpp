@@ -3,11 +3,13 @@
 #include "Core/Common/SDL_Exception.h"
 #include "Core/Context.h"
 #include "Core/Console.h"
+#include "Core/ImGuiCore/GameFPSTracker.h"
+#include "Core/ImGuiCore/ScrollingBuffer.h"
 #include "Core/Renderer/Renderer.h"
 #include "Projects/Common/BaseProject.h"
-#include "Utils/Time.h"
 
 #include "Core/Common/pch.h"
+
 #include <imgui_internal.h>
 #include <implot.h>
 
@@ -91,37 +93,6 @@ void Core::ImGuiCore::Quit()
     ImGui::DestroyContext();
 }
 
-struct ScrollingBuffer
-{
-    int MaxSize;
-    int Offset;
-    ImVector<ImVec2> Data;
-    ScrollingBuffer(int max_size = 2000)
-    {
-        MaxSize = max_size;
-        Offset  = 0;
-        Data.reserve(MaxSize);
-    }
-    void AddPoint(float x, float y)
-    {
-        if (Data.size() < MaxSize)
-            Data.push_back(ImVec2(x, y));
-        else
-        {
-            Data[Offset] = ImVec2(x, y);
-            Offset       = (Offset + 1) % MaxSize;
-        }
-    }
-    void Erase()
-    {
-        if (Data.size() > 0)
-        {
-            Data.shrink(0);
-            Offset = 0;
-        }
-    }
-};
-
 void Core::ImGuiCore::Update()
 {
     ImGui_ImplSDLGPU3_NewFrame();
@@ -189,9 +160,8 @@ void Core::ImGuiCore::Update()
                 {
                     if (i != gContext.appState.projectIndex)
                     {
-                        Projects[gContext.appState.projectIndex]->Quit();
-                        gContext.appState.projectIndex = i;
-                        Projects[gContext.appState.projectIndex]->Init();
+                        gContext.appState.hasToChangeIndex = true;
+                        gContext.appState.projectToBeIndex = i;
                     }
                 }
                 if (isSelected) ImGui::SetItemDefaultFocus();
@@ -213,14 +183,7 @@ void Core::ImGuiCore::Update()
         ImGui::SeparatorText("Data");
         // fps graph
         {
-            static ScrollingBuffer fpsBuf;
-            const float currentTime = Utils::Time::getTicks() / 1000.0f;
-            const float deltaTime   = Utils::Time::deltaTime();
-            const float fps         = 1000.0f / deltaTime;
-            static float t          = 0;
-            t += deltaTime / 1000.0;
-
-            fpsBuf.AddPoint(t, fps);
+            float t = SDL_GetTicks() / 1000.0f;
 
             static ImPlotAxisFlags flags = ImPlotAxisFlags_NoTickLabels;
 
@@ -233,8 +196,21 @@ void Core::ImGuiCore::Update()
                 ImPlot::SetupAxisLimits(ImAxis_X1, t - history, t, ImGuiCond_Always);
                 ImPlot::SetupAxisLimits(ImAxis_Y1, -1, 65);
 
-                ImPlot::PlotLine("FPS", &fpsBuf.Data[0].x, &fpsBuf.Data[0].y, fpsBuf.Data.size(), 0,
-                                 fpsBuf.Offset, 2 * sizeof(float));
+                ImPlot::PlotLine("Update", &Tracker::UpdateFPSBuffer.Data[0].x,
+                                 &Tracker::UpdateFPSBuffer.Data[0].y,
+                                 Tracker::UpdateFPSBuffer.Data.size(), 0,
+                                 Tracker::UpdateFPSBuffer.Offset, 2 * sizeof(float));
+
+                ImPlot::PlotLine("RealUpdate", &Tracker::RealUpdateFPSBuffer.Data[0].x,
+                                 &Tracker::RealUpdateFPSBuffer.Data[0].y,
+                                 Tracker::RealUpdateFPSBuffer.Data.size(), 0,
+                                 Tracker::RealUpdateFPSBuffer.Offset, 2 * sizeof(float));
+
+                ImPlot::PlotLine("Render", &Tracker::RenderFPSBuffer.Data[0].x,
+                                 &Tracker::RenderFPSBuffer.Data[0].y,
+                                 Tracker::RenderFPSBuffer.Data.size(), 0,
+                                 Tracker::RenderFPSBuffer.Offset, 2 * sizeof(float));
+
                 ImPlot::EndPlot();
             }
         }

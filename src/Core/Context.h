@@ -28,6 +28,8 @@ struct AppState
     float ProjectWindowX   = 0;
     float ProjectWindowY   = 0;
     int projectIndex       = 0;
+    int projectToBeIndex   = 0;
+    bool hasToChangeIndex  = false;
 };
 
 struct Context
