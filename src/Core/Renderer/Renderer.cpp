@@ -16,7 +16,7 @@ void Core::Renderer::Init()
 
     // detect the number of sample_count. highst is 8 but we can work with 4
 #ifdef _WIN32  // could'nt get anti-aliasing working with Windows.
-    gContext.renderData.sampleCount = SDL_GPU_SAMPLECOUNT_1;
+    g_Context.RenderData.SampleCount = SDL_GPU_SAMPLECOUNT_1;
 #else
     if (SDL_GPUTextureSupportsSampleCount(g_Context.RenderData.Device, format,
                                           SDL_GPU_SAMPLECOUNT_4))

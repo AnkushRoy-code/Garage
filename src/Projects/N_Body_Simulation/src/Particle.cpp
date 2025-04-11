@@ -1,6 +1,5 @@
 #include "Particle.h"
 
-#include "SDL3/SDL_stdinc.h"
 #include "Utils/Time.h"
 #include "Core/Context.h"
 
