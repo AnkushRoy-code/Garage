@@ -7,10 +7,10 @@
 
 #include <memory>
 
-void Common::ProjectManager::registerAllProjects()
+void Common::ProjectManager::RegisterAllProjects()
 {
-    ProjectManager::registerProject(std::make_unique<SimpleExample>());
-    ProjectManager::registerProject(std::make_unique<Triangle>());
-    ProjectManager::registerProject(std::make_unique<Boids>());
-    ProjectManager::registerProject(std::make_unique<N_Body_Simulation>());
+    ProjectManager::RegisterProject(std::make_unique<SimpleExample>());
+    ProjectManager::RegisterProject(std::make_unique<Triangle>());
+    ProjectManager::RegisterProject(std::make_unique<Boids>());
+    ProjectManager::RegisterProject(std::make_unique<N_Body_Simulation>());
 }

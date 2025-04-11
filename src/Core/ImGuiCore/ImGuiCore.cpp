@@ -3,13 +3,12 @@
 #include "Core/Common/SDL_Exception.h"
 #include "Core/Context.h"
 #include "Core/Console.h"
-#include "Core/ImGuiCore/GameFPSTracker.h"
 #include "Core/ImGuiCore/ScrollingBuffer.h"
+#include "Core/ImGuiCore/GameFPSTracker.h"
 #include "Core/Renderer/Renderer.h"
 #include "Projects/Common/BaseProject.h"
 
 #include "Core/Common/pch.h"
-#include "imgui.h"
 
 #include <imgui_internal.h>
 #include <implot.h>
@@ -27,7 +26,7 @@ void Core::ImGuiCore::Init()
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
     int w, h;
-    SDL_GetWindowSize(gContext.renderData.window, &w, &h);
+    SDL_GetWindowSize(g_Context.RenderData.Window, &w, &h);
     io.DisplaySize = ImVec2((float)w, (float)h);
 
     ImGui::StyleColorsDark();
@@ -77,13 +76,13 @@ void Core::ImGuiCore::Init()
     colors[ImGuiCol_TabSelectedOverline]  = ImVec4(0.29f, 0.30f, 0.41f, 0.80f);
     colors[ImGuiCol_TabDimmedSelected]    = ImVec4(0.42f, 0.44f, 0.53f, 0.62f);
 
-    ImGui_ImplSDL3_InitForSDLGPU(gContext.renderData.window);
-    ImGui_ImplSDLGPU3_InitInfo init_info {};
-    init_info.Device = gContext.renderData.device;
-    init_info.ColorTargetFormat =
-        SDL_GetGPUSwapchainTextureFormat(gContext.renderData.device, gContext.renderData.window);
-    init_info.MSAASamples = SDL_GPU_SAMPLECOUNT_1;
-    ImGui_ImplSDLGPU3_Init(&init_info);
+    ImGui_ImplSDL3_InitForSDLGPU(g_Context.RenderData.Window);
+    ImGui_ImplSDLGPU3_InitInfo initInfo {};
+    initInfo.Device = g_Context.RenderData.Device;
+    initInfo.ColorTargetFormat =
+        SDL_GetGPUSwapchainTextureFormat(g_Context.RenderData.Device, g_Context.RenderData.Window);
+    initInfo.MSAASamples = SDL_GPU_SAMPLECOUNT_1;
+    ImGui_ImplSDLGPU3_Init(&initInfo);
 }
 
 void Core::ImGuiCore::Quit()
@@ -100,69 +99,69 @@ void Core::ImGuiCore::Update()
     ImGui_ImplSDLGPU3_NewFrame();
     ImGui::NewFrame();
 
-    gContext.appState.mainViewportId = ImGui::DockSpaceOverViewport();
+    g_Context.AppState.MainViewportId = ImGui::DockSpaceOverViewport();
 
-    static bool imguiIniExists = std::filesystem::exists("imgui.ini");
-    static bool firstTime      = true;
-    static const auto vpID     = gContext.appState.mainViewportId;
+    static bool x_ImguiIniExists = std::filesystem::exists("imgui.ini");
+    static bool x_FirstTime      = true;
+    static const auto k_vpID     = g_Context.AppState.MainViewportId;
 
-    if (firstTime && !imguiIniExists)
+    if (x_FirstTime && !x_ImguiIniExists)
     {
-        firstTime = false;
+        x_FirstTime = false;
 
-        ImGui::DockBuilderRemoveNode(gContext.appState.mainViewportId);
-        ImGui::DockBuilderAddNode(gContext.appState.mainViewportId);
-        ImGui::DockBuilderSetNodeSize(gContext.appState.mainViewportId,
+        ImGui::DockBuilderRemoveNode(g_Context.AppState.MainViewportId);
+        ImGui::DockBuilderAddNode(g_Context.AppState.MainViewportId);
+        ImGui::DockBuilderSetNodeSize(g_Context.AppState.MainViewportId,
                                       ImGui::GetMainViewport()->Size);
 
         auto dockIdRight =
-            ImGui::DockBuilderSplitNode(gContext.appState.mainViewportId, ImGuiDir_Right, 0.25,
-                                        nullptr, &gContext.appState.mainViewportId);
+            ImGui::DockBuilderSplitNode(g_Context.AppState.MainViewportId, ImGuiDir_Right, 0.25,
+                                        nullptr, &g_Context.AppState.MainViewportId);
 
         auto dockIdBottom =
-            ImGui::DockBuilderSplitNode(gContext.appState.mainViewportId, ImGuiDir_Down, 0.3,
-                                        nullptr, &gContext.appState.mainViewportId);
+            ImGui::DockBuilderSplitNode(g_Context.AppState.MainViewportId, ImGuiDir_Down, 0.3,
+                                        nullptr, &g_Context.AppState.MainViewportId);
 
         auto dockIdLeft =
-            ImGui::DockBuilderSplitNode(gContext.appState.mainViewportId, ImGuiDir_Left, 0.25,
-                                        nullptr, &gContext.appState.mainViewportId);
+            ImGui::DockBuilderSplitNode(g_Context.AppState.MainViewportId, ImGuiDir_Left, 0.25,
+                                        nullptr, &g_Context.AppState.MainViewportId);
 
         ImGui::DockBuilderDockWindow("Ankush's Garage - ToolBox", dockIdLeft);
         ImGui::DockBuilderDockWindow("Console", dockIdBottom);
         ImGui::DockBuilderDockWindow("###ProjectUI", dockIdRight);
-        ImGui::DockBuilderDockWindow("###TexTitle", gContext.appState.mainViewportId);
+        ImGui::DockBuilderDockWindow("###TexTitle", g_Context.AppState.MainViewportId);
 
-        ImGui::DockBuilderFinish(gContext.appState.mainViewportId);
+        ImGui::DockBuilderFinish(g_Context.AppState.MainViewportId);
     }
 
     if (ImGui::Begin("Ankush's Garage - ToolBox"))
     {
-        static std::vector<const char *> names;
-        static bool firsstTime = true;
+        static std::vector<const char *> x_Names;
+        static bool x_FirsstTime = true;
 
-        if (firsstTime)
+        if (x_FirsstTime)
         {
-            firsstTime = false;
-            names.reserve(Projects.size());
-            for (const auto &project: Projects)
+            x_FirsstTime = false;
+            x_Names.reserve(g_Projects.size());
+            for (const auto &project: g_Projects)
             {
-                names.push_back(project->getName().c_str());
+                x_Names.push_back(project->GetName().c_str());
             }
         }
         ImGui::SeparatorText("Projects");
 
         // Project selector
-        if (ImGui::BeginCombo("Project", names[gContext.appState.projectIndex]))
+        if (ImGui::BeginCombo("Project", x_Names[g_Context.AppState.ProjectIndex]))
         {
-            for (int i = 0; i < Projects.size(); i++)
+            for (int i = 0; i < g_Projects.size(); i++)
             {
-                const bool isSelected = (gContext.appState.projectIndex == i);
-                if (ImGui::Selectable(names[i], isSelected))
+                const bool isSelected = (g_Context.AppState.ProjectIndex == i);
+                if (ImGui::Selectable(x_Names[i], isSelected))
                 {
-                    if (i != gContext.appState.projectIndex)
+                    if (i != g_Context.AppState.ProjectIndex)
                     {
-                        gContext.appState.hasToChangeIndex = true;
-                        gContext.appState.projectToBeIndex = i;
+                        g_Context.AppState.HasToChangeIndex = true;
+                        g_Context.AppState.ProjectToBeIndex = i;
                     }
                 }
                 if (isSelected) ImGui::SetItemDefaultFocus();
@@ -172,13 +171,13 @@ void Core::ImGuiCore::Update()
 
         ImGui::SeparatorText("Controls");
         // resolution
-        static int res = 100;
+        static int x_Res = 100;
         ImGui::Text("Scale Resolution");
-        if (ImGui::SliderInt("###yetanotherid", &res, 25, 500, "%d%%"))
+        if (ImGui::SliderInt("###yetanotherid", &x_Res, 25, 500, "%d%%"))
         {
-            gContext.renderData.resolutionScale = res / 100.0f;
-            Core::Renderer::ResizeProjectTexture(gContext.appState.ProjectWindowX,
-                                                 gContext.appState.ProjectWindowY);
+            g_Context.RenderData.ResolutionScale = x_Res / 100.0f;
+            Core::Renderer::ResizeProjectTexture(g_Context.AppState.ProjectWindowX,
+                                                 g_Context.AppState.ProjectWindowY);
         }
 
         ImGui::SeparatorText("Data");
@@ -190,8 +189,8 @@ void Core::ImGuiCore::Update()
                                                  | ImPlotAxisFlags_NoGridLines
                                                  | ImPlotAxisFlags_NoTickMarks;
 
-            static float history = 10.0f;
-            ImGui::SliderFloat("History", &history, 1, 30, "%.1f s");
+            static float x_History = 10.0f;
+            ImGui::SliderFloat("History", &x_History, 1, 30, "%.1f s");
 
             if (ImPlot::BeginPlot("FPS Plot", ImVec2(-1, 250),
                                   ImPlotFlags_NoBoxSelect | ImPlotFlags_Crosshairs))
@@ -199,23 +198,25 @@ void Core::ImGuiCore::Update()
                 ImPlot::SetupLegend(ImPlotLocation_SouthEast);
                 ImPlot::SetupMouseText(ImPlotLocation_SouthWest);
                 ImPlot::SetupAxes("Time (s)", "FPS", flags, 0);
-                ImPlot::SetupAxisLimits(ImAxis_X1, t - history, t, ImGuiCond_Always);
+                ImPlot::SetupAxisLimits(ImAxis_X1, t - x_History, t, ImGuiCond_Always);
                 ImPlot::SetupAxisLimits(ImAxis_Y1, -1, 65);
+                ImPlot::SetupFinish();
 
-                ImPlot::PlotLine("Update", &Tracker::UpdateFPSBuffer.Data[0].x,
-                                 &Tracker::UpdateFPSBuffer.Data[0].y,
-                                 Tracker::UpdateFPSBuffer.Data.size(), 0,
-                                 Tracker::UpdateFPSBuffer.Offset, 2 * sizeof(float));
+                ImPlot::PlotLine("Update", &Tracker::s_UpdateFPSBuffer.Data[0].x,
+                                 &Tracker::s_UpdateFPSBuffer.Data[0].y,
+                                 Tracker::s_UpdateFPSBuffer.Data.size(), 0,
+                                 Tracker::s_UpdateFPSBuffer.Offset, 2 * sizeof(float));
 
-                ImPlot::PlotLine("RealUpdate", &Tracker::RealUpdateFPSBuffer.Data[0].x,
-                                 &Tracker::RealUpdateFPSBuffer.Data[0].y,
-                                 Tracker::RealUpdateFPSBuffer.Data.size(), 0,
-                                 Tracker::RealUpdateFPSBuffer.Offset, 2 * sizeof(float));
+                ImPlot::PlotLine("RealUpdate", &Tracker::s_RealUpdateFPSBuffer.Data[0].x,
+                                 &Tracker::s_RealUpdateFPSBuffer.Data[0].y,
+                                 Tracker::s_RealUpdateFPSBuffer.Data.size(), 0,
+                                 Tracker::s_RealUpdateFPSBuffer.Offset, 2 * sizeof(float));
 
-                ImPlot::PlotLine("Render", &Tracker::RenderFPSBuffer.Data[0].x,
-                                 &Tracker::RenderFPSBuffer.Data[0].y,
-                                 Tracker::RenderFPSBuffer.Data.size(), 0,
-                                 Tracker::RenderFPSBuffer.Offset, 2 * sizeof(float));
+                ImPlot::PlotLine("Render", &Tracker::s_RenderFPSBuffer.Data[0].x,
+                                 &Tracker::s_RenderFPSBuffer.Data[0].y,
+                                 Tracker::s_RenderFPSBuffer.Data.size(), 0,
+                                 Tracker::s_RenderFPSBuffer.Offset, 2 * sizeof(float));
+
                 ImPlot::EndPlot();
             }
         }
@@ -224,7 +225,7 @@ void Core::ImGuiCore::Update()
 
     if (ImGui::Begin("Console"))
     {
-        const auto cl = ConsoleLogBuffer::ConsoleLogs;
+        const auto cl = ConsoleLogBuffer::GetMessages();
 
         if (ImGui::BeginTable("ConsoleLogWindowTable", 2,
                               ImGuiTableFlags_NoSavedSettings | ImGuiTableFlags_BordersInner))
@@ -257,10 +258,10 @@ void Core::ImGuiCore::Update()
     // look at ff4cb73 for reference.
     if (Common::BaseProject::hasUI)
     {
-        if (auto imgui_project =
-                dynamic_cast<Common::ImGuiUI *>(Projects[gContext.appState.projectIndex].get()))
+        if (auto imguiProject =
+                dynamic_cast<Common::ImGuiUI *>(g_Projects[g_Context.AppState.ProjectIndex].get()))
         {
-            imgui_project->DrawUI();
+            imguiProject->DrawUI();
         }
     }
 }
@@ -270,11 +271,11 @@ void Core::ImGuiCore::Draw()
     ImGui::Render();
     ImDrawData *drawData = ImGui::GetDrawData();
 
-    SDL_GPUCommandBuffer *commandBuffer = SDL_AcquireGPUCommandBuffer(gContext.renderData.device);
+    SDL_GPUCommandBuffer *commandBuffer = SDL_AcquireGPUCommandBuffer(g_Context.RenderData.Device);
     if (!commandBuffer) { throw SDL_Exception("AcquireGPUCommandBuffer failed!"); }
 
     SDL_GPUTexture *swapchainTexture;
-    if (!SDL_AcquireGPUSwapchainTexture(commandBuffer, gContext.renderData.window,
+    if (!SDL_AcquireGPUSwapchainTexture(commandBuffer, g_Context.RenderData.Window,
                                         &swapchainTexture, nullptr, nullptr))
     {
         throw SDL_Exception("WaitAndAcquireGPUSwapchainTexture failed!");
@@ -295,12 +296,12 @@ void Core::ImGuiCore::Draw()
 
         };
 
-        static SDL_GPURenderPass *renderPass {};
-        renderPass = SDL_BeginGPURenderPass(commandBuffer, &targetInfo, 1, nullptr);
+        static SDL_GPURenderPass *x_RenderPass {};
+        x_RenderPass = SDL_BeginGPURenderPass(commandBuffer, &targetInfo, 1, nullptr);
 
-        ImGui_ImplSDLGPU3_RenderDrawData(drawData, commandBuffer, renderPass);
+        ImGui_ImplSDLGPU3_RenderDrawData(drawData, commandBuffer, x_RenderPass);
 
-        SDL_EndGPURenderPass(renderPass);
+        SDL_EndGPURenderPass(x_RenderPass);
         SDL_SubmitGPUCommandBuffer(commandBuffer);
     }
 }

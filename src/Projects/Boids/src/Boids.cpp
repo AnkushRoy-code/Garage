@@ -2,16 +2,16 @@
 #include "Core/Context.h"
 #include "Utils/Time.h"
 
-BoidsContainer::BoidsContainer()
+BoidsContainerStruct::BoidsContainerStruct()
 {
-    BoidsVec.reserve(NUM_BOIDS);
+    m_BoidsVec.reserve(k_NumBoids);
 }
 
-void BoidsContainer::init()
+void BoidsContainerStruct::Init()
 {
-    BoidsVec.clear();
-    const float w = gContext.appState.ProjectWindowX;
-    const float h = gContext.appState.ProjectWindowY;
+    m_BoidsVec.clear();
+    const float w = g_Context.AppState.ProjectWindowX;
+    const float h = g_Context.AppState.ProjectWindowY;
 
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -19,47 +19,47 @@ void BoidsContainer::init()
     std::uniform_real_distribution<> disY(0, h);
     std::uniform_real_distribution<> vel(-3.0f, 3.0f);
 
-    for (unsigned int i = 0; i < NUM_BOIDS; ++i)
+    for (unsigned int i = 0; i < k_NumBoids; ++i)
     {
         BoidsEntity boid {};
         boid.Position.x = disX(gen);
         boid.Position.y = disY(gen);
         boid.Velocity   = glm::vec2(vel(gen), vel(gen));
         boid.Rotation   = 0.0f;
-        BoidsVec.push_back(boid);
+        m_BoidsVec.push_back(boid);
     }
 }
 
-void BoidsContainer::quit()
+void BoidsContainerStruct::Quit()
 {
-    BoidsVec.clear();
+    m_BoidsVec.clear();
 }
 
-void BoidsContainer::changeData(float Seperation, float Alignment, float Cohesion)
+void BoidsContainerStruct::ChangeData(float Seperation, float Alignment, float Cohesion)
 {
-    seperation = Seperation;
-    alignment  = Alignment;
-    cohesion   = Cohesion;
+    Seperation = Seperation;
+    Alignment  = Alignment;
+    Cohesion   = Cohesion;
 }
 
-void BoidsContainer::update()
+void BoidsContainerStruct::Update()
 {
-    const float w = gContext.appState.ProjectWindowX;
-    const float h = gContext.appState.ProjectWindowY;
+    const float w = g_Context.AppState.ProjectWindowX;
+    const float h = g_Context.AppState.ProjectWindowY;
 
     // for now I am following this tutorial:
     // https://vanhunteradams.com/Pico/Animal_Movement/Boids-algorithm.html
-    for (int i = 0; i < NUM_BOIDS; i++)
+    for (int i = 0; i < k_NumBoids; i++)
     {
         float close_dx {}, close_dy {};
         float avg_pos_x {}, avg_pos_y {};
         float avg_vel_x {}, avg_vel_y {};
         unsigned int neighbouring_boids {};
-        for (int j = 0; j < NUM_BOIDS; j++)
+        for (int j = 0; j < k_NumBoids; j++)
         {
             if (i == j) { continue; }
-            const float dx              = BoidsVec[i].Position.x - BoidsVec[j].Position.x;
-            const float dy              = BoidsVec[i].Position.y - BoidsVec[j].Position.y;
+            const float dx              = m_BoidsVec[i].Position.x - m_BoidsVec[j].Position.x;
+            const float dy              = m_BoidsVec[i].Position.y - m_BoidsVec[j].Position.y;
             const float dist            = dx * dx + dy * dy;
             const int nearRadiusSquared = 256;   // 16
             const int farRadiusSquared  = 2500;  // 50
@@ -78,20 +78,20 @@ void BoidsContainer::update()
 
             if (dist < farRadiusSquared)
             {
-                avg_vel_x += BoidsVec[j].Velocity.x;
-                avg_vel_y += BoidsVec[j].Velocity.y;
-                avg_pos_x += BoidsVec[j].Position.x;
-                avg_pos_y += BoidsVec[j].Position.y;
+                avg_vel_x += m_BoidsVec[j].Velocity.x;
+                avg_vel_y += m_BoidsVec[j].Velocity.y;
+                avg_pos_x += m_BoidsVec[j].Position.x;
+                avg_pos_y += m_BoidsVec[j].Position.y;
                 neighbouring_boids++;
                 continue;
             }
         }
 
-        auto BoidVel = &BoidsVec[i].Velocity;
-        auto BoidPos = &BoidsVec[i].Position;
+        auto BoidVel = &m_BoidsVec[i].Velocity;
+        auto BoidPos = &m_BoidsVec[i].Position;
 
-        BoidVel->x += close_dx * seperation;
-        BoidVel->y += close_dy * seperation;
+        BoidVel->x += close_dx * Seperation;
+        BoidVel->y += close_dy * Seperation;
 
         if (neighbouring_boids > 0)
         {
@@ -99,10 +99,10 @@ void BoidsContainer::update()
             avg_vel_y = avg_vel_y / neighbouring_boids;
             avg_pos_x = avg_pos_x / neighbouring_boids;
             avg_pos_y = avg_pos_y / neighbouring_boids;
-            BoidVel->x += (avg_vel_x - BoidVel->x) * alignment;
-            BoidVel->y += (avg_vel_y - BoidVel->y) * alignment;
-            BoidVel->x += (avg_pos_x - BoidPos->x) * cohesion;
-            BoidVel->y += (avg_pos_y - BoidPos->y) * cohesion;
+            BoidVel->x += (avg_vel_x - BoidVel->x) * Alignment;
+            BoidVel->y += (avg_vel_y - BoidVel->y) * Alignment;
+            BoidVel->x += (avg_pos_x - BoidPos->x) * Cohesion;
+            BoidVel->y += (avg_pos_y - BoidPos->y) * Cohesion;
         }
 
         const int margin       = 100;
@@ -136,20 +136,20 @@ void BoidsContainer::update()
             BoidVel->y = (BoidVel->y / speed) * maxSpeed;
         }
 
-        BoidPos->x += BoidVel->x * Utils::Time::deltaTime() / 20.0f;
-        BoidPos->y += BoidVel->y * Utils::Time::deltaTime() / 20.0f;
+        BoidPos->x += BoidVel->x * Utils::Time::DeltaTime() / 20.0f;
+        BoidPos->y += BoidVel->y * Utils::Time::DeltaTime() / 20.0f;
 
         // update rotation
         auto targetRotation = glm::atan(BoidVel->y, BoidVel->x);
 
         auto diff =
-            glm::mod(targetRotation - BoidsVec[i].Rotation + SDL_PI_F, SDL_PI_F * 2) - SDL_PI_F;
+            glm::mod(targetRotation - m_BoidsVec[i].Rotation + SDL_PI_F, SDL_PI_F * 2) - SDL_PI_F;
 
-        BoidsVec[i].Rotation += diff * 0.5f;
+        m_BoidsVec[i].Rotation += diff * 0.5f;
     }
 }
 
-const std::vector<BoidsEntity> &BoidsContainer::getBoids() const
+const std::vector<BoidsEntity> &BoidsContainerStruct::GetBoids() const
 {
-    return BoidsVec;
+    return m_BoidsVec;
 }

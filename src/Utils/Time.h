@@ -22,7 +22,7 @@ class Time
      * This method should be called once at the start of every frame to calculate the time
      * difference between the current and previous frame.
      */
-    static void updateDeltaTime() noexcept;
+    static void UpdateDeltaTime() noexcept;
 
     /**
      * @brief Initializes the time tracking system.
@@ -30,31 +30,31 @@ class Time
      * This method sets the start time and initializes the timing variables.
      * This function should be called only once during initialisation.
      */
-    static void init() noexcept;
+    static void Init() noexcept;
 
     /**
      * @brief Retrieves the time elapsed between the last two frames.
      *
      * @return The delta time in milliseconds.
      */
-    static double deltaTime() noexcept;
+    static double DeltaTime() noexcept;
 
     /**
      * @brief Gets the time in milliseconds since the start of the program.
      *
      * @return The number of milliseconds since the program began execution.
      */
-    static uint32_t getTicks() noexcept;
+    static uint32_t GetTicks() noexcept;
 
   private:
-    static double mDeltaTime;  ///< Stores the delta time value in seconds.
+    static double m_DeltaTime;  ///< Stores the delta time value in seconds.
 
     static std::chrono::time_point<std::chrono::high_resolution_clock>
-        mPreviousTime;  ///< Stores the previous frame's timestamp.
+        m_PreviousTime;  ///< Stores the previous frame's timestamp.
     static std::chrono::time_point<std::chrono::high_resolution_clock>
-        mCurrentTime;  ///< Stores the current frame's timestamp.
+        m_CurrentTime;  ///< Stores the current frame's timestamp.
     static std::chrono::time_point<std::chrono::high_resolution_clock>
-        mStartTime;  ///< Stores the program start timestamp.
+        m_StartTime;  ///< Stores the program start timestamp.
 
     // --------------------- Cap FPS ---------------------
   public:
@@ -63,11 +63,11 @@ class Time
      *
      * This function ensures that the frame rate does not exceed a predefined limit.
      */
-    static void capFPS();
+    static void CapFPS();
 
   private:
-    static const int mTargetFPS; ///< The target frames per second.
-    static const std::chrono::milliseconds mFrameDuration; ///< The expected duration of each frame.
+    static const int m_TargetFPS; ///< The target frames per second.
+    static const std::chrono::milliseconds m_FrameDuration; ///< The expected duration of each frame.
 };
 
 }  // namespace Utils

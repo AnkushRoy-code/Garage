@@ -4,7 +4,7 @@
 namespace Core::Renderer  {
 void Init();
 void DrawProjectToTexture();
-void ResizeProjectTexture(int w, int h);
+void ResizeProjectTexture(int p_Width, int p_Height);
 }
 
 #endif  // INCLUDE_RENDERER_RENDERER_H_

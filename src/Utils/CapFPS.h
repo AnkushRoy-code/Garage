@@ -13,8 +13,8 @@ class CapZone
     ~CapZone();
 
   private:
-    std::chrono::time_point<std::chrono::high_resolution_clock> start;
-    unsigned int FPS;
+    std::chrono::time_point<std::chrono::high_resolution_clock> m_Start;
+    unsigned int m_FPS;
 };
 
 }  // namespace Utils

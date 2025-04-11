@@ -24,16 +24,16 @@ bool Triangle::Init()
     hasUI = false;
 
     SDL_GPUShader *vertexShader =
-        Common::LoadShader(gContext.renderData.device, "RawTriangle.vert", 0, 0, 0, 0);
+        Common::LoadShader(g_Context.RenderData.Device, "RawTriangle.vert", 0, 0, 0, 0);
     if (vertexShader == nullptr) { throw SDL_Exception("Failed to create vertex shader!"); }
 
     SDL_GPUShader *fragmentShader =
-        Common::LoadShader(gContext.renderData.device, "SolidColor.frag", 0, 0, 0, 0);
+        Common::LoadShader(g_Context.RenderData.Device, "SolidColor.frag", 0, 0, 0, 0);
     if (fragmentShader == nullptr) { throw SDL_Exception("Failed to create fragment shader!"); }
 
     const SDL_GPUColorTargetDescription colorTargetDesc = {
-        .format = SDL_GetGPUSwapchainTextureFormat(gContext.renderData.device,
-                                                   gContext.renderData.window),
+        .format = SDL_GetGPUSwapchainTextureFormat(g_Context.RenderData.Device,
+                                                   g_Context.RenderData.Window),
     };
 
     SDL_GPUGraphicsPipelineCreateInfo pipelineCreateInfo {
@@ -45,23 +45,23 @@ bool Triangle::Init()
     pipelineCreateInfo.target_info.color_target_descriptions = &colorTargetDesc,
     pipelineCreateInfo.target_info.num_color_targets         = 1,
 
-    pipelineCreateInfo.multisample_state.sample_count = gContext.renderData.sampleCount;
+    pipelineCreateInfo.multisample_state.sample_count = g_Context.RenderData.SampleCount;
 
     // the two pipelines only differ in fill_mode
     pipelineCreateInfo.rasterizer_state.fill_mode = SDL_GPU_FILLMODE_FILL;
 
-    FillPipeline = SDL_CreateGPUGraphicsPipeline(gContext.renderData.device, &pipelineCreateInfo);
+    FillPipeline = SDL_CreateGPUGraphicsPipeline(g_Context.RenderData.Device, &pipelineCreateInfo);
     if (FillPipeline == nullptr) { throw SDL_Exception("Failed to create fill pipeline!"); }
 
     pipelineCreateInfo.rasterizer_state.fill_mode = SDL_GPU_FILLMODE_LINE;
 
-    LinePipeline = SDL_CreateGPUGraphicsPipeline(gContext.renderData.device, &pipelineCreateInfo);
+    LinePipeline = SDL_CreateGPUGraphicsPipeline(g_Context.RenderData.Device, &pipelineCreateInfo);
     if (LinePipeline == nullptr) { throw SDL_Exception("Failed to create line pipeline!"); }
 
-    SDL_ReleaseGPUShader(gContext.renderData.device, vertexShader);
-    SDL_ReleaseGPUShader(gContext.renderData.device, fragmentShader);
+    SDL_ReleaseGPUShader(g_Context.RenderData.Device, vertexShader);
+    SDL_ReleaseGPUShader(g_Context.RenderData.Device, fragmentShader);
 
-    Core::ConsoleLogBuffer::addMessage("Triangle Initialised\n"
+    Core::ConsoleLogBuffer::AddMessage("Triangle Initialised\n"
                                        "Press Left to toggle wireframe mode\n"
                                        "Press Down to toggle small viewport\n"
                                        "Press Right to toggle scissor rect");
@@ -73,9 +73,9 @@ bool Triangle::Update()
 {
     PROFILE_SCOPE_N("Triangle::Update");
     // clang-format off
-    if (gContext.inputHandler.Keys[Core::LEFT] == Core::PRESSED) { UseWireframeMode = !UseWireframeMode; }
-    if (gContext.inputHandler.Keys[Core::DOWN] == Core::PRESSED) { UseSmallViewport = !UseSmallViewport; }
-    if (gContext.inputHandler.Keys[Core::RIGHT] == Core::PRESSED) { UseScissorRect = !UseScissorRect; }
+    if (g_Context.EventHandler.Keys[Core::LEFT] == Core::PRESSED) { UseWireframeMode = !UseWireframeMode; }
+    if (g_Context.EventHandler.Keys[Core::DOWN] == Core::PRESSED) { UseSmallViewport = !UseSmallViewport; }
+    if (g_Context.EventHandler.Keys[Core::RIGHT] == Core::PRESSED) { UseScissorRect = !UseScissorRect; }
     // clang-format on
 
     return true;
@@ -86,37 +86,37 @@ bool Triangle::Draw()
     PROFILE_SCOPE_N("Triangle::Draw");
 
     SDL_GPUCommandBuffer *commandBufferProjects =
-        SDL_AcquireGPUCommandBuffer(gContext.renderData.device);
+        SDL_AcquireGPUCommandBuffer(g_Context.RenderData.Device);
     if (!commandBufferProjects) { std::cerr << "failed to aquire GPU\n"; }
 
     SDL_GPUColorTargetInfo projectTargetInfo {
-        .texture     = gContext.renderData.projectTexture,
+        .texture     = g_Context.RenderData.ProjectTexture,
         .clear_color = {0.45f, 0.55f, 0.60f, 1.00f},
         .load_op     = SDL_GPU_LOADOP_CLEAR,
         .store_op    = SDL_GPU_STOREOP_STORE,
         .cycle       = true,
     };
 
-    if (gContext.renderData.sampleCount == SDL_GPU_SAMPLECOUNT_1)
+    if (g_Context.RenderData.SampleCount == SDL_GPU_SAMPLECOUNT_1)
     {
         projectTargetInfo.store_op = SDL_GPU_STOREOP_STORE;
     }
     else
     {
         projectTargetInfo.store_op        = SDL_GPU_STOREOP_RESOLVE;
-        projectTargetInfo.resolve_texture = gContext.renderData.resolveTexture;
+        projectTargetInfo.resolve_texture = g_Context.RenderData.ResolveTexture;
     }
 
-    gContext.renderData.projectPass =
+    g_Context.RenderData.ProjectPass =
         SDL_BeginGPURenderPass(commandBufferProjects, &projectTargetInfo, 1, nullptr);
 
-    SDL_BindGPUGraphicsPipeline(gContext.renderData.projectPass,
+    SDL_BindGPUGraphicsPipeline(g_Context.RenderData.ProjectPass,
                                 UseWireframeMode ? LinePipeline : FillPipeline);
-    if (UseSmallViewport) { SDL_SetGPUViewport(gContext.renderData.projectPass, &SmallViewport); }
-    if (UseScissorRect) { SDL_SetGPUScissor(gContext.renderData.projectPass, &ScissorRect); }
-    SDL_DrawGPUPrimitives(gContext.renderData.projectPass, 3, 1, 0, 0);
+    if (UseSmallViewport) { SDL_SetGPUViewport(g_Context.RenderData.ProjectPass, &SmallViewport); }
+    if (UseScissorRect) { SDL_SetGPUScissor(g_Context.RenderData.ProjectPass, &ScissorRect); }
+    SDL_DrawGPUPrimitives(g_Context.RenderData.ProjectPass, 3, 1, 0, 0);
 
-    SDL_EndGPURenderPass(gContext.renderData.projectPass);
+    SDL_EndGPURenderPass(g_Context.RenderData.ProjectPass);
 
     SDL_GPUTexture *blitSourceTexture = (projectTargetInfo.resolve_texture != nullptr)
                                             ? projectTargetInfo.resolve_texture
@@ -124,14 +124,14 @@ bool Triangle::Draw()
 
     const SDL_GPUBlitRegion blitSrc = {
         .texture = blitSourceTexture,
-        .w       = (Uint32)gContext.appState.ProjectWindowX,
-        .h       = (Uint32)gContext.appState.ProjectWindowY,
+        .w       = (Uint32)g_Context.AppState.ProjectWindowX,
+        .h       = (Uint32)g_Context.AppState.ProjectWindowY,
     };
 
     const SDL_GPUBlitRegion blitDst = {
-        .texture = gContext.renderData.projectTexture,
-        .w       = (Uint32)gContext.appState.ProjectWindowX,
-        .h       = (Uint32)gContext.appState.ProjectWindowY,
+        .texture = g_Context.RenderData.ProjectTexture,
+        .w       = (Uint32)g_Context.AppState.ProjectWindowX,
+        .h       = (Uint32)g_Context.AppState.ProjectWindowY,
     };
 
     const SDL_GPUBlitInfo blitInfo = {.source      = blitSrc,
@@ -149,8 +149,8 @@ bool Triangle::Draw()
 void Triangle::Quit()
 {
     PROFILE_SCOPE_N("Triangle::Quit");
-    SDL_ReleaseGPUGraphicsPipeline(gContext.renderData.device, FillPipeline);
-    SDL_ReleaseGPUGraphicsPipeline(gContext.renderData.device, LinePipeline);
+    SDL_ReleaseGPUGraphicsPipeline(g_Context.RenderData.Device, FillPipeline);
+    SDL_ReleaseGPUGraphicsPipeline(g_Context.RenderData.Device, LinePipeline);
 
     UseWireframeMode = false;
     UseSmallViewport = false;

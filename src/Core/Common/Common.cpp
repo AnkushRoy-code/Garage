@@ -11,13 +11,13 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
                           const Uint32 storageBufferCount,
                           const Uint32 storageTextureCount)
 {
-    static bool basePathFound = false;
-    static std::string BasePath {};
+    static bool x_BasePathFound = false;
+    static std::string x_BasePath {};
 
-    if (!basePathFound)
+    if (!x_BasePathFound)
     {
-        BasePath      = SDL_GetBasePath();
-        basePathFound = true;
+        x_BasePath      = SDL_GetBasePath();
+        x_BasePathFound = true;
     }
 
     SDL_GPUShaderStage stage;
@@ -33,18 +33,18 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
 
     if (backendFormats & SDL_GPU_SHADERFORMAT_SPIRV)
     {
-        fullPath = BasePath + "res/Shaders/Compiled/SPIRV/" + (shaderFilename + ".spv");
+        fullPath = x_BasePath + "res/Shaders/Compiled/SPIRV/" + (shaderFilename + ".spv");
         format   = SDL_GPU_SHADERFORMAT_SPIRV;
     }
     else if (backendFormats & SDL_GPU_SHADERFORMAT_MSL)
     {
-        fullPath   = BasePath + "res/Shaders/Compiled/MSL/" + (shaderFilename + ".msl");
+        fullPath   = x_BasePath + "res/Shaders/Compiled/MSL/" + (shaderFilename + ".msl");
         format     = SDL_GPU_SHADERFORMAT_MSL;
         entrypoint = "main0";
     }
     else if (backendFormats & SDL_GPU_SHADERFORMAT_DXIL)
     {
-        fullPath = BasePath + "res/Shaders/Compiled/DXIL/" + (shaderFilename + ".dxil");
+        fullPath = x_BasePath + "res/Shaders/Compiled/DXIL/" + (shaderFilename + ".dxil");
         format   = SDL_GPU_SHADERFORMAT_DXIL;
     }
     else { throw SDL_Exception("Unrecognised backend shader format"); }
@@ -75,20 +75,20 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
 
 SDL_Surface *LoadImage(const std::string &imageFileName, int desiredChannels)
 {
-    static bool basePathFound = false;
-    static std::string BasePath {};
+    static bool x_BasePathFound = false;
+    static std::string x_BasePath {};
 
-    if (!basePathFound)
+    if (!x_BasePathFound)
     {
-        BasePath      = SDL_GetBasePath();
-        basePathFound = true;
+        x_BasePath      = SDL_GetBasePath();
+        x_BasePathFound = true;
     }
 
     std::string fullPath {};
     SDL_Surface *result;
     SDL_PixelFormat format;
 
-    fullPath = BasePath + "res/Images/" + (imageFileName + ".bmp");
+    fullPath = x_BasePath + "res/Images/" + (imageFileName + ".bmp");
 
     result = SDL_LoadBMP(fullPath.c_str());
     if (result == nullptr) { throw SDL_Exception("Failed to create image"); }

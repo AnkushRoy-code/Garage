@@ -15,14 +15,14 @@ class N_Body_Simulation : public Common::BaseProject, public Common::ImGuiUI
     bool DrawUI() override;
 
     std::string name = "N-Body-Simulation";
-    [[nodiscard]] const std::string &getName() override
+    [[nodiscard]] const std::string &GetName() override
     {
         return name;
     }
 
-    SDL_GPUGraphicsPipeline *renderPipeline;
-    SDL_GPUTransferBuffer *transferBuffer;
-    SDL_GPUBuffer *dataBuffer;
+    SDL_GPUGraphicsPipeline *RenderPipeline;
+    SDL_GPUTransferBuffer *TransferBuffer;
+    SDL_GPUBuffer *DataBuffer;
 
     ParticleContainer Particles {};
 

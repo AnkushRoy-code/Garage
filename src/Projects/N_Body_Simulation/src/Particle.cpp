@@ -7,10 +7,10 @@
 unsigned int ParticleContainer::count = 2;
 const float ParticleContainer::G      = 500.0f;
 
-void ParticleContainer::init()
+void ParticleContainer::Init()
 {
-    const float w = gContext.appState.ProjectWindowX;
-    const float h = gContext.appState.ProjectWindowY;
+    const float w = g_Context.AppState.ProjectWindowX;
+    const float h = g_Context.AppState.ProjectWindowY;
 
     const ParticleData d1p1 {
         .Position     = {w / 2 - 100.0f, h / 2},
@@ -30,7 +30,7 @@ void ParticleContainer::init()
         .Color        = {0.2f, 0.5f, 0.5f, 1.0f},
     };
 
-    const PredefinedParticlesData data1 = {.count = 2, .Particles = {d1p1, d1p2}};
+    const PredefinedParticlesData data1 = {.Count = 2, .Particles = {d1p1, d1p2}};
 
     auto d2p1     = d1p1;
     d2p1.Position = {w / 2 - 100.0f, h / 2};
@@ -48,7 +48,7 @@ void ParticleContainer::init()
     d2p4.Position = {w / 2, h / 2 + 100.0f};
     d2p4.Velocity = {7.5f, 0.0f};
 
-    const PredefinedParticlesData data2 = {.count = 4, .Particles = {d2p1, d2p2, d2p3, d2p4}};
+    const PredefinedParticlesData data2 = {.Count = 4, .Particles = {d2p1, d2p2, d2p3, d2p4}};
 
     const int numCircleParticles = 8;
     ParticleData circleParticles[numCircleParticles];
@@ -121,14 +121,14 @@ void ParticleContainer::init()
 
     ParticleVec.reserve(16);
 
-    initData(0);
+    InitData(0);
 }
 
-void ParticleContainer::initData(unsigned int i)
+void ParticleContainer::InitData(unsigned int i)
 {
     if (ParticlesData.size() < i) { return; }
 
-    count = ParticlesData[i].count;
+    count = ParticlesData[i].Count;
     ParticleVec.clear();
 
     for (const auto &particle: ParticlesData[i].Particles)
@@ -137,7 +137,7 @@ void ParticleContainer::initData(unsigned int i)
     }
 }
 
-void ParticleContainer::update()
+void ParticleContainer::Update()
 {
     for (auto &i: ParticleVec)
     {
@@ -175,7 +175,7 @@ void ParticleContainer::update()
         }
     }
 
-    float dt = static_cast<float>(Utils::Time::deltaTime()) / 100.0f;
+    const float dt = static_cast<float>(Utils::Time::DeltaTime()) / 100.0f;
 
     for (auto &i: ParticleVec)
     {
@@ -187,7 +187,7 @@ void ParticleContainer::update()
     }
 }
 
-void ParticleContainer::quit()
+void ParticleContainer::Quit()
 {
     ParticleVec.clear();
     ParticlesData.clear();

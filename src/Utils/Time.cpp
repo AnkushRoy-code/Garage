@@ -6,50 +6,50 @@
 namespace Utils
 {
 
-double Time::mDeltaTime = 0.0;
-std::chrono::time_point<std::chrono::high_resolution_clock> Time::mPreviousTime;
-std::chrono::time_point<std::chrono::high_resolution_clock> Time::mCurrentTime;
-std::chrono::time_point<std::chrono::high_resolution_clock> Time::mStartTime;
+double Time::m_DeltaTime = 0.0;
+std::chrono::time_point<std::chrono::high_resolution_clock> Time::m_PreviousTime;
+std::chrono::time_point<std::chrono::high_resolution_clock> Time::m_CurrentTime;
+std::chrono::time_point<std::chrono::high_resolution_clock> Time::m_StartTime;
 
-const int Time::mTargetFPS = 60;  // frame/seconds
-const std::chrono::milliseconds Time::mFrameDuration =
-    std::chrono::milliseconds(1000 / mTargetFPS);  // In miliseconds
+const int Time::m_TargetFPS = 60;  // frame/seconds
+const std::chrono::milliseconds Time::m_FrameDuration =
+    std::chrono::milliseconds(1000 / m_TargetFPS);  // In miliseconds
 
-void Time::init() noexcept
+void Time::Init() noexcept
 {
-    mStartTime    = std::chrono::high_resolution_clock::now();
-    mPreviousTime = mStartTime;
+    m_StartTime    = std::chrono::high_resolution_clock::now();
+    m_PreviousTime = m_StartTime;
 }
 
-uint32_t Time::getTicks() noexcept
+uint32_t Time::GetTicks() noexcept
 {
     auto currentTime = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - mStartTime);
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - m_StartTime);
 
     return static_cast<uint32_t>(duration.count());
 }
 
-double Time::deltaTime() noexcept
+double Time::DeltaTime() noexcept
 {
-    return mDeltaTime;
+    return m_DeltaTime;
 }
 
-void Time::updateDeltaTime() noexcept
+void Time::UpdateDeltaTime() noexcept
 {
     using namespace std::chrono;
 
-    mCurrentTime                 = high_resolution_clock::now();
-    duration<double> elapsedTime = mCurrentTime - mPreviousTime;
+    m_CurrentTime                 = high_resolution_clock::now();
+    duration<double> elapsedTime = m_CurrentTime - m_PreviousTime;
 
-    mDeltaTime    = elapsedTime.count() * 1000;  // nano -> miliseconds
-    mPreviousTime = mCurrentTime;
+    m_DeltaTime    = elapsedTime.count() * 1000;  // nano -> miliseconds
+    m_PreviousTime = m_CurrentTime;
 }
 
-void Time::capFPS()
+void Time::CapFPS()
 {
     using namespace std::chrono;
 
-    auto frameTime = mCurrentTime + mFrameDuration;
+    auto frameTime = m_CurrentTime + m_FrameDuration;
 
     std::this_thread::sleep_until(frameTime);
 }

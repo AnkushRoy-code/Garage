@@ -9,8 +9,8 @@ public:
     ~Timer ();
 
 private:
-    std::chrono::time_point<std::chrono::high_resolution_clock> start;
-    float &totalTime;
+    std::chrono::time_point<std::chrono::high_resolution_clock> m_Start;
+    float &m_TotalTime;
     
 };
 

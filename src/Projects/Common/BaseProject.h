@@ -22,7 +22,7 @@ class BaseProject
     virtual bool Draw()   = 0;
     virtual void Quit()   = 0;
 
-    [[nodiscard]] virtual const std::string &getName() = 0;
+    [[nodiscard]] virtual const std::string &GetName() = 0;
     static bool hasUI;
 };
 
@@ -37,22 +37,22 @@ class ProjectManager
 {
   public:
     /// @brief returns the projects vector
-    static std::vector<std::unique_ptr<BaseProject>> getProjects();
+    static std::vector<std::unique_ptr<BaseProject>> GetProjects();
 
     /// @brief registers all the projects to the vector, should be called before calling
     /// getProjects()
-    static void registerAllProjects();  // defined in RegisgerProjects.cpp
+    static void RegisterAllProjects();  // defined in RegisgerProjects.cpp
 
     /// @brief register a project to the vector, should be called before calling getProjects()
-    static void registerProject(std::unique_ptr<BaseProject> project);
+    static void RegisterProject(std::unique_ptr<BaseProject> project);
 
   private:
     static std::vector<std::unique_ptr<BaseProject>>
-        projects;  ///< A vector that holds the projects
+        m_Projects;  ///< A vector that holds the projects
 };
 
 }  // namespace Common
 
-extern std::vector<std::unique_ptr<Common::BaseProject>> Projects;
+extern std::vector<std::unique_ptr<Common::BaseProject>> g_Projects;
 
 #endif  // INCLUDE_COMMON_BASEPROJECT_H_

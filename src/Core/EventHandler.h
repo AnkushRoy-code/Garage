@@ -35,22 +35,18 @@ enum KEY_STATE
 /**
  *   @mermaid{eventHandler}
  */
-class InputHandler
+class EventHandlerStruct
 {
   public:
     std::array<KEY_STATE, Core::KEY::COUNT> Keys {};
 
-    InputHandler();
-    bool getEventHeld(KEY key);
-    bool getEventPressed(KEY key);
-    void updateKey(KEY action, bool pressed);
-    void endFrame();
+    EventHandlerStruct();
+    bool GetEventHeld(KEY p_Key);
+    bool GetEventPressed(KEY p_Key);
+    void UpdateKey(KEY p_Action, bool p_Pressed);
+    void EndFrame();
+    SDL_AppResult HandleEvents(SDL_Event *p_Event);
 };
-
-namespace EventHandler
-{
-SDL_AppResult handleEvents(SDL_Event *event, InputHandler &inputHandler);
-}
 
 }  // namespace Core
 

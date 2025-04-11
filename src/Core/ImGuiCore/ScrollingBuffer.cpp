@@ -1,13 +1,13 @@
 #include "ScrollingBuffer.h"
 
-ScrollingBuffer::ScrollingBuffer(int max_size)
+ScrollingBuffer::ScrollingBuffer(int p_MaxSize)
 {
-    MaxSize = max_size;
+    MaxSize = p_MaxSize;
     Offset  = 0;
     Data.reserve(MaxSize);
 }
 
-int ScrollingBuffer::getOffset() const
+int ScrollingBuffer::GetOffset() const
 {
     return (Offset + 1) % MaxSize;
 }

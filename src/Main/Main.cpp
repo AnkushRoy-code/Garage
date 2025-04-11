@@ -19,22 +19,22 @@
 #include "Utils/CapFPS.h"
 
 bool HandleWindowResize();
-std::atomic<bool> renderingDone;
+std::atomic<bool> g_RenderingDone;
 
 SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
 {
     try
     {
-        Core::ConsoleLogBuffer::addMessage(
+        Core::ConsoleLogBuffer::AddMessage(
             "Welcome to Ankush's Garage\n"
             "This is a Software I made to showcase my Works that I will build over the years."
             "So this is a placeholder for all my stuff! I hope you enjoy what I have made until "
             "now. It might not be much but was HARD");
-        gContext.init();
+        g_Context.init();
 
-        Common::ProjectManager::registerAllProjects();
-        Projects = Common::ProjectManager::getProjects();
-        Projects[0]->Init();
+        Common::ProjectManager::RegisterAllProjects();
+        g_Projects = Common::ProjectManager::GetProjects();
+        g_Projects[0]->Init();
     }
 
     catch (const SDL_Exception &e)
@@ -62,14 +62,14 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
 {
     PROFILE_SCOPE;
     ImGui_ImplSDL3_ProcessEvent(event);
-    return Core::EventHandler::handleEvents(event, gContext.inputHandler);
+    return g_Context.EventHandler.HandleEvents(event);
 }
 
 void updateFunc()
 {
-    while (!renderingDone.load())
+    while (!g_RenderingDone.load())
     {
-        Utils::Time::updateDeltaTime();
+        Utils::Time::UpdateDeltaTime();
         Utils::CapZone temp(60);
 
         static float updateTime = 0.0f;
@@ -77,7 +77,7 @@ void updateFunc()
         Timer riesnt(updateTime);
         Tracker::AddUpdateFPSPointQueue(updateTime);
 
-        Projects[gContext.appState.projectIndex]->Update();
+        g_Projects[g_Context.AppState.ProjectIndex]->Update();
     }
 }
 
@@ -95,14 +95,14 @@ SDL_AppResult SDL_AppIterate(void *appstate)
     PROFILE_SCOPE;
     try
     {
-        renderingDone.store(false);
+        g_RenderingDone.store(false);
         std::thread updateProject(updateFunc);  // use jthread when macos supports it
-        Tracker::registerPoints();
+        Tracker::RegisterPoints();
 
         // no need to draw if window is minimised. But we sure need to update the state.
-        if (SDL_GetWindowFlags(gContext.renderData.window) & SDL_WINDOW_MINIMIZED)
+        if (SDL_GetWindowFlags(g_Context.RenderData.Window) & SDL_WINDOW_MINIMIZED)
         {
-            renderingDone.store(true);
+            g_RenderingDone.store(true);
             updateProject.join();
             return SDL_APP_CONTINUE;
         }
@@ -124,7 +124,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2 {0, 0});
         // Draw the project to the screen ImGui window
         const auto projectWindowName =
-            "Project - " + Projects[gContext.appState.projectIndex]->getName() + "###TexTitle";
+            "Project - " + g_Projects[g_Context.AppState.ProjectIndex]->GetName() + "###TexTitle";
 
         if (ImGui::Begin(projectWindowName.c_str()))
         {
@@ -132,7 +132,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
             {
                 ImGui::End();
                 ImGui::PopStyleVar();
-                renderingDone.store(true);
+                g_RenderingDone.store(true);
                 updateProject.join();
                 return SDL_APP_CONTINUE;
             }
@@ -140,8 +140,8 @@ SDL_AppResult SDL_AppIterate(void *appstate)
             // Note to self: Moving this function down causes artifacts when resizing
             Core::Renderer::DrawProjectToTexture();
 
-            const SDL_GPUTextureSamplerBinding bind {gContext.renderData.projectTexture,
-                                                     gContext.renderData.projectSampler};
+            const SDL_GPUTextureSamplerBinding bind {g_Context.RenderData.ProjectTexture,
+                                                     g_Context.RenderData.ProjectSampler};
             const auto size = ImGui::GetWindowSize();
 
             ImGui::Image((ImTextureID)&bind, {size.x, size.y - 19.0f});
@@ -153,17 +153,17 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 
         // std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-        renderingDone.store(true);
+        g_RenderingDone.store(true);
         updateProject.join();
 
-        gContext.inputHandler.endFrame();
+        g_Context.EventHandler.EndFrame();
 
-        if (gContext.appState.hasToChangeIndex)
+        if (g_Context.AppState.HasToChangeIndex)
         {
-            Projects[gContext.appState.projectIndex]->Quit();
-            gContext.appState.projectIndex = gContext.appState.projectToBeIndex;
-            Projects[gContext.appState.projectIndex]->Init();
-            gContext.appState.hasToChangeIndex = false;
+            g_Projects[g_Context.AppState.ProjectIndex]->Quit();
+            g_Context.AppState.ProjectIndex = g_Context.AppState.ProjectToBeIndex;
+            g_Projects[g_Context.AppState.ProjectIndex]->Init();
+            g_Context.AppState.HasToChangeIndex = false;
         }
     }
 
@@ -198,13 +198,13 @@ bool HandleWindowResize()
 {
     ImVec2 view = ImGui::GetWindowSize();
 
-    if (view.x != gContext.appState.ProjectWindowX || view.y != gContext.appState.ProjectWindowY)
+    if (view.x != g_Context.AppState.ProjectWindowX || view.y != g_Context.AppState.ProjectWindowY)
     {
-        gContext.inputHandler.updateKey(Core::RESIZE_PROJECT_WINDOW, true);
+        g_Context.EventHandler.UpdateKey(Core::RESIZE_PROJECT_WINDOW, true);
 
         if (view.x == 0 || view.y == 0) { return false; }  // window is minimised
-        gContext.appState.ProjectWindowX = view.x;
-        gContext.appState.ProjectWindowY = view.y;
+        g_Context.AppState.ProjectWindowX = view.x;
+        g_Context.AppState.ProjectWindowY = view.y;
 
         Core::Renderer::ResizeProjectTexture(view.x, view.y);
         return true;

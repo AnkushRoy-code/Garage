@@ -10,28 +10,28 @@ struct BoidsEntity
     float Rotation;
 };
 
-class BoidsContainer
+class BoidsContainerStruct
 {
   public:
-    BoidsContainer();
-    void init();
-    void changeData(float Seperation, float Alignment, float Cohesion);
-    void update();
-    void quit();
+    BoidsContainerStruct();
+    void Init();
+    void ChangeData(float Seperation, float Alignment, float Cohesion);
+    void Update();
+    void Quit();
     // clang-format off
-    [[nodiscard]] unsigned int numBoids() const noexcept { return NUM_BOIDS; }
+    [[nodiscard]] unsigned int NumBoids() const noexcept { return k_NumBoids; }
     // clang-format on
-    [[nodiscard]] const std::vector<BoidsEntity> &getBoids() const;
+    [[nodiscard]] const std::vector<BoidsEntity> &GetBoids() const;
 
   public:
     glm::vec4 Color  = {0.455f, 0.780f, 0.925f, 0.5f};
-    float seperation = 0.05f;
-    float alignment  = 0.05f;
-    float cohesion   = 0.0005f;
+    float Seperation = 0.05f;
+    float Alignment  = 0.05f;
+    float Cohesion   = 0.0005f;
 
   private:
-    std::vector<BoidsEntity> BoidsVec {};
-    const unsigned int NUM_BOIDS = 100;  // changing this requires building the transfer buffers. So
+    std::vector<BoidsEntity> m_BoidsVec {};
+    const unsigned int k_NumBoids = 100;  // changing this requires building the transfer buffers. So
                                          // I refrained from doing that.
 };
 

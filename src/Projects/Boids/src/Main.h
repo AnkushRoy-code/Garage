@@ -8,15 +8,15 @@
 struct BoidsDataSend
 {
     float x, y, z;
-    float rotation;
+    float Rotation;
     float r, g, b, a;
 };
 
 struct RGB_BoidDataSend
 {
     float x, y;
-    float time;
-    float rotation;
+    float Time;
+    float Rotation;
 };
 
 class Boids : public Common::BaseProject, public Common::ImGuiUI
@@ -27,23 +27,23 @@ class Boids : public Common::BaseProject, public Common::ImGuiUI
     void Quit() override;
 
     std::string name = "Boids";
-    [[nodiscard]] const std::string &getName() override
+    [[nodiscard]] const std::string &GetName() override
     {
         return name;
     }
 
     bool DrawUI() override;
 
-    SDL_GPUGraphicsPipeline *renderPipeline;
-    SDL_GPUTransferBuffer *boidsDataTransferBuffer;
-    SDL_GPUBuffer *boidsDataBuffer;
+    SDL_GPUGraphicsPipeline *RenderPipeline;
+    SDL_GPUTransferBuffer *BoidsDataTransferBuffer;
+    SDL_GPUBuffer *BoidsDataBuffer;
 
     bool rgb = false; // doesn't work
-    SDL_GPUGraphicsPipeline *rgbRenderPipeline;
-    SDL_GPUTransferBuffer *rgbBoidsDataTransferBuffer;
-    SDL_GPUBuffer *rgbBoidsDataBuffer;
+    SDL_GPUGraphicsPipeline *RGB_RenderPipeline;
+    SDL_GPUTransferBuffer *RGB_BoidsDataTransferBuffer;
+    SDL_GPUBuffer *RGB_BoidsDataBuffer;
 
-    BoidsContainer boidsContainer {};
+    BoidsContainerStruct BoidsContainer {};
 };
 
 #endif  // INCLUDE_SRC_MAIN_H_

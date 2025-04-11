@@ -9,14 +9,14 @@ class Tracker
     static void AddUpdateFPSPointQueue(float UpdateTime);
     static void AddRenderFPSPointQueue(float RenderTime);
 
-    static void registerPoints();
-    static ScrollingBuffer UpdateFPSBuffer;
-    static ScrollingBuffer RealUpdateFPSBuffer;
-    static ScrollingBuffer RenderFPSBuffer;
+    static void RegisterPoints();
+    static ScrollingBuffer s_UpdateFPSBuffer;
+    static ScrollingBuffer s_RealUpdateFPSBuffer;
+    static ScrollingBuffer s_RenderFPSBuffer;
 
   private:
-    static float updateTime;
-    static float renderTime;
+    static float m_UpdateTime;
+    static float m_RenderTime;
 };
 
 #endif  // INCLUDE_IMGUICORE_GAMEFPSTRACKER_H_

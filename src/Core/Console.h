@@ -15,15 +15,16 @@ struct ConsoleLogMessage
 class ConsoleLogBuffer
 {
   public:
-    static const size_t MAX_MESSAGES = 100;
+    static void AddMessage(const std::string &p_Message);
+    static const std::vector<ConsoleLogMessage> &GetMessages();
 
-    static void addMessage(const std::string &msg);
-    static const std::vector<ConsoleLogMessage> &getMessages();
+  private:
+    static int m_Index;
+    static std::vector<ConsoleLogMessage> m_ConsoleLogs;
+    static const size_t k_MaxMessages = 100;
 
-    static std::vector<ConsoleLogMessage> ConsoleLogs;
-    static int index;
-
-    static std::string getCurrentTime();
+  private:
+    static std::string GetCurrentTime();
 };
 
 }  // namespace Core

@@ -8,30 +8,30 @@
 namespace Core
 {
 
-struct RenderData
+struct RenderDataStruct
 {
-    SDL_Window *window             = nullptr;
-    SDL_GPUDevice *device          = nullptr;
-    SDL_GPURenderPass *projectPass = nullptr;
-    SDL_GPUTexture *projectTexture = nullptr;
-    SDL_GPUTexture *resolveTexture = nullptr;
-    SDL_GPUSampler *projectSampler = nullptr;
-    SDL_GPUSampleCount sampleCount = SDL_GPU_SAMPLECOUNT_1;
-    float resolutionScale          = 1.0f;  // %
-    int width                      = 1280;
-    int height                     = 720;
+    SDL_Window *Window             = nullptr;
+    SDL_GPUDevice *Device          = nullptr;
+    SDL_GPURenderPass *ProjectPass = nullptr;
+    SDL_GPUTexture *ProjectTexture = nullptr;
+    SDL_GPUTexture *ResolveTexture = nullptr;
+    SDL_GPUSampler *ProjectSampler = nullptr;
+    SDL_GPUSampleCount SampleCount = SDL_GPU_SAMPLECOUNT_1;
+    float ResolutionScale          = 1.0f;  // %
+    int Width                      = 1280;
+    int Height                     = 720;
 };
 
-struct AppState
+struct AppStateStruct
 {
-    ImGuiID mainViewportId = 0;
+    ImGuiID MainViewportId = 0;
     float ProjectWindowX   = 0;
     float ProjectWindowY   = 0;
-    int projectIndex       = 0;
-    int projectToBeIndex   = 0;
-    float horizontalScroll = 0;
-    float verticalScroll   = 0;
-    bool hasToChangeIndex  = false;
+    int ProjectIndex       = 0;
+    int ProjectToBeIndex   = 0;
+    float HorizontalScroll = 0;
+    float VerticalScroll   = 0;
+    bool HasToChangeIndex  = false;
 };
 
 struct Context
@@ -40,12 +40,12 @@ struct Context
     ~Context();
     void init();
 
-    RenderData renderData {};
-    AppState appState {};
-    InputHandler inputHandler {};
+    RenderDataStruct RenderData {};
+    AppStateStruct AppState {};
+    EventHandlerStruct EventHandler {};
 };
 
 }  // namespace Core
 
-extern Core::Context gContext;
+extern Core::Context g_Context;
 #endif  // INCLUDE_CORE_CONTEXT_H_

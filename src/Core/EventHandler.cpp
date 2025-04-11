@@ -3,25 +3,25 @@
 #include "Core/Context.h"
 #include "Projects/Common/BaseProject.h"
 
-Core::InputHandler::InputHandler()
+Core::EventHandlerStruct::EventHandlerStruct()
 {
     Keys.fill(KEY_STATE::IDLE);
 }
 
-bool Core::InputHandler::getEventHeld(KEY key)
+bool Core::EventHandlerStruct::GetEventHeld(KEY p_Key)
 {
-    return (Keys[key] == Core::KEY_STATE::PRESSED || Keys[key] == Core::KEY_STATE::HELD);
+    return (Keys[p_Key] == Core::KEY_STATE::PRESSED || Keys[p_Key] == Core::KEY_STATE::HELD);
 }
 
-bool Core::InputHandler::getEventPressed(KEY key)
+bool Core::EventHandlerStruct::GetEventPressed(KEY p_Key)
 {
-    return (Keys[key] == Core::KEY_STATE::PRESSED);
+    return (Keys[p_Key] == Core::KEY_STATE::PRESSED);
 }
 
-void Core::InputHandler::updateKey(KEY action, bool pressed)
+void Core::EventHandlerStruct::UpdateKey(KEY p_Action, bool p_Pressed)
 {
-    const auto index = static_cast<std::size_t>(action);
-    if (pressed)
+    const auto index = static_cast<std::size_t>(p_Action);
+    if (p_Pressed)
     {
         if (Keys[index] == KEY_STATE::IDLE || Keys[index] == KEY_STATE::RELEASED)
         {
@@ -39,7 +39,7 @@ void Core::InputHandler::updateKey(KEY action, bool pressed)
     }
 }
 
-void Core::InputHandler::endFrame()
+void Core::EventHandlerStruct::EndFrame()
 {
     for (auto &state: Keys)
     {
@@ -56,63 +56,63 @@ void Core::InputHandler::endFrame()
     }
 }
 
-SDL_AppResult Core::EventHandler::handleEvents(SDL_Event *event, InputHandler &inputHandler)
+SDL_AppResult Core::EventHandlerStruct::HandleEvents(SDL_Event *p_Event)
 {
-    if (event->type == SDL_EVENT_QUIT)
+    if (p_Event->type == SDL_EVENT_QUIT)
     {
-        if (gContext.appState.projectIndex != -1)
+        if (g_Context.AppState.ProjectIndex != -1)
         {
-            Projects[gContext.appState.projectIndex]->Quit();
+            g_Projects[g_Context.AppState.ProjectIndex]->Quit();
         }
         return SDL_APP_SUCCESS;
     }
 
-    else if (event->type == SDL_EVENT_KEY_DOWN || event->type == SDL_EVENT_KEY_UP)
+    else if (p_Event->type == SDL_EVENT_KEY_DOWN || p_Event->type == SDL_EVENT_KEY_UP)
     {
-        bool pressed = (event->type == SDL_EVENT_KEY_DOWN);
-        switch (event->key.scancode)
+        bool pressed = (p_Event->type == SDL_EVENT_KEY_DOWN);
+        switch (p_Event->key.scancode)
         {
-            case SDL_SCANCODE_RIGHT: inputHandler.updateKey(KEY::RIGHT, pressed); break;
-            case SDL_SCANCODE_LEFT: inputHandler.updateKey(KEY::LEFT, pressed); break;
-            case SDL_SCANCODE_DOWN: inputHandler.updateKey(KEY::DOWN, pressed); break;
-            case SDL_SCANCODE_UP: inputHandler.updateKey(KEY::UP, pressed); break;
-            case SDL_SCANCODE_W: inputHandler.updateKey(KEY::W, pressed); break;
-            case SDL_SCANCODE_A: inputHandler.updateKey(KEY::A, pressed); break;
-            case SDL_SCANCODE_S: inputHandler.updateKey(KEY::S, pressed); break;
-            case SDL_SCANCODE_D: inputHandler.updateKey(KEY::D, pressed); break;
+            case SDL_SCANCODE_RIGHT: UpdateKey(KEY::RIGHT, pressed); break;
+            case SDL_SCANCODE_LEFT: UpdateKey(KEY::LEFT, pressed); break;
+            case SDL_SCANCODE_DOWN: UpdateKey(KEY::DOWN, pressed); break;
+            case SDL_SCANCODE_UP: UpdateKey(KEY::UP, pressed); break;
+            case SDL_SCANCODE_W: UpdateKey(KEY::W, pressed); break;
+            case SDL_SCANCODE_A: UpdateKey(KEY::A, pressed); break;
+            case SDL_SCANCODE_S: UpdateKey(KEY::S, pressed); break;
+            case SDL_SCANCODE_D: UpdateKey(KEY::D, pressed); break;
             default: break;
         }
     }
 
-    else if (event->type == SDL_EVENT_MOUSE_BUTTON_DOWN || event->type == SDL_EVENT_MOUSE_BUTTON_UP)
+    else if (p_Event->type == SDL_EVENT_MOUSE_BUTTON_DOWN || p_Event->type == SDL_EVENT_MOUSE_BUTTON_UP)
     {
-        bool pressed = (event->type == SDL_EVENT_MOUSE_BUTTON_DOWN);
-        switch (event->button.button)
+        bool pressed = (p_Event->type == SDL_EVENT_MOUSE_BUTTON_DOWN);
+        switch (p_Event->button.button)
         {
-            case SDL_BUTTON_LEFT: inputHandler.updateKey(KEY::MOUSE_LEFT_CLICK, pressed); break;
-            case SDL_BUTTON_RIGHT: inputHandler.updateKey(KEY::MOUSE_RIGHT_CLICK, pressed); break;
-            case SDL_BUTTON_MIDDLE: inputHandler.updateKey(KEY::MOUSE_MIDDLE_CLICK, pressed); break;
+            case SDL_BUTTON_LEFT: UpdateKey(KEY::MOUSE_LEFT_CLICK, pressed); break;
+            case SDL_BUTTON_RIGHT: UpdateKey(KEY::MOUSE_RIGHT_CLICK, pressed); break;
+            case SDL_BUTTON_MIDDLE: UpdateKey(KEY::MOUSE_MIDDLE_CLICK, pressed); break;
             default: break;
         }
     }
 
-    else if (event->type == SDL_EVENT_MOUSE_WHEEL)
+    else if (p_Event->type == SDL_EVENT_MOUSE_WHEEL)
     {
-        inputHandler.updateKey(KEY::MOUSE_ROLL, true);
-        gContext.appState.horizontalScroll = event->wheel.x;
-        gContext.appState.verticalScroll   = event->wheel.y;
+        UpdateKey(KEY::MOUSE_ROLL, true);
+        g_Context.AppState.HorizontalScroll = p_Event->wheel.x;
+        g_Context.AppState.VerticalScroll   = p_Event->wheel.y;
     }
 
-    else if (event->type == SDL_EVENT_WINDOW_RESIZED)
+    else if (p_Event->type == SDL_EVENT_WINDOW_RESIZED)
     {
-        inputHandler.updateKey(KEY::RESIZE_PROJECT_WINDOW, true);
+        UpdateKey(KEY::RESIZE_PROJECT_WINDOW, true);
 
         ImGuiIO &io = ImGui::GetIO();
         (void)io;
-        SDL_GetWindowSize(gContext.renderData.window, &gContext.renderData.width,
-                          &gContext.renderData.height);
+        SDL_GetWindowSize(g_Context.RenderData.Window, &g_Context.RenderData.Height,
+                          &g_Context.RenderData.Height);
         io.DisplaySize =
-            ImVec2((float)gContext.renderData.width, (float)gContext.renderData.height);
+            ImVec2((float)g_Context.RenderData.Height, (float)g_Context.RenderData.Height);
     }
 
     return SDL_APP_CONTINUE;

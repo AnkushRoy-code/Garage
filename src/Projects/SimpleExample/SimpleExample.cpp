@@ -7,7 +7,7 @@
 bool SimpleExample::Init()
 {
     hasUI = false;
-    Core::ConsoleLogBuffer::addMessage("SimpleExample Initialised\n");
+    Core::ConsoleLogBuffer::AddMessage("SimpleExample Initialised\n");
     return true;
 }
 bool SimpleExample::Update()
@@ -20,21 +20,21 @@ bool SimpleExample::Draw()
     PROFILE_SCOPE_N("SimpleExample::Draw");
 
     SDL_GPUCommandBuffer *commandBufferProjects =
-        SDL_AcquireGPUCommandBuffer(gContext.renderData.device);
+        SDL_AcquireGPUCommandBuffer(g_Context.RenderData.Device);
     if (!commandBufferProjects) { std::cerr << "failed to aquire GPU\n"; }
 
     const SDL_GPUColorTargetInfo projectTargetInfo {
-        .texture     = gContext.renderData.projectTexture,
+        .texture     = g_Context.RenderData.ProjectTexture,
         .clear_color = SDL_FColor {0.45f, 0.55f, 0.60f, 1.00f},
         .load_op     = SDL_GPU_LOADOP_CLEAR,
         .store_op    = SDL_GPU_STOREOP_STORE,
         .cycle       = true,
     };
 
-    gContext.renderData.projectPass =
+    g_Context.RenderData.ProjectPass =
         SDL_BeginGPURenderPass(commandBufferProjects, &projectTargetInfo, 1, nullptr);
 
-    SDL_EndGPURenderPass(gContext.renderData.projectPass);
+    SDL_EndGPURenderPass(g_Context.RenderData.ProjectPass);
     SDL_SubmitGPUCommandBuffer(commandBufferProjects);
     return true;
 }

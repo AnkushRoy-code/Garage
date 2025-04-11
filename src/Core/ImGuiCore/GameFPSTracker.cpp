@@ -1,30 +1,30 @@
 #include "GameFPSTracker.h"
 #include "SDL3/SDL_timer.h"
 
-ScrollingBuffer Tracker::UpdateFPSBuffer {};
-ScrollingBuffer Tracker::RealUpdateFPSBuffer {};
-ScrollingBuffer Tracker::RenderFPSBuffer {};
+ScrollingBuffer Tracker::s_UpdateFPSBuffer {};
+ScrollingBuffer Tracker::s_RealUpdateFPSBuffer {};
+ScrollingBuffer Tracker::s_RenderFPSBuffer {};
 
-float Tracker::updateTime {};
-float Tracker::renderTime {};
+float Tracker::m_UpdateTime {};
+float Tracker::m_RenderTime {};
 
 void Tracker::AddUpdateFPSPointQueue(float UpdateTime)
 {
-    updateTime = 1000.0f / UpdateTime;
+    m_UpdateTime = 1000.0f / UpdateTime;
 }
 
 void Tracker::AddRenderFPSPointQueue(float RenderTime)
 {
-    renderTime = 1000.0f / RenderTime;
+    m_RenderTime = 1000.0f / RenderTime;
 }
 
-void Tracker::registerPoints()
+void Tracker::RegisterPoints()
 {
     const auto t = SDL_GetTicks() / 1000.0f;
 
-    UpdateFPSBuffer.AddPoint(t, updateTime);
-    RealUpdateFPSBuffer.AddPoint(t, (updateTime < 60.0f ? updateTime : 60));
-    RenderFPSBuffer.AddPoint(t, renderTime);
+    s_UpdateFPSBuffer.AddPoint(t, m_UpdateTime);
+    s_RealUpdateFPSBuffer.AddPoint(t, (m_UpdateTime < 60.0f ? m_UpdateTime : 60));
+    s_RenderFPSBuffer.AddPoint(t, m_RenderTime);
 
     // updateTime = 0;
     // renderTime = 0;

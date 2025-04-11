@@ -3,29 +3,29 @@
 namespace Core
 {
 
-int ConsoleLogBuffer::index = 0;
-std::vector<ConsoleLogMessage> ConsoleLogBuffer::ConsoleLogs {};
+int ConsoleLogBuffer::m_Index = 0;
+std::vector<ConsoleLogMessage> ConsoleLogBuffer::m_ConsoleLogs {};
 
-void ConsoleLogBuffer::addMessage(const std::string &msg)
+void ConsoleLogBuffer::AddMessage(const std::string &p_Message)
 {
-    const std::string timestamp      = getCurrentTime();
-    ConsoleLogMessage logEntry = {msg, timestamp};
+    const std::string timestamp      = GetCurrentTime();
+    ConsoleLogMessage logEntry = {p_Message, timestamp};
     {
-        if (ConsoleLogs.size() < MAX_MESSAGES) { ConsoleLogs.push_back(logEntry); }
+        if (m_ConsoleLogs.size() < k_MaxMessages) { m_ConsoleLogs.push_back(logEntry); }
         else
         {
-            ConsoleLogs[index] = logEntry;  // Overwrite oldest
+            m_ConsoleLogs[m_Index] = logEntry;  // Overwrite oldest
         }
-        index = (index + 1) % MAX_MESSAGES;
+        m_Index = (m_Index + 1) % k_MaxMessages;
     }
 }
 
-const std::vector<ConsoleLogMessage> &ConsoleLogBuffer::getMessages()
+const std::vector<ConsoleLogMessage> &ConsoleLogBuffer::GetMessages()
 {
-    return ConsoleLogs;
+    return m_ConsoleLogs;
 }
 
-std::string ConsoleLogBuffer::getCurrentTime()
+std::string ConsoleLogBuffer::GetCurrentTime()
 {
     const auto now       = std::chrono::system_clock::now();
     const auto in_time_t = std::chrono::system_clock::to_time_t(now);

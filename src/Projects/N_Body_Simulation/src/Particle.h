@@ -25,7 +25,7 @@ struct ParticleData
 
 struct PredefinedParticlesData
 {
-    const int count;
+    const int Count;
     std::vector<ParticleData> Particles;
 };
 
@@ -35,10 +35,10 @@ struct ParticleContainer
     static unsigned int count;
     static const float G;
 
-    void init();
-    void update();
-    void quit();
-    void initData(unsigned int index);
+    void Init();
+    void Update();
+    void Quit();
+    void InitData(unsigned int index);
     std::vector<PredefinedParticlesData> ParticlesData;
 };
 
