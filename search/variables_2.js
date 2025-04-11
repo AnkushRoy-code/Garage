@@ -1,8 +1,7 @@
 var searchData=
 [
   ['b_0',['b',['../struct_boids_data_send.html#aadbc3cc3d70adc1ee4b458e0bf7acaa7',1,'BoidsDataSend']]],
-  ['boidscontainer_1',['boidsContainer',['../class_boids.html#a4e27f2925600492f7da63c942cb3bc62',1,'Boids']]],
-  ['boidsdatabuffer_2',['boidsDataBuffer',['../class_boids.html#a4ac4786f123ecd1023d694e397a32956',1,'Boids']]],
-  ['boidsdatatransferbuffer_3',['boidsDataTransferBuffer',['../class_boids.html#a0f74737fab1fc13affbd11ce2b3f8a66',1,'Boids']]],
-  ['boidsvec_4',['BoidsVec',['../class_boids_container.html#a6d3dac811ef706574f4067269a8a4aab',1,'BoidsContainer']]]
+  ['boidscontainer_1',['BoidsContainer',['../class_boids.html#a34fa49b0ee9ade53e326496da7ecde26',1,'Boids']]],
+  ['boidsdatabuffer_2',['BoidsDataBuffer',['../class_boids.html#a6ac446ddf60edb0cd8379a60e1c9ca35',1,'Boids']]],
+  ['boidsdatatransferbuffer_3',['BoidsDataTransferBuffer',['../class_boids.html#acd59a08535c049a5bf6eff90ddc2b9e5',1,'Boids']]]
 ];

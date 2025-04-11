@@ -1,6 +1,6 @@
 var _event_handler_8h =
 [
-    [ "Core::InputHandler", "class_core_1_1_input_handler.html", "class_core_1_1_input_handler" ],
+    [ "Core::EventHandlerStruct", "class_core_1_1_event_handler_struct.html", "class_core_1_1_event_handler_struct" ],
     [ "Core::KEY", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17", [
       [ "Core::RESIZE_PROJECT_WINDOW", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17abfcec50f5180c938216056be73623c5c", null ],
       [ "Core::MOUSE_ROLL", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17a90ca3b120ea63a3b0fb11fb718babf83", null ],
@@ -22,6 +22,5 @@ var _event_handler_8h =
       [ "Core::PRESSED", "namespace_core.html#a5d0e1ed351134590764ed1f6afbb1761ab0d535bd04b3d212573e20e183c55722", null ],
       [ "Core::HELD", "namespace_core.html#a5d0e1ed351134590764ed1f6afbb1761a6bda3ae2193332ce034247ead34ebba0", null ],
       [ "Core::RELEASED", "namespace_core.html#a5d0e1ed351134590764ed1f6afbb1761af24329d27f3ccc150074739b72888980", null ]
-    ] ],
-    [ "Core::EventHandler::handleEvents", "namespace_core_1_1_event_handler.html#a65e45c6a7d86ed18630a67a5ca555286", null ]
+    ] ]
 ];

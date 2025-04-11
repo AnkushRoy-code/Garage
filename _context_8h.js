@@ -1,7 +1,7 @@
 var _context_8h =
 [
-    [ "Core::RenderData", "struct_core_1_1_render_data.html", "struct_core_1_1_render_data" ],
-    [ "Core::AppState", "struct_core_1_1_app_state.html", "struct_core_1_1_app_state" ],
+    [ "Core::RenderDataStruct", "struct_core_1_1_render_data_struct.html", "struct_core_1_1_render_data_struct" ],
+    [ "Core::AppStateStruct", "struct_core_1_1_app_state_struct.html", "struct_core_1_1_app_state_struct" ],
     [ "Core::Context", "struct_core_1_1_context.html", "struct_core_1_1_context" ],
-    [ "gContext", "_context_8h.html#a87c6ab4ac0ff7845ecee242a0a854d60", null ]
+    [ "g_Context", "_context_8h.html#a9671c9ed83bcb64e58f4744d432eb86f", null ]
 ];

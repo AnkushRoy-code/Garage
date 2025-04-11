@@ -1,12 +1,12 @@
 var searchData=
 [
-  ['getboids_0',['getBoids',['../class_boids_container.html#a145222ed8bc2f40918bfe83d4bf2fddc',1,'BoidsContainer']]],
-  ['getcurrenttime_1',['getCurrentTime',['../class_core_1_1_console_log_buffer.html#a04f53614bda7c36918b388f95e840c32',1,'Core::ConsoleLogBuffer']]],
-  ['geteventheld_2',['getEventHeld',['../class_core_1_1_input_handler.html#ac3a04c5f6e14678f6286c71a2859fd33',1,'Core::InputHandler']]],
-  ['geteventpressed_3',['getEventPressed',['../class_core_1_1_input_handler.html#a8360b6907eb07ed19dafd4da490af5db',1,'Core::InputHandler']]],
-  ['getmessages_4',['getMessages',['../class_core_1_1_console_log_buffer.html#a2df1f358abd5916488c8b021434e27cb',1,'Core::ConsoleLogBuffer']]],
-  ['getname_5',['getName',['../class_boids.html#afe5dfb2fd0ccbc344e400de21db63ca0',1,'Boids::getName()'],['../class_common_1_1_base_project.html#a0605b5009eac66aac22dddf4dcfcfaac',1,'Common::BaseProject::getName()'],['../class_n___body___simulation.html#aa2c25949ce784c73842ad3b7d3b56b51',1,'N_Body_Simulation::getName()'],['../class_simple_example.html#af40f4c5f4b661adc5866f1b50f7eea09',1,'SimpleExample::getName()'],['../class_triangle.html#a15d70da59ad094334439ba2d8a37e936',1,'Triangle::getName()']]],
-  ['getoffset_6',['getOffset',['../struct_scrolling_buffer.html#a6e4f70f8539a299cbc80401b1705b9a5',1,'ScrollingBuffer']]],
-  ['getprojects_7',['getProjects',['../class_common_1_1_project_manager.html#a7c50018ca631b866e3fc5b3529ac16d8',1,'Common::ProjectManager']]],
-  ['getticks_8',['getTicks',['../class_utils_1_1_time.html#ad6d512e62d5b84aff42e0a7aa7424d43',1,'Utils::Time']]]
+  ['getboids_0',['GetBoids',['../class_boids_container_struct.html#af6699e7c14f91b6b7336b8bbd82b0b39',1,'BoidsContainerStruct']]],
+  ['getcurrenttime_1',['GetCurrentTime',['../class_core_1_1_console_log_buffer.html#a2700d6524cca1495b1e6df1c88eb832e',1,'Core::ConsoleLogBuffer']]],
+  ['geteventheld_2',['GetEventHeld',['../class_core_1_1_event_handler_struct.html#a18d73664354ef083559b5d350463850d',1,'Core::EventHandlerStruct']]],
+  ['geteventpressed_3',['GetEventPressed',['../class_core_1_1_event_handler_struct.html#a58c5181bd29a8125852c57a9e27c09e2',1,'Core::EventHandlerStruct']]],
+  ['getmessages_4',['GetMessages',['../class_core_1_1_console_log_buffer.html#a8e68625f3e97211d9c6a9064bc3002e4',1,'Core::ConsoleLogBuffer']]],
+  ['getname_5',['GetName',['../class_boids.html#a1627b602554936b5a540902be7e6e308',1,'Boids::GetName()'],['../class_common_1_1_base_project.html#a102480e43d4883336977720e708f8981',1,'Common::BaseProject::GetName()'],['../class_n___body___simulation.html#ad17969ca4b3cdf1ff77f1a787f35fb32',1,'N_Body_Simulation::GetName()'],['../class_simple_example.html#ab6606ab9cd16f1ccb7e40d03b81e65a3',1,'SimpleExample::GetName()'],['../class_triangle.html#a916f875ce882ce432fe20dbb0de034cc',1,'Triangle::GetName()']]],
+  ['getoffset_6',['GetOffset',['../struct_scrolling_buffer.html#a52d87a478d0b4eeff951ed66ee606afa',1,'ScrollingBuffer']]],
+  ['getprojects_7',['GetProjects',['../class_common_1_1_project_manager.html#abecf5e3e905c98a1ccbc02c8aedbaff7',1,'Common::ProjectManager']]],
+  ['getticks_8',['GetTicks',['../class_utils_1_1_time.html#a199115e14e17bc88817b16c3f2fdf29e',1,'Utils::Time']]]
 ];

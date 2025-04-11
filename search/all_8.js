@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['handleevents_0',['handleEvents',['../namespace_core_1_1_event_handler.html#a65e45c6a7d86ed18630a67a5ca555286',1,'Core::EventHandler']]],
+  ['handleevents_0',['HandleEvents',['../class_core_1_1_event_handler_struct.html#a77b455ee07679d36d56409a36d5bb706',1,'Core::EventHandlerStruct']]],
   ['handlewindowresize_1',['HandleWindowResize',['../_main_2_main_8cpp.html#a0d8fdb1ee7e4e6f5729444105456e6ed',1,'Main.cpp']]],
-  ['hastochangeindex_2',['hasToChangeIndex',['../struct_core_1_1_app_state.html#af85efe190b8da14999ed549b3fb59850',1,'Core::AppState']]],
+  ['hastochangeindex_2',['HasToChangeIndex',['../struct_core_1_1_app_state_struct.html#a982cc7178ef71241543d0971c404341d',1,'Core::AppStateStruct']]],
   ['hasui_3',['hasUI',['../class_common_1_1_base_project.html#aedda77c1bb2b7ab40c061652f356f114',1,'Common::BaseProject']]],
-  ['height_4',['height',['../struct_core_1_1_render_data.html#a4a7e13d2e0325bfebb7f12e027bb9478',1,'Core::RenderData']]],
+  ['height_4',['Height',['../struct_core_1_1_render_data_struct.html#aa5938448850427ab41f865480a9c0b58',1,'Core::RenderDataStruct']]],
   ['held_5',['HELD',['../namespace_core.html#a5d0e1ed351134590764ed1f6afbb1761a6bda3ae2193332ce034247ead34ebba0',1,'Core']]],
-  ['horizontalscroll_6',['horizontalScroll',['../struct_core_1_1_app_state.html#ad1da87ae5ad1f9f11d532e3964a2afe2',1,'Core::AppState']]]
+  ['horizontalscroll_6',['HorizontalScroll',['../struct_core_1_1_app_state_struct.html#a4fae248ecbbe31f8b55e77d7018b8413',1,'Core::AppStateStruct']]]
 ];

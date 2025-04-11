@@ -16,14 +16,13 @@ var searchData=
   ['profile_5fframe_13',['PROFILE_FRAME',['../_common_8h.html#a9cc6505623e4f99286930e44756ce139',1,'Common.h']]],
   ['profile_5fscope_14',['PROFILE_SCOPE',['../_common_8h.html#af70a0509f450d49a82d2ba2e5b9a60b6',1,'Common.h']]],
   ['profile_5fscope_5fn_15',['PROFILE_SCOPE_N',['../_common_8h.html#a862fd40aa252ac8fc0ff6ad0aff3a3af',1,'Common.h']]],
-  ['projectindex_16',['projectIndex',['../struct_core_1_1_app_state.html#ae7c1b77e86c607297ea4102320a2fbe4',1,'Core::AppState']]],
+  ['projectindex_16',['ProjectIndex',['../struct_core_1_1_app_state_struct.html#a591bb3a36292a2e5dd846ef3b18a06d6',1,'Core::AppStateStruct']]],
   ['projectmanager_17',['ProjectManager',['../class_common_1_1_project_manager.html',1,'Common']]],
-  ['projectpass_18',['projectPass',['../struct_core_1_1_render_data.html#a57c73bfa6ef85ad3b8d6d7b47dcdbd34',1,'Core::RenderData']]],
-  ['projects_19',['Projects',['../index.html#autotoc_md7',1,'Dummy Projects'],['../index.html#autotoc_md6',1,'My Projects'],['../_base_project_8cpp.html#a640ddc02f53b79b66ecd72bd76754321',1,'Projects:&#160;BaseProject.cpp'],['../_base_project_8h.html#a640ddc02f53b79b66ecd72bd76754321',1,'Projects:&#160;BaseProject.cpp'],['../index.html#autotoc_md10',1,'Real Projects']]],
-  ['projects_20',['projects',['../class_common_1_1_project_manager.html#a99f24d7937f6c05a9d42af11405fb4cf',1,'Common::ProjectManager']]],
-  ['projectsampler_21',['projectSampler',['../struct_core_1_1_render_data.html#a64f6d2c3587755dac7b617c9267346ba',1,'Core::RenderData']]],
-  ['projecttexture_22',['projectTexture',['../struct_core_1_1_render_data.html#aa3025193b75bbefe1ef20e63d2753dc5',1,'Core::RenderData']]],
-  ['projecttobeindex_23',['projectToBeIndex',['../struct_core_1_1_app_state.html#a5b5fb544e71448bfb85e20db1debd854',1,'Core::AppState']]],
-  ['projectwindowx_24',['ProjectWindowX',['../struct_core_1_1_app_state.html#a0f65c5f810056c7bea1fb4361c17161f',1,'Core::AppState']]],
-  ['projectwindowy_25',['ProjectWindowY',['../struct_core_1_1_app_state.html#aaf4387fd51e86420ee369c2a1d00f178',1,'Core::AppState']]]
+  ['projectpass_18',['ProjectPass',['../struct_core_1_1_render_data_struct.html#a1fcda3f2a788edc0b5e528490385c9b8',1,'Core::RenderDataStruct']]],
+  ['projects_19',['Projects',['../index.html#autotoc_md7',1,'Dummy Projects'],['../index.html#autotoc_md6',1,'My Projects'],['../index.html#autotoc_md10',1,'Real Projects']]],
+  ['projectsampler_20',['ProjectSampler',['../struct_core_1_1_render_data_struct.html#a58dcb8d764f34ae88d463441b209a525',1,'Core::RenderDataStruct']]],
+  ['projecttexture_21',['ProjectTexture',['../struct_core_1_1_render_data_struct.html#a092e94c7566195a9200b3341b6bf7719',1,'Core::RenderDataStruct']]],
+  ['projecttobeindex_22',['ProjectToBeIndex',['../struct_core_1_1_app_state_struct.html#a09e495d739630d57d000175e4c744df9',1,'Core::AppStateStruct']]],
+  ['projectwindowx_23',['ProjectWindowX',['../struct_core_1_1_app_state_struct.html#ae289d4f9e278a5d3b7e1f7d358412370',1,'Core::AppStateStruct']]],
+  ['projectwindowy_24',['ProjectWindowY',['../struct_core_1_1_app_state_struct.html#ade483ae99c7c3964da190db7ab07d716',1,'Core::AppStateStruct']]]
 ];

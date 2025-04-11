@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['samplecount_0',['sampleCount',['../struct_core_1_1_render_data.html#a542cdfc40d8616111787176f47237780',1,'Core::RenderData']]],
-  ['scissorrect_1',['ScissorRect',['../class_triangle.html#aec999e5bad11420e266c355bd00ae224',1,'Triangle']]],
-  ['seperation_2',['seperation',['../class_boids_container.html#a7abc1704f145551fce8698bfba06f89f',1,'BoidsContainer']]],
-  ['smallviewport_3',['SmallViewport',['../class_triangle.html#af476a83a8475a37a3eb5d01b97bfa26f',1,'Triangle']]],
-  ['start_4',['start',['../class_utils_1_1_cap_zone.html#a47852c9a98e54f2278f99428505237de',1,'Utils::CapZone::start'],['../class_timer.html#a8a51b74f2bfb71a5ec527d8954ed57d9',1,'Timer::start']]]
+  ['s_5frealupdatefpsbuffer_0',['s_RealUpdateFPSBuffer',['../class_tracker.html#a2c23cd71aebecfe268906cd43dbed526',1,'Tracker']]],
+  ['s_5frenderfpsbuffer_1',['s_RenderFPSBuffer',['../class_tracker.html#a65c34fc21866b36e514b654a7d368144',1,'Tracker']]],
+  ['s_5fupdatefpsbuffer_2',['s_UpdateFPSBuffer',['../class_tracker.html#a963cf8993ea5a83298c7e30583366656',1,'Tracker']]],
+  ['samplecount_3',['SampleCount',['../struct_core_1_1_render_data_struct.html#a1a9e52eb9aaf08e3641d0c1e92bd01a8',1,'Core::RenderDataStruct']]],
+  ['scissorrect_4',['ScissorRect',['../class_triangle.html#aec999e5bad11420e266c355bd00ae224',1,'Triangle']]],
+  ['seperation_5',['Seperation',['../class_boids_container_struct.html#a7fb8e88bdb53f9f4ee848890a21e13ca',1,'BoidsContainerStruct']]],
+  ['smallviewport_6',['SmallViewport',['../class_triangle.html#af476a83a8475a37a3eb5d01b97bfa26f',1,'Triangle']]]
 ];

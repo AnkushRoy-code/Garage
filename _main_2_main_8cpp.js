@@ -7,5 +7,5 @@ var _main_2_main_8cpp =
     [ "SDL_AppIterate", "_main_2_main_8cpp.html#a7038050dca8c80a0133d600fb008b6db", null ],
     [ "SDL_AppQuit", "_main_2_main_8cpp.html#a31f80ce4f4926b0c6fe01a9644f3c837", null ],
     [ "updateFunc", "_main_2_main_8cpp.html#a606988c90d7becaa71745c7df7597dda", null ],
-    [ "renderingDone", "_main_2_main_8cpp.html#a1ff79fd65f193e8f26ceb7e9b9c6be33", null ]
+    [ "g_RenderingDone", "_main_2_main_8cpp.html#a2732d1cbcca39265ee44e4e91a7912a7", null ]
 ];

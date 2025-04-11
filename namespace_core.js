@@ -1,8 +1,5 @@
 var namespace_core =
 [
-    [ "EventHandler", "namespace_core_1_1_event_handler.html", [
-      [ "handleEvents", "namespace_core_1_1_event_handler.html#a65e45c6a7d86ed18630a67a5ca555286", null ]
-    ] ],
     [ "ImGuiCore", "namespace_core_1_1_im_gui_core.html", [
       [ "Draw", "namespace_core_1_1_im_gui_core.html#a3221dcd5588b7a22632543df1cea9a03", null ],
       [ "Init", "namespace_core_1_1_im_gui_core.html#aafb0fece76ea9545efd87da82ed92bde", null ],
@@ -12,14 +9,14 @@ var namespace_core =
     [ "Renderer", "namespace_core_1_1_renderer.html", [
       [ "DrawProjectToTexture", "namespace_core_1_1_renderer.html#a3f9801b8e74b4c9417aa938f6fc0085a", null ],
       [ "Init", "namespace_core_1_1_renderer.html#ae5bee95c102f59cc1ee8c9b7ca693a6c", null ],
-      [ "ResizeProjectTexture", "namespace_core_1_1_renderer.html#a6472fb81ebc2cda76a26e23df9dbc2ac", null ]
+      [ "ResizeProjectTexture", "namespace_core_1_1_renderer.html#aa3aa2b71618568b14c5495215d94b5dd", null ]
     ] ],
-    [ "AppState", "struct_core_1_1_app_state.html", "struct_core_1_1_app_state" ],
+    [ "AppStateStruct", "struct_core_1_1_app_state_struct.html", "struct_core_1_1_app_state_struct" ],
     [ "ConsoleLogBuffer", "class_core_1_1_console_log_buffer.html", null ],
     [ "ConsoleLogMessage", "struct_core_1_1_console_log_message.html", "struct_core_1_1_console_log_message" ],
     [ "Context", "struct_core_1_1_context.html", "struct_core_1_1_context" ],
-    [ "InputHandler", "class_core_1_1_input_handler.html", "class_core_1_1_input_handler" ],
-    [ "RenderData", "struct_core_1_1_render_data.html", "struct_core_1_1_render_data" ],
+    [ "EventHandlerStruct", "class_core_1_1_event_handler_struct.html", "class_core_1_1_event_handler_struct" ],
+    [ "RenderDataStruct", "struct_core_1_1_render_data_struct.html", "struct_core_1_1_render_data_struct" ],
     [ "KEY", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17", [
       [ "RESIZE_PROJECT_WINDOW", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17abfcec50f5180c938216056be73623c5c", null ],
       [ "MOUSE_ROLL", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17a90ca3b120ea63a3b0fb11fb718babf83", null ],

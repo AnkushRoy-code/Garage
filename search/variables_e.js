@@ -4,13 +4,11 @@ var searchData=
   ['particlesdata_1',['ParticlesData',['../struct_particle_container.html#aa24c733de82cd82f560638b5cc06fdcc',1,'ParticleContainer']]],
   ['particlevec_2',['ParticleVec',['../struct_particle_container.html#acbb024ecef45815b0ebfcad0f117b441',1,'ParticleContainer']]],
   ['position_3',['Position',['../struct_boids_entity.html#ae10ed382751c2a45104ebe66f1a9942a',1,'BoidsEntity::Position'],['../struct_particle_data_send.html#ae8da0ea566c2861f99ec654a7eb3fbf3',1,'ParticleDataSend::Position'],['../struct_particle_data.html#a59a20933135869a913d80cb781b44bda',1,'ParticleData::Position']]],
-  ['projectindex_4',['projectIndex',['../struct_core_1_1_app_state.html#ae7c1b77e86c607297ea4102320a2fbe4',1,'Core::AppState']]],
-  ['projectpass_5',['projectPass',['../struct_core_1_1_render_data.html#a57c73bfa6ef85ad3b8d6d7b47dcdbd34',1,'Core::RenderData']]],
-  ['projects_6',['Projects',['../_base_project_8cpp.html#a640ddc02f53b79b66ecd72bd76754321',1,'Projects:&#160;BaseProject.cpp'],['../_base_project_8h.html#a640ddc02f53b79b66ecd72bd76754321',1,'Projects:&#160;BaseProject.cpp']]],
-  ['projects_7',['projects',['../class_common_1_1_project_manager.html#a99f24d7937f6c05a9d42af11405fb4cf',1,'Common::ProjectManager']]],
-  ['projectsampler_8',['projectSampler',['../struct_core_1_1_render_data.html#a64f6d2c3587755dac7b617c9267346ba',1,'Core::RenderData']]],
-  ['projecttexture_9',['projectTexture',['../struct_core_1_1_render_data.html#aa3025193b75bbefe1ef20e63d2753dc5',1,'Core::RenderData']]],
-  ['projecttobeindex_10',['projectToBeIndex',['../struct_core_1_1_app_state.html#a5b5fb544e71448bfb85e20db1debd854',1,'Core::AppState']]],
-  ['projectwindowx_11',['ProjectWindowX',['../struct_core_1_1_app_state.html#a0f65c5f810056c7bea1fb4361c17161f',1,'Core::AppState']]],
-  ['projectwindowy_12',['ProjectWindowY',['../struct_core_1_1_app_state.html#aaf4387fd51e86420ee369c2a1d00f178',1,'Core::AppState']]]
+  ['projectindex_4',['ProjectIndex',['../struct_core_1_1_app_state_struct.html#a591bb3a36292a2e5dd846ef3b18a06d6',1,'Core::AppStateStruct']]],
+  ['projectpass_5',['ProjectPass',['../struct_core_1_1_render_data_struct.html#a1fcda3f2a788edc0b5e528490385c9b8',1,'Core::RenderDataStruct']]],
+  ['projectsampler_6',['ProjectSampler',['../struct_core_1_1_render_data_struct.html#a58dcb8d764f34ae88d463441b209a525',1,'Core::RenderDataStruct']]],
+  ['projecttexture_7',['ProjectTexture',['../struct_core_1_1_render_data_struct.html#a092e94c7566195a9200b3341b6bf7719',1,'Core::RenderDataStruct']]],
+  ['projecttobeindex_8',['ProjectToBeIndex',['../struct_core_1_1_app_state_struct.html#a09e495d739630d57d000175e4c744df9',1,'Core::AppStateStruct']]],
+  ['projectwindowx_9',['ProjectWindowX',['../struct_core_1_1_app_state_struct.html#ae289d4f9e278a5d3b7e1f7d358412370',1,'Core::AppStateStruct']]],
+  ['projectwindowy_10',['ProjectWindowY',['../struct_core_1_1_app_state_struct.html#ade483ae99c7c3964da190db7ab07d716',1,'Core::AppStateStruct']]]
 ];

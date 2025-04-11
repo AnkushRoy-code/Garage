@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['width_0',['width',['../struct_core_1_1_render_data.html#a51f9459a02f6ee6e4a3830e2a078b9dd',1,'Core::RenderData']]],
-  ['window_1',['window',['../struct_core_1_1_render_data.html#ab82d34b2e74882ab3c28854a5655fc79',1,'Core::RenderData']]]
+  ['width_0',['Width',['../struct_core_1_1_render_data_struct.html#aac8eb6cddb62aeab51b51fa73a8a7284',1,'Core::RenderDataStruct']]],
+  ['window_1',['Window',['../struct_core_1_1_render_data_struct.html#a3c39994a15e1e6e53725c401f7bbd3ff',1,'Core::RenderDataStruct']]]
 ];
