@@ -29,6 +29,8 @@ struct AppState
     float ProjectWindowY   = 0;
     int projectIndex       = 0;
     int projectToBeIndex   = 0;
+    float horizontalScroll = 0;
+    float verticalScroll   = 0;
     bool hasToChangeIndex  = false;
 };
 

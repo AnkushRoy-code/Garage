@@ -9,11 +9,17 @@ namespace Core
 enum KEY
 {
     RESIZE_PROJECT_WINDOW,
+    MOUSE_ROLL,
+    MOUSE_MIDDLE_CLICK,
+    MOUSE_RIGHT_CLICK,
+    MOUSE_LEFT_CLICK,
     RIGHT,
     LEFT,
     UP,
     DOWN,
+    W,
     A,
+    S,
     D,
     COUNT
 };
@@ -35,6 +41,8 @@ class InputHandler
     std::array<KEY_STATE, Core::KEY::COUNT> Keys {};
 
     InputHandler();
+    bool getEventHeld(KEY key);
+    bool getEventPressed(KEY key);
     void updateKey(KEY action, bool pressed);
     void endFrame();
 };

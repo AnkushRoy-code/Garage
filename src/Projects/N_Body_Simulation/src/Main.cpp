@@ -1,9 +1,12 @@
-#include "Main.h"
+#include "Core/Common/pch.h"
+
 #include "Core/Common/Common.h"
 #include "Core/Context.h"
 
-#include "Core/Common/pch.h"
+#include "Projects/N_Body_Simulation/src/Main.h"
+#include "Core/EventHandler.h"
 #include "Projects/N_Body_Simulation/src/Particle.h"
+#include "glm/detail/qualifier.hpp"
 #include "imgui.h"
 
 void N_Body_Simulation::InitialiseTransferBuffersAndParticleContainer()
@@ -197,7 +200,8 @@ bool N_Body_Simulation::DrawUI()
     {
         ImGui::SeparatorText("Options");
 
-        static const std::string names[4] = {"Two Bodies", "Four Bodies", "Circular arrangement", "Grid Arrangement"};
+        static const std::string names[4] = {"Two Bodies", "Four Bodies", "Circular arrangement",
+                                             "Grid Arrangement"};
 
         static unsigned int index = 0;
 
@@ -220,9 +224,28 @@ bool N_Body_Simulation::DrawUI()
             ImGui::EndCombo();
         }
 
-        if (ImGui::Button("Restart Simulation")) {
-            Particles.initData(index);
+        if (ImGui::Button("Restart Simulation")) { Particles.initData(index); }
+
+        using CK    = Core::KEY;
+        bool right  = gContext.inputHandler.getEventHeld(CK::MOUSE_RIGHT_CLICK);
+        bool left   = gContext.inputHandler.getEventHeld(CK::MOUSE_LEFT_CLICK);
+        bool middle = gContext.inputHandler.getEventHeld(CK::MOUSE_MIDDLE_CLICK);
+        bool scroll = gContext.inputHandler.getEventHeld(CK::MOUSE_ROLL);
+
+        static glm::vec2 scrollValue = {0.0f, 0.0f};
+
+        if (scroll)
+        {
+            scrollValue.x += gContext.appState.horizontalScroll;
+            scrollValue.y += gContext.appState.verticalScroll;
         }
+
+        ImGui::Text("Right Click: %s", (right ? "True" : "False"));
+        ImGui::Text("Left Click: %s", (left ? "True" : "False"));
+        ImGui::Text("Middle Click: %s", (middle ? "True" : "False"));
+        ImGui::Text("Scroll Click: %s", (scroll ? "True" : "False"));
+        ImGui::Text("Scroll.x: %.3f", scrollValue.x);
+        ImGui::Text("Scroll.y: %.3f", scrollValue.y);
     }
     ImGui::End();
 
