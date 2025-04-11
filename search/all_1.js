@@ -5,8 +5,10 @@ var searchData=
   ['acceleration_2',['Acceleration',['../struct_particle_data.html#a1ae2181f8066bc7b59e5563abcc6e7ea',1,'ParticleData']]],
   ['addmessage_3',['addMessage',['../class_core_1_1_console_log_buffer.html#a54b45313a7c2ca8ca44c77ca57463765',1,'Core::ConsoleLogBuffer']]],
   ['addpoint_4',['AddPoint',['../struct_scrolling_buffer.html#ac70901a6df22ecc9d80175f7b489d3e4',1,'ScrollingBuffer']]],
-  ['alignment_5',['alignment',['../class_boids_container.html#a7e3924f3a8a908550f76d9042dbccbc7',1,'BoidsContainer']]],
-  ['ankush_20s_20garage_6',['Ankush&apos;s Garage',['../index.html',1,'']]],
-  ['appstate_7',['AppState',['../struct_core_1_1_app_state.html',1,'Core']]],
-  ['appstate_8',['appState',['../struct_core_1_1_context.html#adfe3f7cb498fd5b6eb5213b51eb6293b',1,'Core::Context']]]
+  ['addrenderfpspointqueue_5',['AddRenderFPSPointQueue',['../class_tracker.html#a1a9391d928092235b8d58c51fac4db0c',1,'Tracker']]],
+  ['addupdatefpspointqueue_6',['AddUpdateFPSPointQueue',['../class_tracker.html#a5b3778a3b13efdba7c045c55ce6b67c4',1,'Tracker']]],
+  ['alignment_7',['alignment',['../class_boids_container.html#a7e3924f3a8a908550f76d9042dbccbc7',1,'BoidsContainer']]],
+  ['ankush_20s_20garage_8',['Ankush&apos;s Garage',['../index.html',1,'']]],
+  ['appstate_9',['AppState',['../struct_core_1_1_app_state.html',1,'Core']]],
+  ['appstate_10',['appState',['../struct_core_1_1_context.html#adfe3f7cb498fd5b6eb5213b51eb6293b',1,'Core::Context']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['imguicore_2ecpp_0',['ImGuiCore.cpp',['../_im_gui_core_8cpp.html',1,'']]],
-  ['imguicore_2eh_1',['ImGuiCore.h',['../_im_gui_core_8h.html',1,'']]]
+  ['gamefpstracker_2ecpp_0',['GameFPSTracker.cpp',['../_game_f_p_s_tracker_8cpp.html',1,'']]],
+  ['gamefpstracker_2eh_1',['GameFPSTracker.h',['../_game_f_p_s_tracker_8h.html',1,'']]]
 ];

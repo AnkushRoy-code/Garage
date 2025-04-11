@@ -23,6 +23,7 @@ var searchData=
   ['projects_20',['projects',['../class_common_1_1_project_manager.html#a99f24d7937f6c05a9d42af11405fb4cf',1,'Common::ProjectManager']]],
   ['projectsampler_21',['projectSampler',['../struct_core_1_1_render_data.html#a64f6d2c3587755dac7b617c9267346ba',1,'Core::RenderData']]],
   ['projecttexture_22',['projectTexture',['../struct_core_1_1_render_data.html#aa3025193b75bbefe1ef20e63d2753dc5',1,'Core::RenderData']]],
-  ['projectwindowx_23',['ProjectWindowX',['../struct_core_1_1_app_state.html#a0f65c5f810056c7bea1fb4361c17161f',1,'Core::AppState']]],
-  ['projectwindowy_24',['ProjectWindowY',['../struct_core_1_1_app_state.html#aaf4387fd51e86420ee369c2a1d00f178',1,'Core::AppState']]]
+  ['projecttobeindex_23',['projectToBeIndex',['../struct_core_1_1_app_state.html#a5b5fb544e71448bfb85e20db1debd854',1,'Core::AppState']]],
+  ['projectwindowx_24',['ProjectWindowX',['../struct_core_1_1_app_state.html#a0f65c5f810056c7bea1fb4361c17161f',1,'Core::AppState']]],
+  ['projectwindowy_25',['ProjectWindowY',['../struct_core_1_1_app_state.html#aaf4387fd51e86420ee369c2a1d00f178',1,'Core::AppState']]]
 ];

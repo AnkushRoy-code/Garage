@@ -30,5 +30,7 @@ var hierarchy =
     [ "Core::RenderData", "struct_core_1_1_render_data.html", null ],
     [ "RGB_BoidDataSend", "struct_r_g_b___boid_data_send.html", null ],
     [ "ScrollingBuffer", "struct_scrolling_buffer.html", null ],
-    [ "Utils::Time", "class_utils_1_1_time.html", null ]
+    [ "Utils::Time", "class_utils_1_1_time.html", null ],
+    [ "Timer", "class_timer.html", null ],
+    [ "Tracker", "class_tracker.html", null ]
 ];

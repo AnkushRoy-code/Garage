@@ -30,5 +30,7 @@ var annotated_dup =
     [ "ScrollingBuffer", "struct_scrolling_buffer.html", "struct_scrolling_buffer" ],
     [ "SDL_Exception", "class_s_d_l___exception.html", "class_s_d_l___exception" ],
     [ "SimpleExample", "class_simple_example.html", "class_simple_example" ],
+    [ "Timer", "class_timer.html", "class_timer" ],
+    [ "Tracker", "class_tracker.html", null ],
     [ "Triangle", "class_triangle.html", "class_triangle" ]
 ];
