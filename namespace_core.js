@@ -22,11 +22,17 @@ var namespace_core =
     [ "RenderData", "struct_core_1_1_render_data.html", "struct_core_1_1_render_data" ],
     [ "KEY", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17", [
       [ "RESIZE_PROJECT_WINDOW", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17abfcec50f5180c938216056be73623c5c", null ],
+      [ "MOUSE_ROLL", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17a90ca3b120ea63a3b0fb11fb718babf83", null ],
+      [ "MOUSE_MIDDLE_CLICK", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17a0af1c5de2ee57f77520bdd14a6ee7cf9", null ],
+      [ "MOUSE_RIGHT_CLICK", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17a771046fd2ca0d1677622fde4aa2faa5f", null ],
+      [ "MOUSE_LEFT_CLICK", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17a2c141f985e5b9ce4773d2af21e5a4b79", null ],
       [ "RIGHT", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17a6cdb4bd934713688e25f9e0432058d09", null ],
       [ "LEFT", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17a7e0c75bdec4e7677bbcc865b77e6cdc6", null ],
       [ "UP", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17aa12ce936ac26fd11fba11e12bfb21e66", null ],
       [ "DOWN", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17a9c7be3a6a4fd25fda4997c058a41f6d1", null ],
+      [ "W", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17ad2cd5aea14391f75005911110d177e8b", null ],
       [ "A", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17a5b4f4ca4aff7dc49ad1f72bcc19e4d6e", null ],
+      [ "S", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17af5be2454156158a6756537cb789e12ba", null ],
       [ "D", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17a86b43e2847bdc51ff99d107071c6293e", null ],
       [ "COUNT", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17a1be400d5e61f648476e94b5629a21992", null ]
     ] ],

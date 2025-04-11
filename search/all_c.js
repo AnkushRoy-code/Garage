@@ -12,11 +12,15 @@ var searchData=
   ['mendelbroth_20set_9',['Mendelbroth Set',['../index.html#autotoc_md16',1,'']]],
   ['message_10',['message',['../struct_core_1_1_console_log_message.html#ae04b3f8daa0f8748a981d5570266a2ea',1,'Core::ConsoleLogMessage']]],
   ['mframeduration_11',['mFrameDuration',['../class_utils_1_1_time.html#a83df80e6a708cead495643d433996f21',1,'Utils::Time']]],
-  ['mprevioustime_12',['mPreviousTime',['../class_utils_1_1_time.html#a9528d2b3bfff347790e1d3da43f1320d',1,'Utils::Time']]],
-  ['msg_13',['msg',['../class_s_d_l___exception.html#a16e3591b3b5e4491edadd65b9e258aa7',1,'SDL_Exception']]],
-  ['mstarttime_14',['mStartTime',['../class_utils_1_1_time.html#a891d730e4fcceaacf4d944da9aebbcb9',1,'Utils::Time']]],
-  ['mtargetfps_15',['mTargetFPS',['../class_utils_1_1_time.html#a4d5659185a9ecb1d31604dcc079f1ac0',1,'Utils::Time']]],
-  ['music_2ecpp_16',['Music.cpp',['../_music_8cpp.html',1,'']]],
-  ['music_2eh_17',['Music.h',['../_music_8h.html',1,'']]],
-  ['my_20projects_18',['My Projects',['../index.html#autotoc_md6',1,'']]]
+  ['mouse_5fleft_5fclick_12',['MOUSE_LEFT_CLICK',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17a2c141f985e5b9ce4773d2af21e5a4b79',1,'Core']]],
+  ['mouse_5fmiddle_5fclick_13',['MOUSE_MIDDLE_CLICK',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17a0af1c5de2ee57f77520bdd14a6ee7cf9',1,'Core']]],
+  ['mouse_5fright_5fclick_14',['MOUSE_RIGHT_CLICK',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17a771046fd2ca0d1677622fde4aa2faa5f',1,'Core']]],
+  ['mouse_5froll_15',['MOUSE_ROLL',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17a90ca3b120ea63a3b0fb11fb718babf83',1,'Core']]],
+  ['mprevioustime_16',['mPreviousTime',['../class_utils_1_1_time.html#a9528d2b3bfff347790e1d3da43f1320d',1,'Utils::Time']]],
+  ['msg_17',['msg',['../class_s_d_l___exception.html#a16e3591b3b5e4491edadd65b9e258aa7',1,'SDL_Exception']]],
+  ['mstarttime_18',['mStartTime',['../class_utils_1_1_time.html#a891d730e4fcceaacf4d944da9aebbcb9',1,'Utils::Time']]],
+  ['mtargetfps_19',['mTargetFPS',['../class_utils_1_1_time.html#a4d5659185a9ecb1d31604dcc079f1ac0',1,'Utils::Time']]],
+  ['music_2ecpp_20',['Music.cpp',['../_music_8cpp.html',1,'']]],
+  ['music_2eh_21',['Music.h',['../_music_8h.html',1,'']]],
+  ['my_20projects_22',['My Projects',['../index.html#autotoc_md6',1,'']]]
 ];
