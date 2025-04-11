@@ -120,13 +120,14 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         /// Core::ImGuiCore::Update function
         // Hours Wasted: 2
         // This doesn't work with this being inside the ImGuiCore::Update(); function. fsr
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2 {0, 0});
-        {
-            // Draw the project to the screen ImGui window
-            const auto projectWindowName =
-                "Project - " + Projects[gContext.appState.projectIndex]->getName() + "###TexTitle";
-            ImGui::Begin(projectWindowName.c_str(), nullptr, ImGuiWindowFlags_NoCollapse);
 
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2 {0, 0});
+        // Draw the project to the screen ImGui window
+        const auto projectWindowName =
+            "Project - " + Projects[gContext.appState.projectIndex]->getName() + "###TexTitle";
+
+        if (ImGui::Begin(projectWindowName.c_str()))
+        {
             if (!HandleWindowResize())
             {
                 ImGui::End();
@@ -144,9 +145,8 @@ SDL_AppResult SDL_AppIterate(void *appstate)
             const auto size = ImGui::GetWindowSize();
 
             ImGui::Image((ImTextureID)&bind, {size.x, size.y - 19.0f});
-            ImGui::End();
         }
-
+        ImGui::End();
         ImGui::PopStyleVar();
 
         Core::ImGuiCore::Draw();

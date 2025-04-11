@@ -9,6 +9,7 @@
 #include "Projects/Common/BaseProject.h"
 
 #include "Core/Common/pch.h"
+#include "imgui.h"
 
 #include <imgui_internal.h>
 #include <implot.h>
@@ -183,15 +184,20 @@ void Core::ImGuiCore::Update()
         ImGui::SeparatorText("Data");
         // fps graph
         {
-            float t = SDL_GetTicks() / 1000.0f;
+            const float t = SDL_GetTicks() / 1000.0f;
 
-            static ImPlotAxisFlags flags = ImPlotAxisFlags_NoTickLabels;
+            static const ImPlotAxisFlags flags = ImPlotAxisFlags_NoTickLabels
+                                                 | ImPlotAxisFlags_NoGridLines
+                                                 | ImPlotAxisFlags_NoTickMarks;
 
             static float history = 10.0f;
             ImGui::SliderFloat("History", &history, 1, 30, "%.1f s");
 
-            if (ImPlot::BeginPlot("FPS Plot", ImVec2(-1, 250)))
+            if (ImPlot::BeginPlot("FPS Plot", ImVec2(-1, 250),
+                                  ImPlotFlags_NoBoxSelect | ImPlotFlags_Crosshairs))
             {
+                ImPlot::SetupLegend(ImPlotLocation_SouthEast);
+                ImPlot::SetupMouseText(ImPlotLocation_SouthWest);
                 ImPlot::SetupAxes("Time (s)", "FPS", flags, 0);
                 ImPlot::SetupAxisLimits(ImAxis_X1, t - history, t, ImGuiCond_Always);
                 ImPlot::SetupAxisLimits(ImAxis_Y1, -1, 65);
@@ -210,7 +216,6 @@ void Core::ImGuiCore::Update()
                                  &Tracker::RenderFPSBuffer.Data[0].y,
                                  Tracker::RenderFPSBuffer.Data.size(), 0,
                                  Tracker::RenderFPSBuffer.Offset, 2 * sizeof(float));
-
                 ImPlot::EndPlot();
             }
         }
@@ -219,7 +224,6 @@ void Core::ImGuiCore::Update()
 
     if (ImGui::Begin("Console"))
     {
-
         const auto cl = ConsoleLogBuffer::ConsoleLogs;
 
         if (ImGui::BeginTable("ConsoleLogWindowTable", 2,
