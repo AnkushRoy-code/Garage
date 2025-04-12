@@ -10,12 +10,11 @@ struct BoidsEntity
     float Rotation;
 };
 
-class BoidsContainerStruct
+class BoidsContainer
 {
   public:
-    BoidsContainerStruct();
+    BoidsContainer();
     void Init();
-    void ChangeData(float Seperation, float Alignment, float Cohesion);
     void Update();
     void Quit();
     // clang-format off

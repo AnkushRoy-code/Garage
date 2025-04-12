@@ -84,7 +84,8 @@ SDL_AppResult Core::EventHandlerStruct::HandleEvents(SDL_Event *p_Event)
         }
     }
 
-    else if (p_Event->type == SDL_EVENT_MOUSE_BUTTON_DOWN || p_Event->type == SDL_EVENT_MOUSE_BUTTON_UP)
+    else if (p_Event->type == SDL_EVENT_MOUSE_BUTTON_DOWN
+             || p_Event->type == SDL_EVENT_MOUSE_BUTTON_UP)
     {
         bool pressed = (p_Event->type == SDL_EVENT_MOUSE_BUTTON_DOWN);
         switch (p_Event->button.button)
@@ -109,10 +110,10 @@ SDL_AppResult Core::EventHandlerStruct::HandleEvents(SDL_Event *p_Event)
 
         ImGuiIO &io = ImGui::GetIO();
         (void)io;
-        SDL_GetWindowSize(g_Context.RenderData.Window, &g_Context.RenderData.Height,
+        SDL_GetWindowSize(g_Context.RenderData.Window, &g_Context.RenderData.Width,
                           &g_Context.RenderData.Height);
         io.DisplaySize =
-            ImVec2((float)g_Context.RenderData.Height, (float)g_Context.RenderData.Height);
+            ImVec2((float)g_Context.RenderData.Width, (float)g_Context.RenderData.Height);
     }
 
     return SDL_APP_CONTINUE;

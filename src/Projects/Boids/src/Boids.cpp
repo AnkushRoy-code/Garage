@@ -3,12 +3,12 @@
 #include "Core/Context.h"
 #include "Utils/Time.h"
 
-BoidsContainerStruct::BoidsContainerStruct()
+BoidsContainer::BoidsContainer()
 {
     m_BoidsVec.reserve(k_NumBoids);
 }
 
-void BoidsContainerStruct::Init()
+void BoidsContainer::Init()
 {
     m_BoidsVec.clear();
     const float w = g_Context.AppState.ProjectWindowX;
@@ -31,19 +31,12 @@ void BoidsContainerStruct::Init()
     }
 }
 
-void BoidsContainerStruct::Quit()
+void BoidsContainer::Quit()
 {
     m_BoidsVec.clear();
 }
 
-void BoidsContainerStruct::ChangeData(float Seperation, float Alignment, float Cohesion)
-{
-    Seperation = Seperation;
-    Alignment  = Alignment;
-    Cohesion   = Cohesion;
-}
-
-void BoidsContainerStruct::Update()
+void BoidsContainer::Update()
 {
     const float w = g_Context.AppState.ProjectWindowX;
     const float h = g_Context.AppState.ProjectWindowY;
@@ -150,7 +143,7 @@ void BoidsContainerStruct::Update()
     }
 }
 
-const std::vector<BoidsEntity> &BoidsContainerStruct::GetBoids() const
+const std::vector<BoidsEntity> &BoidsContainer::GetBoids() const
 {
     return m_BoidsVec;
 }

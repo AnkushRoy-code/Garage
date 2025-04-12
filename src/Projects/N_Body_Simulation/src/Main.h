@@ -21,11 +21,11 @@ class N_Body_Simulation : public Common::BaseProject, public Common::ImGuiUI
         return name;
     }
 
-    SDL_GPUGraphicsPipeline *RenderPipeline;
-    SDL_GPUTransferBuffer *TransferBuffer;
-    SDL_GPUBuffer *DataBuffer;
+    SDL_GPUGraphicsPipeline *m_RenderPipeline;
+    SDL_GPUTransferBuffer *m_TransferBuffer;
+    SDL_GPUBuffer *m_DataBuffer;
 
-    ParticleContainer Particles {};
+    ParticleContainer m_Particles {};
 
     void InitialiseTransferBuffersAndParticleContainer();
 };

@@ -140,9 +140,7 @@ void ParticleContainer::Update()
 {
     for (auto &i: ParticleVec)
     {
-        // the program sometimes segfaults here. and sometimes doesn't
-        i.Acceleration.x = 0.0f;
-        i.Acceleration.y = 0.0f;
+        i.Acceleration = glm::vec2(0.0f);
     }
 
     for (int i = 0; i < ParticleVec.size(); i++)
@@ -153,24 +151,18 @@ void ParticleContainer::Update()
         {
             if (i == j) continue;
 
-            const float dx = ParticleVec[j].Position.x - ParticleVec[i].Position.x;
-            const float dy = ParticleVec[j].Position.y - ParticleVec[i].Position.y;
+            const glm::vec2 diff        = ParticleVec[j].Position - ParticleVec[i].Position;
+            const float distanceSquared = glm::dot(diff, diff);
 
-            if ((dx * dx + dy * dy) < radius * radius) { continue; }
+            if (distanceSquared < radius * radius) continue;
 
-            const float distance = glm::sqrt(dx * dx + dy * dy);
+            const float distance      = glm::sqrt(distanceSquared);
+            const glm::vec2 direction = diff / distance;
 
-            const float normX = dx / distance;
-            const float normY = dy / distance;
+            const float force = G * ParticleVec[i].Mass * ParticleVec[j].Mass / distanceSquared;
+            const glm::vec2 acceleration = (force / ParticleVec[i].Mass) * direction;
 
-            const float force =
-                G * ParticleVec[i].Mass * ParticleVec[j].Mass / (distance * distance);
-
-            const float accX = (force / ParticleVec[i].Mass) * normX;
-            const float accY = (force / ParticleVec[i].Mass) * normY;
-
-            ParticleVec[i].Acceleration.x += accX;
-            ParticleVec[i].Acceleration.y += accY;
+            ParticleVec[i].Acceleration += acceleration;
         }
     }
 
@@ -178,11 +170,8 @@ void ParticleContainer::Update()
 
     for (auto &i: ParticleVec)
     {
-        i.Velocity.x += i.Acceleration.x;
-        i.Velocity.y += i.Acceleration.y;
-
-        i.Position.x += i.Velocity.x * dt;
-        i.Position.y += i.Velocity.y * dt;
+        i.Velocity += i.Acceleration;
+        i.Position += i.Velocity * dt;
     }
 }
 

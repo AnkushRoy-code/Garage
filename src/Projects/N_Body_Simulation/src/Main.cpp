@@ -14,7 +14,7 @@ void N_Body_Simulation::InitialiseTransferBuffersAndParticleContainer()
         .size  = (Uint32)(ParticleContainer::count * sizeof(ParticleDataSend)),
     };
 
-    TransferBuffer = SDL_CreateGPUTransferBuffer(g_Context.RenderData.Device, &tBufCreateInfo);
+    m_TransferBuffer = SDL_CreateGPUTransferBuffer(g_Context.RenderData.Device, &tBufCreateInfo);
 
     const SDL_GPUBufferCreateInfo newBufCreateInfo {
         .usage = SDL_GPU_BUFFERUSAGE_GRAPHICS_STORAGE_READ,
@@ -22,7 +22,7 @@ void N_Body_Simulation::InitialiseTransferBuffersAndParticleContainer()
 
     };
 
-    DataBuffer = SDL_CreateGPUBuffer(g_Context.RenderData.Device, &newBufCreateInfo);
+    m_DataBuffer = SDL_CreateGPUBuffer(g_Context.RenderData.Device, &newBufCreateInfo);
 }
 
 bool N_Body_Simulation::Init()
@@ -68,20 +68,20 @@ bool N_Body_Simulation::Init()
         .target_info       = targetInfo,
     };
 
-    RenderPipeline = SDL_CreateGPUGraphicsPipeline(g_Context.RenderData.Device, &createInfo);
+    m_RenderPipeline = SDL_CreateGPUGraphicsPipeline(g_Context.RenderData.Device, &createInfo);
 
     SDL_ReleaseGPUShader(g_Context.RenderData.Device, vertShader);
     SDL_ReleaseGPUShader(g_Context.RenderData.Device, fragShader);
 
     InitialiseTransferBuffersAndParticleContainer();
 
-    Particles.Init();
+    m_Particles.Init();
     return true;
 }
 
 bool N_Body_Simulation::Update()
 {
-    Particles.Update();
+    m_Particles.Update();
     return true;
 }
 
@@ -102,26 +102,26 @@ bool N_Body_Simulation::Draw()
     {
         // upload the data to transfer buffer
         auto *dataPtr = static_cast<ParticleDataSend *>(
-            SDL_MapGPUTransferBuffer(g_Context.RenderData.Device, TransferBuffer, true));
+            SDL_MapGPUTransferBuffer(g_Context.RenderData.Device, m_TransferBuffer, true));
 
         for (int i = 0; i < ParticleContainer::count; i++)
         {
-            dataPtr[i].Color    = Particles.ParticleVec[i].Color;
-            dataPtr[i].Position = Particles.ParticleVec[i].Position;
-            dataPtr[i].Radius   = Particles.ParticleVec[i].Radius;
+            dataPtr[i].Color    = m_Particles.ParticleVec[i].Color;
+            dataPtr[i].Position = m_Particles.ParticleVec[i].Position;
+            dataPtr[i].Radius   = m_Particles.ParticleVec[i].Radius;
             dataPtr[i]._padding = 0.0f;
         }
 
-        SDL_UnmapGPUTransferBuffer(g_Context.RenderData.Device, TransferBuffer);
+        SDL_UnmapGPUTransferBuffer(g_Context.RenderData.Device, m_TransferBuffer);
 
         // upload the data to gpu from transfer buffers
         const SDL_GPUTransferBufferLocation transferBufferLocation {
-            .transfer_buffer = TransferBuffer,
+            .transfer_buffer = m_TransferBuffer,
             .offset          = 0,
         };
 
         const SDL_GPUBufferRegion bufferRegion {
-            .buffer = DataBuffer,
+            .buffer = m_DataBuffer,
             .offset = 0,
             .size   = (Uint32)(ParticleContainer::count * sizeof(ParticleDataSend)),
         };
@@ -148,8 +148,8 @@ bool N_Body_Simulation::Draw()
 
         g_Context.RenderData.ProjectPass = SDL_BeginGPURenderPass(cmdBuf, &tinfo, 1, nullptr);
 
-        SDL_BindGPUGraphicsPipeline(g_Context.RenderData.ProjectPass, RenderPipeline);
-        SDL_BindGPUVertexStorageBuffers(g_Context.RenderData.ProjectPass, 0, &DataBuffer, 1);
+        SDL_BindGPUGraphicsPipeline(g_Context.RenderData.ProjectPass, m_RenderPipeline);
+        SDL_BindGPUVertexStorageBuffers(g_Context.RenderData.ProjectPass, 0, &m_DataBuffer, 1);
 
         SDL_PushGPUVertexUniformData(cmdBuf, 0, &finalProjection, sizeof(glm::mat4x4));
 
@@ -189,7 +189,7 @@ bool N_Body_Simulation::Draw()
 
 void N_Body_Simulation::Quit()
 {
-    Particles.Quit();
+    m_Particles.Quit();
 }
 
 bool N_Body_Simulation::DrawUI()
@@ -205,7 +205,7 @@ bool N_Body_Simulation::DrawUI()
 
         if (ImGui::BeginCombo("Simulation", names[index].c_str()))
         {
-            for (int i = 0; i < Particles.ParticlesData.size(); i++)
+            for (int i = 0; i < m_Particles.ParticlesData.size(); i++)
             {
                 const bool isSelected = (index == i);
                 if (ImGui::Selectable(names[i].c_str(), isSelected))
@@ -213,7 +213,7 @@ bool N_Body_Simulation::DrawUI()
                     if (i != index)
                     {
                         index = i;
-                        Particles.InitData(index);
+                        m_Particles.InitData(index);
                         InitialiseTransferBuffersAndParticleContainer();
                     }
                 }
@@ -222,7 +222,7 @@ bool N_Body_Simulation::DrawUI()
             ImGui::EndCombo();
         }
 
-        if (ImGui::Button("Restart Simulation")) { Particles.InitData(index); }
+        if (ImGui::Button("Restart Simulation")) { m_Particles.InitData(index); }
 
         using CK    = Core::KEY;
         bool right  = g_Context.EventHandler.GetEventHeld(CK::MOUSE_RIGHT_CLICK);

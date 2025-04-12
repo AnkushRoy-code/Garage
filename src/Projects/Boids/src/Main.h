@@ -35,16 +35,16 @@ class Boids : public Common::BaseProject, public Common::ImGuiUI
 
     bool DrawUI() override;
 
-    SDL_GPUGraphicsPipeline *RenderPipeline;
-    SDL_GPUTransferBuffer *BoidsDataTransferBuffer;
-    SDL_GPUBuffer *BoidsDataBuffer;
+    SDL_GPUGraphicsPipeline *m_RenderPipeline;
+    SDL_GPUTransferBuffer *m_BoidsDataTransferBuffer;
+    SDL_GPUBuffer *m_BoidsDataBuffer;
 
-    bool rgb = false; // doesn't work
-    SDL_GPUGraphicsPipeline *RGB_RenderPipeline;
-    SDL_GPUTransferBuffer *RGB_BoidsDataTransferBuffer;
-    SDL_GPUBuffer *RGB_BoidsDataBuffer;
+    bool s_rgb = false; // doesn't work
+    SDL_GPUGraphicsPipeline *m_RGB_RenderPipeline;
+    SDL_GPUTransferBuffer *m_RGB_BoidsDataTransferBuffer;
+    SDL_GPUBuffer *m_RGB_BoidsDataBuffer;
 
-    BoidsContainerStruct BoidsContainer {};
+    BoidsContainer m_BoidsContainer {};
 };
 
 #endif  // INCLUDE_SRC_MAIN_H_
