@@ -12,16 +12,11 @@ var searchData=
   ['renderdatastruct_9',['RenderDataStruct',['../struct_core_1_1_render_data_struct.html',1,'Core']]],
   ['renderer_2ecpp_10',['Renderer.cpp',['../_renderer_8cpp.html',1,'']]],
   ['renderer_2eh_11',['Renderer.h',['../_renderer_8h.html',1,'']]],
-  ['renderpipeline_12',['RenderPipeline',['../class_boids.html#af5043229e8d085d25a86703fce4b4348',1,'Boids::RenderPipeline'],['../class_n___body___simulation.html#ae6f6566e7610577e62199ddc95343bda',1,'N_Body_Simulation::RenderPipeline']]],
-  ['resize_5fproject_5fwindow_13',['RESIZE_PROJECT_WINDOW',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17abfcec50f5180c938216056be73623c5c',1,'Core']]],
-  ['resizeprojecttexture_14',['ResizeProjectTexture',['../namespace_core_1_1_renderer.html#aa3aa2b71618568b14c5495215d94b5dd',1,'Core::Renderer']]],
-  ['resolutionscale_15',['ResolutionScale',['../struct_core_1_1_render_data_struct.html#a3745a4aef5f751a9f54d039ed9c08f86',1,'Core::RenderDataStruct']]],
-  ['resolvetexture_16',['ResolveTexture',['../struct_core_1_1_render_data_struct.html#aa2dda0f53fb55710fc9ede796c515533',1,'Core::RenderDataStruct']]],
-  ['rgb_17',['rgb',['../class_boids.html#a9fa801ea517ac7b711aabdff540f3363',1,'Boids']]],
-  ['rgb_5fboiddatasend_18',['RGB_BoidDataSend',['../struct_r_g_b___boid_data_send.html',1,'']]],
-  ['rgb_5fboidsdatabuffer_19',['RGB_BoidsDataBuffer',['../class_boids.html#a6059cfb7f99c9863ab2351c1e3b40ef4',1,'Boids']]],
-  ['rgb_5fboidsdatatransferbuffer_20',['RGB_BoidsDataTransferBuffer',['../class_boids.html#a84dc745b542f9c9984b5f5db75613aea',1,'Boids']]],
-  ['rgb_5frenderpipeline_21',['RGB_RenderPipeline',['../class_boids.html#af69643c739a8ce37d01373c99dfe231c',1,'Boids']]],
-  ['right_22',['RIGHT',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17a6cdb4bd934713688e25f9e0432058d09',1,'Core']]],
-  ['rotation_23',['Rotation',['../struct_boids_entity.html#afe2311d37912595d5377063c8a791cb7',1,'BoidsEntity::Rotation'],['../struct_boids_data_send.html#a740e9ad04755ef719691bdf4ee574bc3',1,'BoidsDataSend::Rotation'],['../struct_r_g_b___boid_data_send.html#a140737ef5c408b57c523c417ec275566',1,'RGB_BoidDataSend::Rotation']]]
+  ['resize_5fproject_5fwindow_12',['RESIZE_PROJECT_WINDOW',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17abfcec50f5180c938216056be73623c5c',1,'Core']]],
+  ['resizeprojecttexture_13',['ResizeProjectTexture',['../namespace_core_1_1_renderer.html#aa3aa2b71618568b14c5495215d94b5dd',1,'Core::Renderer']]],
+  ['resolutionscale_14',['ResolutionScale',['../struct_core_1_1_render_data_struct.html#a3745a4aef5f751a9f54d039ed9c08f86',1,'Core::RenderDataStruct']]],
+  ['resolvetexture_15',['ResolveTexture',['../struct_core_1_1_render_data_struct.html#aa2dda0f53fb55710fc9ede796c515533',1,'Core::RenderDataStruct']]],
+  ['rgb_5fboiddatasend_16',['RGB_BoidDataSend',['../struct_r_g_b___boid_data_send.html',1,'']]],
+  ['right_17',['RIGHT',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17a6cdb4bd934713688e25f9e0432058d09',1,'Core']]],
+  ['rotation_18',['Rotation',['../struct_boids_entity.html#afe2311d37912595d5377063c8a791cb7',1,'BoidsEntity::Rotation'],['../struct_boids_data_send.html#a740e9ad04755ef719691bdf4ee574bc3',1,'BoidsDataSend::Rotation'],['../struct_r_g_b___boid_data_send.html#a140737ef5c408b57c523c417ec275566',1,'RGB_BoidDataSend::Rotation']]]
 ];

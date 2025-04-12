@@ -8,7 +8,7 @@ var searchData=
   ['gamefpstracker_2ecpp_5',['GameFPSTracker.cpp',['../_game_f_p_s_tracker_8cpp.html',1,'']]],
   ['gamefpstracker_2eh_6',['GameFPSTracker.h',['../_game_f_p_s_tracker_8h.html',1,'']]],
   ['garage_7',['Ankush&apos;s Garage',['../index.html',1,'']]],
-  ['getboids_8',['GetBoids',['../class_boids_container_struct.html#af6699e7c14f91b6b7336b8bbd82b0b39',1,'BoidsContainerStruct']]],
+  ['getboids_8',['GetBoids',['../class_boids_container.html#aa7b797a116751ef02c8a81cf136fae53',1,'BoidsContainer']]],
   ['getcurrenttime_9',['GetCurrentTime',['../class_core_1_1_console_log_buffer.html#a2700d6524cca1495b1e6df1c88eb832e',1,'Core::ConsoleLogBuffer']]],
   ['geteventheld_10',['GetEventHeld',['../class_core_1_1_event_handler_struct.html#a18d73664354ef083559b5d350463850d',1,'Core::EventHandlerStruct']]],
   ['geteventpressed_11',['GetEventPressed',['../class_core_1_1_event_handler_struct.html#a58c5181bd29a8125852c57a9e27c09e2',1,'Core::EventHandlerStruct']]],

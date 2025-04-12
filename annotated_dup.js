@@ -18,7 +18,7 @@ var annotated_dup =
       [ "Time", "class_utils_1_1_time.html", null ]
     ] ],
     [ "Boids", "class_boids.html", "class_boids" ],
-    [ "BoidsContainerStruct", "class_boids_container_struct.html", "class_boids_container_struct" ],
+    [ "BoidsContainer", "class_boids_container.html", "class_boids_container" ],
     [ "BoidsDataSend", "struct_boids_data_send.html", "struct_boids_data_send" ],
     [ "BoidsEntity", "struct_boids_entity.html", "struct_boids_entity" ],
     [ "N_Body_Simulation", "class_n___body___simulation.html", "class_n___body___simulation" ],

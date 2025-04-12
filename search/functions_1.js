@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['boidscontainerstruct_0',['BoidsContainerStruct',['../class_boids_container_struct.html#a556b1b95c25f210d9327a4e94db966a1',1,'BoidsContainerStruct']]]
+  ['boidscontainer_0',['BoidsContainer',['../class_boids_container.html#ac3d905532b81c387fc2254c6569dce9c',1,'BoidsContainer']]]
 ];

@@ -134,22 +134,19 @@ $(function(){initNavTree('functions_vars.html',''); initResizable(true); });
 <h3><a id="index_a" name="index_a"></a>- a -</h3><ul>
 <li>a&#160;:&#160;<a class="el" href="struct_boids_data_send.html#ac7a8f46ad2bd5f9e23eb1fc24d33052d">BoidsDataSend</a></li>
 <li>Acceleration&#160;:&#160;<a class="el" href="struct_particle_data.html#a1ae2181f8066bc7b59e5563abcc6e7ea">ParticleData</a></li>
-<li>Alignment&#160;:&#160;<a class="el" href="class_boids_container_struct.html#a1ca862fa11173c62636607f36aa7926f">BoidsContainerStruct</a></li>
+<li>Alignment&#160;:&#160;<a class="el" href="class_boids_container.html#a3fb3317deaac43dd854cd5302d5f21ae">BoidsContainer</a></li>
 <li>AppState&#160;:&#160;<a class="el" href="struct_core_1_1_context.html#a81cc3eea7cd19408955a2c89a5b7f8b7">Core::Context</a></li>
 </ul>
 
 
 <h3><a id="index_b" name="index_b"></a>- b -</h3><ul>
 <li>b&#160;:&#160;<a class="el" href="struct_boids_data_send.html#aadbc3cc3d70adc1ee4b458e0bf7acaa7">BoidsDataSend</a></li>
-<li>BoidsContainer&#160;:&#160;<a class="el" href="class_boids.html#a34fa49b0ee9ade53e326496da7ecde26">Boids</a></li>
-<li>BoidsDataBuffer&#160;:&#160;<a class="el" href="class_boids.html#a6ac446ddf60edb0cd8379a60e1c9ca35">Boids</a></li>
-<li>BoidsDataTransferBuffer&#160;:&#160;<a class="el" href="class_boids.html#acd59a08535c049a5bf6eff90ddc2b9e5">Boids</a></li>
 </ul>
 
 
 <h3><a id="index_c" name="index_c"></a>- c -</h3><ul>
-<li>Cohesion&#160;:&#160;<a class="el" href="class_boids_container_struct.html#aa8d391ff66fcd794203c630003d6ec69">BoidsContainerStruct</a></li>
-<li>Color&#160;:&#160;<a class="el" href="class_boids_container_struct.html#aba9a149c8cb31653a1935fddf672410d">BoidsContainerStruct</a>, <a class="el" href="struct_particle_data.html#a153412c2769f48b27446d6db339eb123">ParticleData</a>, <a class="el" href="struct_particle_data_send.html#a3805b74a9f4708fad0c893fe54b5f777">ParticleDataSend</a></li>
+<li>Cohesion&#160;:&#160;<a class="el" href="class_boids_container.html#ad0f5f4690393f73e227ed7ad4d2e0b3e">BoidsContainer</a></li>
+<li>Color&#160;:&#160;<a class="el" href="class_boids_container.html#af82bbdefe96c831d41bc71098e7212e1">BoidsContainer</a>, <a class="el" href="struct_particle_data.html#a153412c2769f48b27446d6db339eb123">ParticleData</a>, <a class="el" href="struct_particle_data_send.html#a3805b74a9f4708fad0c893fe54b5f777">ParticleDataSend</a></li>
 <li>Count&#160;:&#160;<a class="el" href="struct_predefined_particles_data.html#a847dcf9ae5465bdcb6840cd12e613636">PredefinedParticlesData</a></li>
 <li>count&#160;:&#160;<a class="el" href="struct_particle_container.html#a94b9e70aa831125deed47fd4e747fa59">ParticleContainer</a></li>
 </ul>
@@ -157,7 +154,6 @@ $(function(){initNavTree('functions_vars.html',''); initResizable(true); });
 
 <h3><a id="index_d" name="index_d"></a>- d -</h3><ul>
 <li>Data&#160;:&#160;<a class="el" href="struct_scrolling_buffer.html#a669e01acc44eb869812ed3eb29300ab4">ScrollingBuffer</a></li>
-<li>DataBuffer&#160;:&#160;<a class="el" href="class_n___body___simulation.html#a0293b0128a37a0e95da83567bb418dc8">N_Body_Simulation</a></li>
 <li>Device&#160;:&#160;<a class="el" href="struct_core_1_1_render_data_struct.html#aa4ccae7c23bc51e8ffa3cbb054514545">Core::RenderDataStruct</a></li>
 </ul>
 
@@ -188,7 +184,7 @@ $(function(){initNavTree('functions_vars.html',''); initResizable(true); });
 
 <h3><a id="index_k" name="index_k"></a>- k -</h3><ul>
 <li>k_MaxMessages&#160;:&#160;<a class="el" href="class_core_1_1_console_log_buffer.html#a033ff77a9a7b75da579dd9286f266a0f">Core::ConsoleLogBuffer</a></li>
-<li>k_NumBoids&#160;:&#160;<a class="el" href="class_boids_container_struct.html#a98cecfda1921dc37f459c4a2a19788cb">BoidsContainerStruct</a></li>
+<li>k_NumBoids&#160;:&#160;<a class="el" href="class_boids_container.html#aa9cf4e73287912ce81ed19c4ce197d25">BoidsContainer</a></li>
 <li>Keys&#160;:&#160;<a class="el" href="class_core_1_1_event_handler_struct.html#aec8def5c90c76a6acdc1fff63e756f85">Core::EventHandlerStruct</a></li>
 </ul>
 
@@ -199,20 +195,30 @@ $(function(){initNavTree('functions_vars.html',''); initResizable(true); });
 
 
 <h3><a id="index_m" name="index_m"></a>- m -</h3><ul>
-<li>m_BoidsVec&#160;:&#160;<a class="el" href="class_boids_container_struct.html#ad509c61f6843820394e3081f3721ac53">BoidsContainerStruct</a></li>
+<li>m_BoidsContainer&#160;:&#160;<a class="el" href="class_boids.html#afb4ecfa5c09227b3eac8a6bcc156d89c">Boids</a></li>
+<li>m_BoidsDataBuffer&#160;:&#160;<a class="el" href="class_boids.html#abf9888f18ffac29dc17890bacb56a72a">Boids</a></li>
+<li>m_BoidsDataTransferBuffer&#160;:&#160;<a class="el" href="class_boids.html#a386428c277d9ac6621ad88c896f3938d">Boids</a></li>
+<li>m_BoidsVec&#160;:&#160;<a class="el" href="class_boids_container.html#add97cf81319528b65943a1e51bbc08e9">BoidsContainer</a></li>
 <li>m_ConsoleLogs&#160;:&#160;<a class="el" href="class_core_1_1_console_log_buffer.html#a64cb32fdeb9ed1838dd6ef71c240a5c9">Core::ConsoleLogBuffer</a></li>
 <li>m_CurrentTime&#160;:&#160;<a class="el" href="class_utils_1_1_time.html#ad2b50f81d33917dc894e898a520767e8">Utils::Time</a></li>
+<li>m_DataBuffer&#160;:&#160;<a class="el" href="class_n___body___simulation.html#a85428ea049fef9616591f982b4877263">N_Body_Simulation</a></li>
 <li>m_DeltaTime&#160;:&#160;<a class="el" href="class_utils_1_1_time.html#a3fefb743f5549de4144573ad1d0f3ff3">Utils::Time</a></li>
 <li>m_FPS&#160;:&#160;<a class="el" href="class_utils_1_1_cap_zone.html#a38a6f7ae2b7fb231209234cb8bfdfa50">Utils::CapZone</a></li>
 <li>m_FrameDuration&#160;:&#160;<a class="el" href="class_utils_1_1_time.html#a4a09e5aaf0f44c6aa7085a362d0d8e6e">Utils::Time</a></li>
 <li>m_Index&#160;:&#160;<a class="el" href="class_core_1_1_console_log_buffer.html#a550e13fa43e3871e8b5104d89031064f">Core::ConsoleLogBuffer</a></li>
+<li>m_Particles&#160;:&#160;<a class="el" href="class_n___body___simulation.html#a4444a0e20d3eee0dab8907099d8e9704">N_Body_Simulation</a></li>
 <li>m_PreviousTime&#160;:&#160;<a class="el" href="class_utils_1_1_time.html#aab74f495634b56dd21d4e46aabbb002b">Utils::Time</a></li>
 <li>m_Projects&#160;:&#160;<a class="el" href="class_common_1_1_project_manager.html#a1c84054109de2929839c17ac4bfd2977">Common::ProjectManager</a></li>
+<li>m_RenderPipeline&#160;:&#160;<a class="el" href="class_boids.html#abd9c1a1751c0ed0a2498bf5df97f0adb">Boids</a>, <a class="el" href="class_n___body___simulation.html#a9099cdc83d0743131dc348429442f815">N_Body_Simulation</a></li>
 <li>m_RenderTime&#160;:&#160;<a class="el" href="class_tracker.html#a819da09647fc001d20b982d37bfb6ef0">Tracker</a></li>
+<li>m_RGB_BoidsDataBuffer&#160;:&#160;<a class="el" href="class_boids.html#aa5d9fe637d1921374bc566184a56be85">Boids</a></li>
+<li>m_RGB_BoidsDataTransferBuffer&#160;:&#160;<a class="el" href="class_boids.html#ac6da5ceb624fd15232a80d251b350eef">Boids</a></li>
+<li>m_RGB_RenderPipeline&#160;:&#160;<a class="el" href="class_boids.html#a59bc3786849520a2106001018afec53c">Boids</a></li>
 <li>m_Start&#160;:&#160;<a class="el" href="class_timer.html#a80f9c50b0b62d9854004213e5c70110a">Timer</a>, <a class="el" href="class_utils_1_1_cap_zone.html#a53c85a23493a6efabb065f4fb6e702c8">Utils::CapZone</a></li>
 <li>m_StartTime&#160;:&#160;<a class="el" href="class_utils_1_1_time.html#afd10171206a8695a45cd484734151b3d">Utils::Time</a></li>
 <li>m_TargetFPS&#160;:&#160;<a class="el" href="class_utils_1_1_time.html#ad42ac30626e98c800fda17d57498c3d1">Utils::Time</a></li>
 <li>m_TotalTime&#160;:&#160;<a class="el" href="class_timer.html#a5363aabb5e45b9b2051f5b7b3f37334f">Timer</a></li>
+<li>m_TransferBuffer&#160;:&#160;<a class="el" href="class_n___body___simulation.html#a5b3fe75e315c563c7b460db4a8d015c0">N_Body_Simulation</a></li>
 <li>m_UpdateTime&#160;:&#160;<a class="el" href="class_tracker.html#ab237fac38e2da0a58f9b2e8527ece980">Tracker</a></li>
 <li>MainViewportId&#160;:&#160;<a class="el" href="struct_core_1_1_app_state_struct.html#ad7657ab27cfe48411dd33c6d346b0c7d">Core::AppStateStruct</a></li>
 <li>Mass&#160;:&#160;<a class="el" href="struct_particle_data.html#a5c415cff4f4c657eaa7b94d9593d2c99">ParticleData</a></li>
@@ -233,7 +239,7 @@ $(function(){initNavTree('functions_vars.html',''); initResizable(true); });
 
 
 <h3><a id="index_p" name="index_p"></a>- p -</h3><ul>
-<li>Particles&#160;:&#160;<a class="el" href="class_n___body___simulation.html#a4127838e533562d4665f2346fc447148">N_Body_Simulation</a>, <a class="el" href="struct_predefined_particles_data.html#a1b7cd26630376a15ac7de5d37013e63e">PredefinedParticlesData</a></li>
+<li>Particles&#160;:&#160;<a class="el" href="struct_predefined_particles_data.html#a1b7cd26630376a15ac7de5d37013e63e">PredefinedParticlesData</a></li>
 <li>ParticlesData&#160;:&#160;<a class="el" href="struct_particle_container.html#aa24c733de82cd82f560638b5cc06fdcc">ParticleContainer</a></li>
 <li>ParticleVec&#160;:&#160;<a class="el" href="struct_particle_container.html#acbb024ecef45815b0ebfcad0f117b441">ParticleContainer</a></li>
 <li>Position&#160;:&#160;<a class="el" href="struct_boids_entity.html#ae10ed382751c2a45104ebe66f1a9942a">BoidsEntity</a>, <a class="el" href="struct_particle_data.html#a59a20933135869a913d80cb781b44bda">ParticleData</a>, <a class="el" href="struct_particle_data_send.html#ae8da0ea566c2861f99ec654a7eb3fbf3">ParticleDataSend</a></li>
@@ -251,13 +257,8 @@ $(function(){initNavTree('functions_vars.html',''); initResizable(true); });
 <li>r&#160;:&#160;<a class="el" href="struct_boids_data_send.html#a4e0a95219a065931591ba10861d2e982">BoidsDataSend</a></li>
 <li>Radius&#160;:&#160;<a class="el" href="struct_particle_data.html#aab8838621ba926c448cfb38925055c0d">ParticleData</a>, <a class="el" href="struct_particle_data_send.html#ab96b281cd2f2edb17b400db5796001bf">ParticleDataSend</a></li>
 <li>RenderData&#160;:&#160;<a class="el" href="struct_core_1_1_context.html#a6717c1ff1740bff49404beb6d750075b">Core::Context</a></li>
-<li>RenderPipeline&#160;:&#160;<a class="el" href="class_boids.html#af5043229e8d085d25a86703fce4b4348">Boids</a>, <a class="el" href="class_n___body___simulation.html#ae6f6566e7610577e62199ddc95343bda">N_Body_Simulation</a></li>
 <li>ResolutionScale&#160;:&#160;<a class="el" href="struct_core_1_1_render_data_struct.html#a3745a4aef5f751a9f54d039ed9c08f86">Core::RenderDataStruct</a></li>
 <li>ResolveTexture&#160;:&#160;<a class="el" href="struct_core_1_1_render_data_struct.html#aa2dda0f53fb55710fc9ede796c515533">Core::RenderDataStruct</a></li>
-<li>rgb&#160;:&#160;<a class="el" href="class_boids.html#a9fa801ea517ac7b711aabdff540f3363">Boids</a></li>
-<li>RGB_BoidsDataBuffer&#160;:&#160;<a class="el" href="class_boids.html#a6059cfb7f99c9863ab2351c1e3b40ef4">Boids</a></li>
-<li>RGB_BoidsDataTransferBuffer&#160;:&#160;<a class="el" href="class_boids.html#a84dc745b542f9c9984b5f5db75613aea">Boids</a></li>
-<li>RGB_RenderPipeline&#160;:&#160;<a class="el" href="class_boids.html#af69643c739a8ce37d01373c99dfe231c">Boids</a></li>
 <li>Rotation&#160;:&#160;<a class="el" href="struct_boids_data_send.html#a740e9ad04755ef719691bdf4ee574bc3">BoidsDataSend</a>, <a class="el" href="struct_boids_entity.html#afe2311d37912595d5377063c8a791cb7">BoidsEntity</a>, <a class="el" href="struct_r_g_b___boid_data_send.html#a140737ef5c408b57c523c417ec275566">RGB_BoidDataSend</a></li>
 </ul>
 
@@ -265,10 +266,11 @@ $(function(){initNavTree('functions_vars.html',''); initResizable(true); });
 <h3><a id="index_s" name="index_s"></a>- s -</h3><ul>
 <li>s_RealUpdateFPSBuffer&#160;:&#160;<a class="el" href="class_tracker.html#a2c23cd71aebecfe268906cd43dbed526">Tracker</a></li>
 <li>s_RenderFPSBuffer&#160;:&#160;<a class="el" href="class_tracker.html#a65c34fc21866b36e514b654a7d368144">Tracker</a></li>
+<li>s_rgb&#160;:&#160;<a class="el" href="class_boids.html#a9a6e0b448a75e25d27e4728cb24bfb01">Boids</a></li>
 <li>s_UpdateFPSBuffer&#160;:&#160;<a class="el" href="class_tracker.html#a963cf8993ea5a83298c7e30583366656">Tracker</a></li>
 <li>SampleCount&#160;:&#160;<a class="el" href="struct_core_1_1_render_data_struct.html#a1a9e52eb9aaf08e3641d0c1e92bd01a8">Core::RenderDataStruct</a></li>
 <li>ScissorRect&#160;:&#160;<a class="el" href="class_triangle.html#aec999e5bad11420e266c355bd00ae224">Triangle</a></li>
-<li>Seperation&#160;:&#160;<a class="el" href="class_boids_container_struct.html#a7fb8e88bdb53f9f4ee848890a21e13ca">BoidsContainerStruct</a></li>
+<li>Seperation&#160;:&#160;<a class="el" href="class_boids_container.html#a99c92eba28630e3f75813d2896ca3bf6">BoidsContainer</a></li>
 <li>SmallViewport&#160;:&#160;<a class="el" href="class_triangle.html#af476a83a8475a37a3eb5d01b97bfa26f">Triangle</a></li>
 </ul>
 
@@ -276,7 +278,6 @@ $(function(){initNavTree('functions_vars.html',''); initResizable(true); });
 <h3><a id="index_t" name="index_t"></a>- t -</h3><ul>
 <li>Time&#160;:&#160;<a class="el" href="struct_r_g_b___boid_data_send.html#a59e408b04f99f0be1478bc3410db2181">RGB_BoidDataSend</a></li>
 <li>timestamp&#160;:&#160;<a class="el" href="struct_core_1_1_console_log_message.html#a111da37a8e512b63f379516b5c7a93f0">Core::ConsoleLogMessage</a></li>
-<li>TransferBuffer&#160;:&#160;<a class="el" href="class_n___body___simulation.html#aabfb74de78a176ced43297f7514c6091">N_Body_Simulation</a></li>
 </ul>
 
 

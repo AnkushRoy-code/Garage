@@ -7,7 +7,7 @@ var searchData=
   ['addpoint_4',['AddPoint',['../struct_scrolling_buffer.html#ac70901a6df22ecc9d80175f7b489d3e4',1,'ScrollingBuffer']]],
   ['addrenderfpspointqueue_5',['AddRenderFPSPointQueue',['../class_tracker.html#a1a9391d928092235b8d58c51fac4db0c',1,'Tracker']]],
   ['addupdatefpspointqueue_6',['AddUpdateFPSPointQueue',['../class_tracker.html#a5b3778a3b13efdba7c045c55ce6b67c4',1,'Tracker']]],
-  ['alignment_7',['Alignment',['../class_boids_container_struct.html#a1ca862fa11173c62636607f36aa7926f',1,'BoidsContainerStruct']]],
+  ['alignment_7',['Alignment',['../class_boids_container.html#a3fb3317deaac43dd854cd5302d5f21ae',1,'BoidsContainer']]],
   ['ankush_20s_20garage_8',['Ankush&apos;s Garage',['../index.html',1,'']]],
   ['appstate_9',['AppState',['../struct_core_1_1_context.html#a81cc3eea7cd19408955a2c89a5b7f8b7',1,'Core::Context']]],
   ['appstatestruct_10',['AppStateStruct',['../struct_core_1_1_app_state_struct.html',1,'Core']]]

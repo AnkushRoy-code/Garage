@@ -165,14 +165,14 @@ Private Member Functions</h2></td></tr>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a6141c9670e2149600c222a46156aeee1" id="r_a6141c9670e2149600c222a46156aeee1"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6141c9670e2149600c222a46156aeee1">name</a> = &quot;N-Body-Simulation&quot;</td></tr>
 <tr class="separator:a6141c9670e2149600c222a46156aeee1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6f6566e7610577e62199ddc95343bda" id="r_ae6f6566e7610577e62199ddc95343bda"><td class="memItemLeft" align="right" valign="top">SDL_GPUGraphicsPipeline *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6f6566e7610577e62199ddc95343bda">RenderPipeline</a></td></tr>
-<tr class="separator:ae6f6566e7610577e62199ddc95343bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabfb74de78a176ced43297f7514c6091" id="r_aabfb74de78a176ced43297f7514c6091"><td class="memItemLeft" align="right" valign="top">SDL_GPUTransferBuffer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aabfb74de78a176ced43297f7514c6091">TransferBuffer</a></td></tr>
-<tr class="separator:aabfb74de78a176ced43297f7514c6091"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0293b0128a37a0e95da83567bb418dc8" id="r_a0293b0128a37a0e95da83567bb418dc8"><td class="memItemLeft" align="right" valign="top">SDL_GPUBuffer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0293b0128a37a0e95da83567bb418dc8">DataBuffer</a></td></tr>
-<tr class="separator:a0293b0128a37a0e95da83567bb418dc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4127838e533562d4665f2346fc447148" id="r_a4127838e533562d4665f2346fc447148"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_particle_container.html">ParticleContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4127838e533562d4665f2346fc447148">Particles</a> {}</td></tr>
-<tr class="separator:a4127838e533562d4665f2346fc447148"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9099cdc83d0743131dc348429442f815" id="r_a9099cdc83d0743131dc348429442f815"><td class="memItemLeft" align="right" valign="top">SDL_GPUGraphicsPipeline *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9099cdc83d0743131dc348429442f815">m_RenderPipeline</a></td></tr>
+<tr class="separator:a9099cdc83d0743131dc348429442f815"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b3fe75e315c563c7b460db4a8d015c0" id="r_a5b3fe75e315c563c7b460db4a8d015c0"><td class="memItemLeft" align="right" valign="top">SDL_GPUTransferBuffer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b3fe75e315c563c7b460db4a8d015c0">m_TransferBuffer</a></td></tr>
+<tr class="separator:a5b3fe75e315c563c7b460db4a8d015c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85428ea049fef9616591f982b4877263" id="r_a85428ea049fef9616591f982b4877263"><td class="memItemLeft" align="right" valign="top">SDL_GPUBuffer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85428ea049fef9616591f982b4877263">m_DataBuffer</a></td></tr>
+<tr class="separator:a85428ea049fef9616591f982b4877263"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4444a0e20d3eee0dab8907099d8e9704" id="r_a4444a0e20d3eee0dab8907099d8e9704"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_particle_container.html">ParticleContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4444a0e20d3eee0dab8907099d8e9704">m_Particles</a> {}</td></tr>
+<tr class="separator:a4444a0e20d3eee0dab8907099d8e9704"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -375,8 +375,8 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a0293b0128a37a0e95da83567bb418dc8" name="a0293b0128a37a0e95da83567bb418dc8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0293b0128a37a0e95da83567bb418dc8">&#9670;&#160;</a></span>DataBuffer</h2>
+<a id="a85428ea049fef9616591f982b4877263" name="a85428ea049fef9616591f982b4877263"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85428ea049fef9616591f982b4877263">&#9670;&#160;</a></span>m_DataBuffer</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -385,7 +385,73 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">SDL_GPUBuffer* N_Body_Simulation::DataBuffer</td>
+          <td class="memname">SDL_GPUBuffer* N_Body_Simulation::m_DataBuffer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4444a0e20d3eee0dab8907099d8e9704" name="a4444a0e20d3eee0dab8907099d8e9704"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4444a0e20d3eee0dab8907099d8e9704">&#9670;&#160;</a></span>m_Particles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_particle_container.html">ParticleContainer</a> N_Body_Simulation::m_Particles {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9099cdc83d0743131dc348429442f815" name="a9099cdc83d0743131dc348429442f815"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9099cdc83d0743131dc348429442f815">&#9670;&#160;</a></span>m_RenderPipeline</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SDL_GPUGraphicsPipeline* N_Body_Simulation::m_RenderPipeline</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5b3fe75e315c563c7b460db4a8d015c0" name="a5b3fe75e315c563c7b460db4a8d015c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b3fe75e315c563c7b460db4a8d015c0">&#9670;&#160;</a></span>m_TransferBuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SDL_GPUTransferBuffer* N_Body_Simulation::m_TransferBuffer</td>
         </tr>
       </table>
   </td>
@@ -408,72 +474,6 @@ Additional Inherited Members</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">std::string N_Body_Simulation::name = &quot;N-Body-Simulation&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a4127838e533562d4665f2346fc447148" name="a4127838e533562d4665f2346fc447148"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4127838e533562d4665f2346fc447148">&#9670;&#160;</a></span>Particles</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_particle_container.html">ParticleContainer</a> N_Body_Simulation::Particles {}</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ae6f6566e7610577e62199ddc95343bda" name="ae6f6566e7610577e62199ddc95343bda"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae6f6566e7610577e62199ddc95343bda">&#9670;&#160;</a></span>RenderPipeline</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">SDL_GPUGraphicsPipeline* N_Body_Simulation::RenderPipeline</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aabfb74de78a176ced43297f7514c6091" name="aabfb74de78a176ced43297f7514c6091"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aabfb74de78a176ced43297f7514c6091">&#9670;&#160;</a></span>TransferBuffer</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">SDL_GPUTransferBuffer* N_Body_Simulation::TransferBuffer</td>
         </tr>
       </table>
   </td>

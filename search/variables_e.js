@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['particles_0',['Particles',['../class_n___body___simulation.html#a4127838e533562d4665f2346fc447148',1,'N_Body_Simulation::Particles'],['../struct_predefined_particles_data.html#a1b7cd26630376a15ac7de5d37013e63e',1,'PredefinedParticlesData::Particles']]],
+  ['particles_0',['Particles',['../struct_predefined_particles_data.html#a1b7cd26630376a15ac7de5d37013e63e',1,'PredefinedParticlesData']]],
   ['particlesdata_1',['ParticlesData',['../struct_particle_container.html#aa24c733de82cd82f560638b5cc06fdcc',1,'ParticleContainer']]],
   ['particlevec_2',['ParticleVec',['../struct_particle_container.html#acbb024ecef45815b0ebfcad0f117b441',1,'ParticleContainer']]],
   ['position_3',['Position',['../struct_boids_entity.html#ae10ed382751c2a45104ebe66f1a9942a',1,'BoidsEntity::Position'],['../struct_particle_data_send.html#ae8da0ea566c2861f99ec654a7eb3fbf3',1,'ParticleDataSend::Position'],['../struct_particle_data.html#a59a20933135869a913d80cb781b44bda',1,'ParticleData::Position']]],

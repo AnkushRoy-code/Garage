@@ -8,11 +8,8 @@ var searchData=
   ['boids_5',['Boids',['../class_boids.html',1,'Boids'],['../index.html#autotoc_md11',1,'Boids']]],
   ['boids_2ecpp_6',['Boids.cpp',['../_boids_8cpp.html',1,'']]],
   ['boids_2eh_7',['Boids.h',['../_boids_8h.html',1,'']]],
-  ['boidscontainer_8',['BoidsContainer',['../class_boids.html#a34fa49b0ee9ade53e326496da7ecde26',1,'Boids']]],
-  ['boidscontainerstruct_9',['BoidsContainerStruct',['../class_boids_container_struct.html',1,'BoidsContainerStruct'],['../class_boids_container_struct.html#a556b1b95c25f210d9327a4e94db966a1',1,'BoidsContainerStruct::BoidsContainerStruct()']]],
-  ['boidsdatabuffer_10',['BoidsDataBuffer',['../class_boids.html#a6ac446ddf60edb0cd8379a60e1c9ca35',1,'Boids']]],
-  ['boidsdatasend_11',['BoidsDataSend',['../struct_boids_data_send.html',1,'']]],
-  ['boidsdatatransferbuffer_12',['BoidsDataTransferBuffer',['../class_boids.html#acd59a08535c049a5bf6eff90ddc2b9e5',1,'Boids']]],
-  ['boidsentity_13',['BoidsEntity',['../struct_boids_entity.html',1,'']]],
-  ['bug_20list_14',['Bug List',['../bug.html',1,'']]]
+  ['boidscontainer_8',['BoidsContainer',['../class_boids_container.html',1,'BoidsContainer'],['../class_boids_container.html#ac3d905532b81c387fc2254c6569dce9c',1,'BoidsContainer::BoidsContainer()']]],
+  ['boidsdatasend_9',['BoidsDataSend',['../struct_boids_data_send.html',1,'']]],
+  ['boidsentity_10',['BoidsEntity',['../struct_boids_entity.html',1,'']]],
+  ['bug_20list_11',['Bug List',['../bug.html',1,'']]]
 ];

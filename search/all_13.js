@@ -9,9 +9,8 @@ var searchData=
   ['timestamp_6',['timestamp',['../struct_core_1_1_console_log_message.html#a111da37a8e512b63f379516b5c7a93f0',1,'Core::ConsoleLogMessage']]],
   ['todo_20list_7',['Todo List',['../todo.html',1,'']]],
   ['tracker_8',['Tracker',['../class_tracker.html',1,'']]],
-  ['transferbuffer_9',['TransferBuffer',['../class_n___body___simulation.html#aabfb74de78a176ced43297f7514c6091',1,'N_Body_Simulation']]],
-  ['tree_10',['Normal fractal (Da tree)',['../index.html#autotoc_md14',1,'']]],
-  ['triangle_11',['Triangle',['../class_triangle.html',1,'Triangle'],['../index.html#autotoc_md9',1,'Triangle']]],
-  ['triangle_2ecpp_12',['Triangle.cpp',['../_triangle_8cpp.html',1,'']]],
-  ['triangle_2eh_13',['Triangle.h',['../_triangle_8h.html',1,'']]]
+  ['tree_9',['Normal fractal (Da tree)',['../index.html#autotoc_md14',1,'']]],
+  ['triangle_10',['Triangle',['../class_triangle.html',1,'Triangle'],['../index.html#autotoc_md9',1,'Triangle']]],
+  ['triangle_2ecpp_11',['Triangle.cpp',['../_triangle_8cpp.html',1,'']]],
+  ['triangle_2eh_12',['Triangle.h',['../_triangle_8h.html',1,'']]]
 ];

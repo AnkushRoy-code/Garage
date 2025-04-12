@@ -7,7 +7,7 @@ var hierarchy =
       [ "SimpleExample", "class_simple_example.html", null ],
       [ "Triangle", "class_triangle.html", null ]
     ] ],
-    [ "BoidsContainerStruct", "class_boids_container_struct.html", null ],
+    [ "BoidsContainer", "class_boids_container.html", null ],
     [ "BoidsDataSend", "struct_boids_data_send.html", null ],
     [ "BoidsEntity", "struct_boids_entity.html", null ],
     [ "Utils::CapZone", "class_utils_1_1_cap_zone.html", null ],

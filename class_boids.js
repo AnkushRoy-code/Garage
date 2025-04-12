@@ -6,13 +6,13 @@ var class_boids =
     [ "Init", "class_boids.html#a0c33367616b71d17d56d873f6d674128", null ],
     [ "Quit", "class_boids.html#a1e4af2dd090dfaf7bdf27d595b1bc54f", null ],
     [ "Update", "class_boids.html#a296ceb61bd3b312228e2f068cbf6c38a", null ],
-    [ "BoidsContainer", "class_boids.html#a34fa49b0ee9ade53e326496da7ecde26", null ],
-    [ "BoidsDataBuffer", "class_boids.html#a6ac446ddf60edb0cd8379a60e1c9ca35", null ],
-    [ "BoidsDataTransferBuffer", "class_boids.html#acd59a08535c049a5bf6eff90ddc2b9e5", null ],
+    [ "m_BoidsContainer", "class_boids.html#afb4ecfa5c09227b3eac8a6bcc156d89c", null ],
+    [ "m_BoidsDataBuffer", "class_boids.html#abf9888f18ffac29dc17890bacb56a72a", null ],
+    [ "m_BoidsDataTransferBuffer", "class_boids.html#a386428c277d9ac6621ad88c896f3938d", null ],
+    [ "m_RenderPipeline", "class_boids.html#abd9c1a1751c0ed0a2498bf5df97f0adb", null ],
+    [ "m_RGB_BoidsDataBuffer", "class_boids.html#aa5d9fe637d1921374bc566184a56be85", null ],
+    [ "m_RGB_BoidsDataTransferBuffer", "class_boids.html#ac6da5ceb624fd15232a80d251b350eef", null ],
+    [ "m_RGB_RenderPipeline", "class_boids.html#a59bc3786849520a2106001018afec53c", null ],
     [ "name", "class_boids.html#ad240d88ba3dd895b60c3870da9668bcd", null ],
-    [ "RenderPipeline", "class_boids.html#af5043229e8d085d25a86703fce4b4348", null ],
-    [ "rgb", "class_boids.html#a9fa801ea517ac7b711aabdff540f3363", null ],
-    [ "RGB_BoidsDataBuffer", "class_boids.html#a6059cfb7f99c9863ab2351c1e3b40ef4", null ],
-    [ "RGB_BoidsDataTransferBuffer", "class_boids.html#a84dc745b542f9c9984b5f5db75613aea", null ],
-    [ "RGB_RenderPipeline", "class_boids.html#af69643c739a8ce37d01373c99dfe231c", null ]
+    [ "s_rgb", "class_boids.html#a9a6e0b448a75e25d27e4728cb24bfb01", null ]
 ];

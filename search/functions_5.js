@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['getboids_0',['GetBoids',['../class_boids_container_struct.html#af6699e7c14f91b6b7336b8bbd82b0b39',1,'BoidsContainerStruct']]],
+  ['getboids_0',['GetBoids',['../class_boids_container.html#aa7b797a116751ef02c8a81cf136fae53',1,'BoidsContainer']]],
   ['getcurrenttime_1',['GetCurrentTime',['../class_core_1_1_console_log_buffer.html#a2700d6524cca1495b1e6df1c88eb832e',1,'Core::ConsoleLogBuffer']]],
   ['geteventheld_2',['GetEventHeld',['../class_core_1_1_event_handler_struct.html#a18d73664354ef083559b5d350463850d',1,'Core::EventHandlerStruct']]],
   ['geteventpressed_3',['GetEventPressed',['../class_core_1_1_event_handler_struct.html#a58c5181bd29a8125852c57a9e27c09e2',1,'Core::EventHandlerStruct']]],

@@ -5,7 +5,7 @@ var searchData=
   ['particlecontainer_2',['ParticleContainer',['../struct_particle_container.html',1,'']]],
   ['particledata_3',['ParticleData',['../struct_particle_data.html',1,'']]],
   ['particledatasend_4',['ParticleDataSend',['../struct_particle_data_send.html',1,'']]],
-  ['particles_5',['Particles',['../class_n___body___simulation.html#a4127838e533562d4665f2346fc447148',1,'N_Body_Simulation::Particles'],['../struct_predefined_particles_data.html#a1b7cd26630376a15ac7de5d37013e63e',1,'PredefinedParticlesData::Particles']]],
+  ['particles_5',['Particles',['../struct_predefined_particles_data.html#a1b7cd26630376a15ac7de5d37013e63e',1,'PredefinedParticlesData']]],
   ['particlesdata_6',['ParticlesData',['../struct_particle_container.html#aa24c733de82cd82f560638b5cc06fdcc',1,'ParticleContainer']]],
   ['particlevec_7',['ParticleVec',['../struct_particle_container.html#acbb024ecef45815b0ebfcad0f117b441',1,'ParticleContainer']]],
   ['pch_2eh_8',['pch.h',['../pch_8h.html',1,'']]],
