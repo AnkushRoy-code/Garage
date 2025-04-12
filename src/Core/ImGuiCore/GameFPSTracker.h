@@ -1,7 +1,7 @@
 #ifndef INCLUDE_IMGUICORE_GAMEFPSTRACKER_H_
 #define INCLUDE_IMGUICORE_GAMEFPSTRACKER_H_
 
-#include "ScrollingBuffer.h"
+#include "Core/ImGuiCore/ScrollingBuffer.h"
 
 class Tracker
 {

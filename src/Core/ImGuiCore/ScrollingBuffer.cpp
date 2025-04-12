@@ -1,4 +1,4 @@
-#include "ScrollingBuffer.h"
+#include "Core/ImGuiCore/ScrollingBuffer.h"
 
 ScrollingBuffer::ScrollingBuffer(int p_MaxSize)
 {

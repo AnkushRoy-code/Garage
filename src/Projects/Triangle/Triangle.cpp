@@ -1,7 +1,7 @@
 #include "Projects/Triangle/Triangle.h"
+
 #include "Core/Common/Common.h"
 #include "Core/Common/SDL_Exception.h"
-
 #include "Core/Console.h"
 #include "Core/Context.h"
 #include "Core/EventHandler.h"

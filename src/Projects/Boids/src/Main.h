@@ -1,9 +1,10 @@
 #ifndef INCLUDE_SRC_MAIN_H_
 #define INCLUDE_SRC_MAIN_H_
 
-#include "Projects/Common/BaseProject.h"
-#include "Projects/Boids/src/Boids.h"
 #include "Core/Common/pch.h"
+
+#include "Projects/Boids/src/Boids.h"
+#include "Projects/Common/BaseProject.h"
 
 struct BoidsDataSend
 {

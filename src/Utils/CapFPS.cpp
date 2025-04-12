@@ -1,4 +1,4 @@
-#include "CapFPS.h"
+#include "Utils/CapFPS.h"
 #include <thread>
 
 namespace Utils

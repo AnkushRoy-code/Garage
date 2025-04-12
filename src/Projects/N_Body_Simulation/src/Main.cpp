@@ -2,9 +2,9 @@
 
 #include "Core/Common/Common.h"
 #include "Core/Context.h"
+#include "Core/EventHandler.h"
 
 #include "Projects/N_Body_Simulation/src/Main.h"
-#include "Core/EventHandler.h"
 #include "Projects/N_Body_Simulation/src/Particle.h"
 
 void N_Body_Simulation::InitialiseTransferBuffersAndParticleContainer()

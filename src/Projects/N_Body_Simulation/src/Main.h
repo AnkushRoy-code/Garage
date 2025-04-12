@@ -2,7 +2,8 @@
 #define INCLUDE_2_BODY_SIMULATION_MAIN_H_
 
 #include "Projects/Common/BaseProject.h"
-#include "Particle.h"
+#include "Projects/N_Body_Simulation/src/Particle.h"
+
 #include <SDL3/SDL_gpu.h>
 
 class N_Body_Simulation : public Common::BaseProject, public Common::ImGuiUI

@@ -1,4 +1,4 @@
-#include "Particle.h"
+#include "Projects/N_Body_Simulation/src/Particle.h"
 
 #include "Utils/Time.h"
 #include "Core/Context.h"

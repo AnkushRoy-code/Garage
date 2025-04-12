@@ -1,11 +1,13 @@
-#include "ImGuiCore.h"
+#include "Core/ImGuiCore/ImGuiCore.h"
+
+#include "Core/ImGuiCore/ScrollingBuffer.h"
+#include "Core/ImGuiCore/GameFPSTracker.h"
 
 #include "Core/Common/SDL_Exception.h"
 #include "Core/Context.h"
 #include "Core/Console.h"
-#include "Core/ImGuiCore/ScrollingBuffer.h"
-#include "Core/ImGuiCore/GameFPSTracker.h"
 #include "Core/Renderer/Renderer.h"
+
 #include "Projects/Common/BaseProject.h"
 
 #include "Core/Common/pch.h"

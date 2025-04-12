@@ -1,10 +1,8 @@
-#include "Main.h"
+#include "Projects/Boids/src/Main.h"
 
 #include "Core/Common/Common.h"
 #include "Core/Context.h"
-#include "SDL3/SDL_gpu.h"
 #include "Utils/Time.h"
-#include "glm/ext/vector_float2.hpp"
 
 bool Boids::Init()
 {

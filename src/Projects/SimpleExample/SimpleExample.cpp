@@ -1,7 +1,9 @@
-#include "SimpleExample.h"
+#include "Projects/SimpleExample/SimpleExample.h"
+
 #include "Core/Common/Common.h"
 #include "Core/Console.h"
 #include "Core/Context.h"
+
 #include <iostream>
 
 bool SimpleExample::Init()

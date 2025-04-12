@@ -1,5 +1,6 @@
-#include "GameFPSTracker.h"
-#include "SDL3/SDL_timer.h"
+#include "Core/ImGuiCore/GameFPSTracker.h"
+
+#include <SDL3/SDL_timer.h>
 
 ScrollingBuffer Tracker::s_UpdateFPSBuffer {};
 ScrollingBuffer Tracker::s_RealUpdateFPSBuffer {};

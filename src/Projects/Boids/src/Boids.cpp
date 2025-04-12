@@ -1,4 +1,5 @@
-#include "Boids.h"
+#include "Projects/Boids/src/Boids.h"
+
 #include "Core/Context.h"
 #include "Utils/Time.h"
 

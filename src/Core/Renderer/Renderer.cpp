@@ -1,8 +1,8 @@
-#include "Renderer.h"
+#include "Core/Renderer/Renderer.h"
 
 #include "Core/Context.h"
-#include "Projects/Common/BaseProject.h"
 #include "Core/Common/SDL_Exception.h"
+#include "Projects/Common/BaseProject.h"
 
 #include "Core/Common/pch.h"
 
