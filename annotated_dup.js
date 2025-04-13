@@ -9,7 +9,7 @@ var annotated_dup =
       [ "AppStateStruct", "struct_core_1_1_app_state_struct.html", "struct_core_1_1_app_state_struct" ],
       [ "ConsoleLogBuffer", "class_core_1_1_console_log_buffer.html", null ],
       [ "ConsoleLogMessage", "struct_core_1_1_console_log_message.html", "struct_core_1_1_console_log_message" ],
-      [ "Context", "struct_core_1_1_context.html", "struct_core_1_1_context" ],
+      [ "Context", "class_core_1_1_context.html", "class_core_1_1_context" ],
       [ "EventHandlerStruct", "class_core_1_1_event_handler_struct.html", "class_core_1_1_event_handler_struct" ],
       [ "RenderDataStruct", "struct_core_1_1_render_data_struct.html", "struct_core_1_1_render_data_struct" ]
     ] ],
@@ -21,6 +21,7 @@ var annotated_dup =
     [ "BoidsContainer", "class_boids_container.html", "class_boids_container" ],
     [ "BoidsDataSend", "struct_boids_data_send.html", "struct_boids_data_send" ],
     [ "BoidsEntity", "struct_boids_entity.html", "struct_boids_entity" ],
+    [ "Camera", "class_camera.html", "class_camera" ],
     [ "N_Body_Simulation", "class_n___body___simulation.html", "class_n___body___simulation" ],
     [ "ParticleContainer", "struct_particle_container.html", "struct_particle_container" ],
     [ "ParticleData", "struct_particle_data.html", "struct_particle_data" ],

@@ -9,6 +9,6 @@ var searchData=
   ['addupdatefpspointqueue_6',['AddUpdateFPSPointQueue',['../class_tracker.html#a5b3778a3b13efdba7c045c55ce6b67c4',1,'Tracker']]],
   ['alignment_7',['Alignment',['../class_boids_container.html#a3fb3317deaac43dd854cd5302d5f21ae',1,'BoidsContainer']]],
   ['ankush_20s_20garage_8',['Ankush&apos;s Garage',['../index.html',1,'']]],
-  ['appstate_9',['AppState',['../struct_core_1_1_context.html#a81cc3eea7cd19408955a2c89a5b7f8b7',1,'Core::Context']]],
+  ['appstate_9',['AppState',['../class_core_1_1_context.html#a81cc3eea7cd19408955a2c89a5b7f8b7',1,'Core::Context']]],
   ['appstatestruct_10',['AppStateStruct',['../struct_core_1_1_app_state_struct.html',1,'Core']]]
 ];

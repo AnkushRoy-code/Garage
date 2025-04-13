@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['velocity_0',['Velocity',['../struct_boids_entity.html#ae078ea61d962e0c2c719bab99903b76c',1,'BoidsEntity::Velocity'],['../struct_particle_data.html#aa75093b4169e705220ddd41ef8080a8b',1,'ParticleData::Velocity']]],
-  ['verticalscroll_1',['VerticalScroll',['../struct_core_1_1_app_state_struct.html#af87da59127e00351d3321b479de0dca5',1,'Core::AppStateStruct']]]
+  ['usescissorrect_0',['UseScissorRect',['../class_triangle.html#aad0ce5890cbb217908fbcc6da8c859d0',1,'Triangle']]],
+  ['usesmallviewport_1',['UseSmallViewport',['../class_triangle.html#a30985ffda957cc98833859393ceea40a',1,'Triangle']]],
+  ['usewireframemode_2',['UseWireframeMode',['../class_triangle.html#ad6c2a2ea86a564d2bbf5c2e14734289c',1,'Triangle']]]
 ];

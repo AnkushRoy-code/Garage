@@ -8,7 +8,7 @@ var searchData=
   ['registerproject_5',['RegisterProject',['../class_common_1_1_project_manager.html#a0ffb15110f16d6a3731e3805acf87ab5',1,'Common::ProjectManager']]],
   ['registerprojects_2ecpp_6',['RegisterProjects.cpp',['../_register_projects_8cpp.html',1,'']]],
   ['released_7',['RELEASED',['../namespace_core.html#a5d0e1ed351134590764ed1f6afbb1761af24329d27f3ccc150074739b72888980',1,'Core']]],
-  ['renderdata_8',['RenderData',['../struct_core_1_1_context.html#a6717c1ff1740bff49404beb6d750075b',1,'Core::Context']]],
+  ['renderdata_8',['RenderData',['../class_core_1_1_context.html#a6717c1ff1740bff49404beb6d750075b',1,'Core::Context']]],
   ['renderdatastruct_9',['RenderDataStruct',['../struct_core_1_1_render_data_struct.html',1,'Core']]],
   ['renderer_2ecpp_10',['Renderer.cpp',['../_renderer_8cpp.html',1,'']]],
   ['renderer_2eh_11',['Renderer.h',['../_renderer_8h.html',1,'']]],

@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['scrollingbuffer_0',['ScrollingBuffer',['../struct_scrolling_buffer.html#adc084c5aa5a209b231f9bbd5095107ca',1,'ScrollingBuffer']]],
-  ['sdl_5fappevent_1',['SDL_AppEvent',['../_main_2_main_8cpp.html#aa1a484aa7972b8018e724425066066b4',1,'Main.cpp']]],
-  ['sdl_5fappinit_2',['SDL_AppInit',['../_main_2_main_8cpp.html#a4985adfb048a4ae4e1c5296a4fc7affe',1,'Main.cpp']]],
-  ['sdl_5fappiterate_3',['SDL_AppIterate',['../_main_2_main_8cpp.html#a7038050dca8c80a0133d600fb008b6db',1,'Main.cpp']]],
-  ['sdl_5fappquit_4',['SDL_AppQuit',['../_main_2_main_8cpp.html#a31f80ce4f4926b0c6fe01a9644f3c837',1,'Main.cpp']]],
-  ['sdl_5fexception_5',['SDL_Exception',['../class_s_d_l___exception.html#a36a93f8167d0fb73517a28d968bc110a',1,'SDL_Exception']]]
+  ['registerallprojects_0',['RegisterAllProjects',['../class_common_1_1_project_manager.html#a9209d2ba665fe4740cef545364710491',1,'Common::ProjectManager']]],
+  ['registerpoints_1',['RegisterPoints',['../class_tracker.html#ab8a43815db206934c44dec2de4f124b3',1,'Tracker']]],
+  ['registerproject_2',['RegisterProject',['../class_common_1_1_project_manager.html#a0ffb15110f16d6a3731e3805acf87ab5',1,'Common::ProjectManager']]],
+  ['resizeprojecttexture_3',['ResizeProjectTexture',['../namespace_core_1_1_renderer.html#aa3aa2b71618568b14c5495215d94b5dd',1,'Core::Renderer']]]
 ];

@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['quit_0',['Quit',['../class_boids_container.html#a2f305e69722bd36bec1109d0b4ac7dd9',1,'BoidsContainer::Quit()'],['../class_boids.html#a1e4af2dd090dfaf7bdf27d595b1bc54f',1,'Boids::Quit()'],['../class_common_1_1_base_project.html#a1062f949e0880ddd59b38eb5adb9f78a',1,'Common::BaseProject::Quit()'],['../class_n___body___simulation.html#a6f7e8e1917d81c67f9ceb72531f83b91',1,'N_Body_Simulation::Quit()'],['../struct_particle_container.html#ae46bb934a781fc9c8c117682345f809a',1,'ParticleContainer::Quit()'],['../class_simple_example.html#af02b7f4595c57cf00b8e51e1bb18d87f',1,'SimpleExample::Quit()'],['../class_triangle.html#aa60c86332131f5c43ac858511bf98423',1,'Triangle::Quit()'],['../namespace_core_1_1_im_gui_core.html#ac8076911122e6180ff213ee9c82219eb',1,'Core::ImGuiCore::Quit()']]]
+  ['processevents_0',['ProcessEvents',['../class_camera.html#a002bef0cf9d809b323a58b4ebf4d6d4f',1,'Camera']]],
+  ['processkeyboard_1',['ProcessKeyboard',['../class_camera.html#aea27c761ae2f9cb48089f82c51576e52',1,'Camera']]],
+  ['processmousemovement_2',['ProcessMouseMovement',['../class_camera.html#a0ed075a50544478a2914c4f71d12fdef',1,'Camera']]],
+  ['processmousescroll_3',['ProcessMouseScroll',['../class_camera.html#a05d150f7dc98940d2dd62f686cc2efe3',1,'Camera']]]
 ];

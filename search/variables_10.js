@@ -1,11 +1,9 @@
 var searchData=
 [
-  ['s_5frealupdatefpsbuffer_0',['s_RealUpdateFPSBuffer',['../class_tracker.html#a2c23cd71aebecfe268906cd43dbed526',1,'Tracker']]],
-  ['s_5frenderfpsbuffer_1',['s_RenderFPSBuffer',['../class_tracker.html#a65c34fc21866b36e514b654a7d368144',1,'Tracker']]],
-  ['s_5frgb_2',['s_rgb',['../class_boids.html#a9a6e0b448a75e25d27e4728cb24bfb01',1,'Boids']]],
-  ['s_5fupdatefpsbuffer_3',['s_UpdateFPSBuffer',['../class_tracker.html#a963cf8993ea5a83298c7e30583366656',1,'Tracker']]],
-  ['samplecount_4',['SampleCount',['../struct_core_1_1_render_data_struct.html#a1a9e52eb9aaf08e3641d0c1e92bd01a8',1,'Core::RenderDataStruct']]],
-  ['scissorrect_5',['ScissorRect',['../class_triangle.html#aec999e5bad11420e266c355bd00ae224',1,'Triangle']]],
-  ['seperation_6',['Seperation',['../class_boids_container.html#a99c92eba28630e3f75813d2896ca3bf6',1,'BoidsContainer']]],
-  ['smallviewport_7',['SmallViewport',['../class_triangle.html#af476a83a8475a37a3eb5d01b97bfa26f',1,'Triangle']]]
+  ['r_0',['r',['../struct_boids_data_send.html#a4e0a95219a065931591ba10861d2e982',1,'BoidsDataSend']]],
+  ['radius_1',['Radius',['../struct_particle_data_send.html#ab96b281cd2f2edb17b400db5796001bf',1,'ParticleDataSend::Radius'],['../struct_particle_data.html#aab8838621ba926c448cfb38925055c0d',1,'ParticleData::Radius']]],
+  ['renderdata_2',['RenderData',['../class_core_1_1_context.html#a6717c1ff1740bff49404beb6d750075b',1,'Core::Context']]],
+  ['resolutionscale_3',['ResolutionScale',['../struct_core_1_1_render_data_struct.html#a3745a4aef5f751a9f54d039ed9c08f86',1,'Core::RenderDataStruct']]],
+  ['resolvetexture_4',['ResolveTexture',['../struct_core_1_1_render_data_struct.html#aa2dda0f53fb55710fc9ede796c515533',1,'Core::RenderDataStruct']]],
+  ['rotation_5',['Rotation',['../struct_boids_entity.html#afe2311d37912595d5377063c8a791cb7',1,'BoidsEntity::Rotation'],['../struct_boids_data_send.html#a740e9ad04755ef719691bdf4ee574bc3',1,'BoidsDataSend::Rotation'],['../struct_r_g_b___boid_data_send.html#a140737ef5c408b57c523c417ec275566',1,'RGB_BoidDataSend::Rotation']]]
 ];

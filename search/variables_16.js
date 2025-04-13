@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['y_0',['y',['../struct_boids_data_send.html#a19589dd589167759cbca5175abc66f19',1,'BoidsDataSend::y'],['../struct_r_g_b___boid_data_send.html#a49480b13d18b1f764ddd98ca5a3728a6',1,'RGB_BoidDataSend::y']]]
+  ['x_0',['x',['../struct_boids_data_send.html#acb47ce29cf77df312f18c3e8d373e9d1',1,'BoidsDataSend::x'],['../struct_r_g_b___boid_data_send.html#a7c45c8836fe7d85ce637608b62c099fe',1,'RGB_BoidDataSend::x']]]
 ];

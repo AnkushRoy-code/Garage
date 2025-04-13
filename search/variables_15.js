@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['x_0',['x',['../struct_boids_data_send.html#acb47ce29cf77df312f18c3e8d373e9d1',1,'BoidsDataSend::x'],['../struct_r_g_b___boid_data_send.html#a7c45c8836fe7d85ce637608b62c099fe',1,'RGB_BoidDataSend::x']]]
+  ['width_0',['Width',['../struct_core_1_1_render_data_struct.html#aac8eb6cddb62aeab51b51fa73a8a7284',1,'Core::RenderDataStruct']]],
+  ['window_1',['Window',['../struct_core_1_1_render_data_struct.html#a3c39994a15e1e6e53725c401f7bbd3ff',1,'Core::RenderDataStruct']]]
 ];
