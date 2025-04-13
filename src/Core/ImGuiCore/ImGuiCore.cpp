@@ -176,7 +176,7 @@ void Core::ImGuiCore::Update()
         if (ImGui::SliderInt("###yetanotherid", &x_Res, 25, 500, "%d%%"))
         {
             Core::Context::GetContext()->RenderData.ResolutionScale = x_Res / 100.0f;
-            Core::Renderer::ResizeProjectTexture(apst.ProjectWindowX, apst.ProjectWindowY);
+            Core::Renderer::ResizeProjectTexture(apst.ProjectWindowSize.x, apst.ProjectWindowSize.y);
         }
 
         ImGui::SeparatorText("Data");

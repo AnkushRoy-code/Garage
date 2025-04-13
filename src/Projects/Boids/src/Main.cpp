@@ -134,8 +134,8 @@ bool Boids::Draw()
 
     auto &rndt = Core::Context::GetContext()->RenderData;
 
-    const float w = Core::Context::GetContext()->AppState.ProjectWindowX;
-    const float h = Core::Context::GetContext()->AppState.ProjectWindowY;
+    const float w = Core::Context::GetContext()->AppState.ProjectWindowSize.x;
+    const float h = Core::Context::GetContext()->AppState.ProjectWindowSize.y;
 
     const glm::mat4x4 cameraMatrix = glm::ortho(0.0f, w, h, 0.0f, 0.0f, -1.0f);
 
@@ -262,16 +262,16 @@ bool Boids::Draw()
 
         const SDL_GPUBlitRegion blitSrc = {
             .texture = blitSourceTexture,
-            .w       = (Uint32)Core::Context::GetContext()->AppState.ProjectWindowX,
-            .h       = (Uint32)Core::Context::GetContext()->AppState.ProjectWindowY,
+            .w       = (Uint32)Core::Context::GetContext()->AppState.ProjectWindowSize.x,
+            .h       = (Uint32)Core::Context::GetContext()->AppState.ProjectWindowSize.y,
         };
 
         SDL_BindGPUFragmentStorageTextures(rndt.ProjectPass, 1, &rndt.ProjectTexture, 2);
 
         const SDL_GPUBlitRegion blitDst = {
             .texture = rndt.ProjectTexture,
-            .w       = (Uint32)Core::Context::GetContext()->AppState.ProjectWindowX,
-            .h       = (Uint32)Core::Context::GetContext()->AppState.ProjectWindowY,
+            .w       = (Uint32)Core::Context::GetContext()->AppState.ProjectWindowSize.x,
+            .h       = (Uint32)Core::Context::GetContext()->AppState.ProjectWindowSize.y,
         };
 
         const SDL_GPUBlitInfo blitInfo = {.source      = blitSrc,

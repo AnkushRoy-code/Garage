@@ -155,13 +155,13 @@ bool HandleWindowResize()
     ImVec2 view = ImGui::GetWindowSize();
     auto ctx    = Core::Context::GetContext();
 
-    if (view.x != ctx->AppState.ProjectWindowX || view.y != ctx->AppState.ProjectWindowY)
+    if (view.x != ctx->AppState.ProjectWindowSize.x || view.y != ctx->AppState.ProjectWindowSize.y)
     {
         ctx->EventHandler.UpdateKey(Core::RESIZE_PROJECT_WINDOW, true);
 
         if (view.x == 0 || view.y == 0) { return false; }  // window is minimised
-        ctx->AppState.ProjectWindowX = view.x;
-        ctx->AppState.ProjectWindowY = view.y;
+        ctx->AppState.ProjectWindowSize.x = view.x;
+        ctx->AppState.ProjectWindowSize.y = view.y;
 
         Core::Renderer::ResizeProjectTexture(view.x, view.y);
         return true;

@@ -101,15 +101,15 @@ SDL_AppResult Core::EventHandlerStruct::HandleEvents(SDL_Event *p_Event)
     if (p_Event->type == SDL_EVENT_MOUSE_MOTION)
     {
         UpdateKey(KEY::MOUSE_MOVE, true);
-        Context::GetContext()->AppState.mouseRel.x = p_Event->motion.xrel;
-        Context::GetContext()->AppState.mouseRel.y = p_Event->motion.yrel;
+        Context::GetContext()->AppState.MouseRel.x = p_Event->motion.xrel;
+        Context::GetContext()->AppState.MouseRel.y = p_Event->motion.yrel;
     }
 
     else if (p_Event->type == SDL_EVENT_MOUSE_WHEEL)
     {
         UpdateKey(KEY::MOUSE_ROLL, true);
-        Context::GetContext()->AppState.HorizontalScroll = p_Event->wheel.x;
-        Context::GetContext()->AppState.VerticalScroll   = p_Event->wheel.y;
+        Context::GetContext()->AppState.ScrollVal.x = p_Event->wheel.x;
+        Context::GetContext()->AppState.ScrollVal.y = p_Event->wheel.y;
     }
 
     else if (p_Event->type == SDL_EVENT_WINDOW_RESIZED)

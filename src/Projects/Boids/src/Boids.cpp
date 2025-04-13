@@ -11,8 +11,8 @@ BoidsContainer::BoidsContainer()
 void BoidsContainer::Init()
 {
     m_BoidsVec.clear();
-    const float w = Core::Context::GetContext()->AppState.ProjectWindowX;
-    const float h = Core::Context::GetContext()->AppState.ProjectWindowY;
+    const float w = Core::Context::GetContext()->AppState.ProjectWindowSize.x;
+    const float h = Core::Context::GetContext()->AppState.ProjectWindowSize.y;
 
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -38,8 +38,8 @@ void BoidsContainer::Quit()
 
 void BoidsContainer::Update()
 {
-    const float w = Core::Context::GetContext()->AppState.ProjectWindowX;
-    const float h = Core::Context::GetContext()->AppState.ProjectWindowY;
+    const float w = Core::Context::GetContext()->AppState.ProjectWindowSize.x;
+    const float h = Core::Context::GetContext()->AppState.ProjectWindowSize.y;
 
     // for now I am following this tutorial:
     // https://vanhunteradams.com/Pico/Animal_Movement/Boids-algorithm.html

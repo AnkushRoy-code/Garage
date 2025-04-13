@@ -8,8 +8,8 @@ const float ParticleContainer::G      = 500.0f;
 
 void ParticleContainer::Init()
 {
-    const float w = Core::Context::GetContext()->AppState.ProjectWindowX;
-    const float h = Core::Context::GetContext()->AppState.ProjectWindowY;
+    const float w = Core::Context::GetContext()->AppState.ProjectWindowSize.x;
+    const float h = Core::Context::GetContext()->AppState.ProjectWindowSize.y;
 
     const ParticleData d1p1 {
         .Position     = {w / 2 - 100.0f, h / 2},

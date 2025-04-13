@@ -123,14 +123,14 @@ bool Triangle::Draw()
 
     const SDL_GPUBlitRegion blitSrc = {
         .texture = blitSourceTexture,
-        .w       = (Uint32)Core::Context::GetContext()->AppState.ProjectWindowX,
-        .h       = (Uint32)Core::Context::GetContext()->AppState.ProjectWindowY,
+        .w       = (Uint32)Core::Context::GetContext()->AppState.ProjectWindowSize.x,
+        .h       = (Uint32)Core::Context::GetContext()->AppState.ProjectWindowSize.y,
     };
 
     const SDL_GPUBlitRegion blitDst = {
         .texture = rndt.ProjectTexture,
-        .w       = (Uint32)Core::Context::GetContext()->AppState.ProjectWindowX,
-        .h       = (Uint32)Core::Context::GetContext()->AppState.ProjectWindowY,
+        .w       = (Uint32)Core::Context::GetContext()->AppState.ProjectWindowSize.x,
+        .h       = (Uint32)Core::Context::GetContext()->AppState.ProjectWindowSize.y,
     };
 
     const SDL_GPUBlitInfo blitInfo = {.source      = blitSrc,

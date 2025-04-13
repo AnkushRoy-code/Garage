@@ -4,6 +4,7 @@
 #include "Common/pch.h"
 
 #include "Core/EventHandler.h"
+#include "glm/ext/vector_float2.hpp"
 #include <memory>
 
 namespace Core
@@ -25,17 +26,15 @@ struct RenderDataStruct
 
 struct AppStateStruct
 {
-    ImGuiID MainViewportId    = 0;
-    int ProjectIndex          = 0;
-    int ProjectToBeIndex      = 0;
-    float ProjectWindowX      = 0;
-    float ProjectWindowY      = 0;
-    float HorizontalScroll    = 0;
-    float VerticalScroll      = 0;
-    glm::vec2 mouseRel        = {0.0f, 0.0f};
-    bool projectWindowFocused = false;
-    bool projectWindowHovered = false;
-    bool HasToChangeIndex     = false;
+    glm::vec2 ProjectWindowSize = {0.0f, 0.0f};
+    glm::vec2 ScrollVal         = {0.0f, 0.0f};
+    glm::vec2 MouseRel          = {0.0f, 0.0f};
+    ImGuiID MainViewportId      = 0;
+    int ProjectIndex            = 0;
+    int ProjectToBeIndex        = 0;
+    bool projectWindowFocused   = false;
+    bool projectWindowHovered   = false;
+    bool HasToChangeIndex       = false;
 };
 
 class Context

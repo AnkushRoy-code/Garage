@@ -26,8 +26,8 @@ void Camera::ProcessEvents()
         ProcessKeyboard();
         if (Core::Context::GetContext()->EventHandler.GetEventHeld(Core::MOUSE_MOVE))
         {
-            ProcessMouseMovement(Core::Context::GetContext()->AppState.mouseRel.x,
-                                 Core::Context::GetContext()->AppState.mouseRel.y);
+            ProcessMouseMovement(Core::Context::GetContext()->AppState.MouseRel.x,
+                                 Core::Context::GetContext()->AppState.MouseRel.y);
         }
     }
 
@@ -49,11 +49,11 @@ void Camera::ProcessKeyboard()
 
     if (Core::Context::GetContext()->EventHandler.GetEventHeld(Core::MOUSE_ROLL))
     {
-        if (Core::Context::GetContext()->AppState.VerticalScroll > 0)
+        if (Core::Context::GetContext()->AppState.ScrollVal.y > 0)
         {
             m_Position += forward * velocity * 10.0f;
         }
-        else if (Core::Context::GetContext()->AppState.VerticalScroll < 0)
+        else if (Core::Context::GetContext()->AppState.ScrollVal.y < 0)
         {
             m_Position -= forward * velocity * 10.0f;
         }

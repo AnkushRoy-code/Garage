@@ -79,8 +79,8 @@ bool N_Body_Simulation::Init()
 
     m_Particles.Init();
 
-    const auto w = Core::Context::GetContext()->AppState.ProjectWindowX;
-    const auto h = Core::Context::GetContext()->AppState.ProjectWindowY;
+    const auto w = Core::Context::GetContext()->AppState.ProjectWindowSize.x;
+    const auto h = Core::Context::GetContext()->AppState.ProjectWindowSize.y;
 
     m_Camera = Camera(glm::vec3(w / 2.0f, h / 2.0f, 700.0f));
 
@@ -99,8 +99,8 @@ bool N_Body_Simulation::Draw()
     auto &rndt = Core::Context::GetContext()->RenderData;
     auto &apst = Core::Context::GetContext()->AppState;
 
-    const float w = apst.ProjectWindowX;
-    const float h = apst.ProjectWindowY;
+    const float w = apst.ProjectWindowSize.x;
+    const float h = apst.ProjectWindowSize.y;
 
     // const glm::mat4x4 projection = glm::ortho(0.0f, w, h, 0.0f, -1.0f, 1.0f);
     // const glm::mat4x4 finalProjection = projection * m_Camera.GetViewMatrix();
@@ -178,16 +178,16 @@ bool N_Body_Simulation::Draw()
 
         const SDL_GPUBlitRegion blitSrc = {
             .texture = blitSourceTexture,
-            .w       = (Uint32)apst.ProjectWindowX,
-            .h       = (Uint32)apst.ProjectWindowY,
+            .w       = (Uint32)apst.ProjectWindowSize.x,
+            .h       = (Uint32)apst.ProjectWindowSize.y,
         };
 
         SDL_BindGPUFragmentStorageTextures(rndt.ProjectPass, 1, &rndt.ProjectTexture, 2);
 
         const SDL_GPUBlitRegion blitDst = {
             .texture = rndt.ProjectTexture,
-            .w       = (Uint32)apst.ProjectWindowX,
-            .h       = (Uint32)apst.ProjectWindowY,
+            .w       = (Uint32)apst.ProjectWindowSize.x,
+            .h       = (Uint32)apst.ProjectWindowSize.y,
         };
 
         const SDL_GPUBlitInfo blitInfo = {.source      = blitSrc,
