@@ -8,30 +8,28 @@
 
 void Core::Renderer::Init()
 {
-    SDL_SetGPUSwapchainParameters(g_Context.RenderData.Device, g_Context.RenderData.Window,
-                                  SDL_GPU_SWAPCHAINCOMPOSITION_SDR, SDL_GPU_PRESENTMODE_MAILBOX);
+    auto &rndt = Core::Context::GetContext()->RenderData;
 
-    const auto format =
-        SDL_GetGPUSwapchainTextureFormat(g_Context.RenderData.Device, g_Context.RenderData.Window);
+    SDL_SetGPUSwapchainParameters(rndt.Device, rndt.Window, SDL_GPU_SWAPCHAINCOMPOSITION_SDR,
+                                  SDL_GPU_PRESENTMODE_MAILBOX);
+
+    const auto format = SDL_GetGPUSwapchainTextureFormat(rndt.Device, rndt.Window);
 
     // detect the number of sample_count. highst is 8 but we can work with 4
 #ifdef _WIN32  // could'nt get anti-aliasing working with Windows.
-    g_Context.RenderData.SampleCount = SDL_GPU_SAMPLECOUNT_1;
+    rndt.SampleCount = SDL_GPU_SAMPLECOUNT_1;
 #else
-    if (SDL_GPUTextureSupportsSampleCount(g_Context.RenderData.Device, format,
-                                          SDL_GPU_SAMPLECOUNT_4))
+    if (SDL_GPUTextureSupportsSampleCount(rndt.Device, format, SDL_GPU_SAMPLECOUNT_4))
     {
-        g_Context.RenderData.SampleCount = SDL_GPU_SAMPLECOUNT_4;
+        rndt.SampleCount = SDL_GPU_SAMPLECOUNT_4;
     }
-    else if (SDL_GPUTextureSupportsSampleCount(g_Context.RenderData.Device, format,
-                                               SDL_GPU_SAMPLECOUNT_2))
+    else if (SDL_GPUTextureSupportsSampleCount(rndt.Device, format, SDL_GPU_SAMPLECOUNT_2))
     {
-        g_Context.RenderData.SampleCount = SDL_GPU_SAMPLECOUNT_2;
+        rndt.SampleCount = SDL_GPU_SAMPLECOUNT_2;
     }
-    else if (SDL_GPUTextureSupportsSampleCount(g_Context.RenderData.Device, format,
-                                               SDL_GPU_SAMPLECOUNT_1))
+    else if (SDL_GPUTextureSupportsSampleCount(rndt.Device, format, SDL_GPU_SAMPLECOUNT_1))
     {
-        g_Context.RenderData.SampleCount = SDL_GPU_SAMPLECOUNT_1;
+        rndt.SampleCount = SDL_GPU_SAMPLECOUNT_1;
     }
 #endif
 
@@ -43,16 +41,12 @@ void Core::Renderer::Init()
         .height               = 480,
         .layer_count_or_depth = 1,
         .num_levels           = 1,
-        .sample_count         = g_Context.RenderData.SampleCount,
+        .sample_count         = rndt.SampleCount,
     };
 
-    g_Context.RenderData.ProjectTexture =
-        SDL_CreateGPUTexture(g_Context.RenderData.Device, &gpuTextureCreateInfo);
+    rndt.ProjectTexture = SDL_CreateGPUTexture(rndt.Device, &gpuTextureCreateInfo);
 
-    if (!g_Context.RenderData.ProjectTexture)
-    {
-        throw SDL_Exception("Unable to create GPU Texture");
-    }
+    if (!rndt.ProjectTexture) { throw SDL_Exception("Unable to create GPU Texture"); }
 
     const SDL_GPUTextureCreateInfo resolveTextureInfo {.type   = SDL_GPU_TEXTURETYPE_2D,
                                                        .format = format,
@@ -63,13 +57,9 @@ void Core::Renderer::Init()
                                                        .layer_count_or_depth = 1,
                                                        .num_levels           = 1};
 
-    g_Context.RenderData.ResolveTexture =
-        SDL_CreateGPUTexture(g_Context.RenderData.Device, &resolveTextureInfo);
+    rndt.ResolveTexture = SDL_CreateGPUTexture(rndt.Device, &resolveTextureInfo);
 
-    if (!g_Context.RenderData.ResolveTexture)
-    {
-        throw SDL_Exception("Unable to create resolve Texture");
-    }
+    if (!rndt.ResolveTexture) { throw SDL_Exception("Unable to create resolve Texture"); }
 
     const SDL_GPUSamplerCreateInfo samplerInfo {
         .min_filter     = SDL_GPU_FILTER_NEAREST,
@@ -80,46 +70,44 @@ void Core::Renderer::Init()
         .address_mode_w = SDL_GPU_SAMPLERADDRESSMODE_CLAMP_TO_EDGE,
     };
 
-    g_Context.RenderData.ProjectSampler =
-        SDL_CreateGPUSampler(g_Context.RenderData.Device, &samplerInfo);
+    rndt.ProjectSampler = SDL_CreateGPUSampler(rndt.Device, &samplerInfo);
 }
 
 void Core::Renderer::ResizeProjectTexture(int p_Width, int p_Height)
 {
-    SDL_ReleaseGPUTexture(g_Context.RenderData.Device, g_Context.RenderData.ProjectTexture);
-    SDL_ReleaseGPUTexture(g_Context.RenderData.Device, g_Context.RenderData.ResolveTexture);
+    auto &rndt = Core::Context::GetContext()->RenderData;
 
-    const auto format =
-        SDL_GetGPUSwapchainTextureFormat(g_Context.RenderData.Device, g_Context.RenderData.Window);
+    SDL_ReleaseGPUTexture(rndt.Device, rndt.ProjectTexture);
+    SDL_ReleaseGPUTexture(rndt.Device, rndt.ResolveTexture);
+
+    const auto format = SDL_GetGPUSwapchainTextureFormat(rndt.Device, rndt.Window);
 
     const SDL_GPUTextureCreateInfo gpuTextureCreateInfo = {
         .type                 = SDL_GPU_TEXTURETYPE_2D,
         .format               = format,
         .usage                = SDL_GPU_TEXTUREUSAGE_SAMPLER | SDL_GPU_TEXTUREUSAGE_COLOR_TARGET,
-        .width                = (Uint32)(p_Width * g_Context.RenderData.ResolutionScale),
-        .height               = (Uint32)(p_Height * g_Context.RenderData.ResolutionScale),
+        .width                = (Uint32)(p_Width * rndt.ResolutionScale),
+        .height               = (Uint32)(p_Height * rndt.ResolutionScale),
         .layer_count_or_depth = 1,
         .num_levels           = 1,
-        .sample_count         = g_Context.RenderData.SampleCount,
+        .sample_count         = rndt.SampleCount,
     };
 
-    g_Context.RenderData.ProjectTexture =
-        SDL_CreateGPUTexture(g_Context.RenderData.Device, &gpuTextureCreateInfo);
+    rndt.ProjectTexture = SDL_CreateGPUTexture(rndt.Device, &gpuTextureCreateInfo);
 
     const SDL_GPUTextureCreateInfo resolveTextureInfo = {
         .type                 = SDL_GPU_TEXTURETYPE_2D,
         .format               = format,
         .usage                = SDL_GPU_TEXTUREUSAGE_SAMPLER | SDL_GPU_TEXTUREUSAGE_COLOR_TARGET,
-        .width                = (Uint32)(p_Width * g_Context.RenderData.ResolutionScale),
-        .height               = (Uint32)(p_Height * g_Context.RenderData.ResolutionScale),
+        .width                = (Uint32)(p_Width * rndt.ResolutionScale),
+        .height               = (Uint32)(p_Height * rndt.ResolutionScale),
         .layer_count_or_depth = 1,
         .num_levels           = 1};
 
-    g_Context.RenderData.ResolveTexture =
-        SDL_CreateGPUTexture(g_Context.RenderData.Device, &resolveTextureInfo);
+    rndt.ResolveTexture = SDL_CreateGPUTexture(rndt.Device, &resolveTextureInfo);
 }
 
 void Core::Renderer::DrawProjectToTexture()
 {
-    g_Projects[g_Context.AppState.ProjectIndex]->Draw();
+    g_Projects[Core::Context::GetContext()->AppState.ProjectIndex]->Draw();
 }

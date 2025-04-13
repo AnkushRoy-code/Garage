@@ -4,24 +4,32 @@
 #include "Core/Renderer/Renderer.h"
 #include "Core/Common/SDL_Exception.h"
 #include "Utils/Time.h"
-
-Core::Context g_Context;
+#include <memory>
 
 namespace Core
 {
+
+std::shared_ptr<Context> Context::instance = std::make_shared<Context>();
+
+std::shared_ptr<Context> Context::GetContext()
+{
+    return instance;
+}
+
+Context::Context() = default;
 
 void Context::init()
 {
     if (!SDL_Init(SDL_INIT_VIDEO)) { throw SDL_Exception("Couldn't initialize SDL"); }
 
     RenderData.Device = SDL_CreateGPUDevice(SDL_GPU_SHADERFORMAT_SPIRV | SDL_GPU_SHADERFORMAT_DXIL
-                                      | SDL_GPU_SHADERFORMAT_MSL,
-                                  false, nullptr);
+                                                | SDL_GPU_SHADERFORMAT_MSL,
+                                            false, nullptr);
 
     if (!RenderData.Device) { throw SDL_Exception("Unable to create SDL_GPUDevice"); }
 
     RenderData.Window = SDL_CreateWindow("Ankush's Garage", RenderData.Width, RenderData.Height,
-                               SDL_WINDOW_HIGH_PIXEL_DENSITY | SDL_WINDOW_RESIZABLE);
+                                         SDL_WINDOW_HIGH_PIXEL_DENSITY | SDL_WINDOW_RESIZABLE);
 
     if (!RenderData.Window) { throw SDL_Exception("Unable to create SDL_Window"); }
 

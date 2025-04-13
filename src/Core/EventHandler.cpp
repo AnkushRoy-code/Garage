@@ -60,9 +60,9 @@ SDL_AppResult Core::EventHandlerStruct::HandleEvents(SDL_Event *p_Event)
 {
     if (p_Event->type == SDL_EVENT_QUIT)
     {
-        if (g_Context.AppState.ProjectIndex != -1)
+        if (Core::Context::GetContext()->AppState.ProjectIndex != -1)
         {
-            g_Projects[g_Context.AppState.ProjectIndex]->Quit();
+            g_Projects[Core::Context::GetContext()->AppState.ProjectIndex]->Quit();
         }
         return SDL_APP_SUCCESS;
     }
@@ -100,8 +100,8 @@ SDL_AppResult Core::EventHandlerStruct::HandleEvents(SDL_Event *p_Event)
     else if (p_Event->type == SDL_EVENT_MOUSE_WHEEL)
     {
         UpdateKey(KEY::MOUSE_ROLL, true);
-        g_Context.AppState.HorizontalScroll = p_Event->wheel.x;
-        g_Context.AppState.VerticalScroll   = p_Event->wheel.y;
+        Core::Context::GetContext()->AppState.HorizontalScroll = p_Event->wheel.x;
+        Core::Context::GetContext()->AppState.VerticalScroll   = p_Event->wheel.y;
     }
 
     else if (p_Event->type == SDL_EVENT_WINDOW_RESIZED)
@@ -110,10 +110,11 @@ SDL_AppResult Core::EventHandlerStruct::HandleEvents(SDL_Event *p_Event)
 
         ImGuiIO &io = ImGui::GetIO();
         (void)io;
-        SDL_GetWindowSize(g_Context.RenderData.Window, &g_Context.RenderData.Width,
-                          &g_Context.RenderData.Height);
-        io.DisplaySize =
-            ImVec2((float)g_Context.RenderData.Width, (float)g_Context.RenderData.Height);
+
+        auto &rndt = Context::GetContext()->RenderData;
+
+        SDL_GetWindowSize(rndt.Window, &rndt.Width, &rndt.Height);
+        io.DisplaySize = ImVec2((float)rndt.Width, (float)rndt.Height);
     }
 
     return SDL_APP_CONTINUE;

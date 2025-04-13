@@ -4,6 +4,7 @@
 #include "Common/pch.h"
 
 #include "Core/EventHandler.h"
+#include <memory>
 
 namespace Core
 {
@@ -24,28 +25,42 @@ struct RenderDataStruct
 
 struct AppStateStruct
 {
-    ImGuiID MainViewportId = 0;
-    float ProjectWindowX   = 0;
-    float ProjectWindowY   = 0;
-    int ProjectIndex       = 0;
-    int ProjectToBeIndex   = 0;
-    float HorizontalScroll = 0;
-    float VerticalScroll   = 0;
-    bool HasToChangeIndex  = false;
+    ImGuiID MainViewportId    = 0;
+    int ProjectIndex          = 0;
+    int ProjectToBeIndex      = 0;
+    float ProjectWindowX      = 0;
+    float ProjectWindowY      = 0;
+    float HorizontalScroll    = 0;
+    float VerticalScroll      = 0;
+    glm::vec2 mouseRel        = {0.0f, 0.0f};
+    bool projectWindowFocused = false;
+    bool projectWindowHovered = false;
+    bool HasToChangeIndex     = false;
 };
 
-struct Context
+class Context
 {
-    Context() = default;
+  public:
+    Context();
     ~Context();
     void init();
+
+    Context(const Context &)            = delete;
+    Context &operator=(const Context &) = delete;
+    Context(Context &&)                 = delete;
+    Context &operator=(Context &&)      = delete;
+
+    static std::shared_ptr<Context> GetContext();
 
     RenderDataStruct RenderData {};
     AppStateStruct AppState {};
     EventHandlerStruct EventHandler {};
+
+  private:
+    // no need of lazy initialisation
+    static std::shared_ptr<Context> instance;
 };
 
 }  // namespace Core
 
-extern Core::Context g_Context;
 #endif  // INCLUDE_CORE_CONTEXT_H_

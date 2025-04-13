@@ -28,7 +28,7 @@ void Core::ImGuiCore::Init()
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
     int w, h;
-    SDL_GetWindowSize(g_Context.RenderData.Window, &w, &h);
+    SDL_GetWindowSize(Core::Context::GetContext()->RenderData.Window, &w, &h);
     io.DisplaySize = ImVec2((float)w, (float)h);
 
     ImGui::StyleColorsDark();
@@ -78,12 +78,12 @@ void Core::ImGuiCore::Init()
     colors[ImGuiCol_TabSelectedOverline]  = ImVec4(0.29f, 0.30f, 0.41f, 0.80f);
     colors[ImGuiCol_TabDimmedSelected]    = ImVec4(0.42f, 0.44f, 0.53f, 0.62f);
 
-    ImGui_ImplSDL3_InitForSDLGPU(g_Context.RenderData.Window);
+    auto &rndt = Core::Context::GetContext()->RenderData;
+    ImGui_ImplSDL3_InitForSDLGPU(rndt.Window);
     ImGui_ImplSDLGPU3_InitInfo initInfo {};
-    initInfo.Device = g_Context.RenderData.Device;
-    initInfo.ColorTargetFormat =
-        SDL_GetGPUSwapchainTextureFormat(g_Context.RenderData.Device, g_Context.RenderData.Window);
-    initInfo.MSAASamples = SDL_GPU_SAMPLECOUNT_1;
+    initInfo.Device            = rndt.Device;
+    initInfo.ColorTargetFormat = SDL_GetGPUSwapchainTextureFormat(rndt.Device, rndt.Window);
+    initInfo.MSAASamples       = SDL_GPU_SAMPLECOUNT_1;
     ImGui_ImplSDLGPU3_Init(&initInfo);
 }
 
@@ -101,39 +101,37 @@ void Core::ImGuiCore::Update()
     ImGui_ImplSDLGPU3_NewFrame();
     ImGui::NewFrame();
 
-    g_Context.AppState.MainViewportId = ImGui::DockSpaceOverViewport();
+    auto &apst = Core::Context::GetContext()->AppState;
+
+    apst.MainViewportId = ImGui::DockSpaceOverViewport();
 
     static bool x_ImguiIniExists = std::filesystem::exists("imgui.ini");
     static bool x_FirstTime      = true;
-    static const auto k_vpID     = g_Context.AppState.MainViewportId;
+    static const auto k_vpID     = apst.MainViewportId;
 
     if (x_FirstTime && !x_ImguiIniExists)
     {
         x_FirstTime = false;
 
-        ImGui::DockBuilderRemoveNode(g_Context.AppState.MainViewportId);
-        ImGui::DockBuilderAddNode(g_Context.AppState.MainViewportId);
-        ImGui::DockBuilderSetNodeSize(g_Context.AppState.MainViewportId,
-                                      ImGui::GetMainViewport()->Size);
+        ImGui::DockBuilderRemoveNode(apst.MainViewportId);
+        ImGui::DockBuilderAddNode(apst.MainViewportId);
+        ImGui::DockBuilderSetNodeSize(apst.MainViewportId, ImGui::GetMainViewport()->Size);
 
-        auto dockIdRight =
-            ImGui::DockBuilderSplitNode(g_Context.AppState.MainViewportId, ImGuiDir_Right, 0.25,
-                                        nullptr, &g_Context.AppState.MainViewportId);
+        auto dockIdRight = ImGui::DockBuilderSplitNode(apst.MainViewportId, ImGuiDir_Right, 0.25,
+                                                       nullptr, &apst.MainViewportId);
 
-        auto dockIdBottom =
-            ImGui::DockBuilderSplitNode(g_Context.AppState.MainViewportId, ImGuiDir_Down, 0.3,
-                                        nullptr, &g_Context.AppState.MainViewportId);
+        auto dockIdBottom = ImGui::DockBuilderSplitNode(apst.MainViewportId, ImGuiDir_Down, 0.3,
+                                                        nullptr, &apst.MainViewportId);
 
-        auto dockIdLeft =
-            ImGui::DockBuilderSplitNode(g_Context.AppState.MainViewportId, ImGuiDir_Left, 0.25,
-                                        nullptr, &g_Context.AppState.MainViewportId);
+        auto dockIdLeft = ImGui::DockBuilderSplitNode(apst.MainViewportId, ImGuiDir_Left, 0.25,
+                                                      nullptr, &apst.MainViewportId);
 
         ImGui::DockBuilderDockWindow("Ankush's Garage - ToolBox", dockIdLeft);
         ImGui::DockBuilderDockWindow("Console", dockIdBottom);
         ImGui::DockBuilderDockWindow("###ProjectUI", dockIdRight);
-        ImGui::DockBuilderDockWindow("###TexTitle", g_Context.AppState.MainViewportId);
+        ImGui::DockBuilderDockWindow("###TexTitle", apst.MainViewportId);
 
-        ImGui::DockBuilderFinish(g_Context.AppState.MainViewportId);
+        ImGui::DockBuilderFinish(apst.MainViewportId);
     }
 
     if (ImGui::Begin("Ankush's Garage - ToolBox"))
@@ -153,17 +151,17 @@ void Core::ImGuiCore::Update()
         ImGui::SeparatorText("Projects");
 
         // Project selector
-        if (ImGui::BeginCombo("Project", x_Names[g_Context.AppState.ProjectIndex]))
+        if (ImGui::BeginCombo("Project", x_Names[apst.ProjectIndex]))
         {
             for (int i = 0; i < g_Projects.size(); i++)
             {
-                const bool isSelected = (g_Context.AppState.ProjectIndex == i);
+                const bool isSelected = (apst.ProjectIndex == i);
                 if (ImGui::Selectable(x_Names[i], isSelected))
                 {
-                    if (i != g_Context.AppState.ProjectIndex)
+                    if (i != apst.ProjectIndex)
                     {
-                        g_Context.AppState.HasToChangeIndex = true;
-                        g_Context.AppState.ProjectToBeIndex = i;
+                        apst.HasToChangeIndex = true;
+                        apst.ProjectToBeIndex = i;
                     }
                 }
                 if (isSelected) ImGui::SetItemDefaultFocus();
@@ -177,9 +175,8 @@ void Core::ImGuiCore::Update()
         ImGui::Text("Scale Resolution");
         if (ImGui::SliderInt("###yetanotherid", &x_Res, 25, 500, "%d%%"))
         {
-            g_Context.RenderData.ResolutionScale = x_Res / 100.0f;
-            Core::Renderer::ResizeProjectTexture(g_Context.AppState.ProjectWindowX,
-                                                 g_Context.AppState.ProjectWindowY);
+            Core::Context::GetContext()->RenderData.ResolutionScale = x_Res / 100.0f;
+            Core::Renderer::ResizeProjectTexture(apst.ProjectWindowX, apst.ProjectWindowY);
         }
 
         ImGui::SeparatorText("Data");
@@ -261,7 +258,7 @@ void Core::ImGuiCore::Update()
     if (Common::BaseProject::hasUI)
     {
         if (auto imguiProject =
-                dynamic_cast<Common::ImGuiUI *>(g_Projects[g_Context.AppState.ProjectIndex].get()))
+                dynamic_cast<Common::ImGuiUI *>(g_Projects[apst.ProjectIndex].get()))
         {
             imguiProject->DrawUI();
         }
@@ -273,11 +270,13 @@ void Core::ImGuiCore::Draw()
     ImGui::Render();
     ImDrawData *drawData = ImGui::GetDrawData();
 
-    SDL_GPUCommandBuffer *commandBuffer = SDL_AcquireGPUCommandBuffer(g_Context.RenderData.Device);
+    SDL_GPUCommandBuffer *commandBuffer =
+        SDL_AcquireGPUCommandBuffer(Core::Context::GetContext()->RenderData.Device);
     if (!commandBuffer) { throw SDL_Exception("AcquireGPUCommandBuffer failed!"); }
 
     SDL_GPUTexture *swapchainTexture;
-    if (!SDL_AcquireGPUSwapchainTexture(commandBuffer, g_Context.RenderData.Window,
+    if (!SDL_AcquireGPUSwapchainTexture(commandBuffer,
+                                        Core::Context::GetContext()->RenderData.Window,
                                         &swapchainTexture, nullptr, nullptr))
     {
         throw SDL_Exception("WaitAndAcquireGPUSwapchainTexture failed!");

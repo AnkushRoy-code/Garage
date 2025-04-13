@@ -14,7 +14,8 @@ void N_Body_Simulation::InitialiseTransferBuffersAndParticleContainer()
         .size  = (Uint32)(ParticleContainer::count * sizeof(ParticleDataSend)),
     };
 
-    m_TransferBuffer = SDL_CreateGPUTransferBuffer(g_Context.RenderData.Device, &tBufCreateInfo);
+    auto &rndt        = Core::Context::GetContext()->RenderData;
+    m_TransferBuffer = SDL_CreateGPUTransferBuffer(rndt.Device, &tBufCreateInfo);
 
     const SDL_GPUBufferCreateInfo newBufCreateInfo {
         .usage = SDL_GPU_BUFFERUSAGE_GRAPHICS_STORAGE_READ,
@@ -22,18 +23,17 @@ void N_Body_Simulation::InitialiseTransferBuffersAndParticleContainer()
 
     };
 
-    m_DataBuffer = SDL_CreateGPUBuffer(g_Context.RenderData.Device, &newBufCreateInfo);
+    m_DataBuffer = SDL_CreateGPUBuffer(rndt.Device, &newBufCreateInfo);
 }
 
 bool N_Body_Simulation::Init()
 {
     hasUI = true;
 
+    auto &rndt = Core::Context::GetContext()->RenderData;
     // pipeline creation
-    SDL_GPUShader *vertShader =
-        Common::LoadShader(g_Context.RenderData.Device, "DrawCircle.vert", 0, 1, 1, 0);
-    SDL_GPUShader *fragShader =
-        Common::LoadShader(g_Context.RenderData.Device, "DrawCircle.frag", 0, 0, 0, 0);
+    SDL_GPUShader *vertShader = Common::LoadShader(rndt.Device, "DrawCircle.vert", 0, 1, 1, 0);
+    SDL_GPUShader *fragShader = Common::LoadShader(rndt.Device, "DrawCircle.frag", 0, 0, 0, 0);
 
     const SDL_GPUColorTargetBlendState blendState {
         .src_color_blendfactor = SDL_GPU_BLENDFACTOR_SRC_ALPHA,
@@ -46,8 +46,7 @@ bool N_Body_Simulation::Init()
     };
 
     const SDL_GPUColorTargetDescription colorDesc {
-        .format      = SDL_GetGPUSwapchainTextureFormat(g_Context.RenderData.Device,
-                                                        g_Context.RenderData.Window),
+        .format      = SDL_GetGPUSwapchainTextureFormat(rndt.Device, rndt.Window),
         .blend_state = blendState,
     };
 
@@ -57,7 +56,7 @@ bool N_Body_Simulation::Init()
     };
 
     const SDL_GPUMultisampleState mState = {
-        .sample_count = g_Context.RenderData.SampleCount,  // MSAA or not
+        .sample_count = rndt.SampleCount,  // MSAA or not
     };
 
     const SDL_GPUGraphicsPipelineCreateInfo createInfo {
@@ -68,10 +67,10 @@ bool N_Body_Simulation::Init()
         .target_info       = targetInfo,
     };
 
-    m_RenderPipeline = SDL_CreateGPUGraphicsPipeline(g_Context.RenderData.Device, &createInfo);
+    m_RenderPipeline = SDL_CreateGPUGraphicsPipeline(rndt.Device, &createInfo);
 
-    SDL_ReleaseGPUShader(g_Context.RenderData.Device, vertShader);
-    SDL_ReleaseGPUShader(g_Context.RenderData.Device, fragShader);
+    SDL_ReleaseGPUShader(rndt.Device, vertShader);
+    SDL_ReleaseGPUShader(rndt.Device, fragShader);
 
     InitialiseTransferBuffersAndParticleContainer();
 
@@ -87,22 +86,25 @@ bool N_Body_Simulation::Update()
 
 bool N_Body_Simulation::Draw()
 {
-    const float w = g_Context.AppState.ProjectWindowX;
-    const float h = g_Context.AppState.ProjectWindowY;
+    auto &rndt = Core::Context::GetContext()->RenderData;
+    auto &apst = Core::Context::GetContext()->AppState;
+
+    const float w = apst.ProjectWindowX;
+    const float h = apst.ProjectWindowY;
 
     const glm::mat4x4 projection = glm::ortho(0.0f, w * 2, h * 2, 0.0f, 0.0f, -1.0f);
     // const glm::mat4x4 finalProjection = projection;
     const glm::mat4x4 offset = glm::translate(glm::mat4(1.0f), glm::vec3(w / 2, h / 2, 0.0f));
     const glm::mat4x4 finalProjection = projection * offset;
 
-    SDL_GPUCommandBuffer *cmdBuf = SDL_AcquireGPUCommandBuffer(g_Context.RenderData.Device);
+    SDL_GPUCommandBuffer *cmdBuf = SDL_AcquireGPUCommandBuffer(rndt.Device);
     if (cmdBuf == nullptr) { std::cerr << "unable to aquire command buffer\n"; }
 
-    if (g_Context.RenderData.ProjectTexture)
+    if (rndt.ProjectTexture)
     {
         // upload the data to transfer buffer
         auto *dataPtr = static_cast<ParticleDataSend *>(
-            SDL_MapGPUTransferBuffer(g_Context.RenderData.Device, m_TransferBuffer, true));
+            SDL_MapGPUTransferBuffer(rndt.Device, m_TransferBuffer, true));
 
         for (int i = 0; i < ParticleContainer::count; i++)
         {
@@ -112,7 +114,7 @@ bool N_Body_Simulation::Draw()
             dataPtr[i]._padding = 0.0f;
         }
 
-        SDL_UnmapGPUTransferBuffer(g_Context.RenderData.Device, m_TransferBuffer);
+        SDL_UnmapGPUTransferBuffer(rndt.Device, m_TransferBuffer);
 
         // upload the data to gpu from transfer buffers
         const SDL_GPUTransferBufferLocation transferBufferLocation {
@@ -130,49 +132,45 @@ bool N_Body_Simulation::Draw()
         SDL_UploadToGPUBuffer(copyPass, &transferBufferLocation, &bufferRegion, true);
         SDL_EndGPUCopyPass(copyPass);
 
-        SDL_GPUColorTargetInfo tinfo {.texture     = g_Context.RenderData.ProjectTexture,
+        SDL_GPUColorTargetInfo tinfo {.texture     = rndt.ProjectTexture,
                                       .clear_color = {0.094f, 0.094f, 0.145f, 1.00f},
                                       .load_op     = SDL_GPU_LOADOP_CLEAR,
                                       .store_op    = SDL_GPU_STOREOP_STORE,
                                       .cycle       = false};
 
-        if (g_Context.RenderData.SampleCount == SDL_GPU_SAMPLECOUNT_1)
-        {
-            tinfo.store_op = SDL_GPU_STOREOP_STORE;
-        }
+        if (rndt.SampleCount == SDL_GPU_SAMPLECOUNT_1) { tinfo.store_op = SDL_GPU_STOREOP_STORE; }
         else
         {
             tinfo.store_op        = SDL_GPU_STOREOP_RESOLVE;
-            tinfo.resolve_texture = g_Context.RenderData.ResolveTexture;
+            tinfo.resolve_texture = rndt.ResolveTexture;
         }
 
-        g_Context.RenderData.ProjectPass = SDL_BeginGPURenderPass(cmdBuf, &tinfo, 1, nullptr);
+        rndt.ProjectPass = SDL_BeginGPURenderPass(cmdBuf, &tinfo, 1, nullptr);
 
-        SDL_BindGPUGraphicsPipeline(g_Context.RenderData.ProjectPass, m_RenderPipeline);
-        SDL_BindGPUVertexStorageBuffers(g_Context.RenderData.ProjectPass, 0, &m_DataBuffer, 1);
+        SDL_BindGPUGraphicsPipeline(rndt.ProjectPass, m_RenderPipeline);
+        SDL_BindGPUVertexStorageBuffers(rndt.ProjectPass, 0, &m_DataBuffer, 1);
 
         SDL_PushGPUVertexUniformData(cmdBuf, 0, &finalProjection, sizeof(glm::mat4x4));
 
-        SDL_DrawGPUPrimitives(g_Context.RenderData.ProjectPass, 4, ParticleContainer::count, 0, 0);
+        SDL_DrawGPUPrimitives(rndt.ProjectPass, 4, ParticleContainer::count, 0, 0);
 
-        SDL_EndGPURenderPass(g_Context.RenderData.ProjectPass);
+        SDL_EndGPURenderPass(rndt.ProjectPass);
 
         SDL_GPUTexture *blitSourceTexture =
             (tinfo.resolve_texture != nullptr) ? tinfo.resolve_texture : tinfo.texture;
 
         const SDL_GPUBlitRegion blitSrc = {
             .texture = blitSourceTexture,
-            .w       = (Uint32)g_Context.AppState.ProjectWindowX,
-            .h       = (Uint32)g_Context.AppState.ProjectWindowY,
+            .w       = (Uint32)apst.ProjectWindowX,
+            .h       = (Uint32)apst.ProjectWindowY,
         };
 
-        SDL_BindGPUFragmentStorageTextures(g_Context.RenderData.ProjectPass, 1,
-                                           &g_Context.RenderData.ProjectTexture, 2);
+        SDL_BindGPUFragmentStorageTextures(rndt.ProjectPass, 1, &rndt.ProjectTexture, 2);
 
         const SDL_GPUBlitRegion blitDst = {
-            .texture = g_Context.RenderData.ProjectTexture,
-            .w       = (Uint32)g_Context.AppState.ProjectWindowX,
-            .h       = (Uint32)g_Context.AppState.ProjectWindowY,
+            .texture = rndt.ProjectTexture,
+            .w       = (Uint32)apst.ProjectWindowX,
+            .h       = (Uint32)apst.ProjectWindowY,
         };
 
         const SDL_GPUBlitInfo blitInfo = {.source      = blitSrc,
@@ -224,18 +222,19 @@ bool N_Body_Simulation::DrawUI()
 
         if (ImGui::Button("Restart Simulation")) { m_Particles.InitData(index); }
 
-        using CK    = Core::KEY;
-        bool right  = g_Context.EventHandler.GetEventHeld(CK::MOUSE_RIGHT_CLICK);
-        bool left   = g_Context.EventHandler.GetEventHeld(CK::MOUSE_LEFT_CLICK);
-        bool middle = g_Context.EventHandler.GetEventHeld(CK::MOUSE_MIDDLE_CLICK);
-        bool scroll = g_Context.EventHandler.GetEventHeld(CK::MOUSE_ROLL);
+        using CK   = Core::KEY;
+        bool right = Core::Context::GetContext()->EventHandler.GetEventHeld(CK::MOUSE_RIGHT_CLICK);
+        bool left  = Core::Context::GetContext()->EventHandler.GetEventHeld(CK::MOUSE_LEFT_CLICK);
+        bool middle =
+            Core::Context::GetContext()->EventHandler.GetEventHeld(CK::MOUSE_MIDDLE_CLICK);
+        bool scroll = Core::Context::GetContext()->EventHandler.GetEventHeld(CK::MOUSE_ROLL);
 
         static glm::vec2 scrollValue = {0.0f, 0.0f};
 
         if (scroll)
         {
-            scrollValue.x += g_Context.AppState.HorizontalScroll;
-            scrollValue.y += g_Context.AppState.VerticalScroll;
+            scrollValue.x += Core::Context::GetContext()->AppState.HorizontalScroll;
+            scrollValue.y += Core::Context::GetContext()->AppState.VerticalScroll;
         }
 
         ImGui::Text("Right Click: %s", (right ? "True" : "False"));
