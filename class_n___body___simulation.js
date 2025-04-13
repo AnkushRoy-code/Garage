@@ -7,6 +7,7 @@ var class_n___body___simulation =
     [ "InitialiseTransferBuffersAndParticleContainer", "class_n___body___simulation.html#a7a1661f4326bca0a6c555af49c5c8a06", null ],
     [ "Quit", "class_n___body___simulation.html#a6f7e8e1917d81c67f9ceb72531f83b91", null ],
     [ "Update", "class_n___body___simulation.html#a6079408cd536650ed265aa6829c35b46", null ],
+    [ "m_Camera", "class_n___body___simulation.html#a80f8451f574012ff4726f196d8fa8a52", null ],
     [ "m_DataBuffer", "class_n___body___simulation.html#a85428ea049fef9616591f982b4877263", null ],
     [ "m_Particles", "class_n___body___simulation.html#a4444a0e20d3eee0dab8907099d8e9704", null ],
     [ "m_RenderPipeline", "class_n___body___simulation.html#a9099cdc83d0743131dc348429442f815", null ],

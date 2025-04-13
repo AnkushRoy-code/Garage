@@ -23,6 +23,8 @@ var namespace_core =
       [ "MOUSE_MIDDLE_CLICK", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17a0af1c5de2ee57f77520bdd14a6ee7cf9", null ],
       [ "MOUSE_RIGHT_CLICK", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17a771046fd2ca0d1677622fde4aa2faa5f", null ],
       [ "MOUSE_LEFT_CLICK", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17a2c141f985e5b9ce4773d2af21e5a4b79", null ],
+      [ "MOUSE_MOVE", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17ac9c8680838759800ac9bdad306586439", null ],
+      [ "ESC", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17a105d5c554a1692e48d7a70081eac59ab", null ],
       [ "RIGHT", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17a6cdb4bd934713688e25f9e0432058d09", null ],
       [ "LEFT", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17a7e0c75bdec4e7677bbcc865b77e6cdc6", null ],
       [ "UP", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17aa12ce936ac26fd11fba11e12bfb21e66", null ],

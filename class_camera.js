@@ -1,6 +1,6 @@
 var class_camera =
 [
-    [ "Camera", "class_camera.html#a73af2486ab3c15139cf5728acf7e8799", null ],
+    [ "Camera", "class_camera.html#a5d29db843c88f605007015fa412e4b03", null ],
     [ "ConstrainPitch", "class_camera.html#a5a96931e7b56fb8ffe2ec447cc2581b3", null ],
     [ "GetViewMatrix", "class_camera.html#ac5be0b9a950effe0e5f5993c182c12da", null ],
     [ "ProcessEvents", "class_camera.html#a002bef0cf9d809b323a58b4ebf4d6d4f", null ],
