@@ -19,14 +19,22 @@ glm::mat4 Camera::GetViewMatrix() const
 
 void Camera::ProcessEvents()
 {
-    if ((g_Context.AppState.projectWindowFocused && g_Context.AppState.projectWindowHovered)
+    if ((Core::Context::GetContext()->AppState.projectWindowFocused
+         && Core::Context::GetContext()->AppState.projectWindowHovered)
         || lockMouse)
     {
         ProcessKeyboard();
-        if (g_Context.EventHandler.GetEventHeld(Core::MOUSE_MOVE))
+        if (Core::Context::GetContext()->EventHandler.GetEventHeld(Core::MOUSE_MOVE))
         {
-            ProcessMouseMovement(g_Context.AppState.mouseRel.x, g_Context.AppState.mouseRel.y);
+            ProcessMouseMovement(Core::Context::GetContext()->AppState.mouseRel.x,
+                                 Core::Context::GetContext()->AppState.mouseRel.y);
         }
+    }
+
+    if (lockMouse && Core::Context::GetContext()->EventHandler.GetEventPressed(Core::ESC))
+    {
+        lockMouse = false;
+        SDL_SetWindowRelativeMouseMode(Core::Context::GetContext()->RenderData.Window, lockMouse);
     }
 }
 
@@ -39,22 +47,34 @@ void Camera::ProcessKeyboard()
     glm::vec3 right   = Orientation * glm::vec3(1.0f, 0.0f, 0.0f);
     glm::vec3 up      = Orientation * glm::vec3(0.0f, 1.0f, 0.0f);
 
-    if (g_Context.EventHandler.GetEventHeld(Core::MOUSE_ROLL))
+    if (Core::Context::GetContext()->EventHandler.GetEventHeld(Core::MOUSE_ROLL))
     {
-        if (g_Context.AppState.VerticalScroll > 0) { m_Position += forward * velocity * 10.0f; }
-        else if (g_Context.AppState.VerticalScroll < 0) { m_Position -= forward * velocity * 10.0f; }
+        if (Core::Context::GetContext()->AppState.VerticalScroll > 0)
+        {
+            m_Position += forward * velocity * 10.0f;
+        }
+        else if (Core::Context::GetContext()->AppState.VerticalScroll < 0)
+        {
+            m_Position -= forward * velocity * 10.0f;
+        }
     }
-    if (g_Context.EventHandler.GetEventHeld(Core::A)) { m_Position -= right * velocity; }
-    if (g_Context.EventHandler.GetEventHeld(Core::D)) { m_Position += right * velocity; }
+    if (Core::Context::GetContext()->EventHandler.GetEventHeld(Core::A))
+    {
+        m_Position -= right * velocity;
+    }
+    if (Core::Context::GetContext()->EventHandler.GetEventHeld(Core::D))
+    {
+        m_Position += right * velocity;
+    }
 
-    if (g_Context.EventHandler.GetEventHeld(Core::LEFT))
+    if (Core::Context::GetContext()->EventHandler.GetEventHeld(Core::LEFT))
     {
         float angle   = MouseSensitivity * dt;
         glm::quat rot = glm::angleAxis(glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f));
         Orientation   = glm::normalize(rot * Orientation);
     }
 
-    if (g_Context.EventHandler.GetEventHeld(Core::RIGHT))
+    if (Core::Context::GetContext()->EventHandler.GetEventHeld(Core::RIGHT))
     {
         float angle   = MouseSensitivity * dt;
         glm::quat rot = glm::angleAxis(glm::radians(-angle), glm::vec3(0.0f, 1.0f, 0.0f));

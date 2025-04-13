@@ -6,6 +6,9 @@
 
 #include "Projects/N_Body_Simulation/src/Main.h"
 #include "Projects/N_Body_Simulation/src/Particle.h"
+#include "SDL3/SDL_mouse.h"
+#include "glm/common.hpp"
+#include "imgui.h"
 
 void N_Body_Simulation::InitialiseTransferBuffersAndParticleContainer()
 {
@@ -14,7 +17,7 @@ void N_Body_Simulation::InitialiseTransferBuffersAndParticleContainer()
         .size  = (Uint32)(ParticleContainer::count * sizeof(ParticleDataSend)),
     };
 
-    auto &rndt        = Core::Context::GetContext()->RenderData;
+    auto &rndt       = Core::Context::GetContext()->RenderData;
     m_TransferBuffer = SDL_CreateGPUTransferBuffer(rndt.Device, &tBufCreateInfo);
 
     const SDL_GPUBufferCreateInfo newBufCreateInfo {
@@ -75,12 +78,19 @@ bool N_Body_Simulation::Init()
     InitialiseTransferBuffersAndParticleContainer();
 
     m_Particles.Init();
+
+    const auto w = Core::Context::GetContext()->AppState.ProjectWindowX;
+    const auto h = Core::Context::GetContext()->AppState.ProjectWindowY;
+
+    m_Camera = Camera(glm::vec3(w / 2.0f, h / 2.0f, 700.0f));
+
     return true;
 }
 
 bool N_Body_Simulation::Update()
 {
     m_Particles.Update();
+    m_Camera.ProcessEvents();
     return true;
 }
 
@@ -92,10 +102,17 @@ bool N_Body_Simulation::Draw()
     const float w = apst.ProjectWindowX;
     const float h = apst.ProjectWindowY;
 
-    const glm::mat4x4 projection = glm::ortho(0.0f, w * 2, h * 2, 0.0f, 0.0f, -1.0f);
-    // const glm::mat4x4 finalProjection = projection;
-    const glm::mat4x4 offset = glm::translate(glm::mat4(1.0f), glm::vec3(w / 2, h / 2, 0.0f));
-    const glm::mat4x4 finalProjection = projection * offset;
+    // const glm::mat4x4 projection = glm::ortho(0.0f, w, h, 0.0f, -1.0f, 1.0f);
+    // const glm::mat4x4 finalProjection = projection * m_Camera.GetViewMatrix();
+
+    float fov       = glm::radians(45.0f);
+    float aspect    = w / h;
+    float nearPlane = 0.1f;
+    float farPlane  = 100.0f;
+
+    glm::mat4 perspectiveProjection = glm::perspective(fov, aspect, nearPlane, farPlane);
+
+    glm::mat4 finalProjection = perspectiveProjection * m_Camera.GetViewMatrix();
 
     SDL_GPUCommandBuffer *cmdBuf = SDL_AcquireGPUCommandBuffer(rndt.Device);
     if (cmdBuf == nullptr) { std::cerr << "unable to aquire command buffer\n"; }
@@ -222,27 +239,17 @@ bool N_Body_Simulation::DrawUI()
 
         if (ImGui::Button("Restart Simulation")) { m_Particles.InitData(index); }
 
-        using CK   = Core::KEY;
-        bool right = Core::Context::GetContext()->EventHandler.GetEventHeld(CK::MOUSE_RIGHT_CLICK);
-        bool left  = Core::Context::GetContext()->EventHandler.GetEventHeld(CK::MOUSE_LEFT_CLICK);
-        bool middle =
-            Core::Context::GetContext()->EventHandler.GetEventHeld(CK::MOUSE_MIDDLE_CLICK);
-        bool scroll = Core::Context::GetContext()->EventHandler.GetEventHeld(CK::MOUSE_ROLL);
-
-        static glm::vec2 scrollValue = {0.0f, 0.0f};
-
-        if (scroll)
+        if (ImGui::Checkbox("Lock Mouse", &m_Camera.lockMouse))
         {
-            scrollValue.x += Core::Context::GetContext()->AppState.HorizontalScroll;
-            scrollValue.y += Core::Context::GetContext()->AppState.VerticalScroll;
+            SDL_SetWindowRelativeMouseMode(Core::Context::GetContext()->RenderData.Window,
+                                           m_Camera.lockMouse);
         }
 
-        ImGui::Text("Right Click: %s", (right ? "True" : "False"));
-        ImGui::Text("Left Click: %s", (left ? "True" : "False"));
-        ImGui::Text("Middle Click: %s", (middle ? "True" : "False"));
-        ImGui::Text("Scroll Click: %s", (scroll ? "True" : "False"));
-        ImGui::Text("Scroll.x: %.3f", scrollValue.x);
-        ImGui::Text("Scroll.y: %.3f", scrollValue.y);
+        static bool yeah = false;
+        if (ImGui::Checkbox("Locks the mouse inside the window", &yeah))
+        {
+            SDL_SetWindowMouseGrab(Core::Context::GetContext()->RenderData.Window, yeah);
+        }
     }
     ImGui::End();
 

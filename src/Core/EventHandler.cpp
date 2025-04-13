@@ -2,6 +2,8 @@
 
 #include "Core/Context.h"
 #include "Projects/Common/BaseProject.h"
+#include "SDL3/SDL_events.h"
+#include "SDL3/SDL_scancode.h"
 
 Core::EventHandlerStruct::EventHandlerStruct()
 {
@@ -50,19 +52,17 @@ void Core::EventHandlerStruct::EndFrame()
     }
 
     // special case of mouse roll (one time thingy)
-    if (Keys[KEY::MOUSE_ROLL] == KEY_STATE::PRESSED || Keys[KEY::MOUSE_ROLL] == KEY_STATE::HELD)
-    {
-        Keys[KEY::MOUSE_ROLL] = KEY_STATE::IDLE;
-    }
+    if (GetEventHeld(Core::MOUSE_ROLL)) { Keys[KEY::MOUSE_ROLL] = KEY_STATE::IDLE; }
+    if (GetEventHeld(Core::MOUSE_MOVE)) { Keys[KEY::MOUSE_MOVE] = KEY_STATE::IDLE; }
 }
 
 SDL_AppResult Core::EventHandlerStruct::HandleEvents(SDL_Event *p_Event)
 {
     if (p_Event->type == SDL_EVENT_QUIT)
     {
-        if (Core::Context::GetContext()->AppState.ProjectIndex != -1)
+        if (Context::GetContext()->AppState.ProjectIndex != -1)
         {
-            g_Projects[Core::Context::GetContext()->AppState.ProjectIndex]->Quit();
+            g_Projects[Context::GetContext()->AppState.ProjectIndex]->Quit();
         }
         return SDL_APP_SUCCESS;
     }
@@ -72,6 +72,7 @@ SDL_AppResult Core::EventHandlerStruct::HandleEvents(SDL_Event *p_Event)
         bool pressed = (p_Event->type == SDL_EVENT_KEY_DOWN);
         switch (p_Event->key.scancode)
         {
+            case SDL_SCANCODE_ESCAPE: UpdateKey(KEY::ESC, pressed); break;
             case SDL_SCANCODE_RIGHT: UpdateKey(KEY::RIGHT, pressed); break;
             case SDL_SCANCODE_LEFT: UpdateKey(KEY::LEFT, pressed); break;
             case SDL_SCANCODE_DOWN: UpdateKey(KEY::DOWN, pressed); break;
@@ -97,11 +98,18 @@ SDL_AppResult Core::EventHandlerStruct::HandleEvents(SDL_Event *p_Event)
         }
     }
 
+    if (p_Event->type == SDL_EVENT_MOUSE_MOTION)
+    {
+        UpdateKey(KEY::MOUSE_MOVE, true);
+        Context::GetContext()->AppState.mouseRel.x = p_Event->motion.xrel;
+        Context::GetContext()->AppState.mouseRel.y = p_Event->motion.yrel;
+    }
+
     else if (p_Event->type == SDL_EVENT_MOUSE_WHEEL)
     {
         UpdateKey(KEY::MOUSE_ROLL, true);
-        Core::Context::GetContext()->AppState.HorizontalScroll = p_Event->wheel.x;
-        Core::Context::GetContext()->AppState.VerticalScroll   = p_Event->wheel.y;
+        Context::GetContext()->AppState.HorizontalScroll = p_Event->wheel.x;
+        Context::GetContext()->AppState.VerticalScroll   = p_Event->wheel.y;
     }
 
     else if (p_Event->type == SDL_EVENT_WINDOW_RESIZED)

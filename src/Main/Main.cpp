@@ -1,10 +1,10 @@
+#include "imgui.h"
 #define SDL_MAIN_USE_CALLBACKS 1
 #include <SDL3/SDL_main.h>  // only need in main.cpp
 
 #include "Core/Common/pch.h"
 
 #include "Core/Common/Common.h"
-#include "Core/Common/SDL_Exception.h"
 #include "Core/Console.h"
 #include "Core/Context.h"
 #include "Core/EventHandler.h"
@@ -96,6 +96,12 @@ SDL_AppResult SDL_AppIterate(void *appstate)
     {
         apst.projectWindowFocused = ImGui::IsWindowFocused();
         apst.projectWindowHovered = ImGui::IsWindowHovered();
+
+        if (apst.projectWindowFocused && apst.projectWindowHovered
+            && ctx->EventHandler.GetEventPressed(Core::ESC))
+        {  // the user wants to get out of focus from the project screen
+            ImGui::SetWindowFocus("###ProjectUI");
+        }
         if (!HandleWindowResize())
         {
             ImGui::End();
@@ -147,7 +153,7 @@ void SDL_AppQuit(void *appstate, SDL_AppResult result)
 bool HandleWindowResize()
 {
     ImVec2 view = ImGui::GetWindowSize();
-    auto ctx = Core::Context::GetContext();
+    auto ctx    = Core::Context::GetContext();
 
     if (view.x != ctx->AppState.ProjectWindowX || view.y != ctx->AppState.ProjectWindowY)
     {

@@ -22,6 +22,7 @@
 #include <glm/trigonometric.hpp>
 #include <glm/ext/matrix_float4x4.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/quaternion.hpp>
 
 #include <iostream>
 #include <memory>

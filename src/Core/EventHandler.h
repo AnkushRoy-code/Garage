@@ -8,11 +8,18 @@ namespace Core
 
 enum KEY
 {
+    // window
     RESIZE_PROJECT_WINDOW,
+
+    // mouse
     MOUSE_ROLL,
     MOUSE_MIDDLE_CLICK,
     MOUSE_RIGHT_CLICK,
     MOUSE_LEFT_CLICK,
+    MOUSE_MOVE,
+
+    // keyboard keys
+    ESC,
     RIGHT,
     LEFT,
     UP,
@@ -21,6 +28,7 @@ enum KEY
     A,
     S,
     D,
+
     COUNT
 };
 

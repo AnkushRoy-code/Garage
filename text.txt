@@ -1,8 +1,0 @@
-`s_` — Structure
-`c_` — Class
-`k_` — Constant
-`e_` — Enumerated constant type
-`g_` — Global variable
-`m_` — Non-static class member variable
-`x_` — Local static variable
-`t_` — Template argument

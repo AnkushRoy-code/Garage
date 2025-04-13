@@ -7,8 +7,8 @@
 class Camera
 {
   public:
-    explicit Camera(glm::vec3 position    = glm::vec3(0.0f, 0.0f, -3.0f),
-                    glm::quat orientation = glm::quat(glm::vec3(0.0f, glm::radians(180.0f), 0.0f)));
+    explicit Camera(glm::vec3 position    = glm::vec3(350.0f, 350.0f, 700.0f),
+                    glm::quat orientation = glm::quat(glm::vec3(0.0f)));
 
     [[nodiscard]] glm::mat4 GetViewMatrix() const;
     void ProcessEvents();
