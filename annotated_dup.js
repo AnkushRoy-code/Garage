@@ -3,7 +3,7 @@ var annotated_dup =
     [ "Common", "namespace_common.html", [
       [ "BaseProject", "class_common_1_1_base_project.html", "class_common_1_1_base_project" ],
       [ "ImGuiUI", "class_common_1_1_im_gui_u_i.html", "class_common_1_1_im_gui_u_i" ],
-      [ "ProjectManager", "class_common_1_1_project_manager.html", null ]
+      [ "ProjectManager", "class_common_1_1_project_manager.html", "class_common_1_1_project_manager" ]
     ] ],
     [ "Core", "namespace_core.html", [
       [ "AppStateStruct", "struct_core_1_1_app_state_struct.html", "struct_core_1_1_app_state_struct" ],
@@ -29,7 +29,6 @@ var annotated_dup =
     [ "PredefinedParticlesData", "struct_predefined_particles_data.html", "struct_predefined_particles_data" ],
     [ "RGB_BoidDataSend", "struct_r_g_b___boid_data_send.html", "struct_r_g_b___boid_data_send" ],
     [ "ScrollingBuffer", "struct_scrolling_buffer.html", "struct_scrolling_buffer" ],
-    [ "SDL_Exception", "class_s_d_l___exception.html", "class_s_d_l___exception" ],
     [ "SimpleExample", "class_simple_example.html", "class_simple_example" ],
     [ "Timer", "class_timer.html", "class_timer" ],
     [ "Tracker", "class_tracker.html", null ],

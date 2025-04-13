@@ -21,7 +21,7 @@ var searchData=
   ['profile_5fscope_18',['PROFILE_SCOPE',['../_common_8h.html#af70a0509f450d49a82d2ba2e5b9a60b6',1,'Common.h']]],
   ['profile_5fscope_5fn_19',['PROFILE_SCOPE_N',['../_common_8h.html#a862fd40aa252ac8fc0ff6ad0aff3a3af',1,'Common.h']]],
   ['projectindex_20',['ProjectIndex',['../struct_core_1_1_app_state_struct.html#a591bb3a36292a2e5dd846ef3b18a06d6',1,'Core::AppStateStruct']]],
-  ['projectmanager_21',['ProjectManager',['../class_common_1_1_project_manager.html',1,'Common']]],
+  ['projectmanager_21',['ProjectManager',['../class_common_1_1_project_manager.html',1,'Common::ProjectManager'],['../class_common_1_1_project_manager.html#a99f86b92d35a2e3ae77bfe5685cf0574',1,'Common::ProjectManager::ProjectManager()'],['../class_common_1_1_project_manager.html#a83aaad4c24cfbf1a8e4e91fc306ad246',1,'Common::ProjectManager::ProjectManager(ProjectManager &amp;&amp;)=delete'],['../class_common_1_1_project_manager.html#afba7e73c9a5ec3e012fec35fec037229',1,'Common::ProjectManager::ProjectManager(const ProjectManager &amp;)=delete']]],
   ['projectpass_22',['ProjectPass',['../struct_core_1_1_render_data_struct.html#a1fcda3f2a788edc0b5e528490385c9b8',1,'Core::RenderDataStruct']]],
   ['projects_23',['Projects',['../index.html#autotoc_md7',1,'Dummy Projects'],['../index.html#autotoc_md6',1,'My Projects'],['../index.html#autotoc_md10',1,'Real Projects']]],
   ['projectsampler_24',['ProjectSampler',['../struct_core_1_1_render_data_struct.html#a58dcb8d764f34ae88d463441b209a525',1,'Core::RenderDataStruct']]],
@@ -29,5 +29,6 @@ var searchData=
   ['projecttobeindex_26',['ProjectToBeIndex',['../struct_core_1_1_app_state_struct.html#a09e495d739630d57d000175e4c744df9',1,'Core::AppStateStruct']]],
   ['projectwindowfocused_27',['projectWindowFocused',['../struct_core_1_1_app_state_struct.html#a3d2b17caaf9e936998cb756f39a95c4b',1,'Core::AppStateStruct']]],
   ['projectwindowhovered_28',['projectWindowHovered',['../struct_core_1_1_app_state_struct.html#af55f5b8b0635f7dac7ac35f48ea5fe22',1,'Core::AppStateStruct']]],
-  ['projectwindowsize_29',['ProjectWindowSize',['../struct_core_1_1_app_state_struct.html#a79e097e38ec2425568dbc5b7b390f479',1,'Core::AppStateStruct']]]
+  ['projectwindowsize_29',['ProjectWindowSize',['../struct_core_1_1_app_state_struct.html#a79e097e38ec2425568dbc5b7b390f479',1,'Core::AppStateStruct']]],
+  ['projvec_30',['ProjVec',['../class_common_1_1_project_manager.html#aaf923f3496af1393af998e5c46cd1b41',1,'Common::ProjectManager']]]
 ];
