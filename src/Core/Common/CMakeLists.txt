@@ -1,4 +1,4 @@
-add_library(core_common STATIC Common.h Common.cpp SDL_Exception.h)
+add_library(core_common STATIC Common.h Common.cpp)
 add_library(Core::Common ALIAS core_common)
 
 if (TRACY_PROFILE) 

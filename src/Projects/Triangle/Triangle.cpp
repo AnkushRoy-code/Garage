@@ -1,7 +1,6 @@
 #include "Projects/Triangle/Triangle.h"
 
 #include "Core/Common/Common.h"
-#include "Core/Common/SDL_Exception.h"
 #include "Core/Console.h"
 #include "Core/Context.h"
 #include "Core/EventHandler.h"
@@ -26,10 +25,19 @@ bool Triangle::Init()
     auto &rndt = Core::Context::GetContext()->RenderData;
 
     SDL_GPUShader *vertexShader = Common::LoadShader(rndt.Device, "RawTriangle.vert", 0, 0, 0, 0);
-    if (vertexShader == nullptr) { throw SDL_Exception("Failed to create vertex shader!"); }
+    if (vertexShader == nullptr) { 
+
+        return false;
+        // throw SDL_Exception("Failed to create vertex shader!"); 
+    }
 
     SDL_GPUShader *fragmentShader = Common::LoadShader(rndt.Device, "SolidColor.frag", 0, 0, 0, 0);
-    if (fragmentShader == nullptr) { throw SDL_Exception("Failed to create fragment shader!"); }
+    if (fragmentShader == nullptr) { 
+
+        return false;
+        // throw SDL_Exception("Failed to create fragment shader!"); 
+
+    }
 
     const SDL_GPUColorTargetDescription colorTargetDesc = {
         .format = SDL_GetGPUSwapchainTextureFormat(rndt.Device, rndt.Window),
@@ -50,12 +58,22 @@ bool Triangle::Init()
     pipelineCreateInfo.rasterizer_state.fill_mode = SDL_GPU_FILLMODE_FILL;
 
     FillPipeline = SDL_CreateGPUGraphicsPipeline(rndt.Device, &pipelineCreateInfo);
-    if (FillPipeline == nullptr) { throw SDL_Exception("Failed to create fill pipeline!"); }
+    if (FillPipeline == nullptr) { 
+
+        return false;
+        // throw SDL_Exception("Failed to create fill pipeline!"); 
+    }
+
 
     pipelineCreateInfo.rasterizer_state.fill_mode = SDL_GPU_FILLMODE_LINE;
 
     LinePipeline = SDL_CreateGPUGraphicsPipeline(rndt.Device, &pipelineCreateInfo);
-    if (LinePipeline == nullptr) { throw SDL_Exception("Failed to create line pipeline!"); }
+    if (LinePipeline == nullptr) { 
+
+        return false;
+        // throw SDL_Exception("Failed to create line pipeline!"); 
+
+    }
 
     SDL_ReleaseGPUShader(rndt.Device, vertexShader);
     SDL_ReleaseGPUShader(rndt.Device, fragmentShader);

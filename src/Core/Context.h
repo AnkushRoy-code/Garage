@@ -44,10 +44,10 @@ class Context
     ~Context();
     void init();
 
-    Context(const Context &)            = delete;
-    Context &operator=(const Context &) = delete;
     Context(Context &&)                 = delete;
+    Context(const Context &)            = delete;
     Context &operator=(Context &&)      = delete;
+    Context &operator=(const Context &) = delete;
 
     static std::shared_ptr<Context> GetContext();
 

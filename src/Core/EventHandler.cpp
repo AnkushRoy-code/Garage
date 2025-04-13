@@ -62,7 +62,9 @@ SDL_AppResult Core::EventHandlerStruct::HandleEvents(SDL_Event *p_Event)
     {
         if (Context::GetContext()->AppState.ProjectIndex != -1)
         {
-            g_Projects[Context::GetContext()->AppState.ProjectIndex]->Quit();
+            Common::ProjectManager::GetProjects()
+                ->at(Context::GetContext()->AppState.ProjectIndex)
+                ->Quit();
         }
         return SDL_APP_SUCCESS;
     }

@@ -1,10 +1,11 @@
 #include "Core/Renderer/Renderer.h"
 
 #include "Core/Context.h"
-#include "Core/Common/SDL_Exception.h"
+#include "Core/Console.h"
 #include "Projects/Common/BaseProject.h"
 
 #include "Core/Common/pch.h"
+#include <iostream>
 
 void Core::Renderer::Init()
 {
@@ -46,8 +47,11 @@ void Core::Renderer::Init()
 
     rndt.ProjectTexture = SDL_CreateGPUTexture(rndt.Device, &gpuTextureCreateInfo);
 
-    if (!rndt.ProjectTexture) { throw SDL_Exception("Unable to create GPU Texture"); }
-
+    if (!rndt.ProjectTexture)
+    {
+        Core::ConsoleLogBuffer::AddMessage("Unable to create GPU Texture");
+        std::cerr << "Unable to create GPU Texture\n";
+    }
     const SDL_GPUTextureCreateInfo resolveTextureInfo {.type   = SDL_GPU_TEXTURETYPE_2D,
                                                        .format = format,
                                                        .usage  = SDL_GPU_TEXTUREUSAGE_COLOR_TARGET
@@ -59,7 +63,12 @@ void Core::Renderer::Init()
 
     rndt.ResolveTexture = SDL_CreateGPUTexture(rndt.Device, &resolveTextureInfo);
 
-    if (!rndt.ResolveTexture) { throw SDL_Exception("Unable to create resolve Texture"); }
+    if (!rndt.ResolveTexture)
+    {
+        Core::ConsoleLogBuffer::AddMessage("Unable to create Resolve Texture");
+        std::cerr << "Unable to create Resolve Texture\n";
+        return;
+    }
 
     const SDL_GPUSamplerCreateInfo samplerInfo {
         .min_filter     = SDL_GPU_FILTER_NEAREST,
@@ -109,5 +118,7 @@ void Core::Renderer::ResizeProjectTexture(int p_Width, int p_Height)
 
 void Core::Renderer::DrawProjectToTexture()
 {
-    g_Projects[Core::Context::GetContext()->AppState.ProjectIndex]->Draw();
+    Common::ProjectManager::GetProjects()
+        ->at(Core::Context::GetContext()->AppState.ProjectIndex)
+        ->Draw();
 }

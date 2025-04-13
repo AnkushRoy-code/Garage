@@ -1,7 +1,5 @@
 #include "Core/Common/Common.h"
 
-#include "Core/Common/SDL_Exception.h"
-
 namespace Common
 {
 SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
@@ -24,7 +22,10 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
 
     if (shaderFilename.contains(".vert")) { stage = SDL_GPU_SHADERSTAGE_VERTEX; }
     else if (shaderFilename.contains(".frag")) { stage = SDL_GPU_SHADERSTAGE_FRAGMENT; }
-    else { throw SDL_Exception("Invalid shader stage, what are you trying to do?"); }
+    else
+    {
+        // throw SDL_Exception("Invalid shader stage, what are you trying to do?");
+    }
 
     std::filesystem::path fullPath;
     const SDL_GPUShaderFormat backendFormats {SDL_GetGPUShaderFormats(device)};
@@ -47,12 +48,12 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
         fullPath = x_BasePath + "res/Shaders/Compiled/DXIL/" + (shaderFilename + ".dxil");
         format   = SDL_GPU_SHADERFORMAT_DXIL;
     }
-    else { throw SDL_Exception("Unrecognised backend shader format"); }
+    // else { throw SDL_Exception("Unrecognised backend shader format"); }
 
     assert(std::filesystem::exists(fullPath));
 
     std::ifstream file {fullPath, std::ios::binary};
-    if (!file) throw SDL_Exception("Couldn't open shader file");
+    // if (!file) throw SDL_Exception("Couldn't open shader file");
 
     std::vector<Uint8> code {std::istreambuf_iterator(file), {}};
 
@@ -68,7 +69,7 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
 
     SDL_GPUShader *shader = SDL_CreateGPUShader(device, &shaderInfo);
 
-    if (shader == nullptr) { throw SDL_Exception("Failed to create Shader"); }
+    // if (shader == nullptr) { throw SDL_Exception("Failed to create Shader"); }
 
     return shader;
 }
@@ -91,7 +92,7 @@ SDL_Surface *LoadImage(const std::string &imageFileName, int desiredChannels)
     fullPath = x_BasePath + "res/Images/" + (imageFileName + ".bmp");
 
     result = SDL_LoadBMP(fullPath.c_str());
-    if (result == nullptr) { throw SDL_Exception("Failed to create image"); }
+    // if (result == nullptr) { throw SDL_Exception("Failed to create image"); }
 
     if (desiredChannels == 4) { format = SDL_PIXELFORMAT_ABGR8888; }
     else

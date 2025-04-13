@@ -3,7 +3,6 @@
 #include "Core/ImGuiCore/ScrollingBuffer.h"
 #include "Core/ImGuiCore/GameFPSTracker.h"
 
-#include "Core/Common/SDL_Exception.h"
 #include "Core/Context.h"
 #include "Core/Console.h"
 #include "Core/Renderer/Renderer.h"
@@ -139,11 +138,12 @@ void Core::ImGuiCore::Update()
         static std::vector<const char *> x_Names;
         static bool x_FirsstTime = true;
 
+        const int projSize = Common::ProjectManager::GetProjects()->size();
         if (x_FirsstTime)
         {
             x_FirsstTime = false;
-            x_Names.reserve(g_Projects.size());
-            for (const auto &project: g_Projects)
+            x_Names.reserve(projSize);
+            for (const auto &project: *Common::ProjectManager::GetProjects())
             {
                 x_Names.push_back(project->GetName().c_str());
             }
@@ -153,7 +153,7 @@ void Core::ImGuiCore::Update()
         // Project selector
         if (ImGui::BeginCombo("Project", x_Names[apst.ProjectIndex]))
         {
-            for (int i = 0; i < g_Projects.size(); i++)
+            for (int i = 0; i < projSize; i++)
             {
                 const bool isSelected = (apst.ProjectIndex == i);
                 if (ImGui::Selectable(x_Names[i], isSelected))
@@ -176,7 +176,8 @@ void Core::ImGuiCore::Update()
         if (ImGui::SliderInt("###yetanotherid", &x_Res, 25, 500, "%d%%"))
         {
             Core::Context::GetContext()->RenderData.ResolutionScale = x_Res / 100.0f;
-            Core::Renderer::ResizeProjectTexture(apst.ProjectWindowSize.x, apst.ProjectWindowSize.y);
+            Core::Renderer::ResizeProjectTexture(apst.ProjectWindowSize.x,
+                                                 apst.ProjectWindowSize.y);
         }
 
         ImGui::SeparatorText("Data");
@@ -257,8 +258,8 @@ void Core::ImGuiCore::Update()
     // look at ff4cb73 for reference.
     if (Common::BaseProject::hasUI)
     {
-        if (auto imguiProject =
-                dynamic_cast<Common::ImGuiUI *>(g_Projects[apst.ProjectIndex].get()))
+        if (auto imguiProject = dynamic_cast<Common::ImGuiUI *>(
+                Common::ProjectManager::GetProjects()->at(apst.ProjectIndex).get()))
         {
             imguiProject->DrawUI();
         }
@@ -272,14 +273,21 @@ void Core::ImGuiCore::Draw()
 
     SDL_GPUCommandBuffer *commandBuffer =
         SDL_AcquireGPUCommandBuffer(Core::Context::GetContext()->RenderData.Device);
-    if (!commandBuffer) { throw SDL_Exception("AcquireGPUCommandBuffer failed!"); }
+    if (!commandBuffer)
+    {
+
+        // throw SDL_Exception("AcquireGPUCommandBuffer failed!");
+
+        return;
+    }
 
     SDL_GPUTexture *swapchainTexture;
     if (!SDL_AcquireGPUSwapchainTexture(commandBuffer,
                                         Core::Context::GetContext()->RenderData.Window,
                                         &swapchainTexture, nullptr, nullptr))
     {
-        throw SDL_Exception("WaitAndAcquireGPUSwapchainTexture failed!");
+        // throw SDL_Exception("WaitAndAcquireGPUSwapchainTexture failed!");
+        return;
     }
 
     if (swapchainTexture != nullptr)

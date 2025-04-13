@@ -2,6 +2,7 @@
 #define INCLUDE_COMMON_BASEPROJECT_H_
 
 #include "Core/Common/pch.h"
+#include <memory>
 
 namespace Common
 {
@@ -36,23 +37,28 @@ class ImGuiUI
 class ProjectManager
 {
   public:
-    /// @brief returns the projects vector
-    static std::vector<std::unique_ptr<BaseProject>> GetProjects();
+    ProjectManager();
+    ~ProjectManager();
 
-    /// @brief registers all the projects to the vector, should be called before calling
+    ProjectManager(ProjectManager &&)                 = delete;
+    ProjectManager(const ProjectManager &)            = delete;
+    ProjectManager &operator=(ProjectManager &&)      = delete;
+    ProjectManager &operator=(const ProjectManager &) = delete;
+
+    using ProjVec = std::vector<std::unique_ptr<BaseProject>>;
+
+    static std::shared_ptr<ProjVec> GetProjects();
+
+    /// @brief
+    /// registers all the projects to the vector, should be called before calling
     /// getProjects()
     static void RegisterAllProjects();  // defined in RegisgerProjects.cpp
 
-    /// @brief register a project to the vector, should be called before calling getProjects()
-    static void RegisterProject(std::unique_ptr<BaseProject> project);
-
   private:
-    static std::vector<std::unique_ptr<BaseProject>>
-        m_Projects;  ///< A vector that holds the projects
+    static void RegisterProject(std::unique_ptr<BaseProject> project);
+    static std::shared_ptr<ProjVec> instance;
 };
 
 }  // namespace Common
-
-extern std::vector<std::unique_ptr<Common::BaseProject>> g_Projects;
 
 #endif  // INCLUDE_COMMON_BASEPROJECT_H_

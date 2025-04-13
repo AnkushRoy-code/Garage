@@ -30,8 +30,7 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
         "now. It might not be much but was HARD");
     Core::Context::GetContext()->init();
     Common::ProjectManager::RegisterAllProjects();
-    g_Projects = Common::ProjectManager::GetProjects();
-    g_Projects[0]->Init();
+    Common::ProjectManager::GetProjects()->at(0)->Init();
 
     return SDL_APP_CONTINUE;
 }
@@ -55,7 +54,9 @@ void updateFunc()
         Timer riesnt(updateTime);
         Tracker::AddUpdateFPSPointQueue(updateTime);
 
-        g_Projects[Core::Context::GetContext()->AppState.ProjectIndex]->Update();
+        Common::ProjectManager::GetProjects()
+            ->at(Core::Context::GetContext()->AppState.ProjectIndex)
+            ->Update();
     }
 }
 
@@ -89,8 +90,12 @@ SDL_AppResult SDL_AppIterate(void *appstate)
     auto &apst = Core::Context::GetContext()->AppState;
 
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2 {0, 0});
-    const auto projectWindowName =
-        "Project - " + g_Projects[apst.ProjectIndex]->GetName() + "###TexTitle";
+
+    const auto projName = Common::ProjectManager::GetProjects()
+                              ->at(Core::Context::GetContext()->AppState.ProjectIndex)
+                              ->GetName();
+
+    const auto projectWindowName = "Project - " + projName + "###TexTitle";
 
     if (ImGui::Begin(projectWindowName.c_str()))
     {
@@ -135,9 +140,9 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 
     if (apst.HasToChangeIndex)
     {
-        g_Projects[apst.ProjectIndex]->Quit();
+        Common::ProjectManager::GetProjects()->at(apst.ProjectIndex)->Quit();
         apst.ProjectIndex = apst.ProjectToBeIndex;
-        g_Projects[apst.ProjectIndex]->Init();
+        Common::ProjectManager::GetProjects()->at(apst.ProjectIndex)->Init();
         apst.HasToChangeIndex = false;
     }
 
