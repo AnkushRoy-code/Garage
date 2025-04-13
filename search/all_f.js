@@ -29,6 +29,5 @@ var searchData=
   ['projecttobeindex_26',['ProjectToBeIndex',['../struct_core_1_1_app_state_struct.html#a09e495d739630d57d000175e4c744df9',1,'Core::AppStateStruct']]],
   ['projectwindowfocused_27',['projectWindowFocused',['../struct_core_1_1_app_state_struct.html#a3d2b17caaf9e936998cb756f39a95c4b',1,'Core::AppStateStruct']]],
   ['projectwindowhovered_28',['projectWindowHovered',['../struct_core_1_1_app_state_struct.html#af55f5b8b0635f7dac7ac35f48ea5fe22',1,'Core::AppStateStruct']]],
-  ['projectwindowx_29',['ProjectWindowX',['../struct_core_1_1_app_state_struct.html#ae289d4f9e278a5d3b7e1f7d358412370',1,'Core::AppStateStruct']]],
-  ['projectwindowy_30',['ProjectWindowY',['../struct_core_1_1_app_state_struct.html#ade483ae99c7c3964da190db7ab07d716',1,'Core::AppStateStruct']]]
+  ['projectwindowsize_29',['ProjectWindowSize',['../struct_core_1_1_app_state_struct.html#a79e097e38ec2425568dbc5b7b390f479',1,'Core::AppStateStruct']]]
 ];

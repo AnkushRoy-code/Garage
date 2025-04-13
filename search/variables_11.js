@@ -6,6 +6,7 @@ var searchData=
   ['s_5fupdatefpsbuffer_3',['s_UpdateFPSBuffer',['../class_tracker.html#a963cf8993ea5a83298c7e30583366656',1,'Tracker']]],
   ['samplecount_4',['SampleCount',['../struct_core_1_1_render_data_struct.html#a1a9e52eb9aaf08e3641d0c1e92bd01a8',1,'Core::RenderDataStruct']]],
   ['scissorrect_5',['ScissorRect',['../class_triangle.html#aec999e5bad11420e266c355bd00ae224',1,'Triangle']]],
-  ['seperation_6',['Seperation',['../class_boids_container.html#a99c92eba28630e3f75813d2896ca3bf6',1,'BoidsContainer']]],
-  ['smallviewport_7',['SmallViewport',['../class_triangle.html#af476a83a8475a37a3eb5d01b97bfa26f',1,'Triangle']]]
+  ['scrollval_6',['ScrollVal',['../struct_core_1_1_app_state_struct.html#a2b38a366c04efae74255021758c381c0',1,'Core::AppStateStruct']]],
+  ['seperation_7',['Seperation',['../class_boids_container.html#a99c92eba28630e3f75813d2896ca3bf6',1,'BoidsContainer']]],
+  ['smallviewport_8',['SmallViewport',['../class_triangle.html#af476a83a8475a37a3eb5d01b97bfa26f',1,'Triangle']]]
 ];

@@ -42,7 +42,7 @@ var searchData=
   ['mouse_5fmove_39',['MOUSE_MOVE',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17ac9c8680838759800ac9bdad306586439',1,'Core']]],
   ['mouse_5fright_5fclick_40',['MOUSE_RIGHT_CLICK',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17a771046fd2ca0d1677622fde4aa2faa5f',1,'Core']]],
   ['mouse_5froll_41',['MOUSE_ROLL',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17a90ca3b120ea63a3b0fb11fb718babf83',1,'Core']]],
-  ['mouserel_42',['mouseRel',['../struct_core_1_1_app_state_struct.html#a914656bea843b9c67d451b79bd763e31',1,'Core::AppStateStruct']]],
+  ['mouserel_42',['MouseRel',['../struct_core_1_1_app_state_struct.html#a8b2e9d42d71ebfb28a582d57eb96151b',1,'Core::AppStateStruct']]],
   ['mousesensitivity_43',['MouseSensitivity',['../class_camera.html#a73e88844b31d5111eeb76327dfbb2d68',1,'Camera']]],
   ['movementspeed_44',['MovementSpeed',['../class_camera.html#a63221392d762df6a74f45bc9d43a2f61',1,'Camera']]],
   ['msg_45',['msg',['../class_s_d_l___exception.html#a16e3591b3b5e4491edadd65b9e258aa7',1,'SDL_Exception']]],

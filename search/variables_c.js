@@ -31,7 +31,7 @@ var searchData=
   ['mass_28',['Mass',['../struct_particle_data.html#a5c415cff4f4c657eaa7b94d9593d2c99',1,'ParticleData']]],
   ['maxsize_29',['MaxSize',['../struct_scrolling_buffer.html#a2ce31ea061f389615ac598c5a6088412',1,'ScrollingBuffer']]],
   ['message_30',['message',['../struct_core_1_1_console_log_message.html#ae04b3f8daa0f8748a981d5570266a2ea',1,'Core::ConsoleLogMessage']]],
-  ['mouserel_31',['mouseRel',['../struct_core_1_1_app_state_struct.html#a914656bea843b9c67d451b79bd763e31',1,'Core::AppStateStruct']]],
+  ['mouserel_31',['MouseRel',['../struct_core_1_1_app_state_struct.html#a8b2e9d42d71ebfb28a582d57eb96151b',1,'Core::AppStateStruct']]],
   ['mousesensitivity_32',['MouseSensitivity',['../class_camera.html#a73e88844b31d5111eeb76327dfbb2d68',1,'Camera']]],
   ['movementspeed_33',['MovementSpeed',['../class_camera.html#a63221392d762df6a74f45bc9d43a2f61',1,'Camera']]],
   ['msg_34',['msg',['../class_s_d_l___exception.html#a16e3591b3b5e4491edadd65b9e258aa7',1,'SDL_Exception']]]
