@@ -25,30 +25,30 @@
 var NAVTREE =
 [
   [ "Ankush's Garage", "index.html", [
-    [ "My Projects", "index.html#autotoc_md6", null ],
-    [ "Dummy Projects", "index.html#autotoc_md7", [
-      [ "SimpleExample", "index.html#autotoc_md8", null ],
-      [ "Triangle", "index.html#autotoc_md9", null ]
+    [ "My Projects", "index.html#autotoc_md7", null ],
+    [ "Dummy Projects", "index.html#autotoc_md8", [
+      [ "SimpleExample", "index.html#autotoc_md9", null ],
+      [ "Triangle", "index.html#autotoc_md10", null ]
     ] ],
-    [ "Real Projects", "index.html#autotoc_md10", [
-      [ "Boids", "index.html#autotoc_md11", null ],
-      [ "N-body-simulation", "index.html#autotoc_md12", null ],
-      [ "Few Fractals (Under Construction)", "index.html#autotoc_md13", [
-        [ "Normal fractal (Da tree)", "index.html#autotoc_md14", null ],
-        [ "Fern Fractals", "index.html#autotoc_md15", null ],
-        [ "Mendelbroth Set", "index.html#autotoc_md16", null ],
-        [ "Goldbert set", "index.html#autotoc_md17", null ]
+    [ "Real Projects", "index.html#autotoc_md11", [
+      [ "Boids", "index.html#autotoc_md12", null ],
+      [ "N-body-simulation", "index.html#autotoc_md13", null ],
+      [ "Few Fractals (Under Construction)", "index.html#autotoc_md14", [
+        [ "Normal fractal (Da tree)", "index.html#autotoc_md15", null ],
+        [ "Fern Fractals", "index.html#autotoc_md16", null ],
+        [ "Mendelbroth Set", "index.html#autotoc_md17", null ],
+        [ "Goldbert set", "index.html#autotoc_md18", null ]
       ] ]
     ] ],
-    [ "Features", "index.html#autotoc_md18", null ],
-    [ "Getting Started", "index.html#autotoc_md19", null ],
-    [ "Main", "md__2_users_2runner_2work_2_garage_2_garage_2src_2_main_2_main.html", null ],
+    [ "Features", "index.html#autotoc_md19", null ],
+    [ "Getting Started", "index.html#autotoc_md20", null ],
+    [ "Brief about the iterate func", "md__2_users_2runner_2work_2_garage_2_garage_2src_2_main_2_main.html", null ],
     [ "Usage", "md_usage.html", [
-      [ "Interface", "md_usage.html#autotoc_md1", [
-        [ "Keys", "md_usage.html#autotoc_md2", null ]
+      [ "Interface", "md_usage.html#autotoc_md2", [
+        [ "Keys", "md_usage.html#autotoc_md3", null ]
       ] ],
-      [ "Per Example", "md_usage.html#autotoc_md3", [
-        [ "Example", "md_usage.html#autotoc_md4", null ]
+      [ "Per Example", "md_usage.html#autotoc_md4", [
+        [ "Example", "md_usage.html#autotoc_md5", null ]
       ] ]
     ] ],
     [ "Todo List", "todo.html", null ],
@@ -89,7 +89,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_base_project_8cpp.html",
-"dir_c200fbb7b9fc0a2fb4664f622aba5ac5.html"
+"dir_e44f192d6fb2d1e6e2ba92e3dfbd29fa.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';
