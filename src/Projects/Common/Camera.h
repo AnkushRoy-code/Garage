@@ -21,12 +21,10 @@ class Camera
 
     float MovementSpeed;
     float MouseSensitivity;
-    float Zoom;
 
   private:
     void ProcessKeyboard();
     void ProcessMouseMovement(float xoffset, float yoffset);
-    void ProcessMouseScroll(float yoffset);
 
     void ConstrainPitch();
 };

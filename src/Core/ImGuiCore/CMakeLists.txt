@@ -2,7 +2,7 @@
 # and Windows build.
 
 add_library(
-    CoreImGui STATIC ImGuiCore.h ImGuiCore.cpp GameFPSTracker.cpp GameFPSTracker.h
+    CoreImGui STATIC ImGuiCore.h ImGuiCore.cpp FPSTracker.cpp FPSTracker.h
                      ScrollingBuffer.cpp ScrollingBuffer.h
 )
 

@@ -9,7 +9,7 @@
 #include "Core/Context.h"
 #include "Core/EventHandler.h"
 #include "Core/ImGuiCore/ImGuiCore.h"
-#include "Core/ImGuiCore/GameFPSTracker.h"
+#include "Core/ImGuiCore/FPSTracker.h"
 #include "Core/Renderer/Renderer.h"
 
 #include "Projects/Common/BaseProject.h"

@@ -14,6 +14,9 @@ class Tracker
     static ScrollingBuffer s_RealUpdateFPSBuffer;
     static ScrollingBuffer s_RenderFPSBuffer;
 
+    static ScrollingBuffer s_UpdateFTBuffer;
+    static ScrollingBuffer s_RenderFTBuffer;
+
   private:
     static float m_UpdateTime;
     static float m_RenderTime;

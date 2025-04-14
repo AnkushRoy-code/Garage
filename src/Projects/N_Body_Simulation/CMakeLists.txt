@@ -1,7 +1,4 @@
-add_library(
-    N_Body_Simulation STATIC src/Main.cpp src/Main.h src/Particle.h src/Particle.cpp src/Camera.h
-                             src/Camera.cpp
-)
+add_library(N_Body_Simulation STATIC src/Main.cpp src/Main.h src/Particle.h src/Particle.cpp)
 
 if(TRACY_PROFILE)
     target_link_libraries(N_Body_Simulation PUBLIC Tracy::TracyClient)

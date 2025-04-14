@@ -1,12 +1,11 @@
-#include "Projects/N_Body_Simulation/src/Camera.h"
+#include "Projects/Common/Camera.h"
 
 #include "Core/Context.h"
 #include "Core/EventHandler.h"
 #include "Utils/Time.h"
 
 Camera::Camera(glm::vec3 position, glm::quat orientation) :
-    m_Position(position), Orientation(orientation), MovementSpeed(2.5f), MouseSensitivity(0.3f),
-    Zoom(45.0f)
+    m_Position(position), Orientation(orientation), MovementSpeed(2.5f), MouseSensitivity(0.3f)
 {
 }
 
@@ -47,16 +46,13 @@ void Camera::ProcessKeyboard()
     glm::vec3 right   = Orientation * glm::vec3(1.0f, 0.0f, 0.0f);
     glm::vec3 up      = Orientation * glm::vec3(0.0f, 1.0f, 0.0f);
 
-    if (Core::Context::GetContext()->EventHandler.GetEventHeld(Core::MOUSE_ROLL))
+    if (Core::Context::GetContext()->EventHandler.GetEventHeld(Core::W))
     {
-        if (Core::Context::GetContext()->AppState.ScrollVal.y > 0)
-        {
-            m_Position += forward * velocity * 10.0f;
-        }
-        else if (Core::Context::GetContext()->AppState.ScrollVal.y < 0)
-        {
-            m_Position -= forward * velocity * 10.0f;
-        }
+        m_Position += forward * velocity;
+    }
+    if (Core::Context::GetContext()->EventHandler.GetEventHeld(Core::S))
+    {
+        m_Position -= forward * velocity;
     }
     if (Core::Context::GetContext()->EventHandler.GetEventHeld(Core::A))
     {
@@ -65,20 +61,6 @@ void Camera::ProcessKeyboard()
     if (Core::Context::GetContext()->EventHandler.GetEventHeld(Core::D))
     {
         m_Position += right * velocity;
-    }
-
-    if (Core::Context::GetContext()->EventHandler.GetEventHeld(Core::LEFT))
-    {
-        float angle   = MouseSensitivity * dt;
-        glm::quat rot = glm::angleAxis(glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f));
-        Orientation   = glm::normalize(rot * Orientation);
-    }
-
-    if (Core::Context::GetContext()->EventHandler.GetEventHeld(Core::RIGHT))
-    {
-        float angle   = MouseSensitivity * dt;
-        glm::quat rot = glm::angleAxis(glm::radians(-angle), glm::vec3(0.0f, 1.0f, 0.0f));
-        Orientation   = glm::normalize(rot * Orientation);
     }
 }
 
@@ -95,13 +77,6 @@ void Camera::ProcessMouseMovement(float xoffset, float yoffset)
     Orientation = glm::normalize(qYaw * qPitch * Orientation);
 
     ConstrainPitch();
-}
-
-void Camera::ProcessMouseScroll(float yoffset)
-{
-    Zoom -= yoffset;
-    if (Zoom < 1.0f) Zoom = 1.0f;
-    if (Zoom > 45.0f) Zoom = 45.0f;
 }
 
 void Camera::ConstrainPitch()

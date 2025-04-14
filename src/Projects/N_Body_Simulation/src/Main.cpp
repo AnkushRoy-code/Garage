@@ -6,9 +6,6 @@
 
 #include "Projects/N_Body_Simulation/src/Main.h"
 #include "Projects/N_Body_Simulation/src/Particle.h"
-#include "SDL3/SDL_mouse.h"
-#include "glm/common.hpp"
-#include "imgui.h"
 
 void N_Body_Simulation::InitialiseTransferBuffersAndParticleContainer()
 {

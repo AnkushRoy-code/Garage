@@ -1,4 +1,4 @@
-add_library(projects_common STATIC BaseProject.h BaseProject.cpp RegisterProjects.cpp)
+add_library(projects_common STATIC BaseProject.h BaseProject.cpp RegisterProjects.cpp Camera.h Camera.cpp)
 add_library(Projects::Common ALIAS projects_common)
 
 if(TRACY_PROFILE)
