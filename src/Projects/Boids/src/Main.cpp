@@ -7,12 +7,14 @@
 
 bool Boids::Init()
 {
-    hasUI     = true;
+    hasUI      = true;
     auto &rndt = Core::Context::GetContext()->RenderData;
 
     // pipeline creation
     SDL_GPUShader *vertShader = Common::LoadShader(rndt.Device, "Boids.vert", 0, 1, 1, 0);
     SDL_GPUShader *fragShader = Common::LoadShader(rndt.Device, "Boids.frag", 0, 0, 0, 0);
+    assert(vertShader);
+    assert(fragShader);
 
     const SDL_GPUColorTargetBlendState blendState {
         .src_color_blendfactor = SDL_GPU_BLENDFACTOR_SRC_ALPHA,
@@ -47,6 +49,7 @@ bool Boids::Init()
     };
 
     m_RenderPipeline = SDL_CreateGPUGraphicsPipeline(rndt.Device, &createInfo);
+    assert(m_RenderPipeline);
 
     SDL_ReleaseGPUShader(rndt.Device, vertShader);
     SDL_ReleaseGPUShader(rndt.Device, fragShader);
@@ -58,6 +61,7 @@ bool Boids::Init()
     };
 
     m_BoidsDataTransferBuffer = SDL_CreateGPUTransferBuffer(rndt.Device, &tBufCreateInfo);
+    assert(m_BoidsDataTransferBuffer);
 
     const SDL_GPUBufferCreateInfo newBufCreateInfo {
         .usage = SDL_GPU_BUFFERUSAGE_GRAPHICS_STORAGE_READ,
@@ -66,12 +70,12 @@ bool Boids::Init()
     };
 
     m_BoidsDataBuffer = SDL_CreateGPUBuffer(rndt.Device, &newBufCreateInfo);
+    assert(m_BoidsDataBuffer);
 
     // rgb pipeline creation
 
     SDL_GPUShader *rgbVertShader = Common::LoadShader(rndt.Device, "BoidsRGB.vert", 0, 1, 1, 0);
     SDL_GPUShader *rgbFragShader = Common::LoadShader(rndt.Device, "BoidsRGB.frag", 0, 0, 0, 0);
-    ;
 
     const SDL_GPUColorTargetBlendState rgbBlendState = blendState;
 
@@ -98,6 +102,7 @@ bool Boids::Init()
     };
 
     m_RGB_RenderPipeline = SDL_CreateGPUGraphicsPipeline(rndt.Device, &createInfo);
+    assert(m_RGB_RenderPipeline);
 
     SDL_ReleaseGPUShader(rndt.Device, rgbVertShader);
     SDL_ReleaseGPUShader(rndt.Device, rgbFragShader);
@@ -109,6 +114,7 @@ bool Boids::Init()
     };
 
     m_RGB_BoidsDataTransferBuffer = SDL_CreateGPUTransferBuffer(rndt.Device, &rgbTBufCreateInfo);
+    assert(m_RGB_BoidsDataTransferBuffer);
 
     const SDL_GPUBufferCreateInfo rgbNewBufCreateInfo {
         .usage = SDL_GPU_BUFFERUSAGE_GRAPHICS_STORAGE_READ,
@@ -117,6 +123,8 @@ bool Boids::Init()
     };
 
     m_RGB_BoidsDataBuffer = SDL_CreateGPUBuffer(rndt.Device, &rgbNewBufCreateInfo);
+    assert(m_RGB_BoidsDataBuffer);
+
     m_BoidsContainer.Init();
     return true;
 }
@@ -140,7 +148,7 @@ bool Boids::Draw()
     const glm::mat4x4 cameraMatrix = glm::ortho(0.0f, w, h, 0.0f, 0.0f, -1.0f);
 
     SDL_GPUCommandBuffer *cmdBuf = SDL_AcquireGPUCommandBuffer(rndt.Device);
-    if (cmdBuf == nullptr) { std::cerr << "unable to aquire command buffer\n"; }
+    assert(cmdBuf);
 
     if (rndt.ProjectTexture)
     {

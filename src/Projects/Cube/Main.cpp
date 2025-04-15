@@ -8,22 +8,10 @@ bool Cube::Init()
     auto &rndt = Core::Context::GetContext()->RenderData;
 
     SDL_GPUShader *vertShader = Common::LoadShader(rndt.Device, "Grid.vert", 0, 0, 0, 0);
-
-    if (!vertShader)
-    {
-        const std::string errMsg = "Unable to create vertex shader!\n";
-        std::cerr << errMsg;
-        return false;
-    }
+    assert(vertShader);
 
     SDL_GPUShader *fragShader = Common::LoadShader(rndt.Device, "Grid.frag", 0, 0, 0, 0);
-
-    if (!fragShader)
-    {
-        const std::string errMsg = "Unable to create fragment shader!\n";
-        std::cerr << errMsg;
-        return false;
-    }
+    assert(fragShader);
 
     const SDL_GPUColorTargetBlendState blendState {
         .src_color_blendfactor = SDL_GPU_BLENDFACTOR_SRC_ALPHA,
@@ -58,12 +46,7 @@ bool Cube::Init()
     };
 
     m_RenderPipeline = SDL_CreateGPUGraphicsPipeline(rndt.Device, &info);
-
-    if (!m_RenderPipeline)
-    {
-        std::cerr << "Unable to create render pipeline!\n\n";
-        return false;
-    }
+    assert(!m_RenderPipeline);
 
     SDL_ReleaseGPUShader(rndt.Device, vertShader);
     SDL_ReleaseGPUShader(rndt.Device, fragShader);

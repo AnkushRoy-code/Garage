@@ -107,6 +107,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         {  // the user wants to get out of focus from the project screen
             ImGui::SetWindowFocus("###ProjectUI");
         }
+
         if (!HandleWindowResize())
         {
             ImGui::End();

@@ -317,44 +317,38 @@ void Core::ImGuiCore::Draw()
 
     SDL_GPUCommandBuffer *commandBuffer =
         SDL_AcquireGPUCommandBuffer(Core::Context::GetContext()->RenderData.Device);
-    if (!commandBuffer)
-    {
-
-        // throw SDL_Exception("AcquireGPUCommandBuffer failed!");
-
-        return;
-    }
+    assert(commandBuffer);
 
     SDL_GPUTexture *swapchainTexture;
+
     if (!SDL_AcquireGPUSwapchainTexture(commandBuffer,
                                         Core::Context::GetContext()->RenderData.Window,
                                         &swapchainTexture, nullptr, nullptr))
     {
-        // throw SDL_Exception("WaitAndAcquireGPUSwapchainTexture failed!");
+        std::cerr << "WaitAndAcquireGPUSwapchainTexture failed!\n";
         return;
     }
 
-    if (swapchainTexture != nullptr)
-    {
-        Imgui_ImplSDLGPU3_PrepareDrawData(drawData, commandBuffer);
+    assert(swapchainTexture);
 
-        const SDL_GPUColorTargetInfo targetInfo {
-            .texture              = swapchainTexture,
-            .mip_level            = 0,
-            .layer_or_depth_plane = 0,
-            .clear_color          = SDL_FColor {0.0, 0.0f, 0.0f, 1.00f},
-            .load_op              = SDL_GPU_LOADOP_CLEAR,
-            .store_op             = SDL_GPU_STOREOP_STORE,
-            .cycle                = false,
+    Imgui_ImplSDLGPU3_PrepareDrawData(drawData, commandBuffer);
 
-        };
+    const SDL_GPUColorTargetInfo targetInfo {
+        .texture              = swapchainTexture,
+        .mip_level            = 0,
+        .layer_or_depth_plane = 0,
+        .clear_color          = SDL_FColor {0.0, 0.0f, 0.0f, 1.00f},
+        .load_op              = SDL_GPU_LOADOP_CLEAR,
+        .store_op             = SDL_GPU_STOREOP_STORE,
+        .cycle                = false,
 
-        static SDL_GPURenderPass *x_RenderPass {};
-        x_RenderPass = SDL_BeginGPURenderPass(commandBuffer, &targetInfo, 1, nullptr);
+    };
 
-        ImGui_ImplSDLGPU3_RenderDrawData(drawData, commandBuffer, x_RenderPass);
+    static SDL_GPURenderPass *x_RenderPass {};
+    x_RenderPass = SDL_BeginGPURenderPass(commandBuffer, &targetInfo, 1, nullptr);
 
-        SDL_EndGPURenderPass(x_RenderPass);
-        SDL_SubmitGPUCommandBuffer(commandBuffer);
-    }
+    ImGui_ImplSDLGPU3_RenderDrawData(drawData, commandBuffer, x_RenderPass);
+
+    SDL_EndGPURenderPass(x_RenderPass);
+    SDL_SubmitGPUCommandBuffer(commandBuffer);
 }

@@ -46,12 +46,8 @@ void Core::Renderer::Init()
     };
 
     rndt.ProjectTexture = SDL_CreateGPUTexture(rndt.Device, &gpuTextureCreateInfo);
+    assert(rndt.ProjectTexture);
 
-    if (!rndt.ProjectTexture)
-    {
-        Core::ConsoleLogBuffer::AddMessage("Unable to create GPU Texture");
-        std::cerr << "Unable to create GPU Texture\n";
-    }
     const SDL_GPUTextureCreateInfo resolveTextureInfo {.type   = SDL_GPU_TEXTURETYPE_2D,
                                                        .format = format,
                                                        .usage  = SDL_GPU_TEXTUREUSAGE_COLOR_TARGET
@@ -62,13 +58,7 @@ void Core::Renderer::Init()
                                                        .num_levels           = 1};
 
     rndt.ResolveTexture = SDL_CreateGPUTexture(rndt.Device, &resolveTextureInfo);
-
-    if (!rndt.ResolveTexture)
-    {
-        Core::ConsoleLogBuffer::AddMessage("Unable to create Resolve Texture");
-        std::cerr << "Unable to create Resolve Texture\n";
-        return;
-    }
+    assert(rndt.ResolveTexture);
 
     const SDL_GPUSamplerCreateInfo samplerInfo {
         .min_filter     = SDL_GPU_FILTER_NEAREST,
@@ -80,6 +70,7 @@ void Core::Renderer::Init()
     };
 
     rndt.ProjectSampler = SDL_CreateGPUSampler(rndt.Device, &samplerInfo);
+    assert(rndt.ProjectSampler);
 }
 
 void Core::Renderer::ResizeProjectTexture(int p_Width, int p_Height)
@@ -103,6 +94,7 @@ void Core::Renderer::ResizeProjectTexture(int p_Width, int p_Height)
     };
 
     rndt.ProjectTexture = SDL_CreateGPUTexture(rndt.Device, &gpuTextureCreateInfo);
+    assert(rndt.ProjectTexture);
 
     const SDL_GPUTextureCreateInfo resolveTextureInfo = {
         .type                 = SDL_GPU_TEXTURETYPE_2D,
@@ -114,6 +106,7 @@ void Core::Renderer::ResizeProjectTexture(int p_Width, int p_Height)
         .num_levels           = 1};
 
     rndt.ResolveTexture = SDL_CreateGPUTexture(rndt.Device, &resolveTextureInfo);
+    assert(rndt.ResolveTexture);
 }
 
 void Core::Renderer::DrawProjectToTexture()

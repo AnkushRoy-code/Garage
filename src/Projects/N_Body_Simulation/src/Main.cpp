@@ -112,90 +112,90 @@ bool N_Body_Simulation::Draw()
     glm::mat4 finalProjection = perspectiveProjection * m_Camera.GetViewMatrix();
 
     SDL_GPUCommandBuffer *cmdBuf = SDL_AcquireGPUCommandBuffer(rndt.Device);
-    if (cmdBuf == nullptr) { std::cerr << "unable to aquire command buffer\n"; }
+    assert(cmdBuf);
 
-    if (rndt.ProjectTexture)
+    assert(rndt.ProjectTexture);
+
+    // upload the data to transfer buffer
+    auto *dataPtr = static_cast<ParticleDataSend *>(
+        SDL_MapGPUTransferBuffer(rndt.Device, m_TransferBuffer, true));
+
+    for (int i = 0; i < ParticleContainer::count; i++)
     {
-        // upload the data to transfer buffer
-        auto *dataPtr = static_cast<ParticleDataSend *>(
-            SDL_MapGPUTransferBuffer(rndt.Device, m_TransferBuffer, true));
-
-        for (int i = 0; i < ParticleContainer::count; i++)
-        {
-            dataPtr[i].Color    = m_Particles.ParticleVec[i].Color;
-            dataPtr[i].Position = m_Particles.ParticleVec[i].Position;
-            dataPtr[i].Radius   = m_Particles.ParticleVec[i].Radius;
-            dataPtr[i]._padding = 0.0f;
-        }
-
-        SDL_UnmapGPUTransferBuffer(rndt.Device, m_TransferBuffer);
-
-        // upload the data to gpu from transfer buffers
-        const SDL_GPUTransferBufferLocation transferBufferLocation {
-            .transfer_buffer = m_TransferBuffer,
-            .offset          = 0,
-        };
-
-        const SDL_GPUBufferRegion bufferRegion {
-            .buffer = m_DataBuffer,
-            .offset = 0,
-            .size   = (Uint32)(ParticleContainer::count * sizeof(ParticleDataSend)),
-        };
-
-        SDL_GPUCopyPass *copyPass = SDL_BeginGPUCopyPass(cmdBuf);
-        SDL_UploadToGPUBuffer(copyPass, &transferBufferLocation, &bufferRegion, true);
-        SDL_EndGPUCopyPass(copyPass);
-
-        SDL_GPUColorTargetInfo tinfo {.texture     = rndt.ProjectTexture,
-                                      .clear_color = {0.094f, 0.094f, 0.145f, 1.00f},
-                                      .load_op     = SDL_GPU_LOADOP_CLEAR,
-                                      .store_op    = SDL_GPU_STOREOP_STORE,
-                                      .cycle       = false};
-
-        if (rndt.SampleCount == SDL_GPU_SAMPLECOUNT_1) { tinfo.store_op = SDL_GPU_STOREOP_STORE; }
-        else
-        {
-            tinfo.store_op        = SDL_GPU_STOREOP_RESOLVE;
-            tinfo.resolve_texture = rndt.ResolveTexture;
-        }
-
-        rndt.ProjectPass = SDL_BeginGPURenderPass(cmdBuf, &tinfo, 1, nullptr);
-
-        SDL_BindGPUGraphicsPipeline(rndt.ProjectPass, m_RenderPipeline);
-        SDL_BindGPUVertexStorageBuffers(rndt.ProjectPass, 0, &m_DataBuffer, 1);
-
-        SDL_PushGPUVertexUniformData(cmdBuf, 0, &finalProjection, sizeof(glm::mat4x4));
-
-        SDL_DrawGPUPrimitives(rndt.ProjectPass, 4, ParticleContainer::count, 0, 0);
-
-        SDL_EndGPURenderPass(rndt.ProjectPass);
-
-        SDL_GPUTexture *blitSourceTexture =
-            (tinfo.resolve_texture != nullptr) ? tinfo.resolve_texture : tinfo.texture;
-
-        const SDL_GPUBlitRegion blitSrc = {
-            .texture = blitSourceTexture,
-            .w       = (Uint32)apst.ProjectWindowSize.x,
-            .h       = (Uint32)apst.ProjectWindowSize.y,
-        };
-
-        SDL_BindGPUFragmentStorageTextures(rndt.ProjectPass, 1, &rndt.ProjectTexture, 2);
-
-        const SDL_GPUBlitRegion blitDst = {
-            .texture = rndt.ProjectTexture,
-            .w       = (Uint32)apst.ProjectWindowSize.x,
-            .h       = (Uint32)apst.ProjectWindowSize.y,
-        };
-
-        const SDL_GPUBlitInfo blitInfo = {.source      = blitSrc,
-                                          .destination = blitDst,
-                                          .load_op     = SDL_GPU_LOADOP_DONT_CARE,
-                                          .filter      = SDL_GPU_FILTER_LINEAR};
-
-        SDL_BlitGPUTexture(cmdBuf, &blitInfo);
+        dataPtr[i].Color    = m_Particles.ParticleVec[i].Color;
+        dataPtr[i].Position = m_Particles.ParticleVec[i].Position;
+        dataPtr[i].Radius   = m_Particles.ParticleVec[i].Radius;
+        dataPtr[i]._padding = 0.0f;
     }
 
+    SDL_UnmapGPUTransferBuffer(rndt.Device, m_TransferBuffer);
+
+    // upload the data to gpu from transfer buffers
+    const SDL_GPUTransferBufferLocation transferBufferLocation {
+        .transfer_buffer = m_TransferBuffer,
+        .offset          = 0,
+    };
+
+    const SDL_GPUBufferRegion bufferRegion {
+        .buffer = m_DataBuffer,
+        .offset = 0,
+        .size   = (Uint32)(ParticleContainer::count * sizeof(ParticleDataSend)),
+    };
+
+    SDL_GPUCopyPass *copyPass = SDL_BeginGPUCopyPass(cmdBuf);
+    SDL_UploadToGPUBuffer(copyPass, &transferBufferLocation, &bufferRegion, true);
+    SDL_EndGPUCopyPass(copyPass);
+
+    SDL_GPUColorTargetInfo tinfo {.texture     = rndt.ProjectTexture,
+                                  .clear_color = {0.094f, 0.094f, 0.145f, 1.00f},
+                                  .load_op     = SDL_GPU_LOADOP_CLEAR,
+                                  .store_op    = SDL_GPU_STOREOP_STORE,
+                                  .cycle       = false};
+
+    if (rndt.SampleCount == SDL_GPU_SAMPLECOUNT_1) { tinfo.store_op = SDL_GPU_STOREOP_STORE; }
+    else
+    {
+        tinfo.store_op        = SDL_GPU_STOREOP_RESOLVE;
+        tinfo.resolve_texture = rndt.ResolveTexture;
+    }
+
+    rndt.ProjectPass = SDL_BeginGPURenderPass(cmdBuf, &tinfo, 1, nullptr);
+
+    SDL_BindGPUGraphicsPipeline(rndt.ProjectPass, m_RenderPipeline);
+    SDL_BindGPUVertexStorageBuffers(rndt.ProjectPass, 0, &m_DataBuffer, 1);
+
+    SDL_PushGPUVertexUniformData(cmdBuf, 0, &finalProjection, sizeof(glm::mat4x4));
+
+    SDL_DrawGPUPrimitives(rndt.ProjectPass, 4, ParticleContainer::count, 0, 0);
+
+    SDL_EndGPURenderPass(rndt.ProjectPass);
+
+    SDL_GPUTexture *blitSourceTexture =
+        (tinfo.resolve_texture != nullptr) ? tinfo.resolve_texture : tinfo.texture;
+
+    const SDL_GPUBlitRegion blitSrc = {
+        .texture = blitSourceTexture,
+        .w       = (Uint32)apst.ProjectWindowSize.x,
+        .h       = (Uint32)apst.ProjectWindowSize.y,
+    };
+
+    SDL_BindGPUFragmentStorageTextures(rndt.ProjectPass, 1, &rndt.ProjectTexture, 2);
+
+    const SDL_GPUBlitRegion blitDst = {
+        .texture = rndt.ProjectTexture,
+        .w       = (Uint32)apst.ProjectWindowSize.x,
+        .h       = (Uint32)apst.ProjectWindowSize.y,
+    };
+
+    const SDL_GPUBlitInfo blitInfo = {.source      = blitSrc,
+                                      .destination = blitDst,
+                                      .load_op     = SDL_GPU_LOADOP_DONT_CARE,
+                                      .filter      = SDL_GPU_FILTER_LINEAR};
+
+    SDL_BlitGPUTexture(cmdBuf, &blitInfo);
+
     SDL_SubmitGPUCommandBuffer(cmdBuf);
+
     return true;
 }
 

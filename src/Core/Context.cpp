@@ -20,9 +20,7 @@ void Context::init()
 {
     if (!SDL_Init(SDL_INIT_VIDEO))
     {
-
-        // throw SDL_Exception("Couldn't initialize SDL");
-
+        std::cerr << "Couldn't initialize SDL!!\n";
         return;
     }
 
@@ -32,7 +30,7 @@ void Context::init()
 
     if (!RenderData.Device)
     {
-        // throw SDL_Exception("Unable to create SDL_GPUDevice");
+        std::cerr << "Unable to create SDL_GPUDevice\n";
         return;
     }
 
@@ -41,13 +39,13 @@ void Context::init()
 
     if (!RenderData.Window)
     {
-        // throw SDL_Exception("Unable to create SDL_Window");
+        std::cerr << "Unable to create SDL_Window!\n";
         return;
     }
 
     if (!SDL_ClaimWindowForGPUDevice(RenderData.Device, RenderData.Window))
     {
-        // throw SDL_Exception("Unable to claim window for device");
+        std::cerr << "Unable to claim window for device!\n";
         return;
     }
 

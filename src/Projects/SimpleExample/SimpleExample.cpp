@@ -23,7 +23,7 @@ bool SimpleExample::Draw()
 
     SDL_GPUCommandBuffer *commandBufferProjects =
         SDL_AcquireGPUCommandBuffer(Core::Context::GetContext()->RenderData.Device);
-    if (!commandBufferProjects) { std::cerr << "failed to aquire GPU\n"; }
+    assert(commandBufferProjects);
 
     const SDL_GPUColorTargetInfo projectTargetInfo {
         .texture     = Core::Context::GetContext()->RenderData.ProjectTexture,
