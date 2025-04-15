@@ -1,5 +1,6 @@
 add_library(
     Boids
+    STATIC
     src/Main.cpp
     src/Main.h
     src/Boids.cpp

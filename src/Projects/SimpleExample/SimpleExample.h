@@ -20,7 +20,6 @@ class SimpleExample : public Common::BaseProject
      *
      * @param context Reference to the global Context object.
      * @return true if initialization succeeds, false otherwise.
-     * @throws SDL_Exception if an SDL operation fails.
      */
     bool Init() override;
 
@@ -32,7 +31,6 @@ class SimpleExample : public Common::BaseProject
      *
      * @param context Reference to the global Context object.
      * @return true if the update succeeds, false otherwise.
-     * @throws SDL_Exception if an SDL operation fails.
      */
     bool Update() override;
 
@@ -45,7 +43,6 @@ class SimpleExample : public Common::BaseProject
      *
      * @param context Reference to the global Context object.
      * @return true if rendering succeeds, false otherwise.
-     * @throws SDL_Exception if an SDL operation fails.
      */
     bool Draw() override;
 
@@ -56,7 +53,6 @@ class SimpleExample : public Common::BaseProject
      * resources, close files, and perform necessary cleanup.
      *
      * @param context Reference to the global Context object.
-     * @throws SDL_Exception if an SDL operation fails.
      */
     void Quit() override;
 

@@ -24,20 +24,8 @@ bool Triangle::Init()
 
     auto &rndt = Core::Context::GetContext()->RenderData;
 
-    SDL_GPUShader *vertexShader = Common::LoadShader(rndt.Device, "RawTriangle.vert", 0, 0, 0, 0);
-    if (vertexShader == nullptr) { 
-
-        return false;
-        // throw SDL_Exception("Failed to create vertex shader!"); 
-    }
-
+    SDL_GPUShader *vertexShader   = Common::LoadShader(rndt.Device, "RawTriangle.vert", 0, 0, 0, 0);
     SDL_GPUShader *fragmentShader = Common::LoadShader(rndt.Device, "SolidColor.frag", 0, 0, 0, 0);
-    if (fragmentShader == nullptr) { 
-
-        return false;
-        // throw SDL_Exception("Failed to create fragment shader!"); 
-
-    }
 
     const SDL_GPUColorTargetDescription colorTargetDesc = {
         .format = SDL_GetGPUSwapchainTextureFormat(rndt.Device, rndt.Window),
@@ -58,21 +46,23 @@ bool Triangle::Init()
     pipelineCreateInfo.rasterizer_state.fill_mode = SDL_GPU_FILLMODE_FILL;
 
     FillPipeline = SDL_CreateGPUGraphicsPipeline(rndt.Device, &pipelineCreateInfo);
-    if (FillPipeline == nullptr) { 
 
+    if (FillPipeline == nullptr)
+    {
+        const std::string errMsg = "Failed to create fill pipeline!";
+        Core::ConsoleLogBuffer::AddMessage(errMsg);
+        // throw  "Failed to create fill pipeline!";
         return false;
-        // throw SDL_Exception("Failed to create fill pipeline!"); 
     }
-
 
     pipelineCreateInfo.rasterizer_state.fill_mode = SDL_GPU_FILLMODE_LINE;
 
     LinePipeline = SDL_CreateGPUGraphicsPipeline(rndt.Device, &pipelineCreateInfo);
-    if (LinePipeline == nullptr) { 
-
+    if (LinePipeline == nullptr)
+    {
+        const std::string errMsg = "Failed to create line pipeline!";
+        Core::ConsoleLogBuffer::AddMessage(errMsg);
         return false;
-        // throw SDL_Exception("Failed to create line pipeline!"); 
-
     }
 
     SDL_ReleaseGPUShader(rndt.Device, vertexShader);
