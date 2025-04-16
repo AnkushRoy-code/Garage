@@ -36,6 +36,6 @@ void Tracker::RegisterPoints()
     s_RealUpdateFPSBuffer.AddPoint(t, (m_UpdateTime < 60.0f ? m_UpdateTime : 60));
     s_RenderFPSBuffer.AddPoint(t, m_RenderTime);
 
-    // updateTime = 0;
-    // renderTime = 0;
+    m_UpdateTime = 0;
+    m_RenderTime = 0;
 }

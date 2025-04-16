@@ -327,9 +327,6 @@ bool Boids::DrawUI()
         ImGui::Checkbox("RGB Lighting", &dontuse);
         // ImGui::Checkbox("RGB Lighting", &rgb);
 
-        // Helper
-        ImGui::SameLine();
-        ImGui::TextDisabled("(?)");
         if (ImGui::BeginItemTooltip())
         {
             ImGui::PushTextWrapPos(ImGui::GetFontSize() * 35.0f);

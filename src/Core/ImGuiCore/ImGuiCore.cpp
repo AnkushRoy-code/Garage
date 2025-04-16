@@ -117,14 +117,14 @@ void Core::ImGuiCore::Update()
         ImGui::DockBuilderAddNode(apst.MainViewportId);
         ImGui::DockBuilderSetNodeSize(apst.MainViewportId, ImGui::GetMainViewport()->Size);
 
-        auto dockIdRight = ImGui::DockBuilderSplitNode(apst.MainViewportId, ImGuiDir_Right, 0.25,
-                                                       nullptr, &apst.MainViewportId);
+        auto dockIdLeft = ImGui::DockBuilderSplitNode(apst.MainViewportId, ImGuiDir_Left, 0.25,
+                                                      nullptr, &apst.MainViewportId);
 
         auto dockIdBottom = ImGui::DockBuilderSplitNode(apst.MainViewportId, ImGuiDir_Down, 0.3,
                                                         nullptr, &apst.MainViewportId);
 
-        auto dockIdLeft = ImGui::DockBuilderSplitNode(apst.MainViewportId, ImGuiDir_Left, 0.25,
-                                                      nullptr, &apst.MainViewportId);
+        auto dockIdRight = ImGui::DockBuilderSplitNode(apst.MainViewportId, ImGuiDir_Right, 0.25,
+                                                       nullptr, &apst.MainViewportId);
 
         ImGui::DockBuilderDockWindow("Ankush's Garage - ToolBox", dockIdLeft);
         ImGui::DockBuilderDockWindow("Console", dockIdBottom);
