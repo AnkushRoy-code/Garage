@@ -138,10 +138,13 @@ $(function(){initNavTree('class_tracker.html',''); initResizable(true); });
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a5b3778a3b13efdba7c045c55ce6b67c4" id="r_a5b3778a3b13efdba7c045c55ce6b67c4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b3778a3b13efdba7c045c55ce6b67c4">AddUpdateFPSPointQueue</a> (float UpdateTime)</td></tr>
+<tr class="memdesc:a5b3778a3b13efdba7c045c55ce6b67c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function adds the time taken by the update function to complete in a Queue.  <br /></td></tr>
 <tr class="separator:a5b3778a3b13efdba7c045c55ce6b67c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a9391d928092235b8d58c51fac4db0c" id="r_a1a9391d928092235b8d58c51fac4db0c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a9391d928092235b8d58c51fac4db0c">AddRenderFPSPointQueue</a> (float RenderTime)</td></tr>
+<tr class="memdesc:a1a9391d928092235b8d58c51fac4db0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function adds the time taken by the render function to complete in a Queue.  <br /></td></tr>
 <tr class="separator:a1a9391d928092235b8d58c51fac4db0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8a43815db206934c44dec2de4f124b3" id="r_ab8a43815db206934c44dec2de4f124b3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8a43815db206934c44dec2de4f124b3">RegisterPoints</a> ()</td></tr>
+<tr class="memdesc:ab8a43815db206934c44dec2de4f124b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates new points in the tracker using the values from <a class="el" href="#a1a9391d928092235b8d58c51fac4db0c" title="This function adds the time taken by the render function to complete in a Queue.">AddRenderFPSPointQueue()</a> and <a class="el" href="#a5b3778a3b13efdba7c045c55ce6b67c4" title="This function adds the time taken by the update function to complete in a Queue.">AddUpdateFPSPointQueue()</a>.  <br /></td></tr>
 <tr class="separator:ab8a43815db206934c44dec2de4f124b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
@@ -188,6 +191,9 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>This function adds the time taken by the render function to complete in a Queue. </p>
+<p>Run <a class="el" href="#ab8a43815db206934c44dec2de4f124b3" title="This function creates new points in the tracker using the values from AddRenderFPSPointQueue() and Ad...">RegisterPoints()</a> to actually register the point in the tracker </p>
+
 </div>
 </div>
 <a id="a5b3778a3b13efdba7c045c55ce6b67c4" name="a5b3778a3b13efdba7c045c55ce6b67c4"></a>
@@ -213,6 +219,9 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>This function adds the time taken by the update function to complete in a Queue. </p>
+<p>Run <a class="el" href="#ab8a43815db206934c44dec2de4f124b3" title="This function creates new points in the tracker using the values from AddRenderFPSPointQueue() and Ad...">RegisterPoints()</a> to actually register the point in the tracker </p>
+
 </div>
 </div>
 <a id="ab8a43815db206934c44dec2de4f124b3" name="ab8a43815db206934c44dec2de4f124b3"></a>
@@ -237,6 +246,9 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>This function creates new points in the tracker using the values from <a class="el" href="#a1a9391d928092235b8d58c51fac4db0c" title="This function adds the time taken by the render function to complete in a Queue.">AddRenderFPSPointQueue()</a> and <a class="el" href="#a5b3778a3b13efdba7c045c55ce6b67c4" title="This function adds the time taken by the update function to complete in a Queue.">AddUpdateFPSPointQueue()</a>. </p>
+<p>If those function were not used the value that will be put up in tracker will be 0. </p>
 
 </div>
 </div>
