@@ -19,17 +19,17 @@
 
 SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
 {
-    Core::Context::GetContext()->init();
-    Common::ProjectManager::RegisterAllProjects();
-    Common::ProjectManager::GetProjects()
-        ->at(0)  // initialise the first proj
-        ->Init();
-
     Core::ConsoleLogBuffer::AddMessage(
         "Welcome to Ankush's Garage\n"
         "This is a Software I made to showcase my Works that I will build over the years."
         "So this is a placeholder for all my stuff! I hope you enjoy what I have made until "
         "now. It might not be much but was HARD");
+
+    Core::Context::GetContext()->init();
+    Common::ProjectManager::RegisterAllProjects();
+    Common::ProjectManager::GetProjects()
+        ->at(0)  // initialise the first proj
+        ->Init();
 
     return SDL_APP_CONTINUE;
 }
@@ -139,6 +139,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 
     // std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
+    // The rendering is done. Join the update loop and prepare ending frame.
     g_RenderingDone.store(true);
     updateProject.join();
     ctx->EventHandler.EndFrame();

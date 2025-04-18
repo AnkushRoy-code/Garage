@@ -12,11 +12,13 @@ Core::EventHandlerStruct::EventHandlerStruct()
 
 bool Core::EventHandlerStruct::GetEventHeld(KEY p_Key)
 {
+    // true if key is pressed or held
     return (Keys[p_Key] == Core::KEY_STATE::PRESSED || Keys[p_Key] == Core::KEY_STATE::HELD);
 }
 
 bool Core::EventHandlerStruct::GetEventPressed(KEY p_Key)
 {
+    // true if key is pressed
     return (Keys[p_Key] == Core::KEY_STATE::PRESSED);
 }
 
@@ -58,6 +60,9 @@ void Core::EventHandlerStruct::EndFrame()
 
 SDL_AppResult Core::EventHandlerStruct::HandleEvents(SDL_Event *p_Event)
 {
+    // why no SDL_PollEvents ..?
+    // SDL_AppEvent() callback handles that for us
+
     if (p_Event->type == SDL_EVENT_QUIT)
     {
         if (Context::GetContext()->AppState.ProjectIndex != -1)

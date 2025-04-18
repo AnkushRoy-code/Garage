@@ -17,6 +17,7 @@ void Core::Renderer::Init()
     const auto format = SDL_GetGPUSwapchainTextureFormat(rndt.Device, rndt.Window);
 
     // detect the number of sample_count. highst is 8 but we can work with 4
+    
 #ifdef _WIN32  // could'nt get anti-aliasing working with Windows.
     rndt.SampleCount = SDL_GPU_SAMPLECOUNT_1;
 #else

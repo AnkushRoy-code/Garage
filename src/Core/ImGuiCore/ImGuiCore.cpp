@@ -276,7 +276,7 @@ void Core::ImGuiCore::Update()
         {
             ImGui::TableSetupColumn("Console Message", ImGuiTableColumnFlags_WidthStretch);
             ImGui::TableSetupColumn("Time", ImGuiTableColumnFlags_WidthFixed, 70);
-            for (int i = 0; i < cl.size(); ++i)
+            for (int i = cl.size() - 1; i >= 0; i--)
             {
                 if (i % 2 == 0)
                     ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.8f, 0.8f, 0.8f, 1.0f));

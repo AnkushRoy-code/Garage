@@ -9,7 +9,14 @@
 bool SimpleExample::Init()
 {
     hasUI = false;
-    Core::ConsoleLogBuffer::AddMessage("SimpleExample Initialised\n");
+
+    static bool firstTime = true;
+    if (firstTime)
+    {
+        Core::ConsoleLogBuffer::AddMessage("SimpleExample Initialised");
+        firstTime = false;
+    }
+
     return true;
 }
 bool SimpleExample::Update()

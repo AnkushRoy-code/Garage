@@ -2,6 +2,7 @@
 
 #include "Core/Common/Common.h"
 #include "Core/Context.h"
+#include "Core/Console.h"
 #include "Core/EventHandler.h"
 
 #include "Projects/N_Body_Simulation/src/Main.h"
@@ -80,6 +81,17 @@ bool N_Body_Simulation::Init()
     const auto h = Core::Context::GetContext()->AppState.ProjectWindowSize.y;
 
     m_Camera = Camera(glm::vec3(w / 2.0f, h / 2.0f, 700.0f));
+
+    static bool firstTime = true;
+    if (firstTime)
+    {
+        Core::ConsoleLogBuffer::AddMessage(
+            "N-Body-Simulation is initialised\n"
+            "In this there are 4 different arrangements you can choose from to view.\n"
+            "It also has camera support! Just try clicking the project window or the Lock mouse "
+            "checkbox. You can exit out of camera mode by pressing ESC have fun!");
+        firstTime = false;
+    }
 
     return true;
 }

@@ -8,7 +8,6 @@ add_library(Projects
 )
 
 add_subdirectory(Boids)
-add_subdirectory(Cube)
 add_subdirectory(N_Body_Simulation)
 
 if (TRACY_PROFILE) 

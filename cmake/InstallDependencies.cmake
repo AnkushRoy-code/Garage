@@ -92,12 +92,12 @@ if(TRACY_PROFILE)
 endif()
 
 ############################ miniaudio ###############################
-CPMAddPackage(
-    NAME miniaudio
-    VERSION 0.11.22
-    URL https://github.com/mackron/miniaudio/archive/refs/tags/0.11.22.tar.gz
-    URL_HASH SHA256=bcb07bfb27e6fa94d34da73ba2d5642d4940b208ec2a660dbf4e52e6b7cd492f
-)
+# CPMAddPackage(
+#     NAME miniaudio
+#     VERSION 0.11.22
+#     URL https://github.com/mackron/miniaudio/archive/refs/tags/0.11.22.tar.gz
+#     URL_HASH SHA256=bcb07bfb27e6fa94d34da73ba2d5642d4940b208ec2a660dbf4e52e6b7cd492f
+# )
 
 ############################ GLM ###############################
 CPMAddPackage(

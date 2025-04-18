@@ -29,7 +29,6 @@ tested with:
   - Dear ImGui
   - ImPlot
   - Tracy Profiler (Off by default)
-  - miniaudio
 
 ### Clone
 ```bash

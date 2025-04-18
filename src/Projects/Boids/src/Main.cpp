@@ -2,8 +2,8 @@
 
 #include "Core/Common/Common.h"
 #include "Core/Context.h"
+#include "Core/Console.h"
 #include "Utils/Time.h"
-#include "imgui.h"
 
 bool Boids::Init()
 {
@@ -126,6 +126,18 @@ bool Boids::Init()
     assert(m_RGB_BoidsDataBuffer);
 
     m_BoidsContainer.Init();
+
+    static bool firstTime = true;
+    if (firstTime)
+    {
+        Core::ConsoleLogBuffer::AddMessage(
+            "Boids is initialised\n"
+            "In this there are Boids (Bird Oid object). It is a simulation about some objects that "
+            "move in the window doing bird like stuffs.\n"
+            "You can change their behaviour using the sliders try it!");
+        firstTime = false;
+    }
+
     return true;
 }
 
