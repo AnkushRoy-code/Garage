@@ -1,7 +1,7 @@
 # Garage
 A simple Garage where I put up some of my projects. That is Cross Platform. It
 can run in all `Metal`/`Vulkan`/`DX11` or `DX12` idk. It's all possible just
-because of SDL_GPU_API
+because of SDL_GPU API
 
 ## Website
 There is a website for the documentation
@@ -74,3 +74,5 @@ Or simply:
 ./src/Main/Garage
 ```
 
+## Developers
+[Ankush Roy](https://github.com/AnkushRoy-code)
