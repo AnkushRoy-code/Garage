@@ -3,7 +3,6 @@ var hierarchy =
     [ "Core::AppStateStruct", "struct_core_1_1_app_state_struct.html", null ],
     [ "Common::BaseProject", "class_common_1_1_base_project.html", [
       [ "Boids", "class_boids.html", null ],
-      [ "Cube", "class_cube.html", null ],
       [ "N_Body_Simulation", "class_n___body___simulation.html", null ],
       [ "SimpleExample", "class_simple_example.html", null ],
       [ "Triangle", "class_triangle.html", null ]
@@ -19,7 +18,6 @@ var hierarchy =
     [ "Core::EventHandlerStruct", "class_core_1_1_event_handler_struct.html", null ],
     [ "Common::ImGuiUI", "class_common_1_1_im_gui_u_i.html", [
       [ "Boids", "class_boids.html", null ],
-      [ "Cube", "class_cube.html", null ],
       [ "N_Body_Simulation", "class_n___body___simulation.html", null ]
     ] ],
     [ "ParticleContainer", "struct_particle_container.html", null ],
