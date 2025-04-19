@@ -66,13 +66,11 @@ void updateFunc()
 SDL_AppResult SDL_AppIterate(void *appstate)
 {
     PROFILE_SCOPE;
-    Tracker::RegisterPoints();
 
     g_RenderingDone.store(false);
     std::thread updateProject(updateFunc);
 
-    auto ctx   = Core::Context::GetContext();
-    auto &apst = Core::Context::GetContext()->AppState;
+    auto ctx = Core::Context::GetContext();
 
     // no need to draw if window is minimised. But we sure need to update the state.
     if (SDL_GetWindowFlags(ctx->RenderData.Window) & SDL_WINDOW_MINIMIZED)
@@ -83,6 +81,9 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         return SDL_APP_CONTINUE;
     }
 
+    Tracker::RegisterPoints();
+
+    auto &apst = Core::Context::GetContext()->AppState;
     {
         static float renderTime = 0.0f;
         Tracker::AddRenderFPSPointQueue(renderTime);
