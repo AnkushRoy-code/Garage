@@ -86,5 +86,13 @@ Or simply:
 
 ## Demo Video
 
+
+It has some artifacts because of compression. And I am not the best at using ffmpeg or it is ffmpeg's fault for being so hard. 
+
+
+https://github.com/user-attachments/assets/35f9639f-b4a0-46cf-a745-c89b1688f3c9
+
+
+
 ## Developers
 [Ankush Roy](https://github.com/AnkushRoy-code)
