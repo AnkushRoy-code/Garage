@@ -1,3 +1,5 @@
+### Emscripten doesn't work as of now. It might not ever, because SDL_GPU might never support it.
+
 # Garage
 A simple Garage where I put up some of my projects. That is Cross Platform. It
 can run in all `Metal`/`Vulkan`/`DX11` or `DX12` idk. It's all possible just

@@ -10,7 +10,13 @@ target_precompile_headers(Core PRIVATE Common/pch.h)
 
 target_link_libraries(Core PRIVATE CoreImGui Renderer Projects)
 
-target_link_libraries(Core PUBLIC SDL3::SDL3-shared imgui glm::glm)
+if(EMSCRIPTEN)
+    target_link_libraries(Core PUBLIC SDL3::SDL3-static)
+else()
+    target_link_libraries(Core PUBLIC SDL3::SDL3-shared)
+endif()
+
+target_link_libraries(Core PUBLIC imgui glm::glm)
 
 add_subdirectory(ImGuiCore)
 add_subdirectory(Renderer)

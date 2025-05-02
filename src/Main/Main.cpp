@@ -42,6 +42,9 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
 }
 
 bool HandleWindowResize();
+
+#ifndef __EMSCRIPTEN__
+
 std::atomic<bool> g_RenderingDone;
 
 void updateFunc()
@@ -63,21 +66,42 @@ void updateFunc()
     }
 }
 
+#endif
+
 SDL_AppResult SDL_AppIterate(void *appstate)
 {
     PROFILE_SCOPE;
 
+#ifdef __EMSCRIPTEN__
+    Utils::Time::UpdateDeltaTime();
+    Utils::CapZone temp(60);
+
+    {
+        static float updateTime = 0.0f;
+        Tracker::AddUpdateFPSPointQueue(updateTime);
+        Timer riesnt(updateTime);
+
+        Common::ProjectManager::GetProjects()
+            ->at(Core::Context::GetContext()->AppState.ProjectIndex)
+            ->Update();
+    }
+#else
     g_RenderingDone.store(false);
     std::thread updateProject(updateFunc);
+#endif
 
     auto ctx = Core::Context::GetContext();
 
     // no need to draw if window is minimised. But we sure need to update the state.
     if (SDL_GetWindowFlags(ctx->RenderData.Window) & SDL_WINDOW_MINIMIZED)
     {
+
+#ifndef __EMSCRIPTEN__
         g_RenderingDone.store(true);
         updateProject.join();
+#endif  // __EMSCRIPTEN__
         ctx->EventHandler.EndFrame();
+
         return SDL_APP_CONTINUE;
     }
 
@@ -116,8 +140,11 @@ SDL_AppResult SDL_AppIterate(void *appstate)
             {
                 ImGui::End();
                 ImGui::PopStyleVar();
+#ifndef __EMSCRIPTEN__
                 g_RenderingDone.store(true);
                 updateProject.join();
+#endif  // !__EMSCRIPTEN__
+
                 ctx->EventHandler.EndFrame();
                 return SDL_APP_CONTINUE;
             }
@@ -141,9 +168,12 @@ SDL_AppResult SDL_AppIterate(void *appstate)
     // std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
     // The rendering is done. Join the update loop and prepare ending frame.
+
+#ifndef __EMSCRIPTEN__
     g_RenderingDone.store(true);
     updateProject.join();
-    ctx->EventHandler.EndFrame();
+#endif  // !__EMSCRIPTEN__
+        ctx->EventHandler.EndFrame();
 
     if (apst.HasToChangeIndex)
     {
