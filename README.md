@@ -13,7 +13,7 @@ know how I did things here or how a particular project works. I have them all
 documented. As of now I haven't done anything, all of these shit I just wrote
 are "future plans".
 
-![Website](https://github.com/user-attachments/assets/b8c7b2f5-451e-411f-bba5-42a85a58b43e)
+![A pic of circles](https://github.com/user-attachments/assets/33f8d553-f75a-42e0-85b4-32cc39350b63)
 
 ## Compilation
 Compiling is straightforward, you just need a modern C++ compiler. It has been
