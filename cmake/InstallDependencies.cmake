@@ -40,7 +40,12 @@ if(imgui_ADDED)
     add_library(imgui STATIC ${imgui_sources})
 
     target_include_directories(imgui PUBLIC ${imgui_SOURCE_DIR})
-    target_link_libraries(imgui PUBLIC SDL3::SDL3-shared)
+
+    if(SDL_STATIC)
+        target_link_libraries(imgui PUBLIC SDL3::SDL3-static)
+    else()
+        target_link_libraries(imgui PUBLIC SDL3::SDL3-shared)
+    endif()
 endif()
 
 CPMAddPackage(
@@ -63,7 +68,12 @@ if(implot_ADDED)
     add_library(implot STATIC ${implot_sources})
 
     target_include_directories(implot PUBLIC ${imgui_SOURCE_DIR} ${implot_SOURCE_DIR})
-    target_link_libraries(implot PUBLIC SDL3::SDL3-shared imgui)
+    if(SDL_STATIC)
+        target_link_libraries(implot PUBLIC SDL3::SDL3-static)
+    else()
+        target_link_libraries(implot PUBLIC SDL3::SDL3-shared)
+    endif()
+    target_link_libraries(implot PUBLIC imgui)
 endif()
 
 # ############################ Catch2 ###############################
@@ -91,15 +101,12 @@ if(TRACY_PROFILE)
     )
 endif()
 
-############################ miniaudio ###############################
-# CPMAddPackage(
-#     NAME miniaudio
-#     VERSION 0.11.22
-#     URL https://github.com/mackron/miniaudio/archive/refs/tags/0.11.22.tar.gz
-#     URL_HASH SHA256=bcb07bfb27e6fa94d34da73ba2d5642d4940b208ec2a660dbf4e52e6b7cd492f
-# )
+# ########################### miniaudio ###############################
+# CPMAddPackage( NAME miniaudio VERSION 0.11.22 URL
+# https://github.com/mackron/miniaudio/archive/refs/tags/0.11.22.tar.gz URL_HASH
+# SHA256=bcb07bfb27e6fa94d34da73ba2d5642d4940b208ec2a660dbf4e52e6b7cd492f )
 
-############################ GLM ###############################
+# ########################### GLM ###############################
 CPMAddPackage(
     NAME glm
     VERSION 1.0.1
@@ -107,19 +114,12 @@ CPMAddPackage(
     URL_HASH SHA256=9f3174561fd26904b23f0db5e560971cbf9b3cbda0b280f04d5c379d03bf234c
 )
 
+# ########################### EnTT ###############################
 
-############################ EnTT ###############################
+# CPMAddPackage( NAME EnTT VERSION 3.15.0 URL
+# https://github.com/skypjack/entt/archive/refs/tags/v3.15.0.tar.gz URL_HASH
+# SHA256=01466fcbf77618a79b62891510c0bbf25ac2804af5751c84982b413852234d66 # EnTT's CMakeLists screws
+# with configuration options DOWNLOAD_ONLY True )
 
-# CPMAddPackage(
-#     NAME EnTT
-#     VERSION 3.15.0
-#     URL https://github.com/skypjack/entt/archive/refs/tags/v3.15.0.tar.gz
-#     URL_HASH SHA256=01466fcbf77618a79b62891510c0bbf25ac2804af5751c84982b413852234d66
-#     # EnTT's CMakeLists screws with configuration options
-#     DOWNLOAD_ONLY True
-# )
-
-# if (EnTT_ADDED)
-#   add_library(EnTT INTERFACE)
-#   target_include_directories(EnTT INTERFACE ${EnTT_SOURCE_DIR}/src)
-# endif()
+# if (EnTT_ADDED) add_library(EnTT INTERFACE) target_include_directories(EnTT INTERFACE
+# ${EnTT_SOURCE_DIR}/src) endif()

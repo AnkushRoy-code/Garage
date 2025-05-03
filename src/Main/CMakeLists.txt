@@ -4,7 +4,13 @@ if(TRACY_PROFILE)
     target_link_libraries(${PROJECT_NAME} PUBLIC Tracy::TracyClient)
 endif()
 
-target_link_libraries("${PROJECT_NAME}" PRIVATE Projects::Common Utils SDL3::SDL3-shared imgui Core)
+if(SDL_STATIC)
+    target_link_libraries("${PROJECT_NAME}" PRIVATE SDL3::SDL3-static)
+else()
+    target_link_libraries("${PROJECT_NAME}" PRIVATE SDL3::SDL3-shared)
+endif()
+
+target_link_libraries("${PROJECT_NAME}" PRIVATE Projects::Common Utils imgui Core)
 target_include_directories("${PROJECT_NAME}" PRIVATE "${CMAKE_SOURCE_DIR}/src")
 
 target_precompile_headers("${PROJECT_NAME}" REUSE_FROM Core)
@@ -23,12 +29,14 @@ if(WIN32)
         )
     endif()
 
-    add_custom_command(
-        TARGET "${PROJECT_NAME}"
-        POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<TARGET_FILE:SDL3::SDL3>"
-                "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
-    )
+    if(!SDL_STATIC)
+        add_custom_command(
+            TARGET "${PROJECT_NAME}"
+            POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<TARGET_FILE:SDL3::SDL3>"
+                    "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
+        )
+    endif()
 endif()
 
 add_custom_command(
