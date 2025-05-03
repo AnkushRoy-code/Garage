@@ -39,7 +39,7 @@ tested with:
 git clone --depth=1 https://github.com/AnkushRoy-code/Garage.git
 ```
 
-> [!NOTE]
+> [!TIP]
 > Remove `--depth=1` if you want to clone the old stuff.
 
 ### Build
@@ -51,15 +51,18 @@ cd Garage
 # make the build files
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 ```
-> [!NOTE]
+> [!TIP]
 > You can add `-G` flag to generate your favourite make system. For example
 > `cmake -G "Unix Makefiles"`.
 
 #### Compile the project
-For Visual Studio users, open the `.sln` file, make sure to select `Garage.exe`
-as the target (as it may default to something else), and build the project from
-there.
+For Visual Studio users, open the `.sln` file.
 
+> [!IMPORTANT]
+> If using Visual Studio Make sure to select `Garage.exe` as the target (as it
+> may default to something else), otherwise it won't work.
+
+Others can just do this:
 ```bash
 cmake --build build --config Release -j 8
 ```
