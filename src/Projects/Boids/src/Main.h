@@ -39,11 +39,7 @@ class Boids : public Common::BaseProject, public Common::ImGuiUI
     SDL_GPUTransferBuffer *m_BoidsDataTransferBuffer;
     SDL_GPUBuffer *m_BoidsDataBuffer;
 
-    bool s_rgb = false; // doesn't work
-    SDL_GPUGraphicsPipeline *m_RGB_RenderPipeline;
-    SDL_GPUTransferBuffer *m_RGB_BoidsDataTransferBuffer;
-    SDL_GPUBuffer *m_RGB_BoidsDataBuffer;
-
+    bool m_RGB = false;
     BoidsContainer m_BoidsContainer {};
 };
 

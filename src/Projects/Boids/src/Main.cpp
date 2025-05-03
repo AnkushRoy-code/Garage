@@ -72,59 +72,6 @@ bool Boids::Init()
     m_BoidsDataBuffer = SDL_CreateGPUBuffer(rndt.Device, &newBufCreateInfo);
     assert(m_BoidsDataBuffer);
 
-    // rgb pipeline creation
-
-    SDL_GPUShader *rgbVertShader = Common::LoadShader(rndt.Device, "BoidsRGB.vert", 0, 1, 1, 0);
-    SDL_GPUShader *rgbFragShader = Common::LoadShader(rndt.Device, "BoidsRGB.frag", 0, 0, 0, 0);
-
-    const SDL_GPUColorTargetBlendState rgbBlendState = blendState;
-
-    const SDL_GPUColorTargetDescription rgbColorDesc {
-        .format      = SDL_GetGPUSwapchainTextureFormat(rndt.Device, rndt.Window),
-        .blend_state = rgbBlendState,
-    };
-
-    const SDL_GPUGraphicsPipelineTargetInfo rgbTargetInfo {
-        .color_target_descriptions = &rgbColorDesc,
-        .num_color_targets         = 1,
-    };
-
-    const SDL_GPUMultisampleState rgbState = {
-        .sample_count = rndt.SampleCount,  // MSAA or not
-    };
-
-    const SDL_GPUGraphicsPipelineCreateInfo rgbCreateInfo {
-        .vertex_shader     = rgbVertShader,
-        .fragment_shader   = rgbFragShader,
-        .primitive_type    = SDL_GPU_PRIMITIVETYPE_TRIANGLELIST,
-        .multisample_state = rgbState,
-        .target_info       = rgbTargetInfo,
-    };
-
-    m_RGB_RenderPipeline = SDL_CreateGPUGraphicsPipeline(rndt.Device, &createInfo);
-    assert(m_RGB_RenderPipeline);
-
-    SDL_ReleaseGPUShader(rndt.Device, rgbVertShader);
-    SDL_ReleaseGPUShader(rndt.Device, rgbFragShader);
-
-    // Transfer buffers creation
-    const SDL_GPUTransferBufferCreateInfo rgbTBufCreateInfo {
-        .usage = SDL_GPU_TRANSFERBUFFERUSAGE_UPLOAD,
-        .size  = (Uint32)(m_BoidsContainer.NumBoids() * sizeof(RGB_BoidDataSend)),
-    };
-
-    m_RGB_BoidsDataTransferBuffer = SDL_CreateGPUTransferBuffer(rndt.Device, &rgbTBufCreateInfo);
-    assert(m_RGB_BoidsDataTransferBuffer);
-
-    const SDL_GPUBufferCreateInfo rgbNewBufCreateInfo {
-        .usage = SDL_GPU_BUFFERUSAGE_GRAPHICS_STORAGE_READ,
-        .size  = (Uint32)(m_BoidsContainer.NumBoids() * sizeof(RGB_BoidDataSend)),
-
-    };
-
-    m_RGB_BoidsDataBuffer = SDL_CreateGPUBuffer(rndt.Device, &rgbNewBufCreateInfo);
-    assert(m_RGB_BoidsDataBuffer);
-
     m_BoidsContainer.Init();
 
     static bool firstTime = true;
@@ -165,12 +112,13 @@ bool Boids::Draw()
     if (rndt.ProjectTexture)
     {
         // upload the data to transfer buffer
-        if (!s_rgb)
-        {
-            auto *dataPtr = static_cast<BoidsDataSend *>(
-                SDL_MapGPUTransferBuffer(rndt.Device, m_BoidsDataTransferBuffer, true));
+        auto *dataPtr = static_cast<BoidsDataSend *>(
+            SDL_MapGPUTransferBuffer(rndt.Device, m_BoidsDataTransferBuffer, true));
 
-            static int i = 0;
+        static int i = 0;
+
+        if (!m_RGB)
+        {
             for (const auto &boid: m_BoidsContainer.GetBoids())
             {
                 dataPtr[i].x        = boid.Position.x;
@@ -183,58 +131,63 @@ bool Boids::Draw()
                 dataPtr[i].Rotation = boid.Rotation - SDL_PI_F * 0.5;
                 i++;
             }
-            i = 0;
-            SDL_UnmapGPUTransferBuffer(rndt.Device, m_BoidsDataTransferBuffer);
-
-            // upload the data to gpu from transfer buffers
-            const SDL_GPUTransferBufferLocation transferBufferLocation {
-                .transfer_buffer = m_BoidsDataTransferBuffer,
-                .offset          = 0,
-            };
-
-            const SDL_GPUBufferRegion bufferRegion {
-                .buffer = m_BoidsDataBuffer,
-                .offset = 0,
-                .size   = (Uint32)(m_BoidsContainer.NumBoids() * sizeof(BoidsDataSend)),
-            };
-
-            SDL_GPUCopyPass *copyPass = SDL_BeginGPUCopyPass(cmdBuf);
-            SDL_UploadToGPUBuffer(copyPass, &transferBufferLocation, &bufferRegion, true);
-            SDL_EndGPUCopyPass(copyPass);
-        }  // if (!rgb)
+        }
         else
         {
-            auto *dataPtr = static_cast<RGB_BoidDataSend *>(
-                SDL_MapGPUTransferBuffer(rndt.Device, m_RGB_BoidsDataTransferBuffer, true));
+            const auto t = Utils::Time::GetTicks() / 3000.0f;
 
-            static int i = 0;
+            // clang-format off
+        
+            // s, c -> [0, 0.25]
+            const float s1 = glm::abs(glm::sin(t    ) / 4);
+            const float s2 = glm::abs(glm::sin(t * 3) / 4);
+            const float c1 = glm::abs(glm::cos(t    ) / 4);
+            const float c2 = glm::abs(glm::cos(t * 3) / 4);
+            // clang-format on
+
+            const float b = c1 + c2 + s1 + s2;
+
             for (const auto &boid: m_BoidsContainer.GetBoids())
             {
-                dataPtr[i].x        = boid.Position.x;
-                dataPtr[i].y        = boid.Position.y;
-                dataPtr[i].Time     = Utils::Time::GetTicks();
+                dataPtr[i].x = boid.Position.x;
+                dataPtr[i].y = boid.Position.y;
+                dataPtr[i].z = 0.0f;  // why do I even have this?
+                {
+                    // clang-format off
+                    // dx, dy -> [0, 0.5]
+                    const float dx = (boid.Position.x / Core::Context::GetContext()->AppState.ProjectWindowSize.x) / 2.0f;
+                    const float dy = (boid.Position.y / Core::Context::GetContext()->AppState.ProjectWindowSize.y) / 2.0f;
+                    // clang-format on
+
+                    // dx + s * 2 -> [0, 1]
+                    dataPtr[i].r = dx + c2 + s1;
+                    dataPtr[i].g = dy + s2 + s1;
+                    dataPtr[i].b = b;
+                }
+                dataPtr[i].a        = m_BoidsContainer.Color.a;
                 dataPtr[i].Rotation = boid.Rotation - SDL_PI_F * 0.5;
                 i++;
             }
-            i = 0;
-            SDL_UnmapGPUTransferBuffer(rndt.Device, m_RGB_BoidsDataTransferBuffer);
-
-            // upload the data to gpu from transfer buffers
-            const SDL_GPUTransferBufferLocation transferBufferLocation {
-                .transfer_buffer = m_RGB_BoidsDataTransferBuffer,
-                .offset          = 0,
-            };
-
-            const SDL_GPUBufferRegion bufferRegion {
-                .buffer = m_RGB_BoidsDataBuffer,
-                .offset = 0,
-                .size   = (Uint32)(m_BoidsContainer.NumBoids() * sizeof(RGB_BoidDataSend)),
-            };
-
-            SDL_GPUCopyPass *copyPass = SDL_BeginGPUCopyPass(cmdBuf);
-            SDL_UploadToGPUBuffer(copyPass, &transferBufferLocation, &bufferRegion, true);
-            SDL_EndGPUCopyPass(copyPass);
         }
+
+        i = 0;
+        SDL_UnmapGPUTransferBuffer(rndt.Device, m_BoidsDataTransferBuffer);
+
+        // upload the data to gpu from transfer buffers
+        const SDL_GPUTransferBufferLocation transferBufferLocation {
+            .transfer_buffer = m_BoidsDataTransferBuffer,
+            .offset          = 0,
+        };
+
+        const SDL_GPUBufferRegion bufferRegion {
+            .buffer = m_BoidsDataBuffer,
+            .offset = 0,
+            .size   = (Uint32)(m_BoidsContainer.NumBoids() * sizeof(BoidsDataSend)),
+        };
+
+        SDL_GPUCopyPass *copyPass = SDL_BeginGPUCopyPass(cmdBuf);
+        SDL_UploadToGPUBuffer(copyPass, &transferBufferLocation, &bufferRegion, true);
+        SDL_EndGPUCopyPass(copyPass);
 
         SDL_GPUColorTargetInfo tinfo {.texture     = rndt.ProjectTexture,
                                       .clear_color = {0.094f, 0.094f, 0.145f, 1.00f},
@@ -251,31 +204,14 @@ bool Boids::Draw()
 
         rndt.ProjectPass = SDL_BeginGPURenderPass(cmdBuf, &tinfo, 1, nullptr);
 
-        if (!s_rgb)
-        {
-            SDL_BindGPUGraphicsPipeline(rndt.ProjectPass, m_RenderPipeline);
-            SDL_BindGPUVertexStorageBuffers(rndt.ProjectPass, 0, &m_BoidsDataBuffer, 1);
+        SDL_BindGPUGraphicsPipeline(rndt.ProjectPass, m_RenderPipeline);
+        SDL_BindGPUVertexStorageBuffers(rndt.ProjectPass, 0, &m_BoidsDataBuffer, 1);
 
-            SDL_PushGPUVertexUniformData(cmdBuf, 0, &cameraMatrix, sizeof(glm::mat4x4));
+        SDL_PushGPUVertexUniformData(cmdBuf, 0, &cameraMatrix, sizeof(glm::mat4x4));
 
-            SDL_DrawGPUPrimitives(rndt.ProjectPass, m_BoidsContainer.NumBoids() * 3, 1, 0, 1);
+        SDL_DrawGPUPrimitives(rndt.ProjectPass, m_BoidsContainer.NumBoids() * 3, 1, 0, 1);
 
-            SDL_EndGPURenderPass(rndt.ProjectPass);
-        }
-        else
-        {
-            SDL_BindGPUGraphicsPipeline(rndt.ProjectPass, m_RGB_RenderPipeline);
-            SDL_BindGPUVertexStorageBuffers(rndt.ProjectPass, 0, &m_RGB_BoidsDataBuffer, 1);
-
-            SDL_PushGPUVertexUniformData(cmdBuf, 0, &cameraMatrix, sizeof(glm::mat4x4));
-
-            auto res = glm::vec2 {w, h};
-            SDL_PushGPUFragmentUniformData(cmdBuf, 0, &res, sizeof(glm::vec2));
-
-            SDL_DrawGPUPrimitives(rndt.ProjectPass, m_BoidsContainer.NumBoids() * 3, 1, 0, 1);
-
-            SDL_EndGPURenderPass(rndt.ProjectPass);
-        }
+        SDL_EndGPURenderPass(rndt.ProjectPass);
 
         SDL_GPUTexture *blitSourceTexture =
             (tinfo.resolve_texture != nullptr) ? tinfo.resolve_texture : tinfo.texture;
@@ -314,10 +250,6 @@ void Boids::Quit()
     SDL_ReleaseGPUGraphicsPipeline(rndt.Device, m_RenderPipeline);
     SDL_ReleaseGPUTransferBuffer(rndt.Device, m_BoidsDataTransferBuffer);
     SDL_ReleaseGPUBuffer(rndt.Device, m_BoidsDataBuffer);
-
-    SDL_ReleaseGPUGraphicsPipeline(rndt.Device, m_RGB_RenderPipeline);
-    SDL_ReleaseGPUTransferBuffer(rndt.Device, m_RGB_BoidsDataTransferBuffer);
-    SDL_ReleaseGPUBuffer(rndt.Device, m_RGB_BoidsDataBuffer);
 }
 
 bool Boids::DrawUI()
@@ -335,24 +267,24 @@ bool Boids::DrawUI()
         {  // imgui is not good with small values
             m_BoidsContainer.Cohesion = 0.001 * a;
         }
-        static bool dontuse = false;
-        ImGui::Checkbox("RGB Lighting", &dontuse);
-        // ImGui::Checkbox("RGB Lighting", &rgb);
 
-        if (ImGui::BeginItemTooltip())
+        if (ImGui::Checkbox("RGB Lighting", &m_RGB))
         {
-            ImGui::PushTextWrapPos(ImGui::GetFontSize() * 35.0f);
-            ImGui::TextUnformatted("This is under construction");
-            ImGui::PopTextWrapPos();
-            ImGui::EndTooltip();
+            static bool ft = false;
+            if (!ft)
+            {
+                m_BoidsContainer.Color.a = 1.0f;
+                ft                       = true;
+            }
         }
 
-        if (!s_rgb)
+        if (!m_RGB)
         {
             ImGui::Text("Boids Color Picker");
             ImGui::ColorEdit4("###abultabul", (float *)&m_BoidsContainer.Color,
                               ImGuiColorEditFlags_AlphaPreviewHalf);
         }
+        else { ImGui::SliderFloat("Opacity", &m_BoidsContainer.Color.a, 0.0f, 1.0f); }
     }
     ImGui::End();
     return true;
