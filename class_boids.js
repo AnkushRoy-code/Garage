@@ -10,9 +10,6 @@ var class_boids =
     [ "m_BoidsDataBuffer", "class_boids.html#abf9888f18ffac29dc17890bacb56a72a", null ],
     [ "m_BoidsDataTransferBuffer", "class_boids.html#a386428c277d9ac6621ad88c896f3938d", null ],
     [ "m_RenderPipeline", "class_boids.html#abd9c1a1751c0ed0a2498bf5df97f0adb", null ],
-    [ "m_RGB_BoidsDataBuffer", "class_boids.html#aa5d9fe637d1921374bc566184a56be85", null ],
-    [ "m_RGB_BoidsDataTransferBuffer", "class_boids.html#ac6da5ceb624fd15232a80d251b350eef", null ],
-    [ "m_RGB_RenderPipeline", "class_boids.html#a59bc3786849520a2106001018afec53c", null ],
-    [ "name", "class_boids.html#ad240d88ba3dd895b60c3870da9668bcd", null ],
-    [ "s_rgb", "class_boids.html#a9a6e0b448a75e25d27e4728cb24bfb01", null ]
+    [ "m_RGB", "class_boids.html#a79f1c997ae6b5bef0691d9050fda46f2", null ],
+    [ "name", "class_boids.html#ad240d88ba3dd895b60c3870da9668bcd", null ]
 ];
