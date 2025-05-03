@@ -1,4 +1,4 @@
-name: Linux/Mac Release build
+name: Release
 
 on:
   push:
@@ -24,14 +24,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Cache build dependencies
-      uses: actions/cache@v3
-      with:
-        path: build/
-        key: ${{ runner.os }}-build-${{ hashFiles('**/CMakeLists.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-build-
-
     - name: Set up CMake
       uses: lukka/get-cmake@latest
 
@@ -48,13 +40,13 @@ jobs:
     - name: Install Dependencies (Windows)
       if: matrix.os == 'windows-latest'
       run: |
-        choco install nsis
+        choco install nsis.install
     
     - name: Configure CMake
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DPACK_DA_STUFF=ON -DSDL_STATIC=ON
+      run: cmake -B build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DSDL_STATIC=ON 
 
     - name: Build
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -j 8
+      run: cmake --build build --config ${{env.BUILD_TYPE}} -j 8
 
     - name: CPack (Linux)
       if: matrix.os == 'ubuntu-latest'
@@ -64,17 +56,17 @@ jobs:
     - name: CPack (Windows)
       if: matrix.os == 'windows-latest'
       run: |
-        cd build && cpack -G "NSIS;ZIP;TGZ"
+        cd build && cpack -G "NSIS;ZIP"
 
     - name: CPack (macOS)
       if: matrix.os == 'macos-latest'
       run: |
-        cd build && cpack -G "DRAGNDROP;ZIP;TGZ"
+        cd build && cpack -G "DragNDrop;ZIP;TGZ"
 
     - name: Create GitHub Release
       id: create_release
       uses: softprops/action-gh-release@v2
       with:
-        files: ${{github.workspace}}/build/Garage*
+        files: ${{github.workspace}}/build/Garage-*
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

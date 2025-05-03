@@ -7,6 +7,4 @@ include(cmake/InstallDependencies.cmake)
 
 add_subdirectory(src)
 
-if(PACK_DA_STUFF)
-    include(cmake/Release.cmake)
-endif()
+include(cmake/Release.cmake)
