@@ -352,3 +352,23 @@ void Core::ImGuiCore::Draw()
     SDL_EndGPURenderPass(x_RenderPass);
     SDL_SubmitGPUCommandBuffer(commandBuffer);
 }
+
+bool Core::ImGuiCore::HandleWindowResize()
+{
+    ImVec2 view = ImGui::GetWindowSize();
+    auto ctx    = Core::Context::GetContext();
+
+    if (view.x != ctx->AppState.ProjectWindowSize.x || view.y != ctx->AppState.ProjectWindowSize.y)
+    {
+        ctx->EventHandler.UpdateKey(Core::RESIZE_PROJECT_WINDOW, true);
+
+        if (view.x == 0 || view.y == 0) { return false; }  // window is minimised
+        ctx->AppState.ProjectWindowSize.x = view.x;
+        ctx->AppState.ProjectWindowSize.y = view.y;
+
+        Core::Renderer::ResizeProjectTexture(view.x, view.y);
+        return true;
+    }
+
+    return true;
+}

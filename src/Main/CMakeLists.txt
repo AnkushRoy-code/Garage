@@ -1,4 +1,4 @@
-add_executable("${PROJECT_NAME}" Main.cpp)
+add_executable("${PROJECT_NAME}" Main.cpp MainImpl.cpp Main.h)
 
 if(TRACY_PROFILE)
     target_link_libraries(${PROJECT_NAME} PUBLIC Tracy::TracyClient)

@@ -7,6 +7,7 @@ void Update();
 void Draw();
 void Init();
 void Quit();
-}  // namespace ImGuiCore
+bool HandleWindowResize();
+}  // namespace Core::ImGuiCore
 
 #endif  // INCLUDE_COREIMGUI_COREIMGUI_H_
