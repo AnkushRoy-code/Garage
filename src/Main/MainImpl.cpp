@@ -36,11 +36,14 @@ void Garage::ChangeProject()
 {
     auto &apst = Core::Context::GetContext()->AppState;
 
-    Common::ProjectManager::GetProjects()->at(apst.ProjectIndex)->Quit();
-    apst.ProjectIndex = apst.ProjectToBeIndex;
+    if (apst.HasToChangeIndex)
+    {
+        Common::ProjectManager::GetProjects()->at(apst.ProjectIndex)->Quit();
+        apst.ProjectIndex = apst.ProjectToBeIndex;
 
-    Common::ProjectManager::GetProjects()->at(apst.ProjectIndex)->Init();
-    apst.HasToChangeIndex = false;
+        Common::ProjectManager::GetProjects()->at(apst.ProjectIndex)->Init();
+        apst.HasToChangeIndex = false;
+    }
 }
 
 void Garage::InitiateProjectUpdateLoop()

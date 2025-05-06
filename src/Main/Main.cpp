@@ -100,7 +100,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 
     // std::this_thread::sleep_for(std::chrono::milliseconds(100));
     Garage::StopProjectUpdateLoop();
-    if (apst.HasToChangeIndex) { Garage::ChangeProject(); }
+    Garage::ChangeProject();
 
     return SDL_APP_CONTINUE;
 }
