@@ -18,14 +18,13 @@ var searchData=
   ['consolelogbuffer_15',['ConsoleLogBuffer',['../class_core_1_1_console_log_buffer.html',1,'Core']]],
   ['consolelogmessage_16',['ConsoleLogMessage',['../struct_core_1_1_console_log_message.html',1,'Core']]],
   ['constrainpitch_17',['ConstrainPitch',['../class_camera.html#a5a96931e7b56fb8ffe2ec447cc2581b3',1,'Camera']]],
-  ['construction_18',['Construction',['../index.html#autotoc_md14',1,'Few Fractals (Under Construction)'],['../todo.html#_todo000002',1,'Few Fractals (Under Construction)']]],
+  ['construction_18',['Construction',['../index.html#autotoc_md14',1,'Few Fractals (Under Construction)'],['../todo.html#_todo000001',1,'Few Fractals (Under Construction)']]],
   ['context_19',['Context',['../class_core_1_1_context.html',1,'Core::Context'],['../class_core_1_1_context.html#a7cbc7d91a45aa27c6a247eca7b3c40c6',1,'Core::Context::Context()'],['../class_core_1_1_context.html#ac88556988a5641f5fcd0065bd96f812e',1,'Core::Context::Context(Context &amp;&amp;)=delete'],['../class_core_1_1_context.html#ad6fc1d914dadc095218a75a1a91541d2',1,'Core::Context::Context(const Context &amp;)=delete']]],
   ['context_2ecpp_20',['Context.cpp',['../_context_8cpp.html',1,'']]],
   ['context_2eh_21',['Context.h',['../_context_8h.html',1,'']]],
   ['core_22',['Core',['../namespace_core.html',1,'']]],
-  ['core_3a_3aimguicore_23',['ImGuiCore',['../namespace_core_1_1_im_gui_core.html',1,'Core']]],
-  ['core_3a_3arenderer_24',['Renderer',['../namespace_core_1_1_renderer.html',1,'Core']]],
-  ['count_25',['COUNT',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17a1be400d5e61f648476e94b5629a21992',1,'Core']]],
-  ['count_26',['Count',['../struct_predefined_particles_data.html#a847dcf9ae5465bdcb6840cd12e613636',1,'PredefinedParticlesData']]],
-  ['count_27',['count',['../struct_particle_container.html#a94b9e70aa831125deed47fd4e747fa59',1,'ParticleContainer']]]
+  ['core_3a_3arenderer_23',['Renderer',['../namespace_core_1_1_renderer.html',1,'Core']]],
+  ['count_24',['COUNT',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17a1be400d5e61f648476e94b5629a21992',1,'Core']]],
+  ['count_25',['Count',['../struct_predefined_particles_data.html#a847dcf9ae5465bdcb6840cd12e613636',1,'PredefinedParticlesData']]],
+  ['count_26',['count',['../struct_particle_container.html#a94b9e70aa831125deed47fd4e747fa59',1,'ParticleContainer']]]
 ];

@@ -1,12 +1,5 @@
 var namespace_core =
 [
-    [ "ImGuiCore", "namespace_core_1_1_im_gui_core.html", [
-      [ "Draw", "namespace_core_1_1_im_gui_core.html#a3221dcd5588b7a22632543df1cea9a03", null ],
-      [ "HandleWindowResize", "namespace_core_1_1_im_gui_core.html#a4ea863d3b19fcb551c5bc61e7f215db0", null ],
-      [ "Init", "namespace_core_1_1_im_gui_core.html#aafb0fece76ea9545efd87da82ed92bde", null ],
-      [ "Quit", "namespace_core_1_1_im_gui_core.html#ac8076911122e6180ff213ee9c82219eb", null ],
-      [ "Update", "namespace_core_1_1_im_gui_core.html#aaf5fd889f2e8f86422cc02251a3d7dd7", null ]
-    ] ],
     [ "Renderer", "namespace_core_1_1_renderer.html", [
       [ "DrawProjectToTexture", "namespace_core_1_1_renderer.html#a3f9801b8e74b4c9417aa938f6fc0085a", null ],
       [ "Init", "namespace_core_1_1_renderer.html#ae5bee95c102f59cc1ee8c9b7ca693a6c", null ],
@@ -17,6 +10,7 @@ var namespace_core =
     [ "ConsoleLogMessage", "struct_core_1_1_console_log_message.html", "struct_core_1_1_console_log_message" ],
     [ "Context", "class_core_1_1_context.html", "class_core_1_1_context" ],
     [ "EventHandlerStruct", "class_core_1_1_event_handler_struct.html", "class_core_1_1_event_handler_struct" ],
+    [ "ImGuiCore", "class_core_1_1_im_gui_core.html", null ],
     [ "RenderDataStruct", "struct_core_1_1_render_data_struct.html", "struct_core_1_1_render_data_struct" ],
     [ "KEY", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17", [
       [ "RESIZE_PROJECT_WINDOW", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17abfcec50f5180c938216056be73623c5c", null ],

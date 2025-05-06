@@ -17,6 +17,7 @@ var hierarchy =
     [ "Core::Context", "class_core_1_1_context.html", null ],
     [ "Core::EventHandlerStruct", "class_core_1_1_event_handler_struct.html", null ],
     [ "Garage", "class_garage.html", null ],
+    [ "Core::ImGuiCore", "class_core_1_1_im_gui_core.html", null ],
     [ "Common::ImGuiUI", "class_common_1_1_im_gui_u_i.html", [
       [ "Boids", "class_boids.html", null ],
       [ "N_Body_Simulation", "class_n___body___simulation.html", null ]
