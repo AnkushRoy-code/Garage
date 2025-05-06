@@ -126,24 +126,21 @@ $(function(){initNavTree('_main_2_main_8cpp.html',''); initResizable(true); });
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">Main.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;SDL3/SDL_main.h&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="_main_2_main_8h_source.html">Main.h</a>&quot;</code><br />
+<code>#include &lt;SDL3/SDL_main.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="pch_8h_source.html">Core/Common/pch.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_common_8h_source.html">Core/Common/Common.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_console_8h_source.html">Core/Console.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_context_8h_source.html">Core/Context.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_event_handler_8h_source.html">Core/EventHandler.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_im_gui_core_8h_source.html">Core/ImGuiCore/ImGuiCore.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_f_p_s_tracker_8h_source.html">Core/ImGuiCore/FPSTracker.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_renderer_8h_source.html">Core/Renderer/Renderer.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_base_project_8h_source.html">Projects/Common/BaseProject.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_time_8h_source.html">Utils/Time.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_timer_8h_source.html">Utils/Timer.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_cap_f_p_s_8h_source.html">Utils/CapFPS.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
@@ -156,19 +153,10 @@ Functions</h2></td></tr>
 <tr class="separator:a4985adfb048a4ae4e1c5296a4fc7affe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1a484aa7972b8018e724425066066b4" id="r_aa1a484aa7972b8018e724425066066b4"><td class="memItemLeft" align="right" valign="top">SDL_AppResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1a484aa7972b8018e724425066066b4">SDL_AppEvent</a> (void *appstate, SDL_Event *event)</td></tr>
 <tr class="separator:aa1a484aa7972b8018e724425066066b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d8fdb1ee7e4e6f5729444105456e6ed" id="r_a0d8fdb1ee7e4e6f5729444105456e6ed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d8fdb1ee7e4e6f5729444105456e6ed">HandleWindowResize</a> ()</td></tr>
-<tr class="separator:a0d8fdb1ee7e4e6f5729444105456e6ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a606988c90d7becaa71745c7df7597dda" id="r_a606988c90d7becaa71745c7df7597dda"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a606988c90d7becaa71745c7df7597dda">updateFunc</a> ()</td></tr>
-<tr class="separator:a606988c90d7becaa71745c7df7597dda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7038050dca8c80a0133d600fb008b6db" id="r_a7038050dca8c80a0133d600fb008b6db"><td class="memItemLeft" align="right" valign="top">SDL_AppResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7038050dca8c80a0133d600fb008b6db">SDL_AppIterate</a> (void *appstate)</td></tr>
 <tr class="separator:a7038050dca8c80a0133d600fb008b6db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31f80ce4f4926b0c6fe01a9644f3c837" id="r_a31f80ce4f4926b0c6fe01a9644f3c837"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31f80ce4f4926b0c6fe01a9644f3c837">SDL_AppQuit</a> (void *appstate, SDL_AppResult result)</td></tr>
 <tr class="separator:a31f80ce4f4926b0c6fe01a9644f3c837"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a2732d1cbcca39265ee44e4e91a7912a7" id="r_a2732d1cbcca39265ee44e4e91a7912a7"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2732d1cbcca39265ee44e4e91a7912a7">g_RenderingDone</a></td></tr>
-<tr class="separator:a2732d1cbcca39265ee44e4e91a7912a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a8aa5d9cdf38353a6c4919e0d1fab61cb" name="a8aa5d9cdf38353a6c4919e0d1fab61cb"></a>
@@ -186,24 +174,6 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a0d8fdb1ee7e4e6f5729444105456e6ed" name="a0d8fdb1ee7e4e6f5729444105456e6ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0d8fdb1ee7e4e6f5729444105456e6ed">&#9670;&#160;</a></span>HandleWindowResize()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool HandleWindowResize </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>false if window is minimised </dd></dl>
-
-</div>
-</div>
 <a id="aa1a484aa7972b8018e724425066066b4" name="aa1a484aa7972b8018e724425066066b4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa1a484aa7972b8018e724425066066b4">&#9670;&#160;</a></span>SDL_AppEvent()</h2>
 
@@ -284,38 +254,6 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">SDL_AppResult</td>          <td class="paramname"><span class="paramname"><em>result</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a606988c90d7becaa71745c7df7597dda" name="a606988c90d7becaa71745c7df7597dda"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a606988c90d7becaa71745c7df7597dda">&#9670;&#160;</a></span>updateFunc()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void updateFunc </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="a2732d1cbcca39265ee44e4e91a7912a7" name="a2732d1cbcca39265ee44e4e91a7912a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2732d1cbcca39265ee44e4e91a7912a7">&#9670;&#160;</a></span>g_RenderingDone</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::atomic&lt;bool&gt; g_RenderingDone</td>
         </tr>
       </table>
 </div><div class="memdoc">

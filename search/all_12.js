@@ -26,5 +26,6 @@ var searchData=
   ['simpleexample_2eh_23',['SimpleExample.h',['../_simple_example_8h.html',1,'']]],
   ['simulation_24',['N-body-simulation',['../index.html#autotoc_md13',1,'']]],
   ['smallviewport_25',['SmallViewport',['../class_triangle.html#af476a83a8475a37a3eb5d01b97bfa26f',1,'Triangle']]],
-  ['started_26',['Started',['../index.html#autotoc_md20',1,'Getting Started'],['../bug.html#_bug000001',1,'Getting Started']]]
+  ['started_26',['Started',['../index.html#autotoc_md20',1,'Getting Started'],['../bug.html#_bug000001',1,'Getting Started']]],
+  ['stopprojectupdateloop_27',['StopProjectUpdateLoop',['../class_garage.html#a852e777b7dc261532d400225d518d035',1,'Garage']]]
 ];

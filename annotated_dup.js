@@ -22,6 +22,7 @@ var annotated_dup =
     [ "BoidsDataSend", "struct_boids_data_send.html", "struct_boids_data_send" ],
     [ "BoidsEntity", "struct_boids_entity.html", "struct_boids_entity" ],
     [ "Camera", "class_camera.html", "class_camera" ],
+    [ "Garage", "class_garage.html", null ],
     [ "N_Body_Simulation", "class_n___body___simulation.html", "class_n___body___simulation" ],
     [ "ParticleContainer", "struct_particle_container.html", "struct_particle_container" ],
     [ "ParticleData", "struct_particle_data.html", "struct_particle_data" ],

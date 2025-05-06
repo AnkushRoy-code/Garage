@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['scrollingbuffer_0',['ScrollingBuffer',['../struct_scrolling_buffer.html',1,'']]],
-  ['simpleexample_1',['SimpleExample',['../class_simple_example.html',1,'']]]
+  ['renderdatastruct_0',['RenderDataStruct',['../struct_core_1_1_render_data_struct.html',1,'Core']]],
+  ['rgb_5fboiddatasend_1',['RGB_BoidDataSend',['../struct_r_g_b___boid_data_send.html',1,'']]]
 ];
