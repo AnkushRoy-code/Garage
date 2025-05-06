@@ -7,11 +7,13 @@
 #include "Core/Console.h"
 #include "Core/Renderer/Renderer.h"
 
+#include "Main/Main.h"
+
 #include "Projects/Common/BaseProject.h"
 
 #include "Core/Common/pch.h"
-#include "imgui.h"
 
+#include <imgui.h>
 #include <imgui_internal.h>
 #include <implot.h>
 
@@ -97,7 +99,7 @@ void Core::ImGuiCore::Quit()
 
 void Core::ImGuiCore::Update()
 {
-    ImGui_ImplSDLGPU3_NewFrame();
+    ImGui_ImplSDL3_NewFrame();
     ImGui_ImplSDLGPU3_NewFrame();
     ImGui::NewFrame();
 
@@ -321,13 +323,8 @@ void Core::ImGuiCore::Draw()
 
     SDL_GPUTexture *swapchainTexture;
 
-    if (!SDL_AcquireGPUSwapchainTexture(commandBuffer,
-                                        Core::Context::GetContext()->RenderData.Window,
-                                        &swapchainTexture, nullptr, nullptr))
-    {
-        std::cerr << "WaitAndAcquireGPUSwapchainTexture failed!\n";
-        return;
-    }
+    SDL_AcquireGPUSwapchainTexture(commandBuffer, Core::Context::GetContext()->RenderData.Window,
+                                   &swapchainTexture, nullptr, nullptr);
 
     assert(swapchainTexture);
 

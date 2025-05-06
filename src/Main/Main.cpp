@@ -34,10 +34,11 @@ SDL_AppResult SDL_AppIterate(void *appstate)
     PROFILE_SCOPE;
     Garage::InitiateProjectUpdateLoop();
 
-    auto ctx = Core::Context::GetContext();
-
     // no need to draw if window is minimised. But we sure need to update the state.
-    if (SDL_GetWindowFlags(ctx->RenderData.Window) & SDL_WINDOW_MINIMIZED)
+
+    auto &window = Core::Context::GetContext()->RenderData.Window;
+
+    if (SDL_GetWindowFlags(window) & SDL_WINDOW_MINIMIZED)
     {
         Garage::StopProjectUpdateLoop();
         return SDL_APP_CONTINUE;
@@ -45,14 +46,14 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 
     Tracker::RegisterPoints();
 
-    auto &apst = Core::Context::GetContext()->AppState;
     {
         static float renderTime = 0.0f;
         Tracker::AddRenderFPSPointQueue(renderTime);
-        Timer riesnt(renderTime);
+        Timer temporaryUselessVariable(renderTime);
 
-        /// @todo Fix whatever this shit has happened. Can't keep Imgui stuff inside
-        /// different thread and the below code block can't be inside Core::ImGuiCore::Update
+        /// @todo Fix whatever this shit has happened. Can't keep the entire Imgui stuff inside
+        /// different thread and also the below code block can't be inside any other function let
+        /// alone Core::ImGuiCore::Update()
         Core::ImGuiCore::Update();
 
         ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2 {0, 0});
@@ -63,6 +64,8 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 
         const auto projectWindowName = "Project - " + projName + "###TexTitle";
 
+        auto &apst = Core::Context::GetContext()->AppState;
+        auto ctx   = Core::Context::GetContext();
         if (ImGui::Begin(projectWindowName.c_str()))
         {
             apst.projectWindowFocused = ImGui::IsWindowFocused();
