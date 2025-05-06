@@ -17,6 +17,8 @@
 #include <imgui_internal.h>
 #include <implot.h>
 
+SDL_GPUTextureSamplerBinding Core::ImGuiCore::bind;
+
 void Core::ImGuiCore::Init()
 {
     IMGUI_CHECKVERSION();
@@ -310,6 +312,48 @@ void Core::ImGuiCore::Update()
             imguiProject->DrawUI();
         }
     }
+
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2 {0, 0});
+
+    const auto projName = Common::ProjectManager::GetProjects()
+                              ->at(Core::Context::GetContext()->AppState.ProjectIndex)
+                              ->GetName();
+
+    const auto projectWindowName = "Project - " + projName + "###TexTitle";
+
+    // auto &apst = Core::Context::GetContext()->AppState;
+    auto ctx = Core::Context::GetContext();
+    if (ImGui::Begin(projectWindowName.c_str()))
+    {
+        apst.projectWindowFocused = ImGui::IsWindowFocused();
+        apst.projectWindowHovered = ImGui::IsWindowHovered();
+
+        if (apst.projectWindowFocused && apst.projectWindowHovered
+            && ctx->EventHandler.GetEventPressed(Core::ESC))
+        {  // the user wants to get out of focus from the project screen
+            ImGui::SetWindowFocus("###ProjectUI");
+        }
+
+        if (!Core::ImGuiCore::HandleWindowResize())
+        {
+            ImGui::End();
+            ImGui::PopStyleVar();
+            Garage::StopProjectUpdateLoop();
+            return;
+        }
+
+        // Note to self: Moving this function down causes artifacts when resizing
+        Core::Renderer::DrawProjectToTexture();
+
+        bind.texture = ctx->RenderData.ProjectTexture;
+        bind.sampler = ctx->RenderData.ProjectSampler;
+
+        // Draw the project to the screen ImGui window
+        const auto size = ImGui::GetWindowSize();
+        ImGui::Image(ImTextureID(&bind), {size.x, size.y - 19.0f});
+    }
+    ImGui::End();
+    ImGui::PopStyleVar();
 }
 
 void Core::ImGuiCore::Draw()

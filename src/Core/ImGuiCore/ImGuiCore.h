@@ -1,13 +1,21 @@
 #ifndef INCLUDE_COREIMGUI_COREIMGUI_H_
 #define INCLUDE_COREIMGUI_COREIMGUI_H_
 
-namespace Core::ImGuiCore
+#include "SDL3/SDL_gpu.h"
+namespace Core
 {
-void Update();
-void Draw();
-void Init();
-void Quit();
-bool HandleWindowResize();
-}  // namespace Core::ImGuiCore
+class ImGuiCore
+{
+  public:
+    static void Update();
+    static void Draw();
+    static void Init();
+    static void Quit();
+    static bool HandleWindowResize();
+
+  private:
+    static SDL_GPUTextureSamplerBinding bind;
+};
+}  // namespace Core
 
 #endif  // INCLUDE_COREIMGUI_COREIMGUI_H_

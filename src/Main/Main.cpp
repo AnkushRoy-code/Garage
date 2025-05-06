@@ -35,9 +35,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
     Garage::InitiateProjectUpdateLoop();
 
     // no need to draw if window is minimised. But we sure need to update the state.
-
     auto &window = Core::Context::GetContext()->RenderData.Window;
-
     if (SDL_GetWindowFlags(window) & SDL_WINDOW_MINIMIZED)
     {
         Garage::StopProjectUpdateLoop();
@@ -51,53 +49,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         Tracker::AddRenderFPSPointQueue(renderTime);
         Timer temporaryUselessVariable(renderTime);
 
-        /// @todo Fix whatever this shit has happened. Can't keep the entire Imgui stuff inside
-        /// different thread and also the below code block can't be inside any other function let
-        /// alone Core::ImGuiCore::Update()
         Core::ImGuiCore::Update();
-
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2 {0, 0});
-
-        const auto projName = Common::ProjectManager::GetProjects()
-                                  ->at(Core::Context::GetContext()->AppState.ProjectIndex)
-                                  ->GetName();
-
-        const auto projectWindowName = "Project - " + projName + "###TexTitle";
-
-        auto &apst = Core::Context::GetContext()->AppState;
-        auto ctx   = Core::Context::GetContext();
-        if (ImGui::Begin(projectWindowName.c_str()))
-        {
-            apst.projectWindowFocused = ImGui::IsWindowFocused();
-            apst.projectWindowHovered = ImGui::IsWindowHovered();
-
-            if (apst.projectWindowFocused && apst.projectWindowHovered
-                && ctx->EventHandler.GetEventPressed(Core::ESC))
-            {  // the user wants to get out of focus from the project screen
-                ImGui::SetWindowFocus("###ProjectUI");
-            }
-
-            if (!Core::ImGuiCore::HandleWindowResize())
-            {
-                ImGui::End();
-                ImGui::PopStyleVar();
-                Garage::StopProjectUpdateLoop();
-                return SDL_APP_CONTINUE;
-            }
-
-            // Note to self: Moving this function down causes artifacts when resizing
-            Core::Renderer::DrawProjectToTexture();
-
-            const SDL_GPUTextureSamplerBinding bind {ctx->RenderData.ProjectTexture,
-                                                     ctx->RenderData.ProjectSampler};
-
-            // Draw the project to the screen ImGui window
-            const auto size = ImGui::GetWindowSize();
-            ImGui::Image((ImTextureID)&bind, {size.x, size.y - 19.0f});
-        }
-        ImGui::End();
-        ImGui::PopStyleVar();
-
         Core::ImGuiCore::Draw();
     }
 
