@@ -3,7 +3,7 @@
 #include "Core/Common/Common.h"
 #include "Core/Console.h"
 #include "Core/Context.h"
-#include "Core/EventHandler.h"
+#include "Core/Event/EventHandler.h"
 
 #include "Core/Common/pch.h"
 

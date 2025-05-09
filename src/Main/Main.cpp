@@ -7,10 +7,9 @@
 
 #include "Core/Common/Common.h"
 #include "Core/Context.h"
-#include "Core/EventHandler.h"
+#include "Core/Event/EventHandler.h"
 #include "Core/ImGuiCore/ImGuiCore.h"
 #include "Core/ImGuiCore/FPSTracker.h"
-#include "Core/Renderer/Renderer.h"
 
 #include "Projects/Common/BaseProject.h"
 

@@ -2,6 +2,3 @@
 build/
 debug/
 html/
-
-# my emscripten build stays here
-ems/ 

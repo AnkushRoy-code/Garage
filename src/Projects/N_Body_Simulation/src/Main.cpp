@@ -3,7 +3,7 @@
 #include "Core/Common/Common.h"
 #include "Core/Context.h"
 #include "Core/Console.h"
-#include "Core/EventHandler.h"
+#include "Core/Event/EventHandler.h"
 
 #include "Projects/N_Body_Simulation/src/Main.h"
 #include "Projects/N_Body_Simulation/src/Particle.h"

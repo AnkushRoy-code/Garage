@@ -1,7 +1,7 @@
-#ifndef INCLUDE_CORE_EVENTHANDLER_H_
-#define INCLUDE_CORE_EVENTHANDLER_H_
+#ifndef INCLUDE_EVENT_EVENTHANDLER_H_
+#define INCLUDE_EVENT_EVENTHANDLER_H_
 
-#include "Common/pch.h"
+#include "Core/Common/pch.h"
 
 namespace Core
 {
@@ -58,4 +58,4 @@ class EventHandlerStruct
 
 }  // namespace Core
 
-#endif  // INCLUDE_CORE_EVENTHANDLER_H_
+#endif  // INCLUDE_EVENT_EVENTHANDLER_H_

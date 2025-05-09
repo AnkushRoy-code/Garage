@@ -3,9 +3,7 @@
 
 #include "Common/pch.h"
 
-#include "Core/EventHandler.h"
-#include "glm/ext/vector_float2.hpp"
-#include <memory>
+#include "Core/Event/EventHandler.h"
 
 namespace Core
 {

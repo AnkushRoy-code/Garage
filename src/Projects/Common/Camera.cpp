@@ -1,7 +1,7 @@
 #include "Projects/Common/Camera.h"
 
 #include "Core/Context.h"
-#include "Core/EventHandler.h"
+#include "Core/Event/EventHandler.h"
 #include "Utils/Time.h"
 
 Camera::Camera(glm::vec3 position, glm::quat orientation) :
