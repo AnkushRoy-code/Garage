@@ -20,6 +20,11 @@ void ConsoleLogBuffer::AddMessage(const std::string &p_Message)
     }
 }
 
+void ConsoleLogBuffer::Clear() {
+    m_ConsoleLogs.clear();
+    m_Index = 0;
+}
+
 const std::vector<ConsoleLogMessage> &ConsoleLogBuffer::GetMessages()
 {
     return m_ConsoleLogs;

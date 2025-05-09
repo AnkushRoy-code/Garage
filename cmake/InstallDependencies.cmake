@@ -78,7 +78,12 @@ endif()
 
 # ############################ Catch2 ###############################
 if(TESTING)
-    CPMAddPackage("gh:catchorg/Catch2@3.8.0") # Nothing rn
+    CPMAddPackage(
+        NAME Catch2
+        VERSION 3.8.0
+        URL https://github.com/catchorg/Catch2/archive/refs/tags/v3.8.0.tar.gz
+        URL_HASH SHA256=1ab2de20460d4641553addfdfe6acd4109d871d5531f8f519a52ea4926303087
+    )
 endif()
 
 # ############################ Tracy Profiler ###############################
@@ -86,7 +91,7 @@ if(TRACY_PROFILE_COMPATIBILITY) # For my old lappy
     option(TRACY_ENABLE "" ON)
     CPMAddPackage(
         NAME Tracy
-        VERSION URL https://github.com/wolfpld/tracy/archive/refs/tags/v0.11.1.tar.gz
+        URL https://github.com/wolfpld/tracy/archive/refs/tags/v0.11.1.tar.gz
         URL_HASH SHA256=2c11ca816f2b756be2730f86b0092920419f3dabc7a7173829ffd897d91888a1
         OPTIONS "TRACY_TIMER_FALLBACK ON"
     )
@@ -96,7 +101,7 @@ if(TRACY_PROFILE)
     option(TRACY_ENABLE "" ON)
     CPMAddPackage(
         NAME Tracy
-        VERSION URL https://github.com/wolfpld/tracy/archive/refs/tags/v0.11.1.tar.gz
+        URL https://github.com/wolfpld/tracy/archive/refs/tags/v0.11.1.tar.gz
         URL_HASH SHA256=2c11ca816f2b756be2730f86b0092920419f3dabc7a7173829ffd897d91888a1
     )
 endif()

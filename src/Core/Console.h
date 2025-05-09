@@ -15,6 +15,7 @@ struct ConsoleLogMessage
 class ConsoleLogBuffer
 {
   public:
+    static void Clear();
     static void AddMessage(const std::string &p_Message);
     static const std::vector<ConsoleLogMessage> &GetMessages();
 

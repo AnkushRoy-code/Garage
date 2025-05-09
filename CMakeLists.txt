@@ -8,3 +8,8 @@ include(cmake/InstallDependencies.cmake)
 add_subdirectory(src)
 
 include(cmake/Release.cmake)
+
+if(TESTING)
+    enable_testing()
+    add_subdirectory(test)
+endif()
