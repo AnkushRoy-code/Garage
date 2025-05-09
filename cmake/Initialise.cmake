@@ -18,6 +18,6 @@ message(STATUS "Garage Build Type: ${CMAKE_BUILD_TYPE}")
 # Set the version for Garage
 set(Garage_Version_Major 0)
 set(Garage_Version_Minor 2)
-set(Garage_Version_Patch 5)
+set(Garage_Version_Patch 6)
 set(PROJECT_VERSION "${Garage_Version_Major}.${Garage_Version_Minor}.${Garage_Version_Patch}")
 message(STATUS "${PROJECT_NAME} version: ${PROJECT_VERSION}")

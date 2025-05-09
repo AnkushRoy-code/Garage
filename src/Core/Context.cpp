@@ -21,7 +21,7 @@ Context::Context() = default;
 
 void Context::init()
 {
-    if (!SDL_SetAppMetadata("Ankush's Garage", "0.2.5", "com.application.garage"))
+    if (!SDL_SetAppMetadata("Ankush's Garage", "0.2.6", "io.github.ankushroy-code.garage"))
     {
         std::cerr << "Couldn't do stuff... 0983\n";
         return;
@@ -32,7 +32,7 @@ void Context::init()
         SDL_PROP_APP_METADATA_COPYRIGHT_STRING,
         "Placed in the public domain");  // should I stay away from stuff I don't understand?
     SDL_SetAppMetadataProperty(SDL_PROP_APP_METADATA_URL_STRING,
-                               "https://github.io/ankushroy-code/garage");
+                               "https://ankushroy-code.github.io/Garage/");
     SDL_SetAppMetadataProperty(SDL_PROP_APP_METADATA_TYPE_STRING, "game");
 
     if (!SDL_Init(SDL_INIT_VIDEO))
