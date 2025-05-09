@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Ankush's Garage
+Exec=@CMAKE_INSTALL_PREFIX@/bin/Garage
+Icon=@CMAKE_INSTALL_PREFIX@/share/icons/hicolor/256x256/apps/AnkushGarage.png
+Categories=Game;

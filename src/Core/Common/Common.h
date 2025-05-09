@@ -37,7 +37,7 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
                           Uint32 storageBufferCount,
                           Uint32 storageTextureCount);
 
-SDL_Surface* LoadImage(const std::string &imageFileName, int desiredChannels);
+SDL_Surface* LoadImage(const std::string &imageFileName, int desiredChannels = 4);
 }  // namespace Common
 
 #endif  // INCLUDE_COMMON_COMMON_H_

@@ -1,7 +1,10 @@
 #include "Core/Context.h"
 
+#include "Core/Common/Common.h"
 #include "Core/ImGuiCore/ImGuiCore.h"
 #include "Core/Renderer/Renderer.h"
+#include "SDL3/SDL_init.h"
+#include "SDL3/SDL_video.h"
 #include "Utils/Time.h"
 
 namespace Core
@@ -18,6 +21,20 @@ Context::Context() = default;
 
 void Context::init()
 {
+    if (!SDL_SetAppMetadata("Ankush's Garage", "0.2.5", "com.application.garage"))
+    {
+        std::cerr << "Couldn't do stuff... 0983\n";
+        return;
+    }
+
+    SDL_SetAppMetadataProperty(SDL_PROP_APP_METADATA_CREATOR_STRING, "Ankush Roy");
+    SDL_SetAppMetadataProperty(
+        SDL_PROP_APP_METADATA_COPYRIGHT_STRING,
+        "Placed in the public domain");  // should I stay away from stuff I don't understand?
+    SDL_SetAppMetadataProperty(SDL_PROP_APP_METADATA_URL_STRING,
+                               "https://github.io/ankushroy-code/garage");
+    SDL_SetAppMetadataProperty(SDL_PROP_APP_METADATA_TYPE_STRING, "game");
+
     if (!SDL_Init(SDL_INIT_VIDEO))
     {
         std::cerr << "Couldn't initialize SDL!!\n";
@@ -43,9 +60,15 @@ void Context::init()
         return;
     }
 
+    if (!SDL_SetWindowIcon(RenderData.Window, Common::LoadImage("Logo/AnkushGarage")))
+    {
+        std::cerr << "Unable to set window Icon!!\n";
+        return;
+    }
+
     if (!SDL_ClaimWindowForGPUDevice(RenderData.Device, RenderData.Window))
     {
-        std::cerr << "Unable to claim window for device!\n";
+        std::cerr << "Unable to claim window for device\n";
         return;
     }
 
