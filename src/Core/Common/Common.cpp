@@ -1,79 +1,84 @@
 #include "Core/Common/Common.h"
+#include "Core/Common/config.h"
 
 namespace Common
 {
+namespace
+{
+// Convert DATA_DIR to a std::filesystem::path just once
+const std::filesystem::path &GetBasePath()
+{
+    static const std::filesystem::path base {DATA_DIR};
+    return base;
+}
+}  // namespace
+
 SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
                           const std::string &shaderFilename,
-                          const Uint32 samplerCount,
-                          const Uint32 uniformBufferCount,
-                          const Uint32 storageBufferCount,
-                          const Uint32 storageTextureCount)
+                          Uint32 samplerCount,
+                          Uint32 uniformBufferCount,
+                          Uint32 storageBufferCount,
+                          Uint32 storageTextureCount)
 {
-    static bool x_BasePathFound = false;
-    static std::string x_BasePath {};
-
-    if (!x_BasePathFound)
-    {
-        x_BasePath      = SDL_GetBasePath();
-        x_BasePathFound = true;
-    }
-
+    // Determine shader stage
     SDL_GPUShaderStage stage;
-    if (shaderFilename.contains(".vert")) { stage = SDL_GPU_SHADERSTAGE_VERTEX; }
-    else if (shaderFilename.contains(".frag")) { stage = SDL_GPU_SHADERSTAGE_FRAGMENT; }
+    if (shaderFilename.rfind(".vert") != std::string::npos) { stage = SDL_GPU_SHADERSTAGE_VERTEX; }
+    else { stage = SDL_GPU_SHADERSTAGE_FRAGMENT; }
 
-    // Only accept vertex or fragment shader
-    assert(shaderFilename.contains(".vert") || shaderFilename.contains(".frag"));
-
-    std::filesystem::path fullPath;
-    const SDL_GPUShaderFormat backendFormats {SDL_GetGPUShaderFormats(device)};
+    // Choose compiled format
     SDL_GPUShaderFormat format {};
-    std::string entrypoint {"main"};  // Because of think different.
+    std::string entrypoint {"main"};
+    const auto backend               = SDL_GetGPUShaderFormats(device);
+    std::filesystem::path shaderPath = GetBasePath() / "res" / "Shaders" / "Compiled";
 
-    bool formatFound = false;
-    if (backendFormats & SDL_GPU_SHADERFORMAT_SPIRV)
+    if (backend & SDL_GPU_SHADERFORMAT_SPIRV)
     {
-        fullPath    = x_BasePath + "res/Shaders/Compiled/SPIRV/" + (shaderFilename + ".spv");
-        format      = SDL_GPU_SHADERFORMAT_SPIRV;
-        formatFound = true;
+        shaderPath /= "SPIRV";
+        shaderPath /= shaderFilename + ".spv";
+        format = SDL_GPU_SHADERFORMAT_SPIRV;
     }
-    else if (backendFormats & SDL_GPU_SHADERFORMAT_MSL)
+    else if (backend & SDL_GPU_SHADERFORMAT_MSL)
     {
-        fullPath    = x_BasePath + "res/Shaders/Compiled/MSL/" + (shaderFilename + ".msl");
-        format      = SDL_GPU_SHADERFORMAT_MSL;
-        entrypoint  = "main0";
-        formatFound = true;
+        shaderPath /= "MSL";
+        shaderPath /= shaderFilename + ".msl";
+        format     = SDL_GPU_SHADERFORMAT_MSL;
+        entrypoint = "main0";
     }
-    else if (backendFormats & SDL_GPU_SHADERFORMAT_DXIL)
+    else if (backend & SDL_GPU_SHADERFORMAT_DXIL)
     {
-        fullPath    = x_BasePath + "res/Shaders/Compiled/DXIL/" + (shaderFilename + ".dxil");
-        format      = SDL_GPU_SHADERFORMAT_DXIL;
-        formatFound = true;
+        shaderPath /= "DXIL";
+        shaderPath /= shaderFilename + ".dxil";
+        format = SDL_GPU_SHADERFORMAT_DXIL;
     }
-    assert(formatFound);
-    assert(std::filesystem::exists(fullPath));
+    else { assert(false && "Unsupported shader format"); }
 
-    std::ifstream file {fullPath, std::ios::binary};
-    assert(file);  // check if we successfully opened the file
+    std::cout << shaderPath;
 
-    std::vector<Uint8> code {std::istreambuf_iterator(file), {}};
+    assert(std::filesystem::exists(shaderPath) && "Shader file not found");
+    std::ifstream file {shaderPath, std::ios::binary};
+    assert(file && "Failed to open shader file");
 
-    const SDL_GPUShaderCreateInfo shaderInfo {.code_size            = code.size(),
-                                              .code                 = code.data(),
-                                              .entrypoint           = entrypoint.c_str(),
-                                              .format               = format,
-                                              .stage                = stage,
-                                              .num_samplers         = samplerCount,
-                                              .num_storage_textures = storageTextureCount,
-                                              .num_storage_buffers  = storageBufferCount,
-                                              .num_uniform_buffers  = uniformBufferCount};
+    std::vector<Uint8> code {std::istreambuf_iterator<char>(file), {}};
 
-    SDL_GPUShader *shader = SDL_CreateGPUShader(device, &shaderInfo);
-    assert(shader != nullptr);
+    SDL_GPUShaderCreateInfo info {
+        .code_size            = code.size(),
+        .code                 = code.data(),
+        .entrypoint           = entrypoint.c_str(),
+        .format               = format,
+        .stage                = stage,
+        .num_samplers         = samplerCount,
+        .num_storage_textures = storageTextureCount,
+        .num_storage_buffers  = storageBufferCount,
+        .num_uniform_buffers  = uniformBufferCount,
+    };
+
+    SDL_GPUShader *shader = SDL_CreateGPUShader(device, &info);
+    assert(shader && "Shader creation failed");
 
     return shader;
 }
 
+/// this function is not begin mantained. Just kept for later use
 SDL_Surface *LoadImage(const std::string &imageFileName, int desiredChannels)
 {
     static bool x_BasePathFound = false;

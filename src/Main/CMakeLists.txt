@@ -46,8 +46,9 @@ if(WIN32)
     )
 
     target_sources(${PROJECT_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/res/icon.rc")
-    target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_BINARY_DIR}")
 endif()
+
+target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_BINARY_DIR}")
 
 add_custom_command(
     TARGET "${PROJECT_NAME}"
@@ -57,9 +58,13 @@ add_custom_command(
 )
 
 if(UNIX AND NOT APPLE)
-    configure_file(${CMAKE_SOURCE_DIR}/res/garage.desktop.in ${CMAKE_BINARY_DIR}/garage.desktop @ONLY)
+    configure_file(
+        ${CMAKE_SOURCE_DIR}/res/garage.desktop.in ${CMAKE_BINARY_DIR}/garage.desktop @ONLY
+    )
     install(FILES ${CMAKE_BINARY_DIR}/garage.desktop DESTINATION share/applications)
 
     # install icon
-    install(FILES ${CMAKE_SOURCE_DIR}/res/Images/Logo/AnkushGarage.png DESTINATION share/icons/hicolor/256x256/apps)
+    install(FILES ${CMAKE_SOURCE_DIR}/res/Images/Logo/AnkushGarage.png
+            DESTINATION share/icons/hicolor/256x256/apps
+    )
 endif()

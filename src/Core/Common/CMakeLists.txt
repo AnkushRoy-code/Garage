@@ -1,4 +1,6 @@
-add_library(core_common STATIC Common.h Common.cpp)
+configure_file(config.h.in config.h @ONLY)
+
+add_library(core_common STATIC Common.h Common.cpp config.h)
 add_library(Core::Common ALIAS core_common)
 
 if(TRACY_PROFILE)
