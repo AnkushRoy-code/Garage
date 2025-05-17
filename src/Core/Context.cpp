@@ -60,11 +60,11 @@ void Context::init()
         return;
     }
 
-    if (!SDL_SetWindowIcon(RenderData.Window, Common::LoadImage("Logo/AnkushGarage")))
-    {
-        std::cerr << "Unable to set window Icon!!\n";
-        return;
-    }
+    // if (!SDL_SetWindowIcon(RenderData.Window, Common::LoadImage("Logo/AnkushGarage")))
+    // {
+    //     std::cerr << "Unable to set window Icon!!\n";
+    //     return;
+    // }
 
     if (!SDL_ClaimWindowForGPUDevice(RenderData.Device, RenderData.Window))
     {

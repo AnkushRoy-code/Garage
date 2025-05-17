@@ -51,7 +51,7 @@ jobs:
         choco install nsis.install
     
     - name: Configure CMake
-      run: cmake -B build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DSDL_STATIC=ON 
+      run: cmake -B build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DSDL_STATIC=ON -DRELEASE_BUILD=ON
 
     - name: Build
       run: cmake --build build --config ${{env.BUILD_TYPE}} -j 8
