@@ -164,10 +164,11 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>desiredChannels</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>desiredChannels</em></span><span class="paramdefsep"> = </span><span class="paramdefval">4</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section warning"><dt>Warning</dt><dd>ONLY BMP IMAGES SUPPORTED BECAUSE I AM LAZY AND DIDN'T LOOK INTO OTHER FORMATS </dd></dl>
 
 </div>
 </div>
@@ -215,7 +216,7 @@ Functions</h2></td></tr>
 <div class="fragment"><div class="line"><span class="comment">// a simple vertex shader project</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">auto</span> vertexShader = <a class="code hl_function" href="#ac6711603d8b911cc9205b543a7fef805">LoadShader</a>(SDL_GPUDevice, <span class="stringliteral">&quot;shader.vert&quot;</span>, 0, 0, 0, 0);</div>
-<div class="ttc" id="anamespace_common_html_ac6711603d8b911cc9205b543a7fef805"><div class="ttname"><a href="#ac6711603d8b911cc9205b543a7fef805">Common::LoadShader</a></div><div class="ttdeci">SDL_GPUShader * LoadShader(SDL_GPUDevice *device, const std::string &amp;shaderFilename, const Uint32 samplerCount, const Uint32 uniformBufferCount, const Uint32 storageBufferCount, const Uint32 storageTextureCount)</div><div class="ttdoc">This is a function that returns a compiled shader after taking the path to shader.</div><div class="ttdef"><b>Definition</b> Common.cpp:5</div></div>
+<div class="ttc" id="anamespace_common_html_ac6711603d8b911cc9205b543a7fef805"><div class="ttname"><a href="#ac6711603d8b911cc9205b543a7fef805">Common::LoadShader</a></div><div class="ttdeci">SDL_GPUShader * LoadShader(SDL_GPUDevice *device, const std::string &amp;shaderFilename, Uint32 samplerCount, Uint32 uniformBufferCount, Uint32 storageBufferCount, Uint32 storageTextureCount)</div><div class="ttdoc">This is a function that returns a compiled shader after taking the path to shader.</div><div class="ttdef"><b>Definition</b> Common.cpp:16</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
