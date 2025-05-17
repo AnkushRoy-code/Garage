@@ -78,7 +78,7 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
 
 SDL_Surface *LoadImage(const std::string &imageFileName, int desiredChannels)
 {
-    std::string fullPath = GetBasePath() / "res" / "Images" / (imageFileName + ".bmp");
+    std::filesystem::path fullPath = GetBasePath() / "res" / "Images" / (imageFileName + ".bmp");
 
     SDL_Surface *result;
     SDL_PixelFormat format;
