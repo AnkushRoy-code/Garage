@@ -89,7 +89,7 @@ SDL_Surface *LoadImage(const std::string &imageFileName, int desiredChannels)
     SDL_Surface *result;
     SDL_PixelFormat format;
 
-    result = SDL_LoadBMP(fullPath.c_str());
+    result = SDL_LoadBMP(fullPath.string().c_str());
 
     // assert(result != nullptr);
 
