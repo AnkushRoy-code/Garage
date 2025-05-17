@@ -1,5 +1,5 @@
 #include "Core/Common/Common.h"
-#include "Core/Common/config.h"
+#include "config.h"
 
 namespace Common
 {
@@ -52,8 +52,6 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
     }
     else { assert(false && "Unsupported shader format"); }
 
-    std::cout << shaderPath;
-
     assert(std::filesystem::exists(shaderPath) && "Shader file not found");
     std::ifstream file {shaderPath, std::ios::binary};
     assert(file && "Failed to open shader file");
@@ -78,23 +76,12 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
     return shader;
 }
 
-/// this function is not begin mantained. Just kept for later use
 SDL_Surface *LoadImage(const std::string &imageFileName, int desiredChannels)
 {
-    static bool x_BasePathFound = false;
-    static std::string x_BasePath {};
+    std::string fullPath = GetBasePath() / "res" / "Images" / (imageFileName + ".bmp");
 
-    if (!x_BasePathFound)
-    {
-        x_BasePath      = SDL_GetBasePath();
-        x_BasePathFound = true;
-    }
-
-    std::string fullPath {};
     SDL_Surface *result;
     SDL_PixelFormat format;
-
-    fullPath = x_BasePath + "res/Images/" + (imageFileName + ".bmp");
 
     result = SDL_LoadBMP(fullPath.c_str());
     assert(result != nullptr);

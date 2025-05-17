@@ -37,6 +37,7 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
                           Uint32 storageBufferCount,
                           Uint32 storageTextureCount);
 
+/// @warning ONLY BMP IMAGES SUPPORTED BECAUSE I AM LAZY AND DIDN'T LOOK INTO OTHER FORMATS
 SDL_Surface* LoadImage(const std::string &imageFileName, int desiredChannels = 4);
 }  // namespace Common
 

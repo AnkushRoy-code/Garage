@@ -1,6 +1,7 @@
 configure_file(config.h.in config.h @ONLY)
-
 add_library(core_common STATIC Common.h Common.cpp config.h)
+
+# add_library(core_common STATIC Common.h Common.cpp)
 add_library(Core::Common ALIAS core_common)
 
 if(TRACY_PROFILE)
@@ -8,6 +9,7 @@ if(TRACY_PROFILE)
 endif()
 
 target_include_directories(core_common PRIVATE "${CMAKE_SOURCE_DIR}/src")
+target_include_directories(core_common PRIVATE "${CMAKE_CURRENT_BINARY_DIR}")
 
 if(SDL_STATIC)
     target_link_libraries(core_common PRIVATE SDL3::SDL3-static)
