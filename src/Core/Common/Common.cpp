@@ -1,18 +1,40 @@
 #include "Core/Common/Common.h"
-#include "Core/Console.h"
 #include "config.h"
 
 namespace Common
 {
-namespace
-{
-// Convert DATA_DIR to a std::filesystem::path just once
+
+// returns the resource directory
 const std::filesystem::path &GetBasePath()
 {
-    static const std::filesystem::path base {DATA_DIR};
+    static bool firstTime             = false;
+    static std::filesystem::path base = {DATA_DIR};
+
+    if (!firstTime)
+    {
+        // clang-format off
+        const std::filesystem::path bases[] {
+            "src/Main",
+            DATA_DIR,
+            DATA_DIR_LOCAL,
+            SDL_GetBasePath()
+        };
+        // clang-format on
+
+        for (const auto &i: bases)
+        {
+            if (std::filesystem::exists(i / "res"))
+            {
+                base = i;
+                return base;
+            }
+        }
+
+        firstTime = true;
+    }
+
     return base;
 }
-}  // namespace
 
 SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
                           const std::string &shaderFilename,
@@ -21,9 +43,6 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
                           Uint32 storageBufferCount,
                           Uint32 storageTextureCount)
 {
-
-    Core::ConsoleLogBuffer::AddMessage(DATA_DIR);
-
     // Determine shader stage
     SDL_GPUShaderStage stage;
     if (shaderFilename.rfind(".vert") != std::string::npos) { stage = SDL_GPU_SHADERSTAGE_VERTEX; }
@@ -56,11 +75,11 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
     }
     else { assert(false && "Unsupported shader format"); }
 
-    // assert(std::filesystem::exists(shaderPath) && "Shader file not found");
+    assert(std::filesystem::exists(shaderPath) && "Shader file not found");
 
     std::ifstream file {shaderPath, std::ios::binary};
 
-    // assert(file && "Failed to open shader file");
+    assert(file && "Failed to open shader file");
 
     std::vector<Uint8> code {std::istreambuf_iterator<char>(file), {}};
 
@@ -91,7 +110,7 @@ SDL_Surface *LoadImage(const std::string &imageFileName, int desiredChannels)
 
     result = SDL_LoadBMP(fullPath.string().c_str());
 
-    // assert(result != nullptr);
+    assert(result != nullptr);
 
     if (desiredChannels == 4) { format = SDL_PIXELFORMAT_ABGR8888; }
     else

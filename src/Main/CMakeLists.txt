@@ -12,7 +12,6 @@ endif()
 
 target_link_libraries("${PROJECT_NAME}" PRIVATE Projects::Common Utils imgui Core)
 target_include_directories("${PROJECT_NAME}" PRIVATE "${CMAKE_SOURCE_DIR}/src")
-
 target_precompile_headers("${PROJECT_NAME}" REUSE_FROM Core)
 
 # Copy shared lib(s) or res if needed

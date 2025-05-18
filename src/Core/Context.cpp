@@ -21,7 +21,7 @@ Context::Context() = default;
 
 void Context::init()
 {
-    if (!SDL_SetAppMetadata("Ankush's Garage", "0.2.6", "io.github.ankushroy-code.garage"))
+    if (!SDL_SetAppMetadata("Ankush's Garage", "0.2.7", "io.github.ankushroy-code.garage"))
     {
         std::cerr << "Couldn't do stuff... 0983\n";
         return;
