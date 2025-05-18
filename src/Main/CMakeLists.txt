@@ -12,7 +12,6 @@ endif()
 
 target_link_libraries("${PROJECT_NAME}" PRIVATE Projects::Common Utils imgui Core)
 target_include_directories("${PROJECT_NAME}" PRIVATE "${CMAKE_SOURCE_DIR}/src")
-
 target_precompile_headers("${PROJECT_NAME}" REUSE_FROM Core)
 
 # Copy shared lib(s) or res if needed
@@ -46,20 +45,27 @@ if(WIN32)
     )
 
     target_sources(${PROJECT_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/res/icon.rc")
-    target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_BINARY_DIR}")
 endif()
 
-add_custom_command(
-    TARGET "${PROJECT_NAME}"
-    POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/res"
-            "$<TARGET_FILE_DIR:${PROJECT_NAME}>/res"
-)
+target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_BINARY_DIR}")
+
+if(!RELEASE_BUILD)
+    add_custom_command(
+        TARGET "${PROJECT_NAME}"
+        POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/res"
+                "$<TARGET_FILE_DIR:${PROJECT_NAME}>/res"
+    )
+endif()
 
 if(UNIX AND NOT APPLE)
-    configure_file(${CMAKE_SOURCE_DIR}/res/garage.desktop.in ${CMAKE_BINARY_DIR}/garage.desktop @ONLY)
+    configure_file(
+        ${CMAKE_SOURCE_DIR}/res/garage.desktop.in ${CMAKE_BINARY_DIR}/garage.desktop @ONLY
+    )
     install(FILES ${CMAKE_BINARY_DIR}/garage.desktop DESTINATION share/applications)
 
     # install icon
-    install(FILES ${CMAKE_SOURCE_DIR}/res/Images/Logo/AnkushGarage.png DESTINATION share/icons/hicolor/256x256/apps)
+    install(FILES ${CMAKE_SOURCE_DIR}/res/Images/Logo/AnkushGarage.png
+            DESTINATION share/icons/hicolor/256x256/apps
+    )
 endif()
