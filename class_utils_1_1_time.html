@@ -169,12 +169,12 @@ Static Private Attributes</h2></td></tr>
 <tr class="memitem:afd10171206a8695a45cd484734151b3d" id="r_afd10171206a8695a45cd484734151b3d"><td class="memItemLeft" align="right" valign="top">static std::chrono::time_point&lt; std::chrono::high_resolution_clock &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd10171206a8695a45cd484734151b3d">m_StartTime</a></td></tr>
 <tr class="memdesc:afd10171206a8695a45cd484734151b3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the program start timestamp.  <br /></td></tr>
 <tr class="separator:afd10171206a8695a45cd484734151b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad42ac30626e98c800fda17d57498c3d1" id="r_ad42ac30626e98c800fda17d57498c3d1"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad42ac30626e98c800fda17d57498c3d1">m_TargetFPS</a> = 60</td></tr>
-<tr class="memdesc:ad42ac30626e98c800fda17d57498c3d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The target frames per second.  <br /></td></tr>
-<tr class="separator:ad42ac30626e98c800fda17d57498c3d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a09e5aaf0f44c6aa7085a362d0d8e6e" id="r_a4a09e5aaf0f44c6aa7085a362d0d8e6e"><td class="memItemLeft" align="right" valign="top">static const std::chrono::milliseconds&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a09e5aaf0f44c6aa7085a362d0d8e6e">m_FrameDuration</a></td></tr>
-<tr class="memdesc:a4a09e5aaf0f44c6aa7085a362d0d8e6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The expected duration of each frame.  <br /></td></tr>
-<tr class="separator:a4a09e5aaf0f44c6aa7085a362d0d8e6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a454539466c6af7251f4414d47b79b5cc" id="r_a454539466c6af7251f4414d47b79b5cc"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a454539466c6af7251f4414d47b79b5cc">m_TargetFPS</a> = 60</td></tr>
+<tr class="memdesc:a454539466c6af7251f4414d47b79b5cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The target frames per second.  <br /></td></tr>
+<tr class="separator:a454539466c6af7251f4414d47b79b5cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e6a3f7356fdf415d4c31cdda95735f2" id="r_a9e6a3f7356fdf415d4c31cdda95735f2"><td class="memItemLeft" align="right" valign="top">static constexpr std::chrono::milliseconds&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e6a3f7356fdf415d4c31cdda95735f2">m_FrameDuration</a></td></tr>
+<tr class="memdesc:a9e6a3f7356fdf415d4c31cdda95735f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The expected duration of each frame.  <br /></td></tr>
+<tr class="separator:a9e6a3f7356fdf415d4c31cdda95735f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Utility class for handling delta time and FPS capping. </p>
@@ -369,8 +369,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a4a09e5aaf0f44c6aa7085a362d0d8e6e" name="a4a09e5aaf0f44c6aa7085a362d0d8e6e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a09e5aaf0f44c6aa7085a362d0d8e6e">&#9670;&#160;</a></span>m_FrameDuration</h2>
+<a id="a9e6a3f7356fdf415d4c31cdda95735f2" name="a9e6a3f7356fdf415d4c31cdda95735f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e6a3f7356fdf415d4c31cdda95735f2">&#9670;&#160;</a></span>m_FrameDuration</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -379,18 +379,18 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const std::chrono::milliseconds Utils::Time::m_FrameDuration</td>
+          <td class="memname">std::chrono::milliseconds Utils::Time::m_FrameDuration</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span><span class="mlabel private">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">=</div>
-<div class="line">    std::chrono::milliseconds(1000 / <a class="code hl_variable" href="#ad42ac30626e98c800fda17d57498c3d1">m_TargetFPS</a>)</div>
-<div class="ttc" id="aclass_utils_1_1_time_html_ad42ac30626e98c800fda17d57498c3d1"><div class="ttname"><a href="#ad42ac30626e98c800fda17d57498c3d1">Utils::Time::m_TargetFPS</a></div><div class="ttdeci">static const int m_TargetFPS</div><div class="ttdoc">The target frames per second.</div><div class="ttdef"><b>Definition</b> Time.h:69</div></div>
+<div class="line">        std::chrono::milliseconds(1000 / <a class="code hl_variable" href="#a454539466c6af7251f4414d47b79b5cc">m_TargetFPS</a>)</div>
+<div class="ttc" id="aclass_utils_1_1_time_html_a454539466c6af7251f4414d47b79b5cc"><div class="ttname"><a href="#a454539466c6af7251f4414d47b79b5cc">Utils::Time::m_TargetFPS</a></div><div class="ttdeci">static constexpr int m_TargetFPS</div><div class="ttdoc">The target frames per second.</div><div class="ttdef"><b>Definition</b> Time.h:69</div></div>
 </div><!-- fragment -->
 <p>The expected duration of each frame. </p>
 
@@ -444,8 +444,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ad42ac30626e98c800fda17d57498c3d1" name="ad42ac30626e98c800fda17d57498c3d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad42ac30626e98c800fda17d57498c3d1">&#9670;&#160;</a></span>m_TargetFPS</h2>
+<a id="a454539466c6af7251f4414d47b79b5cc" name="a454539466c6af7251f4414d47b79b5cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a454539466c6af7251f4414d47b79b5cc">&#9670;&#160;</a></span>m_TargetFPS</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -454,12 +454,12 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const int Utils::Time::m_TargetFPS = 60</td>
+          <td class="memname">int Utils::Time::m_TargetFPS = 60</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span><span class="mlabel private">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
