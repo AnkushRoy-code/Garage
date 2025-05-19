@@ -11,10 +11,18 @@ class ImGuiCore
     static void Draw();
     static void Init();
     static void Quit();
-    static bool HandleWindowResize();
 
   private:
     static SDL_GPUTextureSamplerBinding bind;
+    static void InitImGuiStyle();
+    static void SetImGuiWindowProportions();
+    static bool HandleWindowResize();
+    static void ShowToolBox();
+    static void TB_ProjectSelector(); // ToolBox Functions;
+    static void TB_ResolutionSlider();
+    static void ShowConsole();
+    static void ShowProjectWindow();
+    static void ShowProjectRendered();
 };
 }  // namespace Core
 

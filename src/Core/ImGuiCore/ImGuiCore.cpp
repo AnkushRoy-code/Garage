@@ -1,25 +1,23 @@
 #include "Core/ImGuiCore/ImGuiCore.h"
 
-#include "Core/ImGuiCore/ScrollingBuffer.h"
-#include "Core/ImGuiCore/FPSTracker.h"
-
 #include "Core/Context.h"
 #include "Core/Console.h"
+#include "Core/ImGuiCore/DataPlotter.h"
 #include "Core/Renderer/Renderer.h"
-
 #include "Main/Main.h"
-
 #include "Projects/Common/BaseProject.h"
 
 #include "Core/Common/pch.h"
 
-#include <imgui.h>
 #include <imgui_internal.h>
 #include <implot.h>
 
-SDL_GPUTextureSamplerBinding Core::ImGuiCore::bind;
+namespace Core
+{
 
-void Core::ImGuiCore::Init()
+SDL_GPUTextureSamplerBinding ImGuiCore::bind;
+
+void ImGuiCore::Init()
 {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -35,6 +33,80 @@ void Core::ImGuiCore::Init()
     SDL_GetWindowSize(Core::Context::GetContext()->RenderData.Window, &w, &h);
     io.DisplaySize = ImVec2((float)w, (float)h);
 
+    InitImGuiStyle();
+
+    auto &rndt = Context::GetContext()->RenderData;
+    ImGui_ImplSDL3_InitForSDLGPU(rndt.Window);
+    ImGui_ImplSDLGPU3_InitInfo initInfo {};
+    initInfo.Device            = rndt.Device;
+    initInfo.ColorTargetFormat = SDL_GetGPUSwapchainTextureFormat(rndt.Device, rndt.Window);
+    initInfo.MSAASamples       = SDL_GPU_SAMPLECOUNT_1;
+    ImGui_ImplSDLGPU3_Init(&initInfo);
+}
+
+void ImGuiCore::Quit()
+{
+    ImGui_ImplSDL3_Shutdown();
+    ImGui_ImplSDLGPU3_Shutdown();
+    ImPlot::DestroyContext();
+    ImGui::DestroyContext();
+}
+
+void ImGuiCore::Update()
+{
+    ImGui_ImplSDL3_NewFrame();
+    ImGui_ImplSDLGPU3_NewFrame();
+    ImGui::NewFrame();
+
+    auto &apst = Context::GetContext()->AppState;
+
+    SetImGuiWindowProportions();
+    ShowToolBox();
+    ShowConsole();
+    ShowProjectWindow();
+    ShowProjectRendered();
+}
+
+void ImGuiCore::Draw()
+{
+    ImGui::Render();
+    ImDrawData *drawData = ImGui::GetDrawData();
+
+    SDL_GPUCommandBuffer *commandBuffer =
+        SDL_AcquireGPUCommandBuffer(Core::Context::GetContext()->RenderData.Device);
+    assert(commandBuffer);
+
+    SDL_GPUTexture *swapchainTexture;
+
+    SDL_AcquireGPUSwapchainTexture(commandBuffer, Context::GetContext()->RenderData.Window,
+                                   &swapchainTexture, nullptr, nullptr);
+
+    assert(swapchainTexture);
+
+    Imgui_ImplSDLGPU3_PrepareDrawData(drawData, commandBuffer);
+
+    const SDL_GPUColorTargetInfo targetInfo {
+        .texture              = swapchainTexture,
+        .mip_level            = 0,
+        .layer_or_depth_plane = 0,
+        .clear_color          = SDL_FColor {0.0, 0.0f, 0.0f, 1.00f},
+        .load_op              = SDL_GPU_LOADOP_CLEAR,
+        .store_op             = SDL_GPU_STOREOP_STORE,
+        .cycle                = false,
+
+    };
+
+    static SDL_GPURenderPass *x_RenderPass {};
+    x_RenderPass = SDL_BeginGPURenderPass(commandBuffer, &targetInfo, 1, nullptr);
+
+    ImGui_ImplSDLGPU3_RenderDrawData(drawData, commandBuffer, x_RenderPass);
+
+    SDL_EndGPURenderPass(x_RenderPass);
+    SDL_SubmitGPUCommandBuffer(commandBuffer);
+}
+
+void ImGuiCore::InitImGuiStyle()
+{
     ImGui::StyleColorsDark();
 
     ImGuiStyle &style        = ImGui::GetStyle();
@@ -81,34 +153,14 @@ void Core::ImGuiCore::Init()
     colors[ImGuiCol_TabSelected]          = ImVec4(0.19f, 0.20f, 0.27f, 1.00f);
     colors[ImGuiCol_TabSelectedOverline]  = ImVec4(0.29f, 0.30f, 0.41f, 0.80f);
     colors[ImGuiCol_TabDimmedSelected]    = ImVec4(0.42f, 0.44f, 0.53f, 0.62f);
-
-    auto &rndt = Core::Context::GetContext()->RenderData;
-    ImGui_ImplSDL3_InitForSDLGPU(rndt.Window);
-    ImGui_ImplSDLGPU3_InitInfo initInfo {};
-    initInfo.Device            = rndt.Device;
-    initInfo.ColorTargetFormat = SDL_GetGPUSwapchainTextureFormat(rndt.Device, rndt.Window);
-    initInfo.MSAASamples       = SDL_GPU_SAMPLECOUNT_1;
-    ImGui_ImplSDLGPU3_Init(&initInfo);
 }
 
-void Core::ImGuiCore::Quit()
+void ImGuiCore::SetImGuiWindowProportions()
 {
-    ImGui_ImplSDL3_Shutdown();
-    ImGui_ImplSDLGPU3_Shutdown();
-    ImPlot::DestroyContext();
-    ImGui::DestroyContext();
-}
-
-void Core::ImGuiCore::Update()
-{
-    ImGui_ImplSDL3_NewFrame();
-    ImGui_ImplSDLGPU3_NewFrame();
-    ImGui::NewFrame();
-
-    auto &apst = Core::Context::GetContext()->AppState;
-
+    auto &apst          = Context::GetContext()->AppState;
     apst.MainViewportId = ImGui::DockSpaceOverViewport();
 
+    // todo: keep the imgui.ini file in a safe place
     static bool x_ImguiIniExists = std::filesystem::exists("imgui.ini");
     static bool x_FirstTime      = true;
     static const auto k_vpID     = apst.MainViewportId;
@@ -137,140 +189,101 @@ void Core::ImGuiCore::Update()
 
         ImGui::DockBuilderFinish(apst.MainViewportId);
     }
+}
+
+bool ImGuiCore::HandleWindowResize()
+{
+    ImVec2 view = ImGui::GetWindowSize();
+    auto ctx    = Context::GetContext();
+
+    if (view.x != ctx->AppState.ProjectWindowSize.x || view.y != ctx->AppState.ProjectWindowSize.y)
+    {
+        ctx->EventHandler.UpdateKey(Core::RESIZE_PROJECT_WINDOW, true);
+
+        if (view.x == 0 || view.y == 0) { return false; }  // window is minimised
+        ctx->AppState.ProjectWindowSize.x = view.x;
+        ctx->AppState.ProjectWindowSize.y = view.y;
+
+        Renderer::ResizeProjectTexture(view.x, view.y);
+        return true;
+    }
+
+    return true;
+}
+
+void ImGuiCore::ShowToolBox()
+{
+    auto &apst = Context::GetContext()->AppState;
 
     if (ImGui::Begin("Ankush's Garage - ToolBox"))
     {
-        static std::vector<const char *> x_Names;
-        static bool x_FirsstTime = true;
-
-        const int projSize = Common::ProjectManager::GetProjects()->size();
-        if (x_FirsstTime)
-        {
-            x_FirsstTime = false;
-            x_Names.reserve(projSize);
-            for (const auto &project: *Common::ProjectManager::GetProjects())
-            {
-                x_Names.push_back(project->GetName().c_str());
-            }
-        }
-        ImGui::SeparatorText("Projects");
-
-        // Project selector
-        if (ImGui::BeginCombo("Project", x_Names[apst.ProjectIndex]))
-        {
-            for (int i = 0; i < projSize; i++)
-            {
-                const bool isSelected = (apst.ProjectIndex == i);
-                if (ImGui::Selectable(x_Names[i], isSelected))
-                {
-                    if (i != apst.ProjectIndex)
-                    {
-                        apst.HasToChangeIndex = true;
-                        apst.ProjectToBeIndex = i;
-                    }
-                }
-                if (isSelected) ImGui::SetItemDefaultFocus();
-            }
-            ImGui::EndCombo();
-        }
+        TB_ProjectSelector();
 
         ImGui::SeparatorText("Controls");
-        // resolution
-        static int x_Res = 100;
-        ImGui::Text("Scale Resolution");
-        if (ImGui::SliderInt("###yetanotherid", &x_Res, 25, 500, "%d%%"))
-        {
-            Core::Context::GetContext()->RenderData.ResolutionScale = x_Res / 100.0f;
-            Core::Renderer::ResizeProjectTexture(apst.ProjectWindowSize.x,
-                                                 apst.ProjectWindowSize.y);
-        }
+        TB_ResolutionSlider();
 
         ImGui::SeparatorText("Data");
-
-        static float x_History = 10.0f;
-        ImGui::SliderFloat("History", &x_History, 1, 30, "%.1f s");
-        const float t = SDL_GetTicks() / 1000.0f;
-
-        const ImVec4 updateCol = {237.0f / 255.0f, 135.0f / 255.0f, 150.0f / 255.0f, 1.0f};
-        const ImVec4 renderCol = {145.0f / 255.0f, 215.0f / 255.0f, 227.0f / 255.0f, 1.0f};
-
-        // Frame Time plot
-        {
-            static const ImPlotAxisFlags flags = ImPlotAxisFlags_NoTickLabels
-                                                 | ImPlotAxisFlags_NoGridLines
-                                                 | ImPlotAxisFlags_NoTickMarks;
-
-            if (ImPlot::BeginPlot("Frame Time Plot", ImVec2(-1, 250),
-                                  ImPlotFlags_NoBoxSelect | ImPlotFlags_Crosshairs))
-            {
-                ImPlot::SetupLegend(ImPlotLocation_SouthEast);
-                ImPlot::SetupMouseText(ImPlotLocation_SouthWest);
-                ImPlot::SetupAxes("Time (s)", "Frame Time (ms)", flags);
-                ImPlot::SetupAxisLimits(ImAxis_X1, t - x_History, t, ImGuiCond_Always);
-                ImPlot::SetupAxisLimits(ImAxis_Y1, -1, 65);
-                ImPlot::SetupFinish();
-
-                ImPlot::PushStyleColor(ImPlotCol_Line, updateCol);
-                ImPlot::PlotLine("Update", &Tracker::s_UpdateFTBuffer.Data[0].x,
-                                 &Tracker::s_UpdateFTBuffer.Data[0].y,
-                                 Tracker::s_UpdateFTBuffer.Data.size(), 0,
-                                 Tracker::s_UpdateFTBuffer.Offset, 2 * sizeof(float));
-                ImPlot::PopStyleColor();
-
-                ImPlot::PushStyleColor(ImPlotCol_Line, renderCol);
-                ImPlot::PlotLine("Render", &Tracker::s_RenderFTBuffer.Data[0].x,
-                                 &Tracker::s_RenderFTBuffer.Data[0].y,
-                                 Tracker::s_RenderFTBuffer.Data.size(), 0,
-                                 Tracker::s_RenderFTBuffer.Offset, 2 * sizeof(float));
-
-                ImPlot::EndPlot();
-            }
-        }
-
-        // fps plot
-        {
-            static const ImPlotAxisFlags flags = ImPlotAxisFlags_NoTickLabels
-                                                 | ImPlotAxisFlags_NoGridLines
-                                                 | ImPlotAxisFlags_NoTickMarks;
-
-            if (ImPlot::BeginPlot("FPS Plot", ImVec2(-1, 250),
-                                  ImPlotFlags_NoBoxSelect | ImPlotFlags_Crosshairs))
-            {
-                ImPlot::SetupLegend(ImPlotLocation_SouthEast);
-                ImPlot::SetupMouseText(ImPlotLocation_SouthWest);
-                ImPlot::SetupAxes("Time (s)", "FPS", flags);
-                ImPlot::SetupAxisLimits(ImAxis_X1, t - x_History, t, ImGuiCond_Always);
-                ImPlot::SetupAxisLimits(ImAxis_Y1, -1, 65);
-                ImPlot::SetupFinish();
-
-                ImPlot::PushStyleColor(ImPlotCol_Line, updateCol);
-                ImPlot::PlotLine("Update", &Tracker::s_UpdateFPSBuffer.Data[0].x,
-                                 &Tracker::s_UpdateFPSBuffer.Data[0].y,
-                                 Tracker::s_UpdateFPSBuffer.Data.size(), 0,
-                                 Tracker::s_UpdateFPSBuffer.Offset, 2 * sizeof(float));
-                ImPlot::PopStyleColor();
-
-                ImPlot::PushStyleColor(ImPlotCol_Line,
-                                       {166.0f / 255.0f, 218.0f / 255.0f, 149.0f / 255.0f, 1.0f});
-                ImPlot::PlotLine("RealUpdate", &Tracker::s_RealUpdateFPSBuffer.Data[0].x,
-                                 &Tracker::s_RealUpdateFPSBuffer.Data[0].y,
-                                 Tracker::s_RealUpdateFPSBuffer.Data.size(), 0,
-                                 Tracker::s_RealUpdateFPSBuffer.Offset, 2 * sizeof(float));
-                ImPlot::PopStyleColor();
-
-                ImPlot::PushStyleColor(ImPlotCol_Line, renderCol);
-                ImPlot::PlotLine("Render", &Tracker::s_RenderFPSBuffer.Data[0].x,
-                                 &Tracker::s_RenderFPSBuffer.Data[0].y,
-                                 Tracker::s_RenderFPSBuffer.Data.size(), 0,
-                                 Tracker::s_RenderFPSBuffer.Offset, 2 * sizeof(float));
-                ImPlot::PopStyleColor();
-
-                ImPlot::EndPlot();
-            }
-        }
+        Plotter::PlotAllData();
     }
     ImGui::End();
+}
 
+void ImGuiCore::TB_ProjectSelector()
+{
+    auto &apst = Context::GetContext()->AppState;
+
+    // get names
+    static std::vector<const char *> x_Names;
+    static bool x_FirsstTime = true;
+
+    const int projSize = Common::ProjectManager::GetProjects()->size();
+    if (x_FirsstTime)
+    {
+        x_FirsstTime = false;
+        x_Names.reserve(projSize);
+        for (const auto &project: *Common::ProjectManager::GetProjects())
+        {
+            x_Names.push_back(project->GetName().c_str());
+        }
+    }
+    ImGui::SeparatorText("Projects");
+
+    // Project selector
+    if (ImGui::BeginCombo("Project", x_Names[apst.ProjectIndex]))
+    {
+        for (int i = 0; i < projSize; i++)
+        {
+            const bool isSelected = (apst.ProjectIndex == i);
+            if (ImGui::Selectable(x_Names[i], isSelected))
+            {
+                if (i != apst.ProjectIndex)
+                {
+                    apst.HasToChangeIndex = true;
+                    apst.ProjectToBeIndex = i;
+                }
+            }
+            if (isSelected) ImGui::SetItemDefaultFocus();
+        }
+        ImGui::EndCombo();
+    }
+}
+
+void ImGuiCore::TB_ResolutionSlider()
+{
+    auto &apst = Context::GetContext()->AppState;
+
+    // resolution
+    static int x_Res = 100;
+    ImGui::Text("Scale Resolution");
+    if (ImGui::SliderInt("###yetanotherid", &x_Res, 25, 500, "%d%%"))
+    {
+        Context::GetContext()->RenderData.ResolutionScale = x_Res / 100.0f;
+        Renderer::ResizeProjectTexture(apst.ProjectWindowSize.x, apst.ProjectWindowSize.y);
+    }
+}
+
+void ImGuiCore::ShowConsole()
+{
     if (ImGui::Begin("Console"))
     {
         const auto cl = ConsoleLogBuffer::GetMessages();
@@ -300,10 +313,12 @@ void Core::ImGuiCore::Update()
         }
     }
     ImGui::End();
+}
 
-    // I'll be honest with ya gpt helped me with this one. I was stuck find a way to add new
-    // function to my BaseProject without needing to change it in all of the projects...
-    // look at ff4cb73 for reference.
+void ImGuiCore::ShowProjectWindow()
+{
+    auto &apst = Context::GetContext()->AppState;
+
     if (Common::BaseProject::hasUI)
     {
         if (auto imguiProject = dynamic_cast<Common::ImGuiUI *>(
@@ -312,7 +327,10 @@ void Core::ImGuiCore::Update()
             imguiProject->DrawUI();
         }
     }
+}
 
+void ImGuiCore::ShowProjectRendered()
+{
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2 {0, 0});
 
     const auto projName = Common::ProjectManager::GetProjects()
@@ -321,8 +339,9 @@ void Core::ImGuiCore::Update()
 
     const auto projectWindowName = "Project - " + projName + "###TexTitle";
 
-    // auto &apst = Core::Context::GetContext()->AppState;
-    auto ctx = Core::Context::GetContext();
+    auto &apst = Context::GetContext()->AppState;
+    auto ctx = Context::GetContext();
+
     if (ImGui::Begin(projectWindowName.c_str()))
     {
         apst.projectWindowFocused = ImGui::IsWindowFocused();
@@ -343,7 +362,7 @@ void Core::ImGuiCore::Update()
         }
 
         // Note to self: Moving this function down causes artifacts when resizing
-        Core::Renderer::DrawProjectToTexture();
+        Renderer::DrawProjectToTexture();
 
         bind.texture = ctx->RenderData.ProjectTexture;
         bind.sampler = ctx->RenderData.ProjectSampler;
@@ -356,60 +375,4 @@ void Core::ImGuiCore::Update()
     ImGui::PopStyleVar();
 }
 
-void Core::ImGuiCore::Draw()
-{
-    ImGui::Render();
-    ImDrawData *drawData = ImGui::GetDrawData();
-
-    SDL_GPUCommandBuffer *commandBuffer =
-        SDL_AcquireGPUCommandBuffer(Core::Context::GetContext()->RenderData.Device);
-    assert(commandBuffer);
-
-    SDL_GPUTexture *swapchainTexture;
-
-    SDL_AcquireGPUSwapchainTexture(commandBuffer, Core::Context::GetContext()->RenderData.Window,
-                                   &swapchainTexture, nullptr, nullptr);
-
-    assert(swapchainTexture);
-
-    Imgui_ImplSDLGPU3_PrepareDrawData(drawData, commandBuffer);
-
-    const SDL_GPUColorTargetInfo targetInfo {
-        .texture              = swapchainTexture,
-        .mip_level            = 0,
-        .layer_or_depth_plane = 0,
-        .clear_color          = SDL_FColor {0.0, 0.0f, 0.0f, 1.00f},
-        .load_op              = SDL_GPU_LOADOP_CLEAR,
-        .store_op             = SDL_GPU_STOREOP_STORE,
-        .cycle                = false,
-
-    };
-
-    static SDL_GPURenderPass *x_RenderPass {};
-    x_RenderPass = SDL_BeginGPURenderPass(commandBuffer, &targetInfo, 1, nullptr);
-
-    ImGui_ImplSDLGPU3_RenderDrawData(drawData, commandBuffer, x_RenderPass);
-
-    SDL_EndGPURenderPass(x_RenderPass);
-    SDL_SubmitGPUCommandBuffer(commandBuffer);
-}
-
-bool Core::ImGuiCore::HandleWindowResize()
-{
-    ImVec2 view = ImGui::GetWindowSize();
-    auto ctx    = Core::Context::GetContext();
-
-    if (view.x != ctx->AppState.ProjectWindowSize.x || view.y != ctx->AppState.ProjectWindowSize.y)
-    {
-        ctx->EventHandler.UpdateKey(Core::RESIZE_PROJECT_WINDOW, true);
-
-        if (view.x == 0 || view.y == 0) { return false; }  // window is minimised
-        ctx->AppState.ProjectWindowSize.x = view.x;
-        ctx->AppState.ProjectWindowSize.y = view.y;
-
-        Core::Renderer::ResizeProjectTexture(view.x, view.y);
-        return true;
-    }
-
-    return true;
-}
+}  // namespace Core
