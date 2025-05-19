@@ -28,6 +28,7 @@ var annotated_dup =
     [ "ParticleContainer", "struct_particle_container.html", "struct_particle_container" ],
     [ "ParticleData", "struct_particle_data.html", "struct_particle_data" ],
     [ "ParticleDataSend", "struct_particle_data_send.html", "struct_particle_data_send" ],
+    [ "Plotter", "class_plotter.html", null ],
     [ "PredefinedParticlesData", "struct_predefined_particles_data.html", "struct_predefined_particles_data" ],
     [ "RGB_BoidDataSend", "struct_r_g_b___boid_data_send.html", "struct_r_g_b___boid_data_send" ],
     [ "ScrollingBuffer", "struct_scrolling_buffer.html", "struct_scrolling_buffer" ],

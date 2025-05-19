@@ -25,6 +25,7 @@ var hierarchy =
     [ "ParticleContainer", "struct_particle_container.html", null ],
     [ "ParticleData", "struct_particle_data.html", null ],
     [ "ParticleDataSend", "struct_particle_data_send.html", null ],
+    [ "Plotter", "class_plotter.html", null ],
     [ "PredefinedParticlesData", "struct_predefined_particles_data.html", null ],
     [ "Common::ProjectManager", "class_common_1_1_project_manager.html", null ],
     [ "Core::RenderDataStruct", "struct_core_1_1_render_data_struct.html", null ],

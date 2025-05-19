@@ -21,11 +21,16 @@ var searchData=
   ['seperation_18',['Seperation',['../class_boids_container.html#a99c92eba28630e3f75813d2896ca3bf6',1,'BoidsContainer']]],
   ['set_19',['Mendelbroth Set',['../index.html#autotoc_md17',1,'']]],
   ['set_20',['Goldbert set',['../index.html#autotoc_md18',1,'']]],
-  ['simpleexample_21',['SimpleExample',['../class_simple_example.html',1,'SimpleExample'],['../namespace_simple_example.html',1,'SimpleExample'],['../index.html#autotoc_md9',1,'SimpleExample']]],
-  ['simpleexample_2ecpp_22',['SimpleExample.cpp',['../_simple_example_8cpp.html',1,'']]],
-  ['simpleexample_2eh_23',['SimpleExample.h',['../_simple_example_8h.html',1,'']]],
-  ['simulation_24',['N-body-simulation',['../index.html#autotoc_md13',1,'']]],
-  ['smallviewport_25',['SmallViewport',['../class_triangle.html#af476a83a8475a37a3eb5d01b97bfa26f',1,'Triangle']]],
-  ['started_26',['Started',['../index.html#autotoc_md20',1,'Getting Started'],['../bug.html#_bug000001',1,'Getting Started']]],
-  ['stopprojectupdateloop_27',['StopProjectUpdateLoop',['../class_garage.html#a852e777b7dc261532d400225d518d035',1,'Garage']]]
+  ['setimguiwindowproportions_21',['SetImGuiWindowProportions',['../class_core_1_1_im_gui_core.html#a6dda9183d1572c46cc2cd9d8c380a59f',1,'Core::ImGuiCore']]],
+  ['showconsole_22',['ShowConsole',['../class_core_1_1_im_gui_core.html#af8a2955c634f17d26620700e8b7b1f46',1,'Core::ImGuiCore']]],
+  ['showprojectrendered_23',['ShowProjectRendered',['../class_core_1_1_im_gui_core.html#a35409d2c6e151061321f7a1831e7742c',1,'Core::ImGuiCore']]],
+  ['showprojectwindow_24',['ShowProjectWindow',['../class_core_1_1_im_gui_core.html#a15fac857dc25a440fb7dbac106b09848',1,'Core::ImGuiCore']]],
+  ['showtoolbox_25',['ShowToolBox',['../class_core_1_1_im_gui_core.html#a44307c4577e16316cc9924e33feeb9ca',1,'Core::ImGuiCore']]],
+  ['simpleexample_26',['SimpleExample',['../class_simple_example.html',1,'SimpleExample'],['../namespace_simple_example.html',1,'SimpleExample'],['../index.html#autotoc_md9',1,'SimpleExample']]],
+  ['simpleexample_2ecpp_27',['SimpleExample.cpp',['../_simple_example_8cpp.html',1,'']]],
+  ['simpleexample_2eh_28',['SimpleExample.h',['../_simple_example_8h.html',1,'']]],
+  ['simulation_29',['N-body-simulation',['../index.html#autotoc_md13',1,'']]],
+  ['smallviewport_30',['SmallViewport',['../class_triangle.html#af476a83a8475a37a3eb5d01b97bfa26f',1,'Triangle']]],
+  ['started_31',['Started',['../index.html#autotoc_md20',1,'Getting Started'],['../bug.html#_bug000001',1,'Getting Started']]],
+  ['stopprojectupdateloop_32',['StopProjectUpdateLoop',['../class_garage.html#a852e777b7dc261532d400225d518d035',1,'Garage']]]
 ];
