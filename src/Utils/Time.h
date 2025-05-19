@@ -66,8 +66,9 @@ class Time
     static void CapFPS();
 
   private:
-    static const int m_TargetFPS; ///< The target frames per second.
-    static const std::chrono::milliseconds m_FrameDuration; ///< The expected duration of each frame.
+    static constexpr int m_TargetFPS = 60;  ///< The target frames per second.
+    static constexpr std::chrono::milliseconds m_FrameDuration =
+        std::chrono::milliseconds(1000 / m_TargetFPS);  ///< The expected duration of each frame.
 };
 
 }  // namespace Utils

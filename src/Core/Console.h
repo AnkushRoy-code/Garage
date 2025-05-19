@@ -22,7 +22,7 @@ class ConsoleLogBuffer
   private:
     static int m_Index;
     static std::vector<ConsoleLogMessage> m_ConsoleLogs;
-    static const size_t k_MaxMessages = 100;
+    static constexpr size_t k_MaxMessages = 100;
 
   private:
     static std::string GetCurrentTime();
