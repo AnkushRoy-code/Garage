@@ -17,9 +17,10 @@ class BoidsContainer
     void Init();
     void Update();
     void Quit();
-    // clang-format off
-    [[nodiscard]] unsigned int NumBoids() const noexcept { return k_NumBoids; }
-    // clang-format on
+    [[nodiscard]] unsigned int NumBoids() const noexcept
+    {
+        return k_NumBoids;
+    }
     [[nodiscard]] const std::vector<BoidsEntity> &GetBoids() const;
 
   public:
@@ -31,7 +32,7 @@ class BoidsContainer
   private:
     std::vector<BoidsEntity> m_BoidsVec {};
     const unsigned int k_NumBoids = 100;  // changing this requires building the transfer buffers. So
-                                         // I refrained from doing that.
+                                          // I refrained from doing that.
 };
 
 #endif  // INCLUDE_SRC_BOIDS_H_

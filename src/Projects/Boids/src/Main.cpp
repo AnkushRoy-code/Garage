@@ -153,11 +153,9 @@ bool Boids::Draw()
                 dataPtr[i].y = boid.Position.y;
                 dataPtr[i].z = 0.0f;  // why do I even have this?
                 {
-                    // clang-format off
                     // dx, dy -> [0, 0.5]
                     const float dx = (boid.Position.x / Core::Context::GetContext()->AppState.ProjectWindowSize.x) / 2.0f;
                     const float dy = (boid.Position.y / Core::Context::GetContext()->AppState.ProjectWindowSize.y) / 2.0f;
-                    // clang-format on
 
                     // dx + s * 2 -> [0, 1]
                     dataPtr[i].r = dx + c2 + s1;
@@ -189,11 +187,13 @@ bool Boids::Draw()
         SDL_UploadToGPUBuffer(copyPass, &transferBufferLocation, &bufferRegion, true);
         SDL_EndGPUCopyPass(copyPass);
 
-        SDL_GPUColorTargetInfo tinfo {.texture     = rndt.ProjectTexture,
-                                      .clear_color = {0.094f, 0.094f, 0.145f, 1.00f},
-                                      .load_op     = SDL_GPU_LOADOP_CLEAR,
-                                      .store_op    = SDL_GPU_STOREOP_STORE,
-                                      .cycle       = false};
+        SDL_GPUColorTargetInfo tinfo {
+            .texture     = rndt.ProjectTexture,
+            .clear_color = {0.094f, 0.094f, 0.145f, 1.00f},
+            .load_op     = SDL_GPU_LOADOP_CLEAR,
+            .store_op    = SDL_GPU_STOREOP_STORE,
+            .cycle       = false
+        };
 
         if (rndt.SampleCount == SDL_GPU_SAMPLECOUNT_1) { tinfo.store_op = SDL_GPU_STOREOP_STORE; }
         else
@@ -281,8 +281,7 @@ bool Boids::DrawUI()
         if (!m_RGB)
         {
             ImGui::Text("Boids Color Picker");
-            ImGui::ColorEdit4("###abultabul", (float *)&m_BoidsContainer.Color,
-                              ImGuiColorEditFlags_AlphaPreviewHalf);
+            ImGui::ColorEdit4("###abultabul", (float *)&m_BoidsContainer.Color, ImGuiColorEditFlags_AlphaPreviewHalf);
         }
         else { ImGui::SliderFloat("Opacity", &m_BoidsContainer.Color.a, 0.0f, 1.0f); }
     }

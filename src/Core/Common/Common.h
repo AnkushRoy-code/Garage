@@ -3,16 +3,15 @@
 
 #include "Core/Common/pch.h"
 
-
 #ifdef TRACY_ENABLE
-#    include <tracy/Tracy.hpp>
-#    define PROFILE_SCOPE         ZoneScoped
-#    define PROFILE_SCOPE_N(name) ZoneScopedN(name)
-#    define PROFILE_FRAME         FrameMark
+    #include <tracy/Tracy.hpp>
+    #define PROFILE_SCOPE         ZoneScoped
+    #define PROFILE_SCOPE_N(name) ZoneScopedN(name)
+    #define PROFILE_FRAME         FrameMark
 #else
-#    define PROFILE_SCOPE
-#    define PROFILE_SCOPE_N(name)
-#    define PROFILE_FRAME
+    #define PROFILE_SCOPE
+    #define PROFILE_SCOPE_N(name)
+    #define PROFILE_FRAME
 #endif
 
 namespace Common
@@ -38,7 +37,7 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
                           Uint32 storageTextureCount);
 
 /// @warning ONLY BMP IMAGES SUPPORTED BECAUSE I AM LAZY AND DIDN'T LOOK INTO OTHER FORMATS
-SDL_Surface* LoadImage(const std::string &imageFileName, int desiredChannels = 4);
+SDL_Surface *LoadImage(const std::string &imageFileName, int desiredChannels = 4);
 }  // namespace Common
 
 #endif  // INCLUDE_COMMON_COMMON_H_

@@ -18,7 +18,7 @@ class ImGuiCore
     static void SetImGuiWindowProportions();
     static bool HandleWindowResize();
     static void ShowToolBox();
-    static void TB_ProjectSelector(); // ToolBox Functions;
+    static void TB_ProjectSelector();  // ToolBox Functions;
     static void TB_ResolutionSlider();
     static void ShowConsole();
     static void ShowProjectWindow();

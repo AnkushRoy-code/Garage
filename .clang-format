@@ -1,55 +1,85 @@
 ---
 AlignAfterOpenBracket: Align
-AlignConsecutiveMacros: 'true'
-AlignConsecutiveAssignments: 'true'
-AlignConsecutiveDeclarations: 'false'
+AlignConsecutiveMacros:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
+  AlignCompound: false
+  AlignFunctionPointers: false
+  PadOperators: true
+AlignConsecutiveAssignments:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
+  AlignCompound: true
+  AlignFunctionPointers: true
+  PadOperators: true
+AlignConsecutiveDeclarations:
+  Enabled: false
+  AcrossEmptyLines: false
+  AcrossComments: false
+  AlignCompound: false
+  AlignFunctionPointers: false
+  PadOperators: true
 AlignEscapedNewlines: Left
-AlignOperands: 'true'
-AlignTrailingComments: 'true'
-AllowAllArgumentsOnNextLine: 'true'
-AllowAllConstructorInitializersOnNextLine: 'false'
-AllowAllParametersOfDeclarationOnNextLine: 'true'
-AllowShortBlocksOnASingleLine: 'true'
-AllowShortCaseLabelsOnASingleLine: 'true'
+AlignOperands: Align
+AlignTrailingComments: "true"
+AllowAllArgumentsOnNextLine: false
+AllowAllConstructorInitializersOnNextLine: "false"
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortBlocksOnASingleLine: Always
+AllowShortCaseLabelsOnASingleLine: "true"
 AllowShortFunctionsOnASingleLine: Empty
 AllowShortIfStatementsOnASingleLine: WithoutElse
 AllowShortLambdasOnASingleLine: Empty
-AllowShortLoopsOnASingleLine: 'false'
+AllowShortLoopsOnASingleLine: "false"
 AlwaysBreakAfterDefinitionReturnType: None
 AlwaysBreakAfterReturnType: None
-BinPackArguments: 'true'
-BinPackParameters: 'false'
+BinPackArguments: false
+BinPackParameters: "false"
 BreakBeforeBinaryOperators: NonAssignment
 BreakBeforeBraces: Allman
-BreakBeforeTernaryOperators: 'true'
+BreakBeforeTernaryOperators: "true"
 BreakConstructorInitializers: AfterColon
 BreakInheritanceList: AfterColon
-ColumnLimit: '100'
-ConstructorInitializerAllOnOneLineOrOnePerLine: 'false'
+ColumnLimit: 0
+ConstructorInitializerAllOnOneLineOrOnePerLine: "false"
 IncludeBlocks: Regroup
-IndentCaseLabels: 'true'
+IndentCaseLabels: "true"
 IndentPPDirectives: BeforeHash
-IndentWidth: '4'
-IndentWrappedFunctionNames: 'true'
-KeepEmptyLinesAtTheStartOfBlocks: 'true'
+IndentWidth: "4"
+IndentWrappedFunctionNames: "true"
+KeepEmptyLinesAtTheStartOfBlocks: "true"
 Language: Cpp
-MaxEmptyLinesToKeep: '1'
+MaxEmptyLinesToKeep: "1"
 PointerAlignment: Right
-ReflowComments: 'true'
-SortIncludes: 'false'
-SortUsingDeclarations: 'true'
-SpaceAfterCStyleCast: 'false'
-SpaceAfterLogicalNot: 'false'
-SpaceAfterTemplateKeyword: 'false'
-SpaceBeforeAssignmentOperators: 'true'
-SpaceBeforeCpp11BracedList: 'true'
-SpaceBeforeCtorInitializerColon: 'true'
-SpaceBeforeInheritanceColon: 'true'
+ReflowComments: "true"
+SortIncludes: "false"
+SortUsingDeclarations: "true"
+SpaceAfterCStyleCast: "false"
+SpaceAfterLogicalNot: "false"
+SpaceAfterTemplateKeyword: "false"
+SpaceBeforeAssignmentOperators: "true"
+SpaceBeforeCpp11BracedList: "true"
+SpaceBeforeCtorInitializerColon: "true"
+SpaceBeforeInheritanceColon: "true"
 SpaceBeforeParens: ControlStatements
-SpaceBeforeRangeBasedForLoopColon: 'false'
-SpaceInEmptyParentheses: 'false'
-SpacesBeforeTrailingComments: '2'
-SpacesInAngles: 'false'
-TabWidth: '4'
-
-...
+SpaceBeforeRangeBasedForLoopColon: "false"
+SpaceInEmptyParentheses: "false"
+SpacesBeforeTrailingComments: "2"
+SpacesInAngles: "false"
+TabWidth: "4"
+AlignArrayOfStructures: Left
+AlignConsecutiveShortCaseStatements:
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: true
+  AlignCaseArrows: true
+  AlignCaseColons: true
+AllowShortCaseExpressionOnASingleLine: true
+AllowShortEnumsOnASingleLine: true
+BitFieldColonSpacing: Both
+BraceWrapping: {}
+BreakAfterAttributes: Leave
+BreakArrays: false
+BreakStringLiterals: true

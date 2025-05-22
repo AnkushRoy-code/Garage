@@ -12,14 +12,11 @@ const std::filesystem::path &GetBasePath()
 
     if (!firstTime)
     {
-        // clang-format off
         const std::filesystem::path bases[] {
             "src/Main",
             DATA_DIR,
             DATA_DIR_LOCAL,
-            SDL_GetBasePath()
-        };
-        // clang-format on
+            SDL_GetBasePath()};
 
         for (const auto &i: bases)
         {
@@ -58,20 +55,20 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
     {
         shaderPath /= "SPIRV";
         shaderPath /= shaderFilename + ".spv";
-        format = SDL_GPU_SHADERFORMAT_SPIRV;
+        format      = SDL_GPU_SHADERFORMAT_SPIRV;
     }
     else if (backend & SDL_GPU_SHADERFORMAT_MSL)
     {
         shaderPath /= "MSL";
         shaderPath /= shaderFilename + ".msl";
-        format     = SDL_GPU_SHADERFORMAT_MSL;
-        entrypoint = "main0";
+        format      = SDL_GPU_SHADERFORMAT_MSL;
+        entrypoint  = "main0";
     }
     else if (backend & SDL_GPU_SHADERFORMAT_DXIL)
     {
         shaderPath /= "DXIL";
         shaderPath /= shaderFilename + ".dxil";
-        format = SDL_GPU_SHADERFORMAT_DXIL;
+        format      = SDL_GPU_SHADERFORMAT_DXIL;
     }
     else { assert(false && "Unsupported shader format"); }
 

@@ -70,10 +70,10 @@ TEST_CASE("Timer Measurement", "[utils][timing]")
     float measured = 0.0f;
 
     auto test = [&]()
-    {
-        Timer timer(measured);
-        std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(EXPECTED_DURATION)));
-    };
+        {
+            Timer timer(measured);
+            std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(EXPECTED_DURATION)));
+        };
 
     test();
 

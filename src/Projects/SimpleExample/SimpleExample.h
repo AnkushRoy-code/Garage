@@ -56,9 +56,9 @@ class SimpleExample : public Common::BaseProject
      */
     void Quit() override;
 
-    
     std::string name = "SimpleExample";
-    [[nodiscard]] const std::string &GetName() override {
+    [[nodiscard]] const std::string &GetName() override
+    {
         return name;
     }
 };

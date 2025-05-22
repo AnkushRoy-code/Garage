@@ -75,11 +75,9 @@ bool Triangle::Update()
 {
     PROFILE_SCOPE_N("Triangle::Update");
     auto &event = Core::Context::GetContext()->EventHandler;
-    // clang-format off
     if (event.Keys[Core::LEFT] == Core::PRESSED) { UseWireframeMode = !UseWireframeMode; }
     if (event.Keys[Core::DOWN] == Core::PRESSED) { UseSmallViewport = !UseSmallViewport; }
     if (event.Keys[Core::RIGHT] == Core::PRESSED) { UseScissorRect = !UseScissorRect; }
-    // clang-format on
 
     return true;
 }

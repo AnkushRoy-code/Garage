@@ -3,15 +3,15 @@
 
 #include <chrono>
 
-class Timer  {
-public:
-    explicit Timer (float &val);
-    ~Timer ();
+class Timer
+{
+  public:
+    explicit Timer(float &val);
+    ~Timer();
 
-private:
+  private:
     std::chrono::time_point<std::chrono::high_resolution_clock> m_Start;
     float &m_TotalTime;
-    
 };
 
 #endif  // INCLUDE_UTILS_TIMER_H_

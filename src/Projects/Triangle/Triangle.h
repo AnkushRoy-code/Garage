@@ -23,7 +23,8 @@ class Triangle : public Common::BaseProject
     void Quit() override;
 
     std::string name = "Triangle";
-    [[nodiscard]] const std::string &GetName() override {
+    [[nodiscard]] const std::string &GetName() override
+    {
         return name;
     }
 };
