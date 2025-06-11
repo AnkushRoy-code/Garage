@@ -4,7 +4,7 @@ var class_n___body___simulation =
     [ "DrawUI", "class_n___body___simulation.html#aebe7ccb62e9936e6fab16a56b2a15fad", null ],
     [ "GetName", "class_n___body___simulation.html#ad17969ca4b3cdf1ff77f1a787f35fb32", null ],
     [ "Init", "class_n___body___simulation.html#a1d934efe3055d666ec31371454f59054", null ],
-    [ "InitialiseTransferBuffersAndParticleContainer", "class_n___body___simulation.html#a7a1661f4326bca0a6c555af49c5c8a06", null ],
+    [ "InitialiseTransferBuffers", "class_n___body___simulation.html#ac59ff416638f2e7841d6b87d9f3a452d", null ],
     [ "Quit", "class_n___body___simulation.html#a6f7e8e1917d81c67f9ceb72531f83b91", null ],
     [ "Update", "class_n___body___simulation.html#a6079408cd536650ed265aa6829c35b46", null ],
     [ "m_Camera", "class_n___body___simulation.html#a80f8451f574012ff4726f196d8fa8a52", null ],

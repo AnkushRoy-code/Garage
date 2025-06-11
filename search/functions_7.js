@@ -4,7 +4,7 @@ var searchData=
   ['init_1',['init',['../class_core_1_1_context.html#adb5053434ec631c69898965abd380b7c',1,'Core::Context']]],
   ['initcoresystems_2',['InitCoreSystems',['../class_garage.html#a548703d32ac9eddbee1f6dd580c56f08',1,'Garage']]],
   ['initdata_3',['InitData',['../struct_particle_container.html#a82d7d10525d6adcbdd6fded2f634816b',1,'ParticleContainer']]],
-  ['initialisetransferbuffersandparticlecontainer_4',['InitialiseTransferBuffersAndParticleContainer',['../class_n___body___simulation.html#a7a1661f4326bca0a6c555af49c5c8a06',1,'N_Body_Simulation']]],
+  ['initialisetransferbuffers_4',['InitialiseTransferBuffers',['../class_n___body___simulation.html#ac59ff416638f2e7841d6b87d9f3a452d',1,'N_Body_Simulation']]],
   ['initiateprojectupdateloop_5',['InitiateProjectUpdateLoop',['../class_garage.html#a31b3a64af55664ccb355da562f768af8',1,'Garage']]],
   ['initimguistyle_6',['InitImGuiStyle',['../class_core_1_1_im_gui_core.html#a2f928ce4b30108ef811ba292139649aa',1,'Core::ImGuiCore']]]
 ];
