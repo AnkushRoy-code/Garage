@@ -8,7 +8,7 @@
 #include "Projects/N_Body_Simulation/src/Main.h"
 #include "Projects/N_Body_Simulation/src/Particle.h"
 
-void N_Body_Simulation::InitialiseTransferBuffersAndParticleContainer()
+void N_Body_Simulation::InitialiseTransferBuffers()
 {
     const SDL_GPUTransferBufferCreateInfo tBufCreateInfo {
         .usage = SDL_GPU_TRANSFERBUFFERUSAGE_UPLOAD,
@@ -73,7 +73,7 @@ bool N_Body_Simulation::Init()
     SDL_ReleaseGPUShader(rndt.Device, vertShader);
     SDL_ReleaseGPUShader(rndt.Device, fragShader);
 
-    InitialiseTransferBuffersAndParticleContainer();
+    InitialiseTransferBuffers();
 
     m_Particles.Init();
 
@@ -238,7 +238,7 @@ bool N_Body_Simulation::DrawUI()
                     {
                         index = i;
                         m_Particles.InitData(index);
-                        InitialiseTransferBuffersAndParticleContainer();
+                        InitialiseTransferBuffers();
                     }
                 }
                 if (isSelected) ImGui::SetItemDefaultFocus();

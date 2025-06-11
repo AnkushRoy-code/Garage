@@ -29,7 +29,7 @@ class N_Body_Simulation : public Common::BaseProject, public Common::ImGuiUI
     ParticleContainer m_Particles {};
     Camera m_Camera {};
 
-    void InitialiseTransferBuffersAndParticleContainer();
+    void InitialiseTransferBuffers();
 };
 
 #endif  // INCLUDE_2_BODY_SIMULATION_MAIN_H_

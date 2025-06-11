@@ -14,6 +14,7 @@
 
 std::atomic<bool> Garage::RenderingDone {false};
 std::thread Garage::updateProject;
+bool Garage::WindowMinimised = false;
 
 void Garage::InitCoreSystems()
 {
@@ -50,6 +51,9 @@ void Garage::InitiateProjectUpdateLoop()
 {
     Garage::RenderingDone.store(false);
     Garage::updateProject = std::thread(&Garage::RunProjectUpdateLoop);
+
+    auto &window    = Core::Context::GetContext()->RenderData.Window;
+    WindowMinimised = (SDL_GetWindowFlags(window) & SDL_WINDOW_MINIMIZED);
 }
 
 void Garage::RunProjectUpdateLoop()

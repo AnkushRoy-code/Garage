@@ -11,6 +11,7 @@ class Garage
     static void StopProjectUpdateLoop();
 
   public:
+    static bool WindowMinimised;
     static std::atomic<bool> RenderingDone;
     static std::thread updateProject;
 };
