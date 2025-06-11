@@ -25,10 +25,7 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
 {
     PROFILE_SCOPE;
 
-    if (Garage::WindowMinimised)
-    {
-        return SDL_APP_CONTINUE;
-    }
+    if (Garage::WindowMinimised) { return SDL_APP_CONTINUE; }
 
     ImGui_ImplSDL3_ProcessEvent(event);
     return Core::Context::GetContext()->EventHandler.HandleEvents(event);
