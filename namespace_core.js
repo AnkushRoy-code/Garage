@@ -35,5 +35,6 @@ var namespace_core =
       [ "PRESSED", "namespace_core.html#a5d0e1ed351134590764ed1f6afbb1761ab0d535bd04b3d212573e20e183c55722", null ],
       [ "HELD", "namespace_core.html#a5d0e1ed351134590764ed1f6afbb1761a6bda3ae2193332ce034247ead34ebba0", null ],
       [ "RELEASED", "namespace_core.html#a5d0e1ed351134590764ed1f6afbb1761af24329d27f3ccc150074739b72888980", null ]
-    ] ]
+    ] ],
+    [ "initialised", "namespace_core.html#aa1736c5f8691147c06395ba1bd8bc184", null ]
 ];
