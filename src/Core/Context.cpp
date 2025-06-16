@@ -17,10 +17,14 @@ std::shared_ptr<Context> Context::GetContext()
     return instance;
 }
 
+bool initialised = false;
+
 Context::Context() = default;
 
 void Context::init()
 {
+    initialised = true;
+
     if (!SDL_SetAppMetadata("Ankush's Garage", "0.2.7", "io.github.ankushroy-code.garage"))
     {
         std::cerr << "Couldn't do stuff... 0983\n";
@@ -43,7 +47,8 @@ void Context::init()
 
     RenderData.Device = SDL_CreateGPUDevice(SDL_GPU_SHADERFORMAT_SPIRV | SDL_GPU_SHADERFORMAT_DXIL
                                                 | SDL_GPU_SHADERFORMAT_MSL,
-                                            false, nullptr);
+                                            false,
+                                            nullptr);
 
     if (!RenderData.Device)
     {
@@ -51,8 +56,7 @@ void Context::init()
         return;
     }
 
-    RenderData.Window = SDL_CreateWindow("Ankush's Garage", RenderData.Width, RenderData.Height,
-                                         SDL_WINDOW_HIGH_PIXEL_DENSITY | SDL_WINDOW_RESIZABLE);
+    RenderData.Window = SDL_CreateWindow("Ankush's Garage", RenderData.Width, RenderData.Height, SDL_WINDOW_HIGH_PIXEL_DENSITY | SDL_WINDOW_RESIZABLE);
 
     if (!RenderData.Window)
     {
@@ -79,8 +83,11 @@ void Context::init()
 
 Context::~Context()
 {
-    ImGuiCore::Quit();
-    SDL_ReleaseWindowFromGPUDevice(RenderData.Device, RenderData.Window);
+    if (initialised)
+    {
+        ImGuiCore::Quit();
+        SDL_ReleaseWindowFromGPUDevice(RenderData.Device, RenderData.Window);
+    }
 }
 
 }  // namespace Core

@@ -128,3 +128,13 @@ CPMAddPackage(
 
 # if (EnTT_ADDED) add_library(EnTT INTERFACE) target_include_directories(EnTT INTERFACE
 # ${EnTT_SOURCE_DIR}/src) endif()
+
+# ########################### CXXOpts ###############################
+
+CPMAddPackage(
+    NAME cxxopts
+    VERSION 3.3.1
+    URL https://github.com/jarro2783/cxxopts/archive/refs/tags/v3.3.1.zip
+    URL_HASH SHA256=f35f27daa5f6fab84e4fffd02fc171cae085b14647e19687357394c1fe90ce6a
+    OPTIONS "CXXOPTS_BUILD_EXAMPLES Off" "CXXOPTS_BUILD_TESTS Off"
+)
