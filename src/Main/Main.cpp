@@ -1,13 +1,10 @@
 #include "Main.h"
 #include "Main/Flags.h"
-#include "imgui.h"
 
 #define SDL_MAIN_USE_CALLBACKS 1
 #include <SDL3/SDL_main.h>  // only need in main.cpp
 
 #include "Core/Common/pch.h"
-
-#include <imgui_node_editor.h>
 
 #include "Core/Common/Common.h"
 #include "Core/Context.h"
@@ -19,19 +16,11 @@
 
 #include "Utils/Timer.h"
 
-namespace ed = ax::NodeEditor;
-ed::EditorContext *ctx_e {};
-bool initialised = false;
-
 SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
 {
     if (HandleFLags::HandleFlags(argc, argv))
     {
         Garage::InitCoreSystems();
-        ed::Config config;
-        config.SettingsFile = "Simple.json";
-        ctx_e               = ed::CreateEditor(&config);
-        initialised         = true;
         return SDL_APP_CONTINUE;
     }
     else
@@ -69,25 +58,6 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 
         Core::ImGuiCore::Update();
 
-        ImGui::Begin("newWind");
-            ed::SetCurrentEditor(ctx_e);
-            ed::Begin("My Editor", ImVec2(0.0, 0.0f));
-            int uniqueId = 1;
-            // Start drawing nodes.
-            ed::BeginNode(uniqueId++);
-                ImGui::Text("Node A");
-                ed::BeginPin(uniqueId++, ed::PinKind::Input);
-                    ImGui::Text("-> In");
-                ed::EndPin();
-                ImGui::SameLine();
-                ed::BeginPin(uniqueId++, ed::PinKind::Output);
-                    ImGui::Text("Out ->");
-                ed::EndPin();
-            ed::EndNode();
-            ed::End();
-            ed::SetCurrentEditor(nullptr);
-        ImGui::End();
-
         Core::ImGuiCore::Draw();
     }
 
@@ -100,9 +70,5 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 
 void SDL_AppQuit(void *appstate, SDL_AppResult result)
 {
-    if (initialised)
-    {
-        ed::DestroyEditor(ctx_e);
-    }
     // Do stuff when needed
 }

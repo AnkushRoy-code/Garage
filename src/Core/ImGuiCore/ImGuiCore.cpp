@@ -3,6 +3,7 @@
 #include "Core/Context.h"
 #include "Core/Console.h"
 #include "Core/ImGuiCore/DataPlotter.h"
+#include "Core/ImGuiCore/NodeEditor/NodeEditor.h"
 #include "Core/Renderer/Renderer.h"
 #include "Main/Main.h"
 #include "Projects/Common/BaseProject.h"
@@ -42,6 +43,8 @@ void ImGuiCore::Init()
     initInfo.ColorTargetFormat = SDL_GetGPUSwapchainTextureFormat(rndt.Device, rndt.Window);
     initInfo.MSAASamples       = SDL_GPU_SAMPLECOUNT_1;
     ImGui_ImplSDLGPU3_Init(&initInfo);
+
+    NodeEditor::InitNodeEditor();
 }
 
 void ImGuiCore::Quit()
@@ -50,6 +53,7 @@ void ImGuiCore::Quit()
     ImGui_ImplSDLGPU3_Shutdown();
     ImPlot::DestroyContext();
     ImGui::DestroyContext();
+    NodeEditor::DestroyNodeEditor();
 }
 
 void ImGuiCore::Update()
@@ -65,6 +69,7 @@ void ImGuiCore::Update()
     ShowConsole();
     ShowProjectWindow();
     ShowProjectRendered();
+    NodeEditor::ShowNodeEditor();
 }
 
 void ImGuiCore::Draw()
@@ -78,8 +83,7 @@ void ImGuiCore::Draw()
 
     SDL_GPUTexture *swapchainTexture;
 
-    SDL_AcquireGPUSwapchainTexture(commandBuffer, Context::GetContext()->RenderData.Window,
-                                   &swapchainTexture, nullptr, nullptr);
+    SDL_AcquireGPUSwapchainTexture(commandBuffer, Context::GetContext()->RenderData.Window, &swapchainTexture, nullptr, nullptr);
 
     assert(swapchainTexture);
 
@@ -93,7 +97,6 @@ void ImGuiCore::Draw()
         .load_op              = SDL_GPU_LOADOP_CLEAR,
         .store_op             = SDL_GPU_STOREOP_STORE,
         .cycle                = false,
-
     };
 
     static SDL_GPURenderPass *x_RenderPass {};
@@ -173,14 +176,11 @@ void ImGuiCore::SetImGuiWindowProportions()
         ImGui::DockBuilderAddNode(apst.MainViewportId);
         ImGui::DockBuilderSetNodeSize(apst.MainViewportId, ImGui::GetMainViewport()->Size);
 
-        auto dockIdLeft = ImGui::DockBuilderSplitNode(apst.MainViewportId, ImGuiDir_Left, 0.25,
-                                                      nullptr, &apst.MainViewportId);
+        auto dockIdLeft = ImGui::DockBuilderSplitNode(apst.MainViewportId, ImGuiDir_Left, 0.25, nullptr, &apst.MainViewportId);
 
-        auto dockIdBottom = ImGui::DockBuilderSplitNode(apst.MainViewportId, ImGuiDir_Down, 0.3,
-                                                        nullptr, &apst.MainViewportId);
+        auto dockIdBottom = ImGui::DockBuilderSplitNode(apst.MainViewportId, ImGuiDir_Down, 0.3, nullptr, &apst.MainViewportId);
 
-        auto dockIdRight = ImGui::DockBuilderSplitNode(apst.MainViewportId, ImGuiDir_Right, 0.25,
-                                                       nullptr, &apst.MainViewportId);
+        auto dockIdRight = ImGui::DockBuilderSplitNode(apst.MainViewportId, ImGuiDir_Right, 0.25, nullptr, &apst.MainViewportId);
 
         ImGui::DockBuilderDockWindow("Ankush's Garage - ToolBox", dockIdLeft);
         ImGui::DockBuilderDockWindow("Console", dockIdBottom);
@@ -288,8 +288,7 @@ void ImGuiCore::ShowConsole()
     {
         const auto cl = ConsoleLogBuffer::GetMessages();
 
-        if (ImGui::BeginTable("ConsoleLogWindowTable", 2,
-                              ImGuiTableFlags_NoSavedSettings | ImGuiTableFlags_BordersInner))
+        if (ImGui::BeginTable("ConsoleLogWindowTable", 2, ImGuiTableFlags_NoSavedSettings | ImGuiTableFlags_BordersInner))
         {
             ImGui::TableSetupColumn("Console Message", ImGuiTableColumnFlags_WidthStretch);
             ImGui::TableSetupColumn("Time", ImGuiTableColumnFlags_WidthFixed, 70);
@@ -340,7 +339,7 @@ void ImGuiCore::ShowProjectRendered()
     const auto projectWindowName = "Project - " + projName + "###TexTitle";
 
     auto &apst = Context::GetContext()->AppState;
-    auto ctx = Context::GetContext();
+    auto ctx   = Context::GetContext();
 
     if (ImGui::Begin(projectWindowName.c_str()))
     {
