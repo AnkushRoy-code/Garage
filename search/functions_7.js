@@ -6,5 +6,6 @@ var searchData=
   ['initdata_3',['InitData',['../struct_particle_container.html#a82d7d10525d6adcbdd6fded2f634816b',1,'ParticleContainer']]],
   ['initialisetransferbuffers_4',['InitialiseTransferBuffers',['../class_n___body___simulation.html#ac59ff416638f2e7841d6b87d9f3a452d',1,'N_Body_Simulation']]],
   ['initiateprojectupdateloop_5',['InitiateProjectUpdateLoop',['../class_garage.html#a31b3a64af55664ccb355da562f768af8',1,'Garage']]],
-  ['initimguistyle_6',['InitImGuiStyle',['../class_core_1_1_im_gui_core.html#a2f928ce4b30108ef811ba292139649aa',1,'Core::ImGuiCore']]]
+  ['initimguistyle_6',['InitImGuiStyle',['../class_core_1_1_im_gui_core.html#a2f928ce4b30108ef811ba292139649aa',1,'Core::ImGuiCore']]],
+  ['initnodeeditor_7',['InitNodeEditor',['../class_core_1_1_node_editor.html#a6fafef91d23ebcc7fbecfb461d68d654',1,'Core::NodeEditor']]]
 ];

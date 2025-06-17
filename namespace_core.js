@@ -11,6 +11,7 @@ var namespace_core =
     [ "Context", "class_core_1_1_context.html", "class_core_1_1_context" ],
     [ "EventHandlerStruct", "class_core_1_1_event_handler_struct.html", "class_core_1_1_event_handler_struct" ],
     [ "ImGuiCore", "class_core_1_1_im_gui_core.html", null ],
+    [ "NodeEditor", "class_core_1_1_node_editor.html", null ],
     [ "RenderDataStruct", "struct_core_1_1_render_data_struct.html", "struct_core_1_1_render_data_struct" ],
     [ "KEY", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17", [
       [ "RESIZE_PROJECT_WINDOW", "namespace_core.html#a2b7c815b27b21b972a43f97616717d17abfcec50f5180c938216056be73623c5c", null ],

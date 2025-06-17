@@ -27,6 +27,5 @@ var searchData=
   ['core_3a_3arenderer_24',['Renderer',['../namespace_core_1_1_renderer.html',1,'Core']]],
   ['count_25',['COUNT',['../namespace_core.html#a2b7c815b27b21b972a43f97616717d17a1be400d5e61f648476e94b5629a21992',1,'Core']]],
   ['count_26',['Count',['../struct_predefined_particles_data.html#a847dcf9ae5465bdcb6840cd12e613636',1,'PredefinedParticlesData']]],
-  ['count_27',['count',['../struct_particle_container.html#a94b9e70aa831125deed47fd4e747fa59',1,'ParticleContainer']]],
-  ['ctx_5fe_28',['ctx_e',['../_main_2_main_8cpp.html#af5daa9d8c029664ec3a9455b6422e283',1,'Main.cpp']]]
+  ['count_27',['count',['../struct_particle_container.html#a94b9e70aa831125deed47fd4e747fa59',1,'ParticleContainer']]]
 ];

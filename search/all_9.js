@@ -9,11 +9,12 @@ var searchData=
   ['init_6',['init',['../class_core_1_1_context.html#adb5053434ec631c69898965abd380b7c',1,'Core::Context']]],
   ['initcoresystems_7',['InitCoreSystems',['../class_garage.html#a548703d32ac9eddbee1f6dd580c56f08',1,'Garage']]],
   ['initdata_8',['InitData',['../struct_particle_container.html#a82d7d10525d6adcbdd6fded2f634816b',1,'ParticleContainer']]],
-  ['initialised_9',['initialised',['../namespace_core.html#aa1736c5f8691147c06395ba1bd8bc184',1,'Core::initialised'],['../_main_2_main_8cpp.html#ad86e7ae1ce88f3a7655a02558318afc3',1,'initialised:&#160;Main.cpp']]],
+  ['initialised_9',['initialised',['../namespace_core.html#aa1736c5f8691147c06395ba1bd8bc184',1,'Core']]],
   ['initialisetransferbuffers_10',['InitialiseTransferBuffers',['../class_n___body___simulation.html#ac59ff416638f2e7841d6b87d9f3a452d',1,'N_Body_Simulation']]],
   ['initiateprojectupdateloop_11',['InitiateProjectUpdateLoop',['../class_garage.html#a31b3a64af55664ccb355da562f768af8',1,'Garage']]],
   ['initimguistyle_12',['InitImGuiStyle',['../class_core_1_1_im_gui_core.html#a2f928ce4b30108ef811ba292139649aa',1,'Core::ImGuiCore']]],
-  ['instance_13',['instance',['../class_core_1_1_context.html#a3f9ab3114fbac5916ce1f8c98469b9cc',1,'Core::Context::instance'],['../class_common_1_1_project_manager.html#a2974f96921fbd611a9d2d765260825aa',1,'Common::ProjectManager::instance']]],
-  ['interface_14',['Interface',['../md_usage.html#autotoc_md2',1,'']]],
-  ['iterate_20func_15',['Brief about the iterate func',['../md__2_users_2runner_2work_2_garage_2_garage_2src_2_main_2_main.html',1,'']]]
+  ['initnodeeditor_13',['InitNodeEditor',['../class_core_1_1_node_editor.html#a6fafef91d23ebcc7fbecfb461d68d654',1,'Core::NodeEditor']]],
+  ['instance_14',['instance',['../class_core_1_1_context.html#a3f9ab3114fbac5916ce1f8c98469b9cc',1,'Core::Context::instance'],['../class_common_1_1_project_manager.html#a2974f96921fbd611a9d2d765260825aa',1,'Common::ProjectManager::instance']]],
+  ['interface_15',['Interface',['../md_usage.html#autotoc_md2',1,'']]],
+  ['iterate_20func_16',['Brief about the iterate func',['../md__2_users_2runner_2work_2_garage_2_garage_2src_2_main_2_main.html',1,'']]]
 ];
