@@ -9,7 +9,7 @@ var searchData=
   ['init_6',['init',['../class_core_1_1_context.html#adb5053434ec631c69898965abd380b7c',1,'Core::Context']]],
   ['initcoresystems_7',['InitCoreSystems',['../class_garage.html#a548703d32ac9eddbee1f6dd580c56f08',1,'Garage']]],
   ['initdata_8',['InitData',['../struct_particle_container.html#a82d7d10525d6adcbdd6fded2f634816b',1,'ParticleContainer']]],
-  ['initialised_9',['initialised',['../namespace_core.html#aa1736c5f8691147c06395ba1bd8bc184',1,'Core']]],
+  ['initialised_9',['initialised',['../namespace_core.html#aa1736c5f8691147c06395ba1bd8bc184',1,'Core::initialised'],['../_main_2_main_8cpp.html#ad86e7ae1ce88f3a7655a02558318afc3',1,'initialised:&#160;Main.cpp']]],
   ['initialisetransferbuffers_10',['InitialiseTransferBuffers',['../class_n___body___simulation.html#ac59ff416638f2e7841d6b87d9f3a452d',1,'N_Body_Simulation']]],
   ['initiateprojectupdateloop_11',['InitiateProjectUpdateLoop',['../class_garage.html#a31b3a64af55664ccb355da562f768af8',1,'Garage']]],
   ['initimguistyle_12',['InitImGuiStyle',['../class_core_1_1_im_gui_core.html#a2f928ce4b30108ef811ba292139649aa',1,'Core::ImGuiCore']]],
