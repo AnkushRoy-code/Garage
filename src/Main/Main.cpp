@@ -1,6 +1,5 @@
 #include "Main.h"
 #include "Main/Flags.h"
-#include "SDL3/SDL_init.h"
 
 #define SDL_MAIN_USE_CALLBACKS 1
 #include <SDL3/SDL_main.h>  // only need in main.cpp
@@ -58,6 +57,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         Timer temporaryUselessVariable(renderTime);
 
         Core::ImGuiCore::Update();
+
         Core::ImGuiCore::Draw();
     }
 

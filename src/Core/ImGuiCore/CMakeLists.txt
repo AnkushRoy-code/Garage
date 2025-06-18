@@ -14,4 +14,6 @@ add_library(
 )
 
 target_include_directories(CoreImGui PRIVATE "${CMAKE_SOURCE_DIR}/src")
-target_link_libraries(CoreImGui PRIVATE imgui implot glm::glm)
+target_link_libraries(CoreImGui PRIVATE imgui implot glm::glm node_editor)
+
+add_subdirectory(NodeEditor)

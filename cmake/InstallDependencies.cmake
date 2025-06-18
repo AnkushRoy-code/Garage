@@ -76,6 +76,46 @@ if(implot_ADDED)
     target_link_libraries(implot PUBLIC imgui)
 endif()
 
+
+CPMAddPackage(
+    NAME imgui_node_editor
+    VERSION 0.9.x
+    PATCHES patches/imgui_node_editor.patch
+    URL https://github.com/thedmd/imgui-node-editor/archive/e78e447900909a051817a760efe13fe83e6e1afc.zip
+    URL_HASH SHA256=f67085337c5742007fe48c63d2087680a97dde0f23b0f8f91e62f6621234dca1
+)
+
+if(imgui_node_editor_ADDED)
+    file(
+        GLOB
+        imgui_node_editor_sources
+        ${imgui_node_editor_SOURCE_DIR}/crude_json.cpp
+        ${imgui_node_editor_SOURCE_DIR}/crude_json.h
+        ${imgui_node_editor_SOURCE_DIR}/imgui_bezier_math.h
+        ${imgui_node_editor_SOURCE_DIR}/imgui_bezier_math.inl
+        ${imgui_node_editor_SOURCE_DIR}/imgui_canvas.cpp
+        ${imgui_node_editor_SOURCE_DIR}/imgui_canvas.h
+        ${imgui_node_editor_SOURCE_DIR}/imgui_extra_math.h
+        ${imgui_node_editor_SOURCE_DIR}/imgui_extra_math.inl
+        ${imgui_node_editor_SOURCE_DIR}/imgui_node_editor.cpp
+        ${imgui_node_editor_SOURCE_DIR}/imgui_node_editor.h
+        ${imgui_node_editor_SOURCE_DIR}/imgui_node_editor_api.cpp
+        ${imgui_node_editor_SOURCE_DIR}/imgui_node_editor_internal.h
+        ${imgui_node_editor_SOURCE_DIR}/imgui_node_editor_internal.inl
+    )
+    add_library(imgui_node_editor STATIC ${imgui_node_editor_sources})
+
+    target_include_directories(imgui_node_editor PUBLIC ${imgui_SOURCE_DIR} ${imgui_node_editor_SOURCE_DIR})
+    if(SDL_STATIC)
+        target_link_libraries(imgui_node_editor PUBLIC SDL3::SDL3-static)
+    else()
+        target_link_libraries(imgui_node_editor PUBLIC SDL3::SDL3-shared)
+    endif()
+    target_link_libraries(imgui_node_editor PUBLIC imgui)
+endif()
+ 
+
+
 # ############################ Catch2 ###############################
 if(TESTING)
     CPMAddPackage(
