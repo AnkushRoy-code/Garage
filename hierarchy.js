@@ -23,6 +23,7 @@ var hierarchy =
       [ "Boids", "class_boids.html", null ],
       [ "N_Body_Simulation", "class_n___body___simulation.html", null ]
     ] ],
+    [ "LinkInfo", "struct_link_info.html", null ],
     [ "Core::NodeEditor", "class_core_1_1_node_editor.html", null ],
     [ "ParticleContainer", "struct_particle_container.html", null ],
     [ "ParticleData", "struct_particle_data.html", null ],

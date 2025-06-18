@@ -26,6 +26,7 @@ var annotated_dup =
     [ "Camera", "class_camera.html", "class_camera" ],
     [ "Garage", "class_garage.html", null ],
     [ "HandleFLags", "class_handle_f_lags.html", null ],
+    [ "LinkInfo", "struct_link_info.html", "struct_link_info" ],
     [ "N_Body_Simulation", "class_n___body___simulation.html", "class_n___body___simulation" ],
     [ "ParticleContainer", "struct_particle_container.html", "struct_particle_container" ],
     [ "ParticleData", "struct_particle_data.html", "struct_particle_data" ],
