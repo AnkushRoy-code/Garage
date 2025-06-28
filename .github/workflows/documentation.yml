@@ -19,20 +19,17 @@ concurrency:
 jobs:
   build:
     name: Build and publish documentation
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Doxygen
-        run: |
-          brew install doxygen
-
-      - name: Build Docs
-        run: |
-          cd docs && doxygen Doxyfile
-          doxygen --version
-
+      - name: Doxygen
+        uses: mattnotmitt/doxygen-action@edge
+        with:
+          working-directory: 'docs/'
+          doxyfile-path: 'Doxyfile'
+          
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
