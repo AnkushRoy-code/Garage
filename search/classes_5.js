@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['handleflags_0',['HandleFLags',['../class_handle_f_lags.html',1,'']]]
+  ['handleflags_0',['HandleFLags',['../classHandleFLags.html',1,'']]]
 ];

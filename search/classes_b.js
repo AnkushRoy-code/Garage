@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['scrollingbuffer_0',['ScrollingBuffer',['../struct_scrolling_buffer.html',1,'']]],
-  ['simpleexample_1',['SimpleExample',['../class_simple_example.html',1,'']]]
+  ['scrollingbuffer_0',['ScrollingBuffer',['../structScrollingBuffer.html',1,'']]],
+  ['simpleexample_1',['SimpleExample',['../classSimpleExample.html',1,'']]]
 ];

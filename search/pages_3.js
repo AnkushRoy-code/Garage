@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['da_20tree_0',['Normal fractal (Da tree)',['../index.html#autotoc_md15',1,'']]],
-  ['deprecated_20list_1',['Deprecated List',['../deprecated.html',1,'']]],
-  ['dummy_20projects_2',['Dummy Projects',['../index.html#autotoc_md8',1,'']]]
+  ['func_0',['Brief about the iterate func',['../md__2github_2workspace_2src_2Main_2Main.html',1,'']]]
 ];
