@@ -24,8 +24,20 @@ bool Triangle::Init()
 
     auto &rndt = Core::Context::GetContext()->RenderData;
 
-    SDL_GPUShader *vertexShader   = Common::LoadShader(rndt.Device, "RawTriangle.vert", 0, 0, 0, 0);
-    SDL_GPUShader *fragmentShader = Common::LoadShader(rndt.Device, "SolidColor.frag", 0, 0, 0, 0);
+    auto vertexShader =
+        Common::LoadShader(rndt.Device, "RawTriangle.vert", 0, 0, 0, 0)
+            .or_else([](const std::string &error) -> std::expected<SDL_GPUShader *, std::string>
+                     {
+                         return std::expected<SDL_GPUShader *, std::string> {};  // put a default value for this type of shader
+                     });
+
+    auto fragmentShader =
+        Common::LoadShader(rndt.Device, "SolidColor.frag", 0, 0, 0, 0)
+            .or_else([](const std::string &error) -> std::expected<SDL_GPUShader *, std::string>
+                     {
+                         return std::expected<SDL_GPUShader *, std::string> {};  // put a default value for this type of shader
+                     });
+
     assert(vertexShader);
     assert(fragmentShader);
 
@@ -34,8 +46,8 @@ bool Triangle::Init()
     };
 
     SDL_GPUGraphicsPipelineCreateInfo pipelineCreateInfo {
-        .vertex_shader   = vertexShader,
-        .fragment_shader = fragmentShader,
+        .vertex_shader   = *vertexShader,
+        .fragment_shader = *fragmentShader,
         .primitive_type  = SDL_GPU_PRIMITIVETYPE_TRIANGLELIST,
     };
 
@@ -55,8 +67,8 @@ bool Triangle::Init()
     LinePipeline = SDL_CreateGPUGraphicsPipeline(rndt.Device, &pipelineCreateInfo);
     assert(LinePipeline);
 
-    SDL_ReleaseGPUShader(rndt.Device, vertexShader);
-    SDL_ReleaseGPUShader(rndt.Device, fragmentShader);
+    SDL_ReleaseGPUShader(rndt.Device, *vertexShader);
+    SDL_ReleaseGPUShader(rndt.Device, *fragmentShader);
 
     static bool firstTime = true;
     if (firstTime)

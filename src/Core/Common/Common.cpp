@@ -1,5 +1,6 @@
 #include "Core/Common/Common.h"
 #include "config.h"
+#include <expected>
 
 namespace Common
 {
@@ -14,7 +15,7 @@ const std::filesystem::path &GetBasePath()
     {
         const std::filesystem::path bases[] {
             "src/Main",
-            DATA_DIR,
+            DATA_DIR, // defined in config.h
             DATA_DIR_LOCAL,
             SDL_GetBasePath()};
 
@@ -33,12 +34,12 @@ const std::filesystem::path &GetBasePath()
     return base;
 }
 
-SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
-                          const std::string &shaderFilename,
-                          Uint32 samplerCount,
-                          Uint32 uniformBufferCount,
-                          Uint32 storageBufferCount,
-                          Uint32 storageTextureCount)
+std::expected<SDL_GPUShader *, std::string> LoadShader(SDL_GPUDevice *device,
+                                                       const std::string &shaderFilename,
+                                                       Uint32 samplerCount,
+                                                       Uint32 uniformBufferCount,
+                                                       Uint32 storageBufferCount,
+                                                       Uint32 storageTextureCount)
 {
     // Determine shader stage
     SDL_GPUShaderStage stage;
@@ -70,13 +71,16 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
         shaderPath /= shaderFilename + ".dxil";
         format      = SDL_GPU_SHADERFORMAT_DXIL;
     }
-    else { assert(false && "Unsupported shader format"); }
+    else
+    {
+        std::unexpected("Unsupported shader format");
+    }
 
-    assert(std::filesystem::exists(shaderPath) && "Shader file not found");
+    if (!std::filesystem::exists(shaderPath)) { std::unexpected("Shader file not found"); }
 
     std::ifstream file {shaderPath, std::ios::binary};
 
-    assert(file && "Failed to open shader file");
+    if (!file) { std::unexpected("Failed to open shader file"); }
 
     std::vector<Uint8> code {std::istreambuf_iterator<char>(file), {}};
 
@@ -93,7 +97,8 @@ SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
     };
 
     SDL_GPUShader *shader = SDL_CreateGPUShader(device, &info);
-    assert(shader && "Shader creation failed");
+
+    if (!shader) { std::unexpected("Shader creation failed"); }
 
     return shader;
 }

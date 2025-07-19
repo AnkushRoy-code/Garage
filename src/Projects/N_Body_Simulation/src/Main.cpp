@@ -33,8 +33,19 @@ bool N_Body_Simulation::Init()
 
     auto &rndt = Core::Context::GetContext()->RenderData;
     // pipeline creation
-    SDL_GPUShader *vertShader = Common::LoadShader(rndt.Device, "DrawCircle.vert", 0, 1, 1, 0);
-    SDL_GPUShader *fragShader = Common::LoadShader(rndt.Device, "DrawCircle.frag", 0, 0, 0, 0);
+    auto vertShader =
+        Common::LoadShader(rndt.Device, "DrawCircle.vert", 0, 1, 1, 0)
+            .or_else([](const std::string &error) -> std::expected<SDL_GPUShader *, std::string>
+                     {
+                         return std::expected<SDL_GPUShader *, std::string> {};  // put a default value for this type of shader
+                     });
+
+    auto fragShader =
+        Common::LoadShader(rndt.Device, "DrawCircle.frag", 0, 0, 0, 0)
+            .or_else([](const std::string &error) -> std::expected<SDL_GPUShader *, std::string>
+                     {
+                         return std::expected<SDL_GPUShader *, std::string> {};  // put a default value for this type of shader
+                     });
 
     const SDL_GPUColorTargetBlendState blendState {
         .src_color_blendfactor = SDL_GPU_BLENDFACTOR_SRC_ALPHA,
@@ -61,8 +72,8 @@ bool N_Body_Simulation::Init()
     };
 
     const SDL_GPUGraphicsPipelineCreateInfo createInfo {
-        .vertex_shader     = vertShader,
-        .fragment_shader   = fragShader,
+        .vertex_shader     = *vertShader,
+        .fragment_shader   = *fragShader,
         .primitive_type    = SDL_GPU_PRIMITIVETYPE_TRIANGLESTRIP,
         .multisample_state = mState,
         .target_info       = targetInfo,
@@ -70,8 +81,8 @@ bool N_Body_Simulation::Init()
 
     m_RenderPipeline = SDL_CreateGPUGraphicsPipeline(rndt.Device, &createInfo);
 
-    SDL_ReleaseGPUShader(rndt.Device, vertShader);
-    SDL_ReleaseGPUShader(rndt.Device, fragShader);
+    SDL_ReleaseGPUShader(rndt.Device, *vertShader);
+    SDL_ReleaseGPUShader(rndt.Device, *fragShader);
 
     InitialiseTransferBuffers();
 
@@ -158,11 +169,13 @@ bool N_Body_Simulation::Draw()
     SDL_UploadToGPUBuffer(copyPass, &transferBufferLocation, &bufferRegion, true);
     SDL_EndGPUCopyPass(copyPass);
 
-    SDL_GPUColorTargetInfo tinfo {.texture     = rndt.ProjectTexture,
-                                  .clear_color = {0.094f, 0.094f, 0.145f, 1.00f},
-                                  .load_op     = SDL_GPU_LOADOP_CLEAR,
-                                  .store_op    = SDL_GPU_STOREOP_STORE,
-                                  .cycle       = false};
+    SDL_GPUColorTargetInfo tinfo {
+        .texture     = rndt.ProjectTexture,
+        .clear_color = {0.094f, 0.094f, 0.145f, 1.00f},
+        .load_op     = SDL_GPU_LOADOP_CLEAR,
+        .store_op    = SDL_GPU_STOREOP_STORE,
+        .cycle       = false
+    };
 
     if (rndt.SampleCount == SDL_GPU_SAMPLECOUNT_1) { tinfo.store_op = SDL_GPU_STOREOP_STORE; }
     else
@@ -222,8 +235,7 @@ bool N_Body_Simulation::DrawUI()
     {
         ImGui::SeparatorText("Options");
 
-        static const std::string names[4] = {"Two Bodies", "Four Bodies", "Circular arrangement",
-                                             "Grid Arrangement"};
+        static const std::string names[4] = {"Two Bodies", "Four Bodies", "Circular arrangement", "Grid Arrangement"};
 
         static unsigned int index = 0;
 

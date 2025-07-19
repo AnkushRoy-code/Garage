@@ -4,6 +4,8 @@
 #include "Core/Context.h"
 #include "Core/Console.h"
 #include "Utils/Time.h"
+#include <cmath>
+#include <string>
 
 bool Boids::Init()
 {
@@ -11,8 +13,20 @@ bool Boids::Init()
     auto &rndt = Core::Context::GetContext()->RenderData;
 
     // pipeline creation
-    SDL_GPUShader *vertShader = Common::LoadShader(rndt.Device, "Boids.vert", 0, 1, 1, 0);
-    SDL_GPUShader *fragShader = Common::LoadShader(rndt.Device, "Boids.frag", 0, 0, 0, 0);
+    auto vertShader =
+        Common::LoadShader(rndt.Device, "Boids.vert", 0, 1, 1, 0)
+            .or_else([](const std::string &error) -> std::expected<SDL_GPUShader *, std::string>
+                     {
+                         return std::expected<SDL_GPUShader *, std::string> {};  // put a default value for this type of shader
+                     });
+
+    auto fragShader =
+        Common::LoadShader(rndt.Device, "Boids.frag", 0, 0, 0, 0)
+            .or_else([](const std::string &error) -> std::expected<SDL_GPUShader *, std::string>
+                     {
+                         return std::expected<SDL_GPUShader *, std::string> {};  // put a default value for this type of shader
+                     });
+
     assert(vertShader);
     assert(fragShader);
 
@@ -41,8 +55,8 @@ bool Boids::Init()
     };
 
     const SDL_GPUGraphicsPipelineCreateInfo createInfo {
-        .vertex_shader     = vertShader,
-        .fragment_shader   = fragShader,
+        .vertex_shader     = *vertShader,
+        .fragment_shader   = *fragShader,
         .primitive_type    = SDL_GPU_PRIMITIVETYPE_TRIANGLELIST,
         .multisample_state = mState,
         .target_info       = targetInfo,
@@ -51,8 +65,8 @@ bool Boids::Init()
     m_RenderPipeline = SDL_CreateGPUGraphicsPipeline(rndt.Device, &createInfo);
     assert(m_RenderPipeline);
 
-    SDL_ReleaseGPUShader(rndt.Device, vertShader);
-    SDL_ReleaseGPUShader(rndt.Device, fragShader);
+    SDL_ReleaseGPUShader(rndt.Device, *vertShader);
+    SDL_ReleaseGPUShader(rndt.Device, *fragShader);
 
     // Transfer buffers creation
     const SDL_GPUTransferBufferCreateInfo tBufCreateInfo {

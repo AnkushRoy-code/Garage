@@ -2,6 +2,8 @@
 #define INCLUDE_COMMON_COMMON_H_
 
 #include "Core/Common/pch.h"
+#include <expected>
+#include <string>
 
 #ifdef TRACY_ENABLE
     #include <tracy/Tracy.hpp>
@@ -29,12 +31,12 @@ namespace Common
  *
  * @endcode
  */
-SDL_GPUShader *LoadShader(SDL_GPUDevice *device,
-                          const std::string &shaderFilename,
-                          Uint32 samplerCount,
-                          Uint32 uniformBufferCount,
-                          Uint32 storageBufferCount,
-                          Uint32 storageTextureCount);
+std::expected<SDL_GPUShader *, std::string> LoadShader(SDL_GPUDevice *device,
+                                                     const std::string &shaderFilename,
+                                                     Uint32 samplerCount,
+                                                     Uint32 uniformBufferCount,
+                                                     Uint32 storageBufferCount,
+                                                     Uint32 storageTextureCount);
 
 /// @warning ONLY BMP IMAGES SUPPORTED BECAUSE I AM LAZY AND DIDN'T LOOK INTO OTHER FORMATS
 SDL_Surface *LoadImage(const std::string &imageFileName, int desiredChannels = 4);
