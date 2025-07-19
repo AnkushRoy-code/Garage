@@ -18,7 +18,6 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-14, windows-latest]
-        arch: [x86, x64, arm64]
       fail-fast: false
       
     steps:
@@ -29,7 +28,7 @@ jobs:
       uses: actions/cache@v4
       with:
         path: build/
-        key: ${{ runner.os }}-build-${{ matrix.arch }}-${{ hashFiles('**/CMakeLists.txt') }}
+        key: ${{ runner.os }}-build-${{ hashFiles('**/CMakeLists.txt') }}
         restore-keys: |
           ${{ runner.os }}-build
 
@@ -59,7 +58,7 @@ jobs:
         choco install nsis.install
     
     - name: Configure CMake
-      run: cmake -B build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DSDL_STATIC=ON -DRELEASE_BUILD=ON -DCMAKE_SYSTEM_PROCESSOR=${{ matrix.arch }}
+      run: cmake -B build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DSDL_STATIC=ON -DRELEASE_BUILD=ON
 
     - name: Build
       run: cmake --build build --config ${{env.BUILD_TYPE}} -j
@@ -84,6 +83,5 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         files: ${{github.workspace}}/build/Garage-*
-        allow_update: true
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
