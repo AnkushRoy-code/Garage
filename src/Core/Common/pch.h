@@ -36,6 +36,7 @@
 #include <chrono>
 #include <filesystem>
 #include <fstream>
+#include <exception>
 #include <cmath>
 
 #endif  // INCLUDE_PCH_PCH_H_
