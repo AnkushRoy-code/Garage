@@ -1,5 +1,4 @@
 #include "Main.h"
-
 #include "Main/Flags.h"
 
 #define SDL_MAIN_USE_CALLBACKS 1

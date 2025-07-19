@@ -17,18 +17,19 @@ jobs:
     
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-15, windows-latest]
+        arch: [x86, x64, arm64]
       fail-fast: false
       
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Cache build dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: build/
-        key: ${{ runner.os }}-build-${{ hashFiles('**/CMakeLists.txt') }}
+        key: ${{ runner.os }}-build-${{ matrix.arch }}-${{ hashFiles('**/CMakeLists.txt') }}
         restore-keys: |
           ${{ runner.os }}-build
 
@@ -38,7 +39,14 @@ jobs:
     - name: Install Dependencies (Linux)
       if: matrix.os == 'ubuntu-latest'
       run: |
-        sudo apt-get install -y --no-install-recommends rpm build-essential git make pkg-config cmake ninja-build gnome-desktop-testing libasound2-dev libpulse-dev libaudio-dev libjack-dev libsndio-dev libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxfixes-dev libxi-dev libxss-dev libxkbcommon-dev libdrm-dev libgbm-dev libgl1-mesa-dev libgles2-mesa-dev libegl1-mesa-dev libdbus-1-dev libibus-1.0-dev libudev-dev fcitx-libs-dev 
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends rpm build-essential git \
+        make pkg-config cmake ninja-build gnome-desktop-testing libasound2-dev \
+        libpulse-dev libaudio-dev libjack-dev libsndio-dev libx11-dev \
+        libxext-dev libxrandr-dev libxcursor-dev libxfixes-dev libxi-dev \
+        libxss-dev libxkbcommon-dev libdrm-dev libgbm-dev libgl1-mesa-dev \
+        libgles2-mesa-dev libegl1-mesa-dev libdbus-1-dev libibus-1.0-dev \
+        libudev-dev fcitx-libs-dev 
 
     # - name: Install Dependencies (macOS)
     #   if: matrix.os == 'macos-latest'
@@ -51,7 +59,11 @@ jobs:
         choco install nsis.install
     
     - name: Configure CMake
-      run: cmake -B build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DSDL_STATIC=ON -DRELEASE_BUILD=ON
+      run: cmake -B build \
+        -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} \
+        -DSDL_STATIC=ON \
+        -DRELEASE_BUILD=ON \
+        -DCMAKE_SYSTEM_PROCESSOR=${{ matrix.arch }}
 
     - name: Build
       run: cmake --build build --config ${{env.BUILD_TYPE}} -j
