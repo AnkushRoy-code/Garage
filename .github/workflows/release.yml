@@ -59,11 +59,7 @@ jobs:
         choco install nsis.install
     
     - name: Configure CMake
-      run: cmake -B build \
-        -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} \
-        -DSDL_STATIC=ON \
-        -DRELEASE_BUILD=ON \
-        -DCMAKE_SYSTEM_PROCESSOR=${{ matrix.arch }}
+      run: cmake -B build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DSDL_STATIC=ON -DRELEASE_BUILD=ON -DCMAKE_SYSTEM_PROCESSOR=${{ matrix.arch }}
 
     - name: Build
       run: cmake --build build --config ${{env.BUILD_TYPE}} -j
@@ -79,7 +75,7 @@ jobs:
         cd build && cpack -G "NSIS;ZIP"
 
     - name: CPack (macOS)
-      if: matrix.os == 'macos-latest'
+      if: matrix.os == 'macos-14'
       run: |
         cd build && cpack -G "DragNDrop;ZIP;TGZ"
 
