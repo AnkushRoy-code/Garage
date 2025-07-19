@@ -100,33 +100,3 @@ html.dark-mode {
 span.mlabel {
     background: var(--span-mlabel);
 }
-
-#page-nav {
-    background-color: var(--page-background-color);
-    max-height: var(--toc-max-height);
-    min-width: var(--toc-width);
-    top: var(--toc-sticky-top);
-    position: sticky;
-    border-left: 1px solid var(--separator-color);
-}
-
-#page-nav-contents {
-    /* border-left: 1px solid var(--separator-color); */
-}
-
-#page-nav-contents {
-    background-color: var(--page-background-color);
-    color: var(--page-foreground-color)
-}
-
-ul.page-outline li a {
-    color: var(--page-foreground-color) ! important
-}
-
-#page-nav-contents .page-outline .arrow{
-    display: none;
-}
-
-ul.page-outline li.vis {
-    background-color: #111D28;
-}
