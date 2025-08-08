@@ -1,10 +1,22 @@
 include(cmake/CPM.cmake)
 
+set(CMAKE_MESSAGE_LOG_LEVEL WARNING) # because useless log stuff
+
+# prints the pkg name to console
+function(log_pkg)
+    set(CMAKE_MESSAGE_LOG_LEVEL STATUS)
+    message(STATUS "GARAGE: Installing - ${ARGV}")
+    set(CMAKE_MESSAGE_LOG_LEVEL WARNING)
+endfunction()
+
 # I use tar.gz archives and sha256 instead of git because when I need to test my code in windows git
 # clone drains all my internet. I have limited daily. Also GIT_SHALLOW doesn't work how it sould
 # even after I give it proper tags or even commit.
 
+
 # ############################ SDL ###############################
+log_pkg("SDL3")
+
 CPMAddPackage(
     NAME SDL3
     VERSION 3.2.8
@@ -13,6 +25,7 @@ CPMAddPackage(
 )
 
 # ############################ ImGui ###############################
+log_pkg("imgui")
 CPMAddPackage(
     NAME imgui
     VERSION 1.91.8-docking
@@ -48,6 +61,7 @@ if(imgui_ADDED)
     endif()
 endif()
 
+log_pkg("implot")
 CPMAddPackage(
     NAME implot
     VERSION 1.92.x
@@ -76,11 +90,10 @@ if(implot_ADDED)
     target_link_libraries(implot PUBLIC imgui)
 endif()
 
-
+log_pkg("imgui_node_editor")
 CPMAddPackage(
     NAME imgui_node_editor
-    VERSION 0.9.x
-    PATCHES patches/imgui_node_editor.patch
+    VERSION 0.9.x PATCHES patches/imgui_node_editor.patch
     URL https://github.com/thedmd/imgui-node-editor/archive/e78e447900909a051817a760efe13fe83e6e1afc.zip
     URL_HASH SHA256=f67085337c5742007fe48c63d2087680a97dde0f23b0f8f91e62f6621234dca1
 )
@@ -105,7 +118,9 @@ if(imgui_node_editor_ADDED)
     )
     add_library(imgui_node_editor STATIC ${imgui_node_editor_sources})
 
-    target_include_directories(imgui_node_editor PUBLIC ${imgui_SOURCE_DIR} ${imgui_node_editor_SOURCE_DIR})
+    target_include_directories(
+        imgui_node_editor PUBLIC ${imgui_SOURCE_DIR} ${imgui_node_editor_SOURCE_DIR}
+    )
     if(SDL_STATIC)
         target_link_libraries(imgui_node_editor PUBLIC SDL3::SDL3-static)
     else()
@@ -113,11 +128,11 @@ if(imgui_node_editor_ADDED)
     endif()
     target_link_libraries(imgui_node_editor PUBLIC imgui)
 endif()
- 
-
 
 # ############################ Catch2 ###############################
 if(TESTING)
+    log_pkg("Catch2")
+
     CPMAddPackage(
         NAME Catch2
         VERSION 3.8.0
@@ -128,7 +143,7 @@ endif()
 
 # ############################ Tracy Profiler ###############################
 if(TRACY_PROFILE_COMPATIBILITY) # For my old lappy
-    option(TRACY_ENABLE "" ON)
+    log_pkg("Tracy Profiler (Less accurate for low end devices)")
     CPMAddPackage(
         NAME Tracy
         URL https://github.com/wolfpld/tracy/archive/refs/tags/v0.11.1.tar.gz
@@ -138,6 +153,8 @@ if(TRACY_PROFILE_COMPATIBILITY) # For my old lappy
 endif()
 
 if(TRACY_PROFILE)
+    log_pkg("Tracy Profiler")
+
     option(TRACY_ENABLE "" ON)
     CPMAddPackage(
         NAME Tracy
@@ -152,6 +169,7 @@ endif()
 # SHA256=bcb07bfb27e6fa94d34da73ba2d5642d4940b208ec2a660dbf4e52e6b7cd492f )
 
 # ########################### GLM ###############################
+log_pkg("GLM")
 CPMAddPackage(
     NAME glm
     VERSION 1.0.1
@@ -170,7 +188,7 @@ CPMAddPackage(
 # ${EnTT_SOURCE_DIR}/src) endif()
 
 # ########################### CXXOpts ###############################
-
+log_pkg("CXXOpts")
 CPMAddPackage(
     NAME cxxopts
     VERSION 3.3.1
@@ -178,3 +196,5 @@ CPMAddPackage(
     URL_HASH SHA256=f35f27daa5f6fab84e4fffd02fc171cae085b14647e19687357394c1fe90ce6a
     OPTIONS "CXXOPTS_BUILD_EXAMPLES Off" "CXXOPTS_BUILD_TESTS Off"
 )
+
+set(CMAKE_MESSAGE_LOG_LEVEL STATUS)
