@@ -9,7 +9,7 @@ if(Git_FOUND AND GIT_EXECUTABLE)
     )
 endif()
 
-if(${PROJECT_VERSION} STREQUAL "")
+if("${PROJECT_VERSION}" STREQUAL "")
     set(${PROJECT_VERSION} v0.0.0-unknown)
 
     message(
