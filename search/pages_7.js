@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['s_20garage_0',['Ankush&apos;s Garage',['../index.html',1,'']]]
+  ['usage_0',['Usage',['../md_usage.html',1,'']]]
 ];
