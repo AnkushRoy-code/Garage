@@ -194,10 +194,6 @@ var NAVTREEINDEX1 =
 "structCore_1_1ConsoleLogMessage.html#ae04b3f8daa0f8748a981d5570266a2ea":[11,0,1,3,0],
 "structCore_1_1NodeEditor.html":[10,0,1,11],
 "structCore_1_1NodeEditor.html":[11,0,1,10],
-"structCore_1_1NodeEditor.html#a0ec052bf844704e3ed1af042add55f8c":[10,0,1,11,3],
-"structCore_1_1NodeEditor.html#a0ec052bf844704e3ed1af042add55f8c":[11,0,1,10,3],
-"structCore_1_1NodeEditor.html#a3de1339af77697ecd96a0486f8e4035e":[10,0,1,11,2],
-"structCore_1_1NodeEditor.html#a3de1339af77697ecd96a0486f8e4035e":[11,0,1,10,2],
 "structCore_1_1NodeEditor.html#adde4d8c09d95d9ff1d372015bc0b91df":[10,0,1,11,0],
 "structCore_1_1NodeEditor.html#adde4d8c09d95d9ff1d372015bc0b91df":[11,0,1,10,0],
 "structCore_1_1NodeEditor.html#ae319bbbcca51e9e5ab72ac997c3edb17":[10,0,1,11,1],
@@ -249,5 +245,9 @@ var NAVTREEINDEX1 =
 "structPredefinedParticlesData.html#a847dcf9ae5465bdcb6840cd12e613636":[11,0,15,0],
 "structRGB__BoidDataSend.html":[11,0,16],
 "structRGB__BoidDataSend.html#a140737ef5c408b57c523c417ec275566":[11,0,16,0],
-"structRGB__BoidDataSend.html#a49480b13d18b1f764ddd98ca5a3728a6":[11,0,16,3]
+"structRGB__BoidDataSend.html#a49480b13d18b1f764ddd98ca5a3728a6":[11,0,16,3],
+"structRGB__BoidDataSend.html#a59e408b04f99f0be1478bc3410db2181":[11,0,16,1],
+"structRGB__BoidDataSend.html#a7c45c8836fe7d85ce637608b62c099fe":[11,0,16,2],
+"structScrollingBuffer.html":[11,0,17],
+"structScrollingBuffer.html#a044407df3593b274cd1455e4057d09dd":[11,0,17,2]
 };

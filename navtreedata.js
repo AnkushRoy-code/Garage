@@ -90,7 +90,7 @@ var NAVTREEINDEX =
 [
 "BaseProject_8cpp.html",
 "classN__Body__Simulation.html#aebe7ccb62e9936e6fab16a56b2a15fad",
-"structRGB__BoidDataSend.html#a59e408b04f99f0be1478bc3410db2181"
+"structScrollingBuffer.html#a2ce31ea061f389615ac598c5a6088412"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

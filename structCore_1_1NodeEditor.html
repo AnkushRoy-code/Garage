@@ -127,7 +127,6 @@ $(function(){initNavTree('structCore_1_1NodeEditor.html',''); initResizable(true
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="structCore_1_1NodeEditor-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Core::NodeEditor Struct Reference</div></div>
@@ -146,8 +145,6 @@ Inheritance diagram for Core::NodeEditor:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:adde4d8c09d95d9ff1d372015bc0b91df" id="r_adde4d8c09d95d9ff1d372015bc0b91df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adde4d8c09d95d9ff1d372015bc0b91df">NodeEditor</a> (float d, std::size_t r)</td></tr>
 <tr class="separator:adde4d8c09d95d9ff1d372015bc0b91df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3de1339af77697ecd96a0486f8e4035e" id="r_a3de1339af77697ecd96a0486f8e4035e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3de1339af77697ecd96a0486f8e4035e">set_size</a> (ImVec2 d)</td></tr>
-<tr class="separator:a3de1339af77697ecd96a0486f8e4035e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae319bbbcca51e9e5ab72ac997c3edb17" id="r_ae319bbbcca51e9e5ab72ac997c3edb17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae319bbbcca51e9e5ab72ac997c3edb17">draw</a> () override</td></tr>
 <tr class="separator:ae319bbbcca51e9e5ab72ac997c3edb17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -159,14 +156,13 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a7b99b83ed4f40c049fc9dcf2e59a8b0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5bc818d5373c16383fbbab3a8d1eef7" id="r_ae5bc818d5373c16383fbbab3a8d1eef7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5bc818d5373c16383fbbab3a8d1eef7">DestroyNodeEditor</a> ()</td></tr>
 <tr class="separator:ae5bc818d5373c16383fbbab3a8d1eef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a0ec052bf844704e3ed1af042add55f8c" id="r_a0ec052bf844704e3ed1af042add55f8c"><td class="memItemLeft" align="right" valign="top">ImFlow::ImNodeFlow&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ec052bf844704e3ed1af042add55f8c">mINF</a></td></tr>
-<tr class="separator:a0ec052bf844704e3ed1af042add55f8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3de1339af77697ecd96a0486f8e4035e" id="r_a3de1339af77697ecd96a0486f8e4035e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3de1339af77697ecd96a0486f8e4035e">set_size</a> (ImVec2 d)</td></tr>
+<tr class="separator:a3de1339af77697ecd96a0486f8e4035e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
+<tr class="memitem:afc337b57339535d57fb311ce9db7d319" id="r_afc337b57339535d57fb311ce9db7d319"><td class="memItemLeft" align="right" valign="top">static ImFlow::ImNodeFlow&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc337b57339535d57fb311ce9db7d319">m_INF</a></td></tr>
+<tr class="separator:afc337b57339535d57fb311ce9db7d319"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c1a930a73378066abd91ae1b34044c2" id="r_a9c1a930a73378066abd91ae1b34044c2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structCore_1_1NodeEditor.html">NodeEditor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c1a930a73378066abd91ae1b34044c2">m_editor</a></td></tr>
 <tr class="separator:a9c1a930a73378066abd91ae1b34044c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -273,6 +269,9 @@ Static Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void NodeEditor::set_size </td>
@@ -281,6 +280,11 @@ Static Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -333,16 +337,24 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a0ec052bf844704e3ed1af042add55f8c" name="a0ec052bf844704e3ed1af042add55f8c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0ec052bf844704e3ed1af042add55f8c">&#9670;&#160;</a></span>mINF</h2>
+<a id="afc337b57339535d57fb311ce9db7d319" name="afc337b57339535d57fb311ce9db7d319"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc337b57339535d57fb311ce9db7d319">&#9670;&#160;</a></span>m_INF</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">ImFlow::ImNodeFlow Core::NodeEditor::mINF</td>
+          <td class="memname">ImFlow::ImNodeFlow NodeEditor::m_INF</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
