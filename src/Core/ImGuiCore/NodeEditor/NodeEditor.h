@@ -54,7 +54,6 @@ class ResultNode : public ImFlow::BaseNode
 
 struct NodeEditor : ImFlow::BaseNode
 {
-    ImFlow::ImNodeFlow mINF;
 
     static void ShowNodeEditor();
     static void InitNodeEditor();
@@ -62,10 +61,11 @@ struct NodeEditor : ImFlow::BaseNode
 
     NodeEditor(float d, std::size_t r);
 
-    void set_size(ImVec2 d);
+    static void set_size(ImVec2 d);
     void draw() override;
 
   private:
+    static ImFlow::ImNodeFlow m_INF;
     static NodeEditor m_editor;
 };
 

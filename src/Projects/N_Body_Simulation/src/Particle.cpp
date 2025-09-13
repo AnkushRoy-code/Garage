@@ -82,8 +82,8 @@ void ParticleContainer::Init()
     }
 
     const PredefinedParticlesData dataCircular = {
-        numCircleParticles,
-        {circleParticles[0], circleParticles[1], circleParticles[2], circleParticles[3], circleParticles[4], circleParticles[5], circleParticles[6], circleParticles[7]}
+        .Count     = numCircleParticles,
+        .Particles = {circleParticles[0], circleParticles[1], circleParticles[2], circleParticles[3], circleParticles[4], circleParticles[5], circleParticles[6], circleParticles[7]}
     };
 
     const int gridRows = 3;
@@ -96,29 +96,29 @@ void ParticleContainer::Init()
     {
         for (int c = 0; c < gridCols; ++c)
         {
-            float posX           = centerX + (c - 1) * spacing;
-            float posY           = centerY + (r - 1) * spacing;
+            float posX           = centerX + (float)c - 1 * spacing;
+            float posY           = centerY + (float)r - 1 * spacing;
             gridParticles[index] = {
                 // Position:
-                {posX, posY},
+                .Position = {posX, posY},
                 // Velocity: outwards from the center
-                {(posX - centerX) * 0.1f, (posY - centerY) * 0.1f},
+                .Velocity = {(posX - centerX) * 0.1f, (posY - centerY) * 0.1f},
                 // Acceleration:
-                {0.0f, 0.0f},
+                .Acceleration = {0.0f, 0.0f},
                 // Mass:
-                7.0f,
+                .Mass = 7.0f,
                 // Radius:
-                20.0f,
+                .Radius = 20.0f,
                 // Color: gradually changing blue component
-                {0.4f, 0.4f, 0.7f - 0.1f * index, 1.0f}
+                .Color = {0.4f, 0.4f, 0.7f - 0.1f * (float)index, 1.0f}
             };
             ++index;
         }
     }
 
     const PredefinedParticlesData dataGrid = {
-        gridRows * gridCols,
-        {gridParticles[0], gridParticles[1], gridParticles[2], gridParticles[3], gridParticles[4], gridParticles[5], gridParticles[6], gridParticles[7], gridParticles[8]}
+        .Count     = gridRows * gridCols,
+        .Particles = {gridParticles[0], gridParticles[1], gridParticles[2], gridParticles[3], gridParticles[4], gridParticles[5], gridParticles[6], gridParticles[7], gridParticles[8]}
     };
 
     ParticlesData.reserve(4);

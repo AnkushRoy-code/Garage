@@ -20,8 +20,10 @@ FloatInputNode::FloatInputNode()
 
 void FloatInputNode::draw()
 {
-    ImGui::SetNextItemWidth(60.0f);
-    ImGui::SliderFloat("Value", &m_value, -1024, 1024);
+    constexpr float width = 60.0f;
+    ImGui::SetNextItemWidth(width);
+    const float limit = 128.0f;
+    ImGui::SliderFloat("Value", &m_value, -limit, limit);
 }
 
 AddNode::AddNode()
@@ -39,9 +41,10 @@ AddNode::AddNode()
 
 void AddNode::draw()
 {
-    ImGui::SetNextItemWidth(60.0f);
+    constexpr float width = 60.0f;
+    ImGui::SetNextItemWidth(width);
     ImGui::Text(": %.3f", getInVal<float>("A"));
-    ImGui::SetNextItemWidth(60.0f);
+    ImGui::SetNextItemWidth(width);
     ImGui::Text(": %.3f", getInVal<float>("B"));
 }
 
@@ -60,9 +63,10 @@ SubtractNode::SubtractNode()
 
 void SubtractNode::draw()
 {
-    ImGui::SetNextItemWidth(60.0f);
+    constexpr float width = 60.0f;
+    ImGui::SetNextItemWidth(width);
     ImGui::Text(": %.3f", getInVal<float>("A"));
-    ImGui::SetNextItemWidth(60.0f);
+    ImGui::SetNextItemWidth(width);
     ImGui::Text(": %.3f", getInVal<float>("B"));
 }
 
@@ -81,9 +85,10 @@ MultiplyNode::MultiplyNode()
 
 void MultiplyNode::draw()
 {
-    ImGui::SetNextItemWidth(60.0f);
+    constexpr float width = 60.0f;
+    ImGui::SetNextItemWidth(width);
     ImGui::Text(": %.3f", getInVal<float>("A"));
-    ImGui::SetNextItemWidth(60.0f);
+    ImGui::SetNextItemWidth(width);
     ImGui::Text(": %.3f", getInVal<float>("B"));
 }
 
@@ -105,13 +110,15 @@ DivideNode::DivideNode()
 
 void DivideNode::draw()
 {
-    ImGui::SetNextItemWidth(60.0f);
+    constexpr float width = 60.0f;
+    ImGui::SetNextItemWidth(width);
     ImGui::Text(": %.3f", getInVal<float>("A"));
-    ImGui::SetNextItemWidth(60.0f);
+    ImGui::SetNextItemWidth(width);
     float b = getInVal<float>("B");
     if (b == 0)
     {
-        ImGui::TextColored(ImVec4(1.f, 0.5f, 0.2f, 1.f), "Warning: divisor is zero");
+        const ImVec4 col = {1.f, 0.5f, 0.2f, 1.f};
+        ImGui::TextColored(col, "Warning: divisor is zero");
     }
     else
         ImGui::Text(": %.3f", b);
@@ -127,51 +134,34 @@ ResultNode::ResultNode()
 
 void ResultNode::draw()
 {
-    float val = getInVal<float>("In");
-    ImGui::SetNextItemWidth(60.0f);
-    ImGui::TextWrapped("Result: %.3f", val);
+    constexpr float width = 60.0f;
+    float val             = getInVal<float>("In");
+    ImGui::SetNextItemWidth(width);
+    ImGui::Text("Result: %.3f", val);
 }
 
 NodeEditor NodeEditor::m_editor(500, 500);
+ImFlow::ImNodeFlow NodeEditor::m_INF;
 
 NodeEditor::NodeEditor(float d, std::size_t r) :
     BaseNode()
 {
-    mINF.setSize({d, d});
+    m_INF.setSize({d, d});
 
-	// initial placement can be done here
+    // initial placement can be done here
     if (r > 0)
     {
     }
-
-    // clang-format off
-    // right-click popup to place nodes
-    mINF.rightClickPopUpContent([this](ImFlow::BaseNode *node)
-	{
-		if (ImGui::Selectable("Result"))
-			mINF.placeNodeAt<ResultNode>(ImGui::GetMousePos());
-		if (ImGui::Selectable("Input"))
-			mINF.placeNodeAt<FloatInputNode>(ImGui::GetMousePos());
-		if (ImGui::Selectable("Add"))
-			mINF.placeNodeAt<AddNode>(ImGui::GetMousePos());
-		if (ImGui::Selectable("Subtract"))
-			mINF.placeNodeAt<SubtractNode>(ImGui::GetMousePos());
-		if (ImGui::Selectable("Multiply"))
-			mINF.placeNodeAt<MultiplyNode>(ImGui::GetMousePos());
-		if (ImGui::Selectable("Divide"))
-			mINF.placeNodeAt<DivideNode>(ImGui::GetMousePos());
-	});
-    // clang-format on
 }
 
 void NodeEditor::set_size(ImVec2 d)
 {
-    mINF.setSize(d);
+    m_INF.setSize(d);
 }
 
 void NodeEditor::draw()
 {
-    mINF.update();
+    m_INF.update();
 }
 
 void NodeEditor::InitNodeEditor()
@@ -181,9 +171,31 @@ void NodeEditor::InitNodeEditor()
 
 void NodeEditor::ShowNodeEditor()
 {
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2 {0, 0});
     ImGui::Begin("Node Editor", nullptr, ImGuiWindowFlags_NoTitleBar);
-    m_editor.set_size({ImGui::GetWindowSize().x - 16, ImGui::GetWindowSize().y - 16});
+
+    ImGui::PopStyleVar();
+    constexpr float vPadding = 19.0f;
+    set_size({ImGui::GetWindowSize().x, ImGui::GetWindowSize().y - vPadding});
     m_editor.draw();
+
+    const ImGuiPopupFlags flags = ImGuiPopupFlags_MouseButtonRight | ImGuiPopupFlags_NoReopen | ImGuiPopupFlags_NoOpenOverExistingPopup;
+    if (ImGui::BeginPopupContextItem("Node Editor", flags))
+    {
+        if (ImGui::MenuItem("Result"))
+            m_INF.placeNodeAt<ResultNode>(ImGui::GetMousePos());
+        if (ImGui::MenuItem("Input"))
+            m_INF.placeNodeAt<FloatInputNode>(ImGui::GetMousePos());
+        if (ImGui::MenuItem("Add"))
+            m_INF.placeNodeAt<AddNode>(ImGui::GetMousePos());
+        if (ImGui::MenuItem("Subtract"))
+            m_INF.placeNodeAt<SubtractNode>(ImGui::GetMousePos());
+        if (ImGui::MenuItem("Multiply"))
+            m_INF.placeNodeAt<MultiplyNode>(ImGui::GetMousePos());
+        if (ImGui::MenuItem("Divide"))
+            m_INF.placeNodeAt<DivideNode>(ImGui::GetMousePos());
+        ImGui::EndPopup();
+    }
     ImGui::End();
 }
 

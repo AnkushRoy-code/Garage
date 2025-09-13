@@ -204,7 +204,7 @@ bool ImGuiCore::HandleWindowResize()
         ctx->AppState.ProjectWindowSize.x = view.x;
         ctx->AppState.ProjectWindowSize.y = view.y;
 
-        Renderer::ResizeProjectTexture(view.x, view.y);
+        Renderer::ResizeProjectTexture((int)view.x, (int)view.y);
         return true;
     }
 
@@ -236,7 +236,7 @@ void ImGuiCore::TB_ProjectSelector()
     static std::vector<const char *> x_Names;
     static bool x_FirsstTime = true;
 
-    const int projSize = Common::ProjectManager::GetProjects()->size();
+    const size_t projSize = Common::ProjectManager::GetProjects()->size();
     if (x_FirsstTime)
     {
         x_FirsstTime = false;
@@ -277,8 +277,8 @@ void ImGuiCore::TB_ResolutionSlider()
     ImGui::Text("Scale Resolution");
     if (ImGui::SliderInt("###yetanotherid", &x_Res, 25, 500, "%d%%"))
     {
-        Context::GetContext()->RenderData.ResolutionScale = x_Res / 100.0f;
-        Renderer::ResizeProjectTexture(apst.ProjectWindowSize.x, apst.ProjectWindowSize.y);
+        Context::GetContext()->RenderData.ResolutionScale = (float)x_Res / 100.0f;
+        Renderer::ResizeProjectTexture((int)apst.ProjectWindowSize.x, (int)apst.ProjectWindowSize.y);
     }
 }
 
@@ -286,13 +286,13 @@ void ImGuiCore::ShowConsole()
 {
     if (ImGui::Begin("Console"))
     {
-        const auto cl = ConsoleLogBuffer::GetMessages();
+        const auto &cl = ConsoleLogBuffer::GetMessages();
 
         if (ImGui::BeginTable("ConsoleLogWindowTable", 2, ImGuiTableFlags_NoSavedSettings | ImGuiTableFlags_BordersInner))
         {
             ImGui::TableSetupColumn("Console Message", ImGuiTableColumnFlags_WidthStretch);
             ImGui::TableSetupColumn("Time", ImGuiTableColumnFlags_WidthFixed, 70);
-            for (int i = cl.size() - 1; i >= 0; i--)
+            for (int i = (int)cl.size() - 1; i >= 0; i--)
             {
                 if (i % 2 == 0)
                     ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.8f, 0.8f, 0.8f, 1.0f));
@@ -367,8 +367,9 @@ void ImGuiCore::ShowProjectRendered()
         bind.sampler = ctx->RenderData.ProjectSampler;
 
         // Draw the project to the screen ImGui window
-        const auto size = ImGui::GetWindowSize();
-        ImGui::Image(ImTextureID(&bind), {size.x, size.y - 19.0f});
+        const auto size      = ImGui::GetWindowSize();
+        constexpr float vPadding = 19.0f;
+        ImGui::Image(ImTextureID(&bind), {size.x, size.y - vPadding});
     }
     ImGui::End();
     ImGui::PopStyleVar();
