@@ -17,7 +17,14 @@ struct main0_in
 fragment main0_out main0(main0_in in [[stage_in]])
 {
     main0_out out = {};
-    out.out_var_SV_Target0 = float4(in.in_var_TEXCOORD0.xyz, in.in_var_TEXCOORD0.w * (1.0 - smoothstep(0.921000003814697265625, 1.0, length(in.in_var_TEXCOORD1))));
+    float _35 = length(in.in_var_TEXCOORD1);
+    if (_35 > 1.0)
+    {
+        discard_fragment();
+    }
+    float3 _53 = fast::normalize(float3(in.in_var_TEXCOORD1.x, in.in_var_TEXCOORD1.y, sqrt(precise::max(0.0, 1.0 - (_35 * _35)))));
+    float3 _54 = fast::normalize(float3(0.5, 0.5, 1.0));
+    out.out_var_SV_Target0 = float4((in.in_var_TEXCOORD0.xyz * (0.119999997317790985107421875 + (precise::max(dot(_53, _54), 0.0) * 0.87999999523162841796875))) + ((float3(1.0) * powr(precise::max(dot(_53, fast::normalize(_54 + float3(0.0, 0.0, 1.0))), 0.0), 32.0)) * 0.4000000059604644775390625), in.in_var_TEXCOORD0.w * (1.0 - smoothstep(0.921000003814697265625, 1.0, _35)));
     return out;
 }
 

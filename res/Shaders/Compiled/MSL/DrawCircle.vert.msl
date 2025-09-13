@@ -74,9 +74,10 @@ struct main0_out
 vertex main0_out main0(constant type_UniformBlock& UniformBlock [[buffer(0)]], const device type_StructuredBuffer_CircleData& DataBuffer [[buffer(1)]], uint gl_VertexIndex [[vertex_id]], uint gl_InstanceIndex [[instance_id]])
 {
     main0_out out = {};
+    float4 _61 = UniformBlock.ViewProjectionMatrix * float4(DataBuffer._m0[gl_InstanceIndex].Position, 0.0, 1.0);
     out.out_var_TEXCOORD0 = DataBuffer._m0[gl_InstanceIndex].Color;
     out.out_var_TEXCOORD1 = _39[gl_VertexIndex];
-    out.gl_Position = UniformBlock.ViewProjectionMatrix * float4(DataBuffer._m0[gl_InstanceIndex].Position + (_39[gl_VertexIndex] * DataBuffer._m0[gl_InstanceIndex].Radius), 0.0, 1.0);
+    out.gl_Position = (_61 + (((UniformBlock.ViewProjectionMatrix * float4(DataBuffer._m0[gl_InstanceIndex].Position + float2(DataBuffer._m0[gl_InstanceIndex].Radius, 0.0), 0.0, 1.0)) - _61) * _39[gl_VertexIndex].x)) + (((UniformBlock.ViewProjectionMatrix * float4(DataBuffer._m0[gl_InstanceIndex].Position + float2(0.0, DataBuffer._m0[gl_InstanceIndex].Radius), 0.0, 1.0)) - _61) * _39[gl_VertexIndex].y);
     return out;
 }
 

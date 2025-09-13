@@ -32,12 +32,24 @@ Output main(uint vertexID : SV_VertexID, uint instanceID : SV_InstanceID)
 
     CircleData circle = DataBuffer[instanceID];
 
-    float2 offset = localPos[vertexID] * circle.Radius;
-    float2 worldPos = circle.Position + offset;
+
+    // Project center to clip space
+    float4 clipCenter = mul(ViewProjectionMatrix, float4(circle.Position, 0.0, 1.0));
+
+    // Compute clip-space offsets for one unit in local X and Y (perspective-correct quad)
+    float4 clipRightPoint = mul(ViewProjectionMatrix, float4(circle.Position + float2(circle.Radius, 0.0), 0.0, 1.0));
+    float4 clipUpPoint    = mul(ViewProjectionMatrix, float4(circle.Position + float2(0.0, circle.Radius), 0.0, 1.0));
+
+    float4 clipRight = clipRightPoint - clipCenter;
+    float4 clipUp    = clipUpPoint - clipCenter;
+
+    // Build final clip position by offsetting the projected center
+    float2 lp = localPos[vertexID];
+    float4 finalClip = clipCenter + lp.x * clipRight + lp.y * clipUp;
 
     Output output;
-    output.Position = mul(ViewProjectionMatrix, float4(worldPos, 0.0, 1.0));
+    output.Position = finalClip;
     output.Color    = circle.Color;
-    output.LocalUV  = localPos[vertexID];
+    output.LocalUV  = lp; // keep -1..1 space for shading & edge tests
     return output;
 }
