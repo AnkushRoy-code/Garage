@@ -28,9 +28,9 @@ CPMAddPackage(
 log_pkg("imgui")
 CPMAddPackage(
     NAME imgui
-    VERSION 1.91.8-docking
-    URL https://github.com/ocornut/imgui/archive/refs/tags/v1.91.8-docking.tar.gz
-    URL_HASH SHA256=55f5e65abea635f2a8bfa9a92cd966448a363a262cf6dead7cc662fb0ab37612
+    VERSION 1.92.4-docking
+    URL https://github.com/ocornut/imgui/archive/refs/tags/v1.92.4-docking.tar.gz
+    URL_HASH SHA256=c5e2053afc707c70385431ed85c500b108b521784a3f6a7a31ea17583aab89a2
 )
 
 # ImGui doesn't have any CMakeLists.txt so we create our own. If you're not using SDL3 as your
@@ -95,7 +95,7 @@ endif()
 log_pkg("ImNodeFlow")
 CPMAddPackage(
     NAME ImNodeFlow
-    VERSION 1.91.8
+    VERSION 1.92.4
     URL https://github.com/Fattorino/ImNodeFlow/archive/9eb4094aa9e5b2a826078b4371aa61318e4062a2.zip
     URL_HASH SHA256=dfb1ec55c1a4e3715d0f37efbc8a01e5962a04e5fc1cf30537bef4eabeb64f13 
 )

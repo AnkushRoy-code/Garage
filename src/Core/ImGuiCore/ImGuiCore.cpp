@@ -16,8 +16,6 @@
 namespace Core
 {
 
-SDL_GPUTextureSamplerBinding ImGuiCore::bind;
-
 void ImGuiCore::Init()
 {
     IMGUI_CHECKVERSION();
@@ -28,6 +26,7 @@ void ImGuiCore::Init()
 
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
+    io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
     int w, h;
@@ -39,9 +38,12 @@ void ImGuiCore::Init()
     auto &rndt = Context::GetContext()->RenderData;
     ImGui_ImplSDL3_InitForSDLGPU(rndt.Window);
     ImGui_ImplSDLGPU3_InitInfo initInfo {};
-    initInfo.Device            = rndt.Device;
-    initInfo.ColorTargetFormat = SDL_GetGPUSwapchainTextureFormat(rndt.Device, rndt.Window);
-    initInfo.MSAASamples       = SDL_GPU_SAMPLECOUNT_1;
+    initInfo.Device               = rndt.Device;
+    initInfo.ColorTargetFormat    = SDL_GetGPUSwapchainTextureFormat(rndt.Device, rndt.Window);
+    initInfo.MSAASamples          = SDL_GPU_SAMPLECOUNT_1;
+    initInfo.SwapchainComposition = SDL_GPU_SWAPCHAINCOMPOSITION_SDR;
+    initInfo.PresentMode          = SDL_GPU_PRESENTMODE_VSYNC;
+
     ImGui_ImplSDLGPU3_Init(&initInfo);
 
     NodeEditor::InitNodeEditor();
@@ -58,8 +60,8 @@ void ImGuiCore::Quit()
 
 void ImGuiCore::Update()
 {
-    ImGui_ImplSDL3_NewFrame();
     ImGui_ImplSDLGPU3_NewFrame();
+    ImGui_ImplSDL3_NewFrame();
     ImGui::NewFrame();
 
     auto &apst = Context::GetContext()->AppState;
@@ -87,7 +89,7 @@ void ImGuiCore::Draw()
 
     assert(swapchainTexture);
 
-    Imgui_ImplSDLGPU3_PrepareDrawData(drawData, commandBuffer);
+    ImGui_ImplSDLGPU3_PrepareDrawData(drawData, commandBuffer);
 
     const SDL_GPUColorTargetInfo targetInfo {
         .texture              = swapchainTexture,
@@ -105,6 +107,14 @@ void ImGuiCore::Draw()
     ImGui_ImplSDLGPU3_RenderDrawData(drawData, commandBuffer, x_RenderPass);
 
     SDL_EndGPURenderPass(x_RenderPass);
+
+    // Update and Render additional Platform Windows
+    if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+    {
+        ImGui::UpdatePlatformWindows();
+        ImGui::RenderPlatformWindowsDefault();
+    }
+
     SDL_SubmitGPUCommandBuffer(commandBuffer);
 }
 
@@ -112,13 +122,15 @@ void ImGuiCore::InitImGuiStyle()
 {
     ImGui::StyleColorsDark();
 
-    ImGuiStyle &style        = ImGui::GetStyle();
-    style.FrameRounding      = 2.0f;
-    style.GrabRounding       = 2.0f;
-    style.WindowBorderSize   = 0.0f;
-    style.WindowTitleAlign   = ImVec2(0.5f, 0.5f);
-    style.WindowRounding     = 4.0f;
-    style.SeparatorTextAlign = ImVec2(0.5f, 0.5f);
+    ImGuiStyle &style                 = ImGui::GetStyle();
+    style.WindowRounding              = 0.0f;
+    style.Colors[ImGuiCol_WindowBg].w = 1.0f;
+    style.FrameRounding               = 2.0f;
+    style.GrabRounding                = 2.0f;
+    style.WindowBorderSize            = 0.0f;
+    style.WindowTitleAlign            = ImVec2(0.5f, 0.5f);
+    style.WindowRounding              = 4.0f;
+    style.SeparatorTextAlign          = ImVec2(0.5f, 0.5f);
 
     ImVec4 *colors                        = ImGui::GetStyle().Colors;
     colors[ImGuiCol_Text]                 = ImVec4(0.80f, 0.84f, 0.96f, 1.00f);
@@ -363,13 +375,10 @@ void ImGuiCore::ShowProjectRendered()
         // Note to self: Moving this function down causes artifacts when resizing
         Renderer::DrawProjectToTexture();
 
-        bind.texture = ctx->RenderData.ProjectTexture;
-        bind.sampler = ctx->RenderData.ProjectSampler;
-
         // Draw the project to the screen ImGui window
-        const auto size      = ImGui::GetWindowSize();
+        const auto size          = ImGui::GetWindowSize();
         constexpr float vPadding = 19.0f;
-        ImGui::Image(ImTextureID(&bind), {size.x, size.y - vPadding});
+        ImGui::Image(ImTextureID(ctx->RenderData.ProjectTexture), {size.x, size.y - vPadding});
     }
     ImGui::End();
     ImGui::PopStyleVar();

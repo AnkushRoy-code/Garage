@@ -1,7 +1,6 @@
 #ifndef INCLUDE_COREIMGUI_COREIMGUI_H_
 #define INCLUDE_COREIMGUI_COREIMGUI_H_
 
-#include "SDL3/SDL_gpu.h"
 namespace Core
 {
 class ImGuiCore
@@ -13,7 +12,6 @@ class ImGuiCore
     static void Quit();
 
   private:
-    static SDL_GPUTextureSamplerBinding bind;
     static void InitImGuiStyle();
     static void SetImGuiWindowProportions();
     static bool HandleWindowResize();
