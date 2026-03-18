@@ -6,20 +6,20 @@ var annotated_dup =
       [ "ProjectManager", "classCommon_1_1ProjectManager.html", "classCommon_1_1ProjectManager" ]
     ] ],
     [ "Core", "namespaceCore.html", [
-      [ "AddNode", "classCore_1_1AddNode.html", "classCore_1_1AddNode" ],
-      [ "AppStateStruct", "structCore_1_1AppStateStruct.html", "structCore_1_1AppStateStruct" ],
-      [ "ConsoleLogBuffer", "classCore_1_1ConsoleLogBuffer.html", null ],
       [ "ConsoleLogMessage", "structCore_1_1ConsoleLogMessage.html", "structCore_1_1ConsoleLogMessage" ],
-      [ "Context", "classCore_1_1Context.html", "classCore_1_1Context" ],
-      [ "DivideNode", "classCore_1_1DivideNode.html", "classCore_1_1DivideNode" ],
-      [ "EventHandlerStruct", "classCore_1_1EventHandlerStruct.html", "classCore_1_1EventHandlerStruct" ],
-      [ "FloatInputNode", "classCore_1_1FloatInputNode.html", "classCore_1_1FloatInputNode" ],
-      [ "ImGuiCore", "classCore_1_1ImGuiCore.html", null ],
-      [ "MultiplyNode", "classCore_1_1MultiplyNode.html", "classCore_1_1MultiplyNode" ],
-      [ "NodeEditor", "structCore_1_1NodeEditor.html", "structCore_1_1NodeEditor" ],
+      [ "ConsoleLogBuffer", "classCore_1_1ConsoleLogBuffer.html", null ],
       [ "RenderDataStruct", "structCore_1_1RenderDataStruct.html", "structCore_1_1RenderDataStruct" ],
+      [ "AppStateStruct", "structCore_1_1AppStateStruct.html", "structCore_1_1AppStateStruct" ],
+      [ "Context", "classCore_1_1Context.html", "classCore_1_1Context" ],
+      [ "EventHandlerStruct", "classCore_1_1EventHandlerStruct.html", "classCore_1_1EventHandlerStruct" ],
+      [ "ImGuiCore", "classCore_1_1ImGuiCore.html", null ],
+      [ "FloatInputNode", "classCore_1_1FloatInputNode.html", "classCore_1_1FloatInputNode" ],
+      [ "AddNode", "classCore_1_1AddNode.html", "classCore_1_1AddNode" ],
+      [ "SubtractNode", "classCore_1_1SubtractNode.html", "classCore_1_1SubtractNode" ],
+      [ "MultiplyNode", "classCore_1_1MultiplyNode.html", "classCore_1_1MultiplyNode" ],
+      [ "DivideNode", "classCore_1_1DivideNode.html", "classCore_1_1DivideNode" ],
       [ "ResultNode", "classCore_1_1ResultNode.html", "classCore_1_1ResultNode" ],
-      [ "SubtractNode", "classCore_1_1SubtractNode.html", "classCore_1_1SubtractNode" ]
+      [ "NodeEditor", "structCore_1_1NodeEditor.html", "structCore_1_1NodeEditor" ]
     ] ],
     [ "Utils", "namespaceUtils.html", [
       [ "CapZone", "classUtils_1_1CapZone.html", "classUtils_1_1CapZone" ],
