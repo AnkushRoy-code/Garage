@@ -68,4 +68,6 @@ if(UNIX AND NOT APPLE)
     install(FILES ${CMAKE_SOURCE_DIR}/res/Images/Logo/AnkushGarage.png
             DESTINATION share/icons/hicolor/256x256/apps
     )
+    # install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+    install(DIRECTORY ${CMAKE_SOURCE_DIR}/res DESTINATION bin)
 endif()
